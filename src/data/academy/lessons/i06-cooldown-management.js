@@ -1,0 +1,121 @@
+﻿export default {
+  id: 'cooldown-management',
+  title: 'Cooldown Management',
+  subtitle: 'When to use abilities — and when to save them',
+  category: 'intermediate',
+  pathId: 'fight-iq',
+  order: 3,
+  prerequisites: ['target-priority'],
+  xpReward: 60,
+  estimatedMinutes: 5,
+  difficulty: 4,
+  tags: ['cooldowns', 'abilities', 'decision-making', 'fight-iq'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Every non-ultimate ability in Overwatch has a cooldown — a delay before it can be used again. Learning when to spend abilities and when to hold them is one of the most important decision-making skills in the game.',
+    },
+    {
+      type: 'text',
+      heading: 'What Makes an Ability Worth Using?',
+      body: 'An ability is worth using when the situation justifies the investment. Using Sigma\'s Kinetic Grasp to absorb one low-damage projectile is wasteful. Using it to absorb Dragonstrike is extraordinary value. The key question is: "Is what I am protecting against worth the cooldown I am spending?"',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Good vs Wasted Cooldowns',
+      body: 'Ana\'s Sleep Dart (12s CD): Sleeping a 200 HP enemy in a 1v1 fight is decent. Sleeping Genji mid-Dragonblade to cancel his ultimate is exceptional. Every Sleep Dart you fire costs 12 seconds of vulnerability — spend it on the highest-value target.',
+    },
+    {
+      type: 'text',
+      heading: 'Tracking Enemy Cooldowns',
+      body: 'Knowing when the enemy is vulnerable is as important as managing your own cooldowns. If you just saw the enemy Reinhardt use his Charge and fail, his Charge is on a 10-second cooldown. He cannot disrupt you for 10 seconds — push now. If you just saw Kiriko use her Suzu, there is a 14-second window where her team cannot be cleansed.',
+    },
+    {
+      type: 'text',
+      heading: 'Defensive Cooldowns',
+      body: 'Defensive abilities (D.Va\'s Defense Matrix, Sigma\'s barrier, Reinhardt\'s shield, Kiriko\'s Suzu) should be saved for high-value threats. Wasting a Defense Matrix on one Pharah rocket when a Dragonstrike is about to land is a critical mistake. Hold defensive cooldowns for the moment they matter most.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'The Empty Kit Problem',
+      body: 'If you have used all your abilities, you are at your most vulnerable. Experienced players watch for moments when enemies have spent their cooldowns and immediately punish with aggression. Avoid dumping all cooldowns at once unless you are confident in the trade.',
+    },
+    {
+      type: 'text',
+      heading: 'Ability Combos',
+      body: 'Some abilities are most powerful when chained together. Reinhardt can combo Fire Strike into Charge for reliable pin damage. Zarya charges both shields to maximum energy then uses Graviton Surge. Moira uses Fade into Coalescence. Learning your hero\'s optimal combo sequence is part of cooldown management.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'After a team fight, note which abilities you still have left. If you have three abilities unused, you may be holding too long. If you have zero, consider whether any of those were spent on low-value situations.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-cooldown-management',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'You are D.Va and you just used Defense Matrix to absorb two low-damage Pharah rockets. 3 seconds later, the enemy Junkrat activates RIP-Tire and it is heading toward your team. What went wrong?',
+        options: [
+          'Nothing — RIP-Tire cannot be eaten by Defense Matrix',
+          'You spent your Defense Matrix on low-value targets instead of saving it for the RIP-Tire',
+          'You should have activated Defense Matrix again for the RIP-Tire',
+          'Defense Matrix only works on projectile damage once per fight',
+        ],
+        correct: 1,
+        explanation: 'Defense Matrix is D.Va\'s most powerful defensive tool. Using it on small rockets when a RIP-Tire (a high-impact ultimate) was about to arrive is a classic example of wasting a defensive cooldown on a low-value situation.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'You notice the enemy Reinhardt just used his Charge and missed. What should your team do for the next 10 seconds?',
+        options: [
+          'Retreat immediately because Reinhardt is dangerous',
+          'Push aggressively while Reinhardt\'s Charge is on cooldown and he is less threatening',
+          'Wait for his Charge to come back up before engaging',
+          'Focus on the enemy supports to maintain priority',
+        ],
+        correct: 1,
+        explanation: 'A missed Charge puts Reinhardt\'s most threatening mobility/displacement tool on cooldown. Your team has a window where Reinhardt cannot pin anyone — push now before it returns.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Using all your abilities as quickly as possible ensures you deal the most damage in a fight.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Emptying your kit immediately leaves you vulnerable with no defensive options. Pacing ability use so you always have at least one escape or defensive cooldown available is better practice.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'What is the term for a period when an enemy hero has all their abilities on cooldown and is at their most vulnerable?',
+        options: ['Cooldown window', 'Ability debt', 'Empty kit', 'Ult block'],
+        correct: 2,
+        explanation: '"Empty kit" or "ability debt" describes a hero whose cooldowns are all spent. Experienced players watch for these moments and immediately capitalize with aggression.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'Ana\'s Sleep Dart has a 12-second cooldown. You are in a 1v1 with an enemy Tracer at 50 HP. The enemy Genji is mid-Dragonblade nearby. What is the better use of your Sleep Dart?',
+        options: [
+          'Sleep the Tracer to finish the 1v1 quickly',
+          'Sleep the Genji mid-Dragonblade to cancel a devastating ultimate',
+          'Hold the Sleep Dart in case a third enemy arrives',
+          'Either target is equally valuable',
+        ],
+        correct: 1,
+        explanation: 'Sleeping Genji mid-Dragonblade cancels the ultimate entirely and prevents potentially 3-5 deaths. Sleeping the Tracer in a 1v1 is decent value but far lower impact. Sleep Dart\'s value scales with the importance of the target and the threat it prevents.',
+      },
+    ],
+  },
+};

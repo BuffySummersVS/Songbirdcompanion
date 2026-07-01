@@ -1,0 +1,205 @@
+[
+  {
+    "id": "antarctic-peninsula",
+    "name": "Antarctic Peninsula",
+    "gameMode": "Control",
+    "location": "Antarctica",
+    "description": "A remote Overwatch research station carved into ice and steel. Wide open platforms and brutal sightlines across frozen terrain reward long-range heroes and punish slow-moving frontlines."
+  },
+  {
+    "id": "blizzard-world",
+    "name": "Blizzard World",
+    "gameMode": "Hybrid",
+    "location": "California, USA",
+    "description": "A Blizzard Entertainment-themed amusement park. The indoor and outdoor mix of corridors, open streets, and elevated catwalks makes this map work for multiple playstyles. A favourite for Hybrid compositions."
+  },
+  {
+    "id": "circuit-royal",
+    "name": "Circuit Royal",
+    "gameMode": "Escort",
+    "location": "Monaco",
+    "description": "A winding Formula 1 circuit through the glamorous streets of Monaco. Sweeping curves and long approach sightlines punish slow pushes. High ground along the rail barriers gives snipers a commanding view."
+  },
+  {
+    "id": "colosseo",
+    "name": "Colosseo",
+    "gameMode": "Push",
+    "location": "Rome, Italy",
+    "description": "A Push map through the streets and arenas of ancient and futuristic Rome. Vertical city architecture creates opportunities for aerial heroes, while narrow side-streets offer flanking routes for fast heroes."
+  },
+  {
+    "id": "dorado",
+    "name": "Dorado",
+    "gameMode": "Escort",
+    "location": "Mexico",
+    "description": "A vibrant Mexican coastal town built across winding market streets and elevated walkways. Close-range fighters and area-denial heroes thrive in Dorado's tight alleys, while Pharah and Echo own the rooftops."
+  },
+  {
+    "id": "eichenwalde",
+    "name": "Eichenwalde",
+    "gameMode": "Hybrid",
+    "location": "Germany",
+    "description": "A ruined medieval German castle town. Narrow castle corridors and a fortified bridge create extreme chokepoints that favour brawl compositions with strong barrier tanks. High ground above the bridge is key."
+  },
+  {
+    "id": "esperanca",
+    "name": "Esperança",
+    "gameMode": "Push",
+    "location": "Portugal",
+    "description": "A Push map through the sun-drenched streets of a Portuguese coastal city. Open plazas and long central streets give snipers dominant sightlines, while covered side alleys offer safer routes for mobile heroes."
+  },
+  {
+    "id": "havana",
+    "name": "Havana",
+    "gameMode": "Escort",
+    "location": "Cuba",
+    "description": "A Cuban harbour town with crumbling colonial architecture and expansive open streets. Very long sightlines near the end make Widowmaker and Ashe especially powerful. Close-range heroes struggle approaching the final stretch."
+  },
+  {
+    "id": "hollywood",
+    "name": "Hollywood",
+    "gameMode": "Hybrid",
+    "location": "Los Angeles, USA",
+    "description": "A movie studio backlot in Los Angeles. The early sections are relatively open, while the final push crosses through a detailed studio exterior. Multiple elevated camera rigs and scaffolds reward high ground heroes."
+  },
+  {
+    "id": "hanaoka",
+    "name": "Hanaoka",
+    "gameMode": "Clash",
+    "location": "Japan",
+    "description": "A traditional Japanese town with five symmetrical capture points. Teams fight across bridges, gardens, and indoor areas in a push-and-pull format. Brawl comps excel in the interior points while poke heroes own the outer sightlines."
+  },
+  {
+    "id": "ilios",
+    "name": "Ilios",
+    "gameMode": "Control",
+    "location": "Greece",
+    "description": "A Greek island paradise with three distinct sub-maps: Ruins, Lighthouse, and Well. Open circular points with dramatic cliffs reward mobile and aerial heroes while making slow-moving tanks vulnerable to knockback abilities."
+  },
+  {
+    "id": "junkertown",
+    "name": "Junkertown",
+    "gameMode": "Escort",
+    "location": "Australia",
+    "description": "A massive junkyard city ruled by bandits in the Australian Outback. Long, winding streets with walls and barriers create a complex push environment. The escort sections rotate between open ambush points and tight corridors."
+  },
+  {
+    "id": "kings-row",
+    "name": "King's Row",
+    "gameMode": "Hybrid",
+    "location": "London, UK",
+    "description": "A grey, rain-soaked London district with underground Omnium sections. One of Overwatch's most iconic maps. Tight chokepoints on the high street and indoor final stretches heavily favour close-range brawl compositions. Reinhardt is widely considered the king of this map."
+  },
+  {
+    "id": "lijiang-tower",
+    "name": "Lijiang Tower",
+    "gameMode": "Control",
+    "location": "China",
+    "description": "A futuristic Chinese megacity complex with three sub-maps: Garden, Night Market, and Control Center. Varied layouts range from tight indoor corridors (Control Center) to open outdoor paths (Garden), meaning different compositions favour different sub-maps."
+  },
+  {
+    "id": "midtown",
+    "name": "Midtown",
+    "gameMode": "Hybrid",
+    "location": "New York, USA",
+    "description": "The streets and subway of a Manhattan-inspired city. The wide main avenue and multiple elevated balconies provide sightlines across the early sections, while the indoor final point rewards close-range heroes."
+  },
+  {
+    "id": "nepal",
+    "name": "Nepal",
+    "gameMode": "Control",
+    "location": "Himalayas",
+    "description": "A Himalayan mountain sanctuary with three sub-maps: Shrine, Village, and Sanctum. Open platforms, narrow bridges, and extreme heights make knockback abilities especially dangerous. Mobile supports and dive compositions thrive."
+  },
+  {
+    "id": "new-junk-city",
+    "name": "New Junk City",
+    "gameMode": "Flashpoint",
+    "location": "Australia",
+    "description": "A Junkrat-themed wasteland city with five Flashpoint objectives spread across the map. Teams must fight for objectives in rotation, with the city's wide open scrap-metal streets and interior tunnels accommodating most composition types."
+  },
+  {
+    "id": "new-queen-street",
+    "name": "New Queen Street",
+    "gameMode": "Hybrid",
+    "location": "Toronto, Canada",
+    "description": "A Canadian city block inspired by Toronto's Queen Street. The push toward the final point crosses open intersections and sheltered alcoves. Hybrid and brawl compositions tend to perform well, but high ground flanks reward mobile heroes."
+  },
+  {
+    "id": "numbani",
+    "name": "Numbani",
+    "gameMode": "Hybrid",
+    "location": "West Africa",
+    "description": "A futuristic African city showcasing human-Omnic coexistence. The first section features wide open streets and elevated walkways that reward aggressive dive and aerial heroes. The indoor final point levels the playing field for brawl teams."
+  },
+  {
+    "id": "oasis",
+    "name": "Oasis",
+    "gameMode": "Control",
+    "location": "Iraq",
+    "description": "A city of science and innovation in the Iraqi desert. The three sub-maps feature a mix of indoor laboratories and outdoor garden plazas. A high-traffic road through City Center makes knockback abilities particularly dangerous."
+  },
+  {
+    "id": "paraiso",
+    "name": "Paraíso",
+    "gameMode": "Hybrid",
+    "location": "Rio de Janeiro, Brazil",
+    "description": "A vibrant Brazilian carnival district bursting with colour. Multi-level streets with wide balconies and rooftop paths make aerial heroes powerful in the early sections. The final push is indoors, bringing the fight close."
+  },
+  {
+    "id": "rialto",
+    "name": "Rialto",
+    "gameMode": "Escort",
+    "location": "Venice, Italy",
+    "description": "A beautiful Venetian canal district used as a Talon safehouse. Extremely narrow waterway corridors and bridged streets reward brawl teams. The final stretch opens into a courtyard that briefly favours ranged heroes."
+  },
+  {
+    "id": "route-66",
+    "name": "Route 66",
+    "gameMode": "Escort",
+    "location": "USA",
+    "description": "A classic American highway through dusty desert. Long straights and open gas station courtyards create dominant sniper sightlines, especially in the second section. Junkrat's mine field and Bastion's turret mode are strong on the final defence."
+  },
+  {
+    "id": "runasapi",
+    "name": "Runasapi",
+    "gameMode": "Push",
+    "location": "Peru",
+    "description": "A Push map through ancient Peruvian ruins and canyon paths. Tight corridors between stone walls favour close-range heroes, while the central open courtyard gives snipers a window of opportunity mid-fight."
+  },
+  {
+    "id": "samoa",
+    "name": "Samoa",
+    "gameMode": "Control",
+    "location": "Samoa",
+    "description": "A Pacific island battleground of volcanic rock and lush greenery. Open circular control points with dramatic terrain drops punish slow tanks. Mobile heroes and knockback abilities are especially powerful on this map."
+  },
+  {
+    "id": "shambali-monastery",
+    "name": "Shambali Monastery",
+    "gameMode": "Escort",
+    "location": "Nepal",
+    "description": "A sacred Omnic monastery high in the Himalayas. Wide outdoor sections with snowy open terrain and elevated temple walls give snipers and aerial heroes strong footing, while the interior final point tightens the engagement."
+  },
+  {
+    "id": "suravasa",
+    "name": "Suravasa",
+    "gameMode": "Flashpoint",
+    "location": "India",
+    "description": "A sacred Indian temple city with five Flashpoint objectives. Beautiful but deadly. Open temple squares give snipers long sightlines while interior shrine areas become intense close-range brawls."
+  },
+  {
+    "id": "throne-of-anubis",
+    "name": "Throne of Anubis",
+    "gameMode": "Clash",
+    "location": "Egypt",
+    "description": "An ancient Egyptian monument complex with five Clash capture points spread symmetrically. The wide outdoor areas between points reward long-range heroes, while the indoor throne room becomes a brutal close-quarters fight."
+  },
+  {
+    "id": "watchpoint-gibraltar",
+    "name": "Watchpoint: Gibraltar",
+    "gameMode": "Escort",
+    "location": "Gibraltar, Spain",
+    "description": "Overwatch's original Spanish mountain base. Long runway straights with distant sniper nests and vertical cliff faces are a sniper's paradise. The payload route offers limited cover, making it one of the hardest escort maps to push."
+  }
+]

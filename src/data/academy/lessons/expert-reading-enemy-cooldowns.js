@@ -1,0 +1,115 @@
+export default {
+  id: 'expert-reading-enemy-cooldowns',
+  title: 'Reading Enemy Cooldowns',
+  subtitle: 'Tracking all enemy abilities in real time',
+  category: 'expert',
+  pathId: 'expert',
+  order: 12,
+  prerequisites: ['expert-hero-flexibility'],
+  xpReward: 70,
+  estimatedMinutes: 7,
+  difficulty: 5,
+  tags: ['cooldown-reading', 'information', 'timing', 'awareness', 'expert'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Advanced cooldown play means knowing your own ability states. Expert cooldown reading means knowing the enemy\'s. An expert player can fight a Roadhog and know he just used Take a Breather — they push aggression immediately. They see Ana throw a Biotic Grenade — they retreat because healing is about to be blocked. Real-time enemy cooldown awareness is one of the highest skill ceilings in Overwatch.',
+    },
+    {
+      type: 'text',
+      heading: 'Building a Cooldown Mental Model',
+      body: 'For every enemy hero you interact with regularly, build a mental model of their key cooldown. Know the approximate duration, the visual and audio cues of use, and the window it creates. You do not need exact numbers — you need to recognise "that ability just happened" and translate it into "this hero is now less dangerous for approximately X seconds."',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Reading in Real Time',
+      body: 'You are fighting as Tracer. The enemy Brigitte winds up a Shield Bash — you hear the activation sound and see her dash. You blink sideways; it misses. You know now: Shield Bash is on a multi-second cooldown. You dive the Brigitte immediately while she cannot stun you. The audio cue → cooldown recognition → window exploitation is all in under two seconds of expert-level processing.',
+    },
+    {
+      type: 'text',
+      heading: 'Ability Baiting',
+      body: 'You can intentionally bait cooldowns to create exploitation windows. Approach Roadhog in a threatening way to bait his hook, then back off just as he fires — you made him waste a cooldown for nothing. Approach a Reinhardt to bait a barrier drop, then attack when the barrier breaks. Bait-and-punish is only possible when you have a mental model of the ability you are baiting.',
+    },
+    {
+      type: 'text',
+      heading: 'Priority Cooldowns to Track',
+      body: 'You cannot track every cooldown simultaneously at first. Build the skill incrementally. In each match, pick one or two enemy heroes and focus exclusively on tracking their key cooldowns. Over time, add more heroes and more abilities to your simultaneous tracking. Elite players can track 4–5 key cooldowns across the enemy team while also tracking their own position, aim, and fight state.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Use your kill feed and sound cues actively. Hearing a Graviton Surge sound effect but no visual on your screen means it was fired somewhere on the map — it is on cooldown. The kill feed showing a killed enemy is a free tracking reset: that hero\'s abilities will be refreshed when they respawn. Information is everywhere.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-expert-reading-enemy-cooldowns',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What does "reading enemy cooldowns" require?',
+        options: [
+          'Memorising every cooldown duration in the game',
+          'Building a mental model that recognises when an enemy ability was used and translates it into an exploitation window',
+          'Using a third-party tool that tracks cooldown timers',
+          'Asking enemies what their cooldown states are after each fight',
+        ],
+        correct: 1,
+        explanation: 'Expert cooldown reading is about pattern recognition: seeing or hearing an ability used, identifying the resulting window, and acting within it. You do not need exact seconds — you need to recognise "this ability just happened" and respond appropriately.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'Enemy Roadhog just used his Take a Breather (self-heal). What should you do?',
+        options: [
+          'Back off — he just healed and is at his strongest now',
+          'Push aggression immediately — his key survivability cooldown is on cooldown and he cannot sustain through your damage for several seconds',
+          'Wait until the animation finishes, then engage',
+          'Switch targets to a different enemy since Roadhog is now healthy',
+        ],
+        correct: 1,
+        explanation: 'Take a Breather just used means Roadhog temporarily cannot use his primary survivability tool. The window immediately after he uses it — before it recharges — is your best opportunity to deal damage he cannot recover from. Recognising the use → acting in the window is expert cooldown exploitation.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Ability baiting — deliberately provoking an enemy into using a cooldown on nothing useful — is a valid expert technique.',
+        options: ['True', 'False'],
+        correct: 0,
+        explanation: 'True. Baiting cooldowns is an active manipulation tool. Threatening an approach to provoke a hook, triggering a shield raise, or drawing a stun — then backing out to waste the ability — creates an exploitation window. The bait costs you nothing; the wasted cooldown costs them their primary defensive or offensive tool for several seconds.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'How should a beginning expert player approach learning enemy cooldown tracking?',
+        options: [
+          'Attempt to track all enemy cooldowns simultaneously from the first match',
+          'Start by tracking one or two key cooldowns on one or two heroes per match, then incrementally expand over time',
+          'Focus only on ultimate tracking until all ultimates can be tracked, then add regular cooldowns',
+          'Read the patch notes to memorise all cooldown durations before attempting to track anything',
+        ],
+        correct: 1,
+        explanation: 'Cooldown tracking is a skill built incrementally. Start with one or two heroes and their most important cooldown. When that becomes automatic, add another. Over time, the skill expands until you can simultaneously track multiple cooldowns across multiple heroes — but the path is incremental, not immediate.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'You hear a Graviton Surge sound effect but cannot see where it was used. What information does this give you?',
+        options: [
+          'No useful information — you cannot see it so you cannot act on it',
+          'Zarya just used Graviton Surge somewhere on the map — it is on cooldown and cannot be used again immediately',
+          'This means Zarya is hiding nearby and you should search for her',
+          'The sound indicates Zarya is charging Graviton, not that it was used',
+        ],
+        correct: 1,
+        explanation: 'Hearing an ability sound without seeing the visual effect means it was used elsewhere on the map — likely in a different fight or corner. It is still cooldown information: Zarya has used Graviton and cannot use it again immediately. Sound cues from anywhere on the map are valid tracking data.',
+      },
+    ],
+  },
+};

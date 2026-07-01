@@ -1,0 +1,115 @@
+export default {
+  id: 'advanced-objective-control',
+  title: 'Objective Control',
+  subtitle: 'Fighting for what actually wins the match',
+  category: 'advanced',
+  pathId: 'advanced',
+  order: 12,
+  prerequisites: ['advanced-creating-pressure'],
+  xpReward: 65,
+  estimatedMinutes: 6,
+  difficulty: 4,
+  tags: ['objective', 'payload', 'control-point', 'priority', 'advanced'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Overwatch matches are decided by objectives, not kills. You can win every fight 50 to 0 in eliminations and still lose the match if you do not control the payload, the control point, or the push robot. Objective control means every fight decision is filtered through one question: how does this help us capture or contest the objective?',
+    },
+    {
+      type: 'text',
+      heading: 'Contesting vs Capturing',
+      body: 'Contesting prevents the enemy from making progress. Capturing actually advances your team. These require different approaches. On attack, you need enough players on or near the objective to build capture percentage — kills alone do not cap. On defence, even one surviving player contesting the objective stops cap progress. Understanding the difference shapes every fight decision.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'The Kill-but-Lose Mistake',
+      body: 'Your team chases down three fleeing enemies and gets the kills. Meanwhile, the two surviving enemies have been standing on the point for eight seconds and captured it. You won the fight by kills; you lost the map by ignoring the objective. Always ask: "Do I chase or do I contest?" Contesting often wins more than chasing.',
+    },
+    {
+      type: 'text',
+      heading: 'Positioning Around the Objective',
+      body: 'Fighting near the objective is almost always better than fighting away from it. When you fight near the objective, any surviving players can immediately begin contesting or capturing. When you fight away from it, you must travel to the objective after winning — giving defeated enemies time to respawn and contest. Fight as close to the objective as possible.',
+    },
+    {
+      type: 'text',
+      heading: 'Payload Map Specifics',
+      body: 'On payload maps, the payload\'s position creates a moving objective focal point. Attackers should fight between the payload and the next checkpoint — forward of the payload to push enemies off their hold. Defenders should hold the choke before the next checkpoint, not behind it. Fighting behind the payload (as attack) or past the checkpoint (as defence) creates unnecessary positional disadvantages.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'When your team wins a fight, immediately identify the nearest player to the objective and get them contesting or on the payload. The worst post-fight scenario is five players grouping in a corner to heal while the objective sits uncaptured.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-advanced-objective-control',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'In Overwatch, what ultimately decides match outcomes?',
+        options: [
+          'Total eliminations by the end of the match',
+          'Objective control — capturing points, progressing the payload, or pushing the robot',
+          'Healing statistics and survivability',
+          'The team with the most ultimate uses during the match',
+        ],
+        correct: 1,
+        explanation: 'Overwatch is an objective-based game. Eliminations are a means to an end — securing the objective. You can dominate in kills and still lose if you do not control the objective. Every fight decision should filter through "how does this help us capture or contest?"',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'Your team wins a fight and all five enemies are down. What should you do first?',
+        options: [
+          'Regroup completely before doing anything else',
+          'Chase any fleeing enemies to ensure they cannot respawn quickly',
+          'Immediately get players onto the objective to capture or push progress while enemies are down',
+          'Use your ultimates now so you can recharge for the next fight',
+        ],
+        correct: 2,
+        explanation: 'The window after a won fight is the highest-value objective time. Enemies are respawning and cannot contest. Every second without someone on the objective is progress wasted. Get to the objective immediately after a win.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Chasing fleeing enemies after a fight win is usually better than immediately contesting the objective.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Chasing fleeing enemies costs you objective time and positioning. Two enemies respawning while your team chases one can flip the objective entirely. Contest the objective first — fleeing enemies will respawn regardless of whether you chase them.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'On a control point map, your team has three players alive and two enemies are alive but contesting the point. What matters most?',
+        options: [
+          'Eliminating both enemies as quickly as possible before thinking about the point',
+          'Getting at least one of your players onto the point to stop enemy progress, even while the fight continues',
+          'Falling back to heal all three players fully before engaging again',
+          'Using the numbers advantage to surround both enemies',
+        ],
+        correct: 1,
+        explanation: 'On a control point, contested progress stops for both teams. Getting even one player onto the point stops enemy capture progress immediately. Eliminating enemies is important, but contesting the point simultaneously maximises your advantage.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'As an attacker on a payload map, where is the ideal position to fight the defenders?',
+        options: [
+          'Well behind the payload for safety and cover',
+          'Between the payload\'s current position and the next checkpoint, pushing enemies off their hold',
+          'At your own spawn to fully regroup before each push',
+          'Anywhere on the map — position does not matter if you win fights',
+        ],
+        correct: 1,
+        explanation: 'Attacking between the payload and the next checkpoint means forward pressure on defenders while remaining close to the payload. Fighting behind the payload or at a distance means the payload sits uncontested, and you must travel back to it after winning fights.',
+      },
+    ],
+  },
+};

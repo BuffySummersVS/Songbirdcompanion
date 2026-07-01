@@ -1,0 +1,115 @@
+export default {
+  id: 'masterclass-professional-positioning',
+  title: 'Professional Positioning',
+  subtitle: 'Positioning at the highest level of Overwatch play',
+  category: 'masterclass',
+  pathId: 'masterclass',
+  order: 8,
+  prerequisites: ['masterclass-vod-review'],
+  xpReward: 75,
+  estimatedMinutes: 8,
+  difficulty: 5,
+  tags: ['positioning', 'professional', 'advanced', 'spatial', 'masterclass'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Professional positioning is not just "good positioning" — it is positioning that simultaneously optimises multiple factors: damage output, escape route, healing access, sight line coverage, and cover quality. Every position you take should be evaluated against all five factors, not just whether you have a shot on the target in front of you.',
+    },
+    {
+      type: 'text',
+      heading: 'The Five-Factor Check',
+      body: 'Before settling into any position, mentally check: (1) Damage angle — can I deal damage from here? (2) Escape route — if I need to leave, where do I go? (3) Healing access — can my supports reach me here? (4) Sight line coverage — am I exposed from multiple angles? (5) Cover quality — does this cover protect me from likely threats? A perfect position scores well on all five. Most positions trade one for another — know which trade you are making.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Professional vs Casual Position',
+      body: 'Casual: Genji on high ground roof for an excellent damage angle on the point. Poor escape route (one drop), no healing access (supports cannot reach or see him), exposed from all sides (no cover), flanked by the other high ground. Score: 1/5. Professional: Genji on the mid-height balcony corner — still elevated for the angle, one step from the staircase escape, visible to supports on the ground, covered on two sides, with a jump option if flanked. Score: 5/5. Same hero, same fight, very different outcome likelihood.',
+    },
+    {
+      type: 'text',
+      heading: 'Dynamic Position Reassessment',
+      body: 'Professional positioning is not static. As the fight evolves, the optimal position changes — enemies rotate, sightlines open and close, supports move. Professional players continuously reassess: "Is this still the best position given how the fight has developed?" and move when the answer is no. Holding a position that made sense 30 seconds ago but no longer serves any of the five factors is a positioning error.',
+    },
+    {
+      type: 'text',
+      heading: 'Map Knowledge as a Foundation',
+      body: 'Professional positioning requires knowing every position on every map: all high ground options, all cover positions, all flanking routes, all sightlines, all health pack locations, all escape routes. This knowledge, built over time through deliberate practice, removes the decision cost of finding a good position — you already know them all and simply select the best one for the current situation.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'For any map you regularly play, identify five "professional positions" per map segment — positions that score well on all five factors for your main role. Commit them to memory. In-match, you should always have a mental list of "where I should be right now" that is pre-loaded, not improvised.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-masterclass-professional-positioning',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What are the five factors in the professional positioning five-factor check?',
+        options: [
+          'Speed, damage, health, range, and mobility',
+          'Damage angle, escape route, healing access, sight line exposure, and cover quality',
+          'Ultimate charge rate, cooldown availability, team proximity, objective distance, and map knowledge',
+          'Aggression level, sustainability, flanking potential, support distance, and fight timing',
+        ],
+        correct: 1,
+        explanation: 'The five factors are: damage angle (can I deal damage?), escape route (where do I go if needed?), healing access (can supports reach me?), sight line coverage (am I exposed from multiple angles?), and cover quality (does cover protect me from likely threats?). Professional positioning optimises all five simultaneously.',
+      },
+      {
+        id: 'q2',
+        type: 'true-false',
+        question: 'A position that provides an excellent damage angle is automatically a good position, even if other factors are poor.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. A perfect damage angle with poor escape, no healing access, full sight line exposure, and weak cover is still a poor position — it will be exploited and you will die without delivering significant value. Every position involves trade-offs between the five factors; knowing which trade you are making is part of professional positioning.',
+      },
+      {
+        id: 'q3',
+        type: 'multiple-choice',
+        question: 'What is "dynamic position reassessment"?',
+        options: [
+          'Choosing a new hero that better suits the current position',
+          'Continuously asking whether your current position is still optimal as the fight evolves, and moving when the answer is no',
+          'Assessing all five factors once at the start of a fight and then committing to the position',
+          'Rotating all five players simultaneously to a new formation every 30 seconds',
+        ],
+        correct: 1,
+        explanation: 'Positions that were optimal 30 seconds ago may not be optimal now — enemies rotate, sightlines change, supports move. Professional positioning requires continuous reassessment and the willingness to move when a position no longer serves its purpose, rather than holding it out of comfort or inertia.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'Why does deep map knowledge improve positioning?',
+        options: [
+          'Map knowledge gives you extra damage in familiar positions',
+          'It removes the decision cost of finding a good position — you know all the optimal positions in advance and select rather than discover',
+          'Map knowledge prevents enemies from using certain flanking routes',
+          'Knowing the map improves aim on long-range sightlines',
+        ],
+        correct: 1,
+        explanation: 'When you already know every high ground option, cover position, escape route, and sightline on a map, finding the best position in any situation requires selection from a pre-loaded list, not real-time improvisation. This removes cognitive load during fights and produces faster, more accurate positioning decisions.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'You are playing support and find a position with excellent healing angles but no cover and difficult escape. What should you do?',
+        options: [
+          'Accept the trade — support healing angles are the most important factor',
+          'Recognise you are trading cover and escape for healing output, assess whether the trade is worth the risk for the current fight state, and look for alternatives that score better on all factors',
+          'Stay and request the tank to protect you since the healing position is valuable',
+          'Move to the nearest health pack position for survivability',
+        ],
+        correct: 1,
+        explanation: 'Professional positioning means knowing which trade you are making. Excellent healing angle at the cost of cover and escape may be worth it if the fight demands it — but you should consciously choose that trade, not stumble into it. Always look for positions that score better on all five factors before accepting a poor trade.',
+      },
+    ],
+  },
+};

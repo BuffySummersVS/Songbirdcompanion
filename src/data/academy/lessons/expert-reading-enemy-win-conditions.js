@@ -1,0 +1,115 @@
+export default {
+  id: 'expert-reading-enemy-win-conditions',
+  title: 'Reading Enemy Win Conditions',
+  subtitle: 'Understanding how the enemy intends to beat you',
+  category: 'expert',
+  pathId: 'expert',
+  order: 3,
+  prerequisites: ['expert-composition-adaptation'],
+  xpReward: 70,
+  estimatedMinutes: 7,
+  difficulty: 5,
+  tags: ['enemy-analysis', 'win-conditions', 'prediction', 'counter-play', 'expert'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Understanding your own win condition is advanced play. Understanding the enemy\'s win condition is expert play. When you know how the enemy intends to win, you can deny that specific outcome rather than reacting to whatever they do. This shifts you from reactive defense to proactive prevention.',
+    },
+    {
+      type: 'text',
+      heading: 'Reading Composition Win Conditions',
+      body: 'Every enemy composition tells you something about their win condition. A Zarya + Hanzo suggests Graviton → Dragon combo — their win condition is getting both ultimates simultaneously. A Winston + Tracer + Genji dive comp says their win condition is eliminating your support fast. An Ana + tank heavy comp likely wants to use Nano Boost on their most dangerous carry. Read their heroes and you can read their plan.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Proactive Denial',
+      body: 'You identify the enemy win condition is Graviton → Dragon. Your response is not to hope you survive the combo when it happens. Your response is: position your team in a spread formation every fight, keep an eye on Zarya\'s charge, and plan a break-out ability (Lucio Speed, Kiriko Suzu) to disrupt the Graviton if it lands. You are denying their win condition before it occurs.',
+    },
+    {
+      type: 'text',
+      heading: 'Behavioural Win Conditions',
+      body: 'Win conditions are not just compositions — they are behaviours. An enemy team that always sends a Sombra to hack your tank is telling you their win condition involves disrupting your tank\'s survivability. An enemy that always holds for a specific ultimate before engaging is telling you their win condition is ultimates. Watch their patterns across multiple fights.',
+    },
+    {
+      type: 'text',
+      heading: 'Denying the Win Condition',
+      body: 'Once identified, the win condition can be denied. If their win condition requires grouping your team (Graviton, Blizzard), spread out. If their win condition requires their support staying alive (for Nano Boost), prioritise the support in every fight. If their win condition requires diving your support, peel proactively every time their dive initiates. Denial is more effective than hoping your mechanics outperform theirs.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'After losing a fight, ask "what specifically caused us to lose?" If the answer is the same thing three fights in a row, that is their win condition. Name it, then plan denial strategies before the next fight.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-expert-reading-enemy-win-conditions',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is the key difference between advanced play and expert play regarding win conditions?',
+        options: [
+          'Advanced players focus on mechanics; expert players focus on strategy',
+          'Advanced players know their own win condition; expert players also understand the enemy\'s win condition and proactively deny it',
+          'Expert players swap heroes more often to deny enemy strategies',
+          'Advanced play focuses on single fights; expert play focuses on the whole match',
+        ],
+        correct: 1,
+        explanation: 'Knowing your own win condition is advanced. Expert play adds understanding the enemy\'s win condition — enabling you to proactively deny it rather than just reacting to whatever they do. This shifts you from reactive to controlling.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'The enemy team has Zarya and Hanzo. What does this tell you about their likely win condition?',
+        options: [
+          'They plan to use barrier damage to build Zarya\'s energy throughout the match',
+          'Their win condition is likely Graviton Surge → Dragon Strike — a combo that requires grouping your team',
+          'They are running a poke composition that relies on sustained range damage',
+          'They plan to dive your backline with Zarya\'s bubbles protecting Hanzo',
+        ],
+        correct: 1,
+        explanation: 'Zarya + Hanzo is one of the most iconic ultimate combos — Graviton Surge groups enemies, Dragon Strike deals massive damage to grouped enemies. This is their win condition: get both ultimates simultaneously and land the combo. Your proactive response is spread positioning and a break-out plan.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Win conditions can only be identified from enemy hero selections — in-match enemy behaviour does not reveal their win condition.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Behavioural patterns across multiple fights reveal win conditions just as clearly as composition. An enemy that always waits for a specific ultimate, always targets the same player, or always uses a specific formation is telling you their plan through repetition.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'You identify that the enemy win condition requires grouping your team (for a Blizzard/Graviton). What is the correct denial response?',
+        options: [
+          'Fight more aggressively to prevent enemies from charging their ultimates',
+          'Spread your team in a formation that makes it impossible to group everyone in one Blizzard/Graviton radius',
+          'Use your own ultimates before theirs are ready',
+          'Switch all five heroes to have escape abilities',
+        ],
+        correct: 1,
+        explanation: 'AOE ultimates require grouped targets to be effective. Maintaining spread positioning directly denies the enemy win condition — even if they land Graviton, spread positioning limits how many heroes get caught. This is proactive denial.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'After losing three consecutive fights, you notice the enemy Tracer always blinks to your Ana and kills her before the fight can develop. What is this telling you?',
+        options: [
+          'Your Ana is mechanically inferior to the enemy Tracer',
+          'The enemy\'s win condition is eliminating your Ana quickly — targeting your healing anchor to create an unsustainable fight',
+          'You need to swap Ana for a support that can deal with Tracer directly',
+          'This is just bad luck happening to repeat across three fights',
+        ],
+        correct: 1,
+        explanation: 'A repeated pattern across three fights is not coincidence — it is the enemy\'s plan. Their win condition is eliminating Ana before the team fight develops, removing your sustained healing. The response is peeling for Ana proactively (not letting Tracer reach her), or changing Ana\'s position to make the dive path less accessible.',
+      },
+    ],
+  },
+};

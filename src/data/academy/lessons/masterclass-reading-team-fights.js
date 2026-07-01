@@ -1,0 +1,115 @@
+export default {
+  id: 'masterclass-reading-team-fights',
+  title: 'Reading Team Fights',
+  subtitle: 'Interpreting complex multi-hero fights in real time',
+  category: 'masterclass',
+  pathId: 'masterclass',
+  order: 4,
+  prerequisites: ['masterclass-communication-principles'],
+  xpReward: 75,
+  estimatedMinutes: 8,
+  difficulty: 5,
+  tags: ['fight-reading', 'awareness', 'situational', 'real-time', 'masterclass'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'A team fight involves ten heroes, hundreds of ability uses, and constantly shifting positional states. Reading a team fight at the masterclass level means processing the entire board simultaneously — not just "what am I doing" but "what is happening to every player and what will happen in the next five seconds." This is the highest cognitive load in Overwatch.',
+    },
+    {
+      type: 'text',
+      heading: 'Fight State Components',
+      body: 'A full fight state includes: numbers alive on each team, HP states of every hero (rough tiers: healthy / low / critical), ability states of key cooldowns on both sides, ultimate readiness, positional structure (who is flanking, who is front-line, who is exposed), and the objective status. Reading a fight means updating this picture continuously and acting on what it tells you.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Five-Second Projection',
+      body: 'Current state: 5v4 advantage, your Ana is low health, enemy Tracer has Pulse Bomb. Five-second projection: Tracer will target Ana with the bomb. You need to either peel for Ana immediately or use Kiriko\'s Suzu to cleanse the bomb. Recognising not just the current state but the five-second projection is what allows proactive responses instead of reactive scrambles.',
+    },
+    {
+      type: 'text',
+      heading: 'Tracking Multiple Players',
+      body: 'Most players track one or two heroes at a time — whoever they are fighting. Masterclass fight reading tracks all ten. Technique: use the kill feed, damage indicators, and sound cues to build a picture of what is happening off-screen. You do not need to see everything; you need to synthesise all available cues into an accurate model of the full fight state.',
+    },
+    {
+      type: 'text',
+      heading: 'Fight Pivots',
+      body: 'Reading a fight enables pivots — moments where you shift your actions based on new fight state information. A pivot might be: "We just killed their tank — pivot to support focus now." Or: "We lost two players — pivot to stall and delay." Pivots require reading the fight fast enough to act while the window is still open. The lag between reading and responding must be minimal.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Practice fight reading in spectator mode or replay review. Watch a fight from an overview perspective and narrate the full state every five seconds. This builds the mental habit of comprehensive fight awareness before you apply it in live play.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-masterclass-reading-team-fights',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What does "reading a team fight" at the masterclass level involve?',
+        options: [
+          'Keeping track of your own health and cooldowns during a fight',
+          'Processing the entire fight state simultaneously — all players\' health, ability states, ultimates, positions, and objective status',
+          'Focusing exclusively on the current target and eliminating them efficiently',
+          'Identifying the enemy shot caller and predicting their next call',
+        ],
+        correct: 1,
+        explanation: 'Masterclass fight reading processes all ten players simultaneously, continuously updating health states, ability availability, positional changes, and objective status. This comprehensive picture enables pivots and proactive decisions that one-player focused tracking cannot.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'What is a "five-second projection" in fight reading?',
+        options: [
+          'A countdown timer for ability resets',
+          'Projecting what will happen in the next five seconds based on the current fight state, enabling proactive responses instead of reactive scrambles',
+          'An estimate of how long the current fight will last',
+          'Five calls made in rapid succession during a critical fight moment',
+        ],
+        correct: 1,
+        explanation: 'A five-second projection extrapolates current conditions forward — "Tracer has Pulse Bomb and our Ana is low, so Tracer will target Ana in the next few seconds." This projection enables proactive responses (peel now, Suzu ready) before the threat arrives, rather than reacting after the bomb has already landed.',
+      },
+      {
+        id: 'q3',
+        type: 'multiple-choice',
+        question: 'Your team wins 5v4 numbers but then loses two players in quick succession. What should you read and call?',
+        options: [
+          'Continue on the original target — the numbers advantage means you should win regardless',
+          'Read: fight state shifted from 5v4 to 3v4 disadvantage. Call: "Stall and delay — we are down numbers."',
+          'Use all remaining ultimates to try to secure the win despite the change',
+          'The fight cannot be read during a numbers shift — continue on instinct',
+        ],
+        correct: 1,
+        explanation: 'The fight state changed — from numerical advantage to numerical disadvantage. Reading this quickly enough to call a pivot ("stall and delay") saves two players from committing to a fight they can no longer win. Reading slow means losing those players unnecessarily. Pivots require fast reading and fast callouts.',
+      },
+      {
+        id: 'q4',
+        type: 'true-false',
+        question: 'Effective fight reading requires seeing every player on screen simultaneously.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Fight reading uses all available information sources — kill feed, sound cues, damage indicators, teammate callouts — to build a model of off-screen events. You synthesise partial information from multiple sources into an accurate picture. Seeing everything simultaneously is impossible; building an accurate model from available cues is the skill.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'What is the best way to practice fight reading as a skill?',
+        options: [
+          'Play as many ranked matches as possible and rely on in-game experience',
+          'Watch your own replays or use spectator mode, narrating the full fight state every few seconds as a deliberate exercise',
+          'Focus on one hero until their fight involvement is automatic, then add more complexity',
+          'Study team compositions and predict outcomes before fights start',
+        ],
+        correct: 1,
+        explanation: 'Replay and spectator mode practice with active narration — saying aloud the full fight state every five seconds — builds the mental habit of comprehensive tracking. This deliberate practice is faster than waiting for it to develop organically in ranked play, where the cognitive load of playing prevents deep analysis.',
+      },
+    ],
+  },
+};

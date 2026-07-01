@@ -1,0 +1,138 @@
+﻿export default {
+  id: 'peeling',
+  title: 'Peeling',
+  subtitle: 'Protecting the heroes behind you',
+  category: 'intermediate',
+  pathId: 'fight-iq',
+  order: 1,
+  prerequisites: ['positioning'],
+  xpReward: 60,
+  estimatedMinutes: 5,
+  difficulty: 3,
+  tags: ['peel', 'support', 'protection', 'flankers', 'teamwork'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Peeling is the act of temporarily leaving your current engagement to protect a teammate who is being attacked — usually a support hero threatened by a flanker. It is one of the most important team-play concepts in Overwatch.',
+    },
+    {
+      type: 'text',
+      heading: 'Why Peeling Matters',
+      body: 'Support heroes have low health and limited escape abilities. A flanker like Genji, Tracer, or Sombra can eliminate a support in seconds if no one responds. When a support dies, the team loses all healing — making the rest of the fight nearly unwinnable.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'A Peel in Practice',
+      body: 'Your Ana calls out that a Genji is on her. You are a Damage hero engaged in the main fight. You turn, use two abilities on Genji to force him away or kill him, then return to the main fight. Total time away: 4 seconds. Your supports stay alive. Your team wins the fight.',
+    },
+    {
+      type: 'text',
+      heading: 'Who Should Peel?',
+      body: 'Damage heroes are the primary peelers. They have the burst damage to quickly deal with a flanker. Sometimes the tank should also peel — particularly in dive compositions where the tank (Winston or D.Va) is naturally mobile and can dive the flanker. Supports should not be expected to peel for themselves alone.',
+    },
+    {
+      type: 'text',
+      heading: 'When NOT to Peel',
+      body: 'There are moments where peeling would cost more than it saves. If your team is about to win the fight and leaving would guarantee you lose, stay. If your tank is the one in immediate danger, peel for the tank first. If the support has an ultimate they can use to survive (Zenyatta\'s Transcendence, Mercy\'s Valkyrie for mobility), they may not need help.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      body: 'Crossing an open sightline to rescue an isolated support often results in two deaths (you and the support) instead of one. Peel only when you have a clean path and a realistic chance of helping.',
+    },
+    {
+      type: 'text',
+      heading: 'Communication Makes Peeling Easier',
+      body: 'The faster a support calls out they need help, the faster a teammate can respond. Use the ping system or voice chat to mark the flanker. "Genji on me" is enough. A support waiting to call out until they are at 10 HP has waited too long.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'As a damage hero, make a habit of glancing at your support\'s health bar every few seconds. If one support suddenly drops to critical health, a flanker may have found them — act fast.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-peeling',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What does "peeling" mean in Overwatch?',
+        options: [
+          'Falling back behind cover when taking heavy damage',
+          'Leaving your current engagement to protect a threatened teammate, usually a support',
+          'Using an ultimate ability to change the flow of the fight',
+          'Forcing the enemy off the objective by aggressive play',
+        ],
+        correct: 1,
+        explanation: 'Peeling means temporarily leaving the main engagement to deal with an enemy targeting your support heroes. A quick peel can save the support and win the team fight.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'Your Ana has just called "Tracer on me!" in voice chat. You are a Damage hero in the middle of the main fight. What should you do?',
+        options: [
+          'Ignore it — the main fight takes priority every time',
+          'Immediately turn and help eliminate the Tracer before returning to the fight',
+          'Tell your second support to peel instead',
+          'Use your ultimate to win the main fight faster, then go help',
+        ],
+        correct: 1,
+        explanation: 'Responding quickly to a peel call can save your support and win the team fight. If you lose your Ana, you lose all healing — the main fight becomes significantly harder even if you are winning it.',
+      },
+      {
+        id: 'q3',
+        type: 'multiple-choice',
+        question: 'Why are supports vulnerable to flankers?',
+        options: [
+          'Supports have a passive ability that prevents them from fighting back',
+          'Supports generally have lower health and fewer escape abilities',
+          'Supports\' healing beams attract flankers like a magnet',
+          'Supports deal reduced damage, making self-defense harder',
+        ],
+        correct: 1,
+        explanation: 'Support heroes typically have lower health pools and fewer movement abilities than flankers. A Tracer or Genji can burst down a support before help arrives if no one peels.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'You are a Damage hero. Your support is at 30 HP and a Genji is on them. However, your team\'s attack is about to eliminate all five enemy players. What should you do?',
+        options: [
+          'Always peel — the support takes priority',
+          'Evaluate: if the fight is already won without your peel, stay and finish. If not, peel.',
+          'Peel only if you have an ultimate available',
+          'Leave the main fight immediately because supports are always priority',
+        ],
+        correct: 1,
+        explanation: 'Peeling is situational. If your team is moments away from wiping the enemy team, leaving the fight to peel might cost the win. If you are needed in the main fight, communicate and let the other support handle it, or delay slightly.',
+      },
+      {
+        id: 'q5',
+        type: 'true-false',
+        question: 'Crossing wide open ground to rescue a support who is already at 5 HP is usually the right call.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Crossing open ground means you take damage from the enemy team during your approach. If the support is almost dead, your peel attempt may result in both of you dying. Peel when you have a clean path and enough time to make a difference.',
+      },
+      {
+        id: 'q6',
+        type: 'multiple-choice',
+        question: 'As a support, when is the best time to call for a peel?',
+        options: [
+          'When you are at 5 HP and about to die',
+          'When a flanker first appears on you, while you still have HP to fight back',
+          'After you have used all your escape abilities and are out of options',
+          'Only when you are running low on cooldowns',
+        ],
+        correct: 1,
+        explanation: 'Call early. The sooner your team knows a flanker is on you, the more time they have to respond. Calling at 5 HP gives your teammate zero time to reach you.',
+      },
+    ],
+  },
+};

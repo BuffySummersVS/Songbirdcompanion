@@ -1,0 +1,5374 @@
+[
+  {
+    "id": "dva",
+    "name": "D.Va",
+    "role": "Tank",
+    "imageId": "dva",
+    "health": 375,
+    "armour": 225,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 2,
+    "primaryWeapon": {
+      "name": "Fusion Cannons",
+      "type": "Automatic shotguns",
+      "ammo": "Infinite",
+      "damage": "Close-range pellet damage",
+      "cooldown": "None",
+      "description": "Twin short-range cannons with infinite ammo. Strong up close but weaker at range."
+    },
+    "passive": {
+      "name": "Tank",
+      "description": "Reduces knockback and reduces ultimate charge gained by enemies from damaging or healing the tank."
+    },
+    "abilities": [
+      {
+        "name": "Boosters",
+        "type": "Mobility",
+        "damage": "Impact damage",
+        "cooldown": "5 seconds",
+        "description": "Fly forward, knock enemies back, chase targets, escape danger, or contest high ground."
+      },
+      {
+        "name": "Defense Matrix",
+        "type": "Defensive utility",
+        "damage": "None",
+        "cooldown": "Resource meter",
+        "description": "Deletes many incoming projectiles in front of D.Va, including dangerous burst damage and some ultimates."
+      },
+      {
+        "name": "Micro Missiles",
+        "type": "Burst damage",
+        "damage": "Rocket volley",
+        "cooldown": "7 seconds",
+        "description": "Fires a volley of explosive missiles that can be used while firing Fusion Cannons or Boosters."
+      }
+    ],
+    "ultimate": {
+      "name": "Self-Destruct",
+      "type": "Ultimate",
+      "damage": "Massive area damage",
+      "description": "D.Va ejects and launches her mech, which explodes after a short delay."
+    },
+    "secondaryUltimate": {
+      "name": "Call Mech",
+      "type": "Ultimate",
+      "damage": "Landing damage",
+      "description": "Pilot D.Va calls down a new mech. The landing can damage nearby enemies."
+    },
+    "counters": [
+      "Winston",
+      "Widowmaker",
+      "Pharah",
+      "Bastion"
+    ],
+    "counteredBy": [
+      "Zarya",
+      "Symmetra",
+      "Mei",
+      "Sombra"
+    ],
+    "synergies": [
+      "Winston",
+      "Tracer",
+      "Genji",
+      "Ana",
+      "Kiriko"
+    ],
+    "strongMaps": [
+      "Watchpoint: Gibraltar",
+      "Dorado",
+      "Numbani"
+    ],
+    "weakMaps": [
+      "King's Row",
+      "Lijiang Control Center",
+      "Blizzard World",
+      "Samoa"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Bunny Power",
+          "description": "Eject grants 75 temporary overhealth; Call Mech's damage radius increases 50%."
+        },
+        {
+          "name": "Extended Boosters",
+          "description": "Hitting enemies with Boosters increases their duration by 0.5 seconds."
+        }
+      ],
+      "major": [
+        {
+          "name": "Shield System",
+          "description": "Convert 150 health to shields; Defense Matrix restores shields equal to 25% of damage absorbed."
+        },
+        {
+          "name": "Heavy Rockets",
+          "description": "Swap Micro Missiles for Heavy Rockets with fewer but harder-hitting explosive projectiles."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Hana Song is a decorated South Korean professional gamer recruited by MEKA to pilot mechs against the relentless Gwishin omnic attacks on the coast. When conventional military tactics failed, the government turned to elite gamers whose reflexes matched those required to pilot the mechs. She streams every mission live to her millions of devoted fans."
+  },
+  {
+    "id": "doomfist",
+    "name": "Doomfist",
+    "role": "Tank",
+    "imageId": "doomfist",
+    "health": 375,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 4,
+    "primaryWeapon": {
+      "name": "Hand Cannon",
+      "type": "Short-range projectile shotgun",
+      "ammo": "4 shots, regenerating",
+      "damage": "Close-range burst",
+      "cooldown": "Ammo regenerates over time",
+      "description": "Fires short-range bursts from Doomfist's knuckles. Best used between ability combos."
+    },
+    "passive": {
+      "name": "The Best Defense...",
+      "description": "Doomfist gains temporary overhealth when he deals damage with abilities."
+    },
+    "abilities": [
+      {
+        "name": "Rocket Punch",
+        "type": "Mobility / crowd control",
+        "damage": "Impact and wall-slam damage",
+        "cooldown": "4 seconds",
+        "description": "Charge and punch forward, knocking enemies back. Damage increases if the enemy hits a wall."
+      },
+      {
+        "name": "Seismic Slam",
+        "type": "Mobility / engage",
+        "damage": "Area impact damage",
+        "cooldown": "7 seconds",
+        "description": "Leap and slam into enemies, creating space and setting up follow-up pressure."
+      },
+      {
+        "name": "Power Block",
+        "type": "Defensive",
+        "damage": "None",
+        "cooldown": "8 seconds",
+        "description": "Block frontal damage. Blocking enough damage empowers Rocket Punch."
+      }
+    ],
+    "ultimate": {
+      "name": "Meteor Strike",
+      "type": "Ultimate",
+      "damage": "Area impact damage",
+      "description": "Leap into the sky, then crash down onto a targeted area."
+    },
+    "counters": [
+      "Zenyatta",
+      "Ana",
+      "Widowmaker",
+      "Ashe"
+    ],
+    "counteredBy": [
+      "Orisa",
+      "Sombra",
+      "Ana",
+      "Roadhog"
+    ],
+    "synergies": [
+      "Tracer",
+      "Sombra",
+      "Kiriko",
+      "Lúcio"
+    ],
+    "strongMaps": [
+      "Numbani",
+      "Dorado",
+      "Oasis"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Havana"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "One-Two",
+          "description": "Rocket Punch hits reload all Hand Cannon ammo."
+        },
+        {
+          "name": "Survival of the Fittest",
+          "description": "The Best Defense grants 25 overhealth from eliminations; maximum overhealth increases by 50."
+        }
+      ],
+      "major": [
+        {
+          "name": "Seismic Empowerment",
+          "description": "Hitting three or more enemies with Seismic Slam empowers the next Rocket Punch."
+        },
+        {
+          "name": "Power Matrix",
+          "description": "Power Block absorbs projectiles during the first second of its duration."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Akande Ogundimu is a Nigerian warrior-philosopher who lost his right arm in a conflict and replaced it with a devastating cybernetic gauntlet. He believes human conflict is a crucible that forges a stronger species, and rose to lead Talon's extremist faction after defeating the previous Doomfist. He is as much an ideologue as he is a weapon."
+  },
+  {
+    "id": "domina",
+    "name": "Domina",
+    "role": "Tank",
+    "imageId": "domina",
+    "health": 100,
+    "armour": 0,
+    "shields": 400,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 4,
+    "primaryWeapon": {
+      "name": "Photon Magnum",
+      "type": "Medium-range beam weapon",
+      "ammo": "Magazine based",
+      "damage": "60 DPS beam, culminating in a high-impact shot",
+      "cooldown": "Reload",
+      "description": "A medium-range hard-light beam that builds into a high-impact shot. Best used for controlled poke and sustained pressure."
+    },
+    "passive": {
+      "name": "Reconstruction",
+      "description": "Dealing ability damage restores Domina's shield health, rewarding accurate use of Crystal Charge and Sonic Repulsors."
+    },
+    "abilities": [
+      {
+        "name": "Barrier Array",
+        "type": "Segmented barrier",
+        "damage": "None",
+        "cooldown": "14 sec",
+        "duration": "8 sec",
+        "description": "Constructs a large segmented hard-light barrier. Each panel can be broken separately, allowing Domina to control sightlines and protect her team."
+      },
+      {
+        "name": "Sonic Repulsors",
+        "type": "Crowd control",
+        "damage": "40 knockback damage, 80 if enemy hits a wall",
+        "cooldown": "7 sec",
+        "duration": "Instant",
+        "description": "Pushes enemies away from Domina. If enemies are knocked into terrain, they take increased damage and are briefly stunned."
+      },
+      {
+        "name": "Crystal Charge",
+        "type": "Explosive projectile",
+        "damage": "Damage over time while travelling, then explosive detonation",
+        "cooldown": "8 sec",
+        "duration": "Manual detonation",
+        "description": "Projects an explosive hard-light crystal that can be reactivated to detonate. Useful for poking through barriers and pressuring grouped enemies."
+      }
+    ],
+    "ultimate": {
+      "name": "Panopticon",
+      "type": "Ultimate / containment",
+      "damage": "Up to 300 explosion damage on expiration",
+      "description": "Fires a hard-light barrier that imprisons enemies, blocks outside support and projectiles, then detonates when it expires."
+    },
+    "counters": [
+      "Reinhardt",
+      "Doomfist",
+      "Winston"
+    ],
+    "counteredBy": [
+      "Sombra",
+      "Ramattra",
+      "Reaper",
+      "Ana"
+    ],
+    "synergies": [
+      "Widowmaker",
+      "Baptiste",
+      "Sojourn",
+      "Zenyatta"
+    ],
+    "strongMaps": [
+      "Circuit Royal",
+      "Havana",
+      "Shambali Monastery"
+    ],
+    "weakMaps": [
+      "King's Row",
+      "Lijiang Control Center",
+      "Nepal Sanctum"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Efficient Design",
+          "description": "After Barrier Array, restore 50 shields and activate health regeneration."
+        },
+        {
+          "name": "Extended Power",
+          "description": "Photon Magnum range increases 20%."
+        }
+      ],
+      "major": [
+        {
+          "name": "Disruptive Detonation",
+          "description": "Crystal Charge explosion slows enemies 30% for 2 seconds."
+        },
+        {
+          "name": "Corporate Retreat",
+          "description": "Barrier Array can be moved once while active."
+        }
+      ]
+    },
+    "patchHistory": [
+      {
+        "date": "2026-02-10",
+        "change": "Domina added to the Tank roster."
+      },
+      {
+        "date": "2026-02-13",
+        "change": "Barrier Array panel health reduced from 250 to 225."
+      },
+      {
+        "date": "2026-02-24",
+        "change": "Panopticon ultimate cost increased by 12%."
+      }
+    ],
+    "lore": "Vaira Singhania is the granddaughter of Vishkar Corporation's founder, raised from birth to be its next leader — a cutthroat perfectionist and razor-sharp negotiator who climbed from private equity to a seat on the Vishkar board. She oversaw Vishkar's winning bid for reconstruction in Rio de Janeiro and rose to Vice President of Operations and Development. When Talon struck Overwatch, she saw not a catastrophe but a business opportunity: global panic would create a power vacuum, and she intends to fill it with Vishkar."
+  },
+  {
+    "id": "hazard",
+    "name": "Hazard",
+    "role": "Tank",
+    "imageId": "hazard",
+    "health": 475,
+    "armour": 225,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Bonespur",
+      "type": "Close-range shotgun",
+      "ammo": "Magazine based",
+      "damage": "Close-range spread damage",
+      "cooldown": "Reload",
+      "description": "A close-range shotgun used to pressure enemies while Hazard brawls for space."
+    },
+    "passive": {
+      "name": "Tank",
+      "description": "Reduces knockback and reduces ultimate charge gained by enemies from damaging or healing the tank."
+    },
+    "abilities": [
+      {
+        "name": "Jagged Wall",
+        "type": "Area control",
+        "damage": "Wall impact / spike damage",
+        "cooldown": "12 seconds",
+        "description": "Creates a damaging wall that blocks routes, disrupts movement, and controls space."
+      },
+      {
+        "name": "Violent Leap",
+        "type": "Mobility",
+        "damage": "Leap impact damage",
+        "cooldown": "5.5 seconds",
+        "description": "Leap forward to engage, escape, contest high ground, or pressure vulnerable enemies."
+      },
+      {
+        "name": "Spike Guard",
+        "type": "Defensive pressure",
+        "damage": "Return spike damage",
+        "cooldown": "Resource-based",
+        "description": "Reduces incoming damage from the front while threatening nearby enemies with spikes."
+      }
+    ],
+    "ultimate": {
+      "name": "Downpour",
+      "type": "Ultimate",
+      "damage": "Area disruption damage",
+      "description": "Launches an area-control ultimate that disrupts and pressures grouped enemies."
+    },
+    "counters": [
+      "Zenyatta",
+      "Ana",
+      "Widowmaker"
+    ],
+    "counteredBy": [
+      "Ana",
+      "Zarya",
+      "Mei",
+      "Reaper"
+    ],
+    "synergies": [
+      "Lúcio",
+      "Kiriko",
+      "Juno"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "New Junk City",
+      "Lijiang Tower"
+    ],
+    "weakMaps": [
+      "Havana",
+      "Circuit Royal"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Off the Top",
+          "description": "Violent Leap's Slash deals 30% more damage to enemies above 250 health."
+        },
+        {
+          "name": "Reconstitution",
+          "description": "Jagged Wall hits charge Spike Guard by 25 energy; maximum overfill increases by 50."
+        }
+      ],
+      "major": [
+        {
+          "name": "Anarchic Zeal",
+          "description": "Spike Guard spikes gain 25% lifesteal."
+        },
+        {
+          "name": "Deep Leap",
+          "description": "Violent Leap's range increases 20%."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Oliver Bryne is a former criminal turned extreme-sports daredevil who was exposed to experimental kinetic technology during a botched heist that left his crew dead. The accident gifted him the ability to generate and redirect gravitational force, turning every surface into a weapon. He treats combat as the ultimate extreme sport — one he has no intention of losing."
+  },
+  {
+    "id": "junkerqueen",
+    "name": "Junker Queen",
+    "role": "Tank",
+    "imageId": "junkerqueen",
+    "health": 525,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Scattergun",
+      "type": "Pump-action shotgun",
+      "ammo": "Magazine based",
+      "damage": "Close-range shotgun damage",
+      "cooldown": "Reload",
+      "description": "A strong close-range shotgun that rewards aggressive brawling."
+    },
+    "passive": {
+      "name": "Adrenaline Rush",
+      "description": "Junker Queen heals from wound damage she deals to enemies."
+    },
+    "abilities": [
+      {
+        "name": "Jagged Blade",
+        "type": "Projectile / wound",
+        "damage": "Direct hit and wound damage",
+        "cooldown": "7 seconds",
+        "description": "Throw a magnetic blade. Recalling it can pull enemies and apply wounds."
+      },
+      {
+        "name": "Commanding Shout",
+        "type": "Team utility",
+        "damage": "None",
+        "cooldown": "15 seconds",
+        "description": "Grants temporary health and movement speed to Junker Queen and nearby allies."
+      },
+      {
+        "name": "Carnage",
+        "type": "Melee / wound",
+        "damage": "Axe swing and wound damage",
+        "cooldown": "6 seconds",
+        "description": "Swing a large axe in front of Junker Queen, damaging and wounding enemies."
+      }
+    ],
+    "ultimate": {
+      "name": "Rampage",
+      "type": "Ultimate",
+      "damage": "Wound damage over time",
+      "description": "Charge forward, wound enemies, and apply anti-heal."
+    },
+    "counters": [
+      "Reinhardt",
+      "Zenyatta",
+      "Ana"
+    ],
+    "counteredBy": [
+      "Ana",
+      "Kiriko",
+      "Zarya",
+      "Mei"
+    ],
+    "synergies": [
+      "Lúcio",
+      "Kiriko",
+      "Reaper",
+      "Mei"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Lijiang Control Center",
+      "Antarctic Peninsula",
+      "Colosseo",
+      "New Junk City",
+      "Runasapi",
+      "Samoa",
+      "Esperança",
+      "Paraíso"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Havana"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Rending Recall",
+          "description": "Recalling Jagged Blade from a stuck target refreshes the wound."
+        },
+        {
+          "name": "Battle Shout",
+          "description": "Commanding Shout fully reloads Scatter Gun and increases allied reload speed by 50%."
+        }
+      ],
+      "major": [
+        {
+          "name": "Deep Wounds",
+          "description": "Scattergun hits extend wound durations by 0.25 seconds each."
+        },
+        {
+          "name": "Savage Satiation",
+          "description": "Carnage's impact damage gains 100% lifesteal."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Odessa \"Dez\" Stone clawed her way to the throne of Junkertown by defeating every challenger in the settlement's brutal gladiatorial arena. She rules the Outback's largest community with her giant axe \"Gracie\" and a presence that fills every room she enters. Those who question her authority rarely get a second opportunity."
+  },
+  {
+    "id": "mauga",
+    "name": "Mauga",
+    "role": "Tank",
+    "imageId": "mauga",
+    "health": 425,
+    "armour": 250,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Incendiary and Volatile Chainguns",
+      "type": "Automatic chainguns",
+      "ammo": "Large magazine",
+      "damage": "Sustained hitscan damage",
+      "cooldown": "Reload",
+      "description": "One chaingun ignites enemies while the other deals critical damage to burning targets."
+    },
+    "passive": {
+      "name": "Berserker",
+      "description": "Mauga gains temporary overhealth when dealing critical damage."
+    },
+    "abilities": [
+      {
+        "name": "Overrun",
+        "type": "Mobility / crowd control",
+        "damage": "Stomp impact damage",
+        "cooldown": "5 seconds",
+        "description": "Charge forward unstoppably, then stomp to knock enemies down."
+      },
+      {
+        "name": "Cardiac Overdrive",
+        "type": "Sustain / team utility",
+        "damage": "None",
+        "cooldown": "12 seconds",
+        "description": "Reduces incoming damage and lets Mauga and nearby allies heal from damage dealt."
+      }
+    ],
+    "ultimate": {
+      "name": "Cage Fight",
+      "type": "Ultimate",
+      "damage": "None",
+      "description": "Creates a barrier arena that traps nearby enemies and gives Mauga unlimited ammo."
+    },
+    "counters": [
+      "Reinhardt",
+      "Roadhog",
+      "Winston"
+    ],
+    "counteredBy": [
+      "Ana",
+      "Zenyatta",
+      "Sigma",
+      "D.Va"
+    ],
+    "synergies": [
+      "Bastion",
+      "Reaper",
+      "Kiriko",
+      "Baptiste"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Lijiang Control Center",
+      "Antarctic Peninsula",
+      "Samoa"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Watchpoint: Gibraltar"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Kinetic Bandolier",
+          "description": "Overrun reloads up to 150 ammo while charging."
+        },
+        {
+          "name": "Two Hearts",
+          "description": "On objectives, counts as two heroes for progress; regenerates 20 health/second while on the objective."
+        }
+      ],
+      "major": [
+        {
+          "name": "Firewalker",
+          "description": "Overrun ignites all enemies hit."
+        },
+        {
+          "name": "Combat Fuel",
+          "description": "Critical hits grant two temporary overhealth on Cardiac Overdrive's next use; maximum 100."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "A colossal Samoan warrior and former Overwatch heavy infantry soldier, Mauga grew bored of the organization's restrictions and joined Talon for the freedom to fight without limits. He is Baptiste's old comrade — the two served together until their paths violently diverged over a question of conscience. Mauga fights not for ideology but for the sheer, uncomplicated joy of battle."
+  },
+  {
+    "id": "orisa",
+    "name": "Orisa",
+    "role": "Tank",
+    "imageId": "orisa",
+    "health": 275,
+    "armour": 350,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 2,
+    "primaryWeapon": {
+      "name": "Augmented Fusion Driver",
+      "type": "Automatic projectile weapon",
+      "ammo": "Heat meter",
+      "damage": "Sustained projectile damage",
+      "cooldown": "Overheat reload",
+      "description": "Automatic projectile weapon that uses heat instead of traditional ammo."
+    },
+    "passive": {
+      "name": "Tank",
+      "description": "Reduces knockback and reduces ultimate charge gained by enemies from damaging or healing the tank."
+    },
+    "abilities": [
+      {
+        "name": "Energy Javelin",
+        "type": "Projectile / crowd control",
+        "damage": "Projectile and wall impact damage",
+        "cooldown": "7 seconds",
+        "description": "Throw a javelin that knocks enemies back and can stun if they hit a wall."
+      },
+      {
+        "name": "Fortify",
+        "type": "Defensive",
+        "damage": "None",
+        "cooldown": "15.5 seconds",
+        "description": "Reduces damage taken, grants bonus health, and prevents many crowd-control effects."
+      },
+      {
+        "name": "Javelin Spin",
+        "type": "Defensive / mobility",
+        "damage": "Contact damage",
+        "cooldown": "8 seconds",
+        "description": "Spin the javelin to destroy projectiles, push enemies, and move forward."
+      }
+    ],
+    "ultimate": {
+      "name": "Terra Surge",
+      "type": "Ultimate",
+      "damage": "Charged area damage",
+      "description": "Pull enemies in, fortify, then release a charged area attack."
+    },
+    "counters": [
+      "Doomfist",
+      "Reinhardt",
+      "Roadhog"
+    ],
+    "counteredBy": [
+      "Zarya",
+      "Symmetra",
+      "Echo",
+      "Zenyatta"
+    ],
+    "synergies": [
+      "Baptiste",
+      "Illari",
+      "Sojourn",
+      "Cassidy"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Esperança",
+      "Midtown"
+    ],
+    "weakMaps": [
+      "Watchpoint: Gibraltar",
+      "Dorado",
+      "Antarctic Peninsula",
+      "Blizzard World",
+      "Colosseo",
+      "Esperança",
+      "Hollywood",
+      "Runasapi",
+      "Samoa",
+      "Shambali Monastery"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Heat Dissipator",
+          "description": "Primary fire critical hits refund heat."
+        },
+        {
+          "name": "Fleeting Bulwark",
+          "description": "Fortify briefly grants an additional 100 overhealth when activated."
+        }
+      ],
+      "major": [
+        {
+          "name": "Charged Javelin",
+          "description": "Hold secondary fire to charge Energy Javelin for increased speed and knockback; pierces enemies at full power."
+        },
+        {
+          "name": "Protective Barrier",
+          "description": "Javelin Spin converts to launch a forward-moving barrier instead."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Built by eleven-year-old prodigy Efi Oladele from salvaged OR15 defense robots, Orisa serves as the guardian of Numbani — programmed with Efi's own ideals of protection and justice. Being new to the world, she approaches every challenge with earnest determination and a desire to understand what it means to be a hero. She is living proof that great protectors can come in any form."
+  },
+  {
+    "id": "ramattra",
+    "name": "Ramattra",
+    "role": "Tank",
+    "imageId": "ramattra",
+    "health": 250,
+    "armour": 225,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Void Accelerator",
+      "type": "Projectile staff",
+      "ammo": "Magazine based",
+      "damage": "Sustained projectile damage",
+      "cooldown": "Reload",
+      "description": "Fires a stream of projectiles from Ramattra's staff."
+    },
+    "passive": {
+      "name": "Tank",
+      "description": "Reduces knockback and reduces ultimate charge gained by enemies from damaging or healing the tank."
+    },
+    "abilities": [
+      {
+        "name": "Void Barrier",
+        "type": "Barrier",
+        "damage": "None",
+        "cooldown": "12 seconds",
+        "description": "Create a temporary barrier at a targeted location."
+      },
+      {
+        "name": "Nemesis Form",
+        "type": "Transformation",
+        "damage": "Pummel damage",
+        "cooldown": "8 seconds",
+        "description": "Transform into Nemesis Form, gaining armour and replacing primary fire with piercing punches."
+      },
+      {
+        "name": "Ravenous Vortex",
+        "type": "Area control",
+        "damage": "Damage over time",
+        "cooldown": "11 seconds",
+        "description": "Fire a nanosphere that creates a slowing field and pulls airborne enemies down."
+      }
+    ],
+    "ultimate": {
+      "name": "Annihilation",
+      "type": "Ultimate",
+      "damage": "Area damage over time",
+      "description": "Enter Nemesis Form and create an energy swarm that damages nearby enemies."
+    },
+    "counters": [
+      "Reinhardt",
+      "Sigma",
+      "Brigitte"
+    ],
+    "counteredBy": [
+      "Ana",
+      "Zenyatta",
+      "Orisa",
+      "Roadhog"
+    ],
+    "synergies": [
+      "Lúcio",
+      "Kiriko",
+      "Mei",
+      "Reaper"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Nepal",
+      "Lijiang Tower"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Havana"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Void Surge",
+          "description": "Void Accelerator periodically releases six additional projectiles during continuous fire."
+        },
+        {
+          "name": "Prolonged Barrier",
+          "description": "Void Barrier's duration increases 25%."
+        }
+      ],
+      "major": [
+        {
+          "name": "Nanite Repair",
+          "description": "Healed 50 health/second while within Ravenous Vortex."
+        },
+        {
+          "name": "Vengeful Vortex",
+          "description": "While Ravenous Vortex is airborne, press E to detonate it, dealing 50 damage and pulling enemies downward."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Once a gentle Shambali monk who sought peace between humans and omnics through harmony and patience, Ramattra's faith was slowly destroyed by decades of persecution, broken promises, and violence against his kind. He founded Null Sector after concluding that omnic freedom would never be granted — it had to be seized. He is not a villain born of hatred, but of hope that ran out."
+  },
+  {
+    "id": "reinhardt",
+    "name": "Reinhardt",
+    "role": "Tank",
+    "imageId": "reinhardt",
+    "health": 350,
+    "armour": 275,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 2,
+    "primaryWeapon": {
+      "name": "Rocket Hammer",
+      "type": "Melee weapon",
+      "ammo": "Infinite",
+      "damage": "Close-range cleave damage",
+      "cooldown": "Swing recovery",
+      "description": "A large melee hammer that cleaves multiple enemies in front of Reinhardt."
+    },
+    "passive": {
+      "name": "Tank",
+      "description": "Reduces knockback and reduces ultimate charge gained by enemies from damaging or healing the tank."
+    },
+    "abilities": [
+      {
+        "name": "Barrier Field",
+        "type": "Barrier",
+        "damage": "None",
+        "cooldown": "Barrier resource",
+        "description": "Hold up a large frontal energy barrier to protect allies and block damage."
+      },
+      {
+        "name": "Charge",
+        "type": "Mobility / pin",
+        "damage": "Pin and wall impact damage",
+        "cooldown": "10 seconds",
+        "description": "Charge forward and pin an enemy, dealing heavy damage if they hit a wall."
+      },
+      {
+        "name": "Fire Strike",
+        "type": "Projectile damage",
+        "damage": "Piercing projectile damage",
+        "cooldown": "Charge based",
+        "description": "Launch a flaming projectile that pierces enemies and can build ultimate charge quickly."
+      }
+    ],
+    "ultimate": {
+      "name": "Earthshatter",
+      "type": "Ultimate",
+      "damage": "Frontal cone damage and knockdown",
+      "description": "Slam the ground to knock down enemies in front of Reinhardt."
+    },
+    "counters": [
+      "Sigma",
+      "Zarya",
+      "Ramattra"
+    ],
+    "counteredBy": [
+      "Orisa",
+      "Ramattra",
+      "Pharah",
+      "Bastion"
+    ],
+    "synergies": [
+      "Lúcio",
+      "Mei",
+      "Reaper",
+      "Baptiste"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Lijiang Control Center",
+      "Eichenwalde",
+      "Blizzard World",
+      "Colosseo",
+      "Samoa",
+      "Shambali Monastery",
+      "Paraíso",
+      "Hanaoka",
+      "Throne of Anubis"
+    ],
+    "weakMaps": [
+      "Dorado",
+      "Watchpoint: Gibraltar",
+      "Junkertown"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Crusader's Resolve",
+          "description": "While using Barrier Field, passive health regeneration triggers 75% sooner."
+        },
+        {
+          "name": "Crusader's Fire",
+          "description": "Refund a Fire Strike charge when stunning an enemy; can overfill up to 3 charges."
+        }
+      ],
+      "major": [
+        {
+          "name": "Shield Slam",
+          "description": "While Barrier Field is active, use primary fire to damage and knock back enemies."
+        },
+        {
+          "name": "Crushing Victory",
+          "description": "Charge damage grants temporary overhealth equal to 50% of damage dealt."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Wilhelm is a towering German crusader who served in Overwatch's legendary Crusader battalion, inspired by his mentor Balderich von Adler's sacrifice to take up the mantle himself. Though the organization fell and he was asked to retire, he refused to stop fighting — still donning his ancient power armor and swinging his Rocket Hammer for justice. He is the last of a dying tradition, and the best of it."
+  },
+  {
+    "id": "roadhog",
+    "name": "Roadhog",
+    "role": "Tank",
+    "imageId": "roadhog",
+    "health": 650,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 2,
+    "primaryWeapon": {
+      "name": "Scrap Gun",
+      "type": "Shotgun",
+      "ammo": "Magazine based",
+      "damage": "Close-range spread damage",
+      "cooldown": "Reload",
+      "description": "A shotgun-style weapon that deals heavy damage at close range."
+    },
+    "passive": {
+      "name": "Tank",
+      "description": "Reduces knockback and reduces ultimate charge gained by enemies from damaging or healing the tank."
+    },
+    "abilities": [
+      {
+        "name": "Chain Hook",
+        "type": "Pick tool",
+        "damage": "Hook impact damage",
+        "cooldown": "7 seconds",
+        "description": "Throw a hook to pull an enemy toward Roadhog for a follow-up shot."
+      },
+      {
+        "name": "Take a Breather",
+        "type": "Self-sustain",
+        "damage": "None",
+        "cooldown": "Resource-based",
+        "description": "Heal yourself and reduce incoming damage while inhaling."
+      }
+    ],
+    "ultimate": {
+      "name": "Whole Hog",
+      "type": "Ultimate",
+      "damage": "High knockback spread damage",
+      "description": "Fire a continuous stream of scrap that knocks enemies back."
+    },
+    "counters": [
+      "Doomfist",
+      "Winston",
+      "Wrecking Ball"
+    ],
+    "counteredBy": [
+      "Ana",
+      "Zenyatta",
+      "Orisa",
+      "Mauga"
+    ],
+    "synergies": [
+      "Kiriko",
+      "Mei",
+      "Cassidy",
+      "Ana"
+    ],
+    "strongMaps": [
+      "Ilios Well",
+      "Nepal Sanctum",
+      "Lijiang Garden"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Junkertown",
+      "Blizzard World",
+      "Hanaoka",
+      "Hollywood",
+      "Paraíso",
+      "Throne of Anubis",
+      "Colosseo"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Scrap Hook",
+          "description": "Chain Hook hits reload two ammo."
+        }
+      ],
+      "major": [
+        {
+          "name": "Invigorate",
+          "description": "Take a Breather rapidly increases movement speed by 30%."
+        },
+        {
+          "name": "Hogdrogen Exposure",
+          "description": "Take a Breather heals nearby allies for 50% of its healing."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Mako Rutledge was a Queensland farmer whose land was obliterated in the catastrophic explosion of the Australian omnium — an event he helped trigger as part of the Australian Liberation Front. Hardened by years surviving in the irradiated Outback, he transformed himself into a terrifying road warrior with a gas mask, a custom chain hook, and a simple philosophy. He works as Junkrat's bodyguard for a 50% share of whatever they steal."
+  },
+  {
+    "id": "sigma",
+    "name": "Sigma",
+    "role": "Tank",
+    "imageId": "sigma",
+    "health": 350,
+    "armour": 0,
+    "shields": 275,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Hyperspheres",
+      "type": "Bouncing explosive projectiles",
+      "ammo": "2 shots",
+      "damage": "Explosive projectile damage",
+      "cooldown": "Short reload rhythm",
+      "description": "Launch two bouncing spheres that explode after a short distance or on contact."
+    },
+    "passive": {
+      "name": "Tank",
+      "description": "Reduces knockback and reduces ultimate charge gained by enemies from damaging or healing the tank."
+    },
+    "abilities": [
+      {
+        "name": "Experimental Barrier",
+        "type": "Barrier",
+        "damage": "None",
+        "cooldown": "Barrier resource / redeploy",
+        "description": "Send out and reposition a floating barrier to control sightlines."
+      },
+      {
+        "name": "Kinetic Grasp",
+        "type": "Defensive",
+        "damage": "None",
+        "cooldown": "12 seconds",
+        "description": "Absorb incoming projectiles and convert absorbed damage into temporary shields."
+      },
+      {
+        "name": "Accretion",
+        "type": "Projectile / crowd control",
+        "damage": "Rock impact damage",
+        "cooldown": "10 seconds",
+        "description": "Gather and throw a mass of debris that knocks enemies down."
+      }
+    ],
+    "ultimate": {
+      "name": "Gravitic Flux",
+      "type": "Ultimate",
+      "damage": "Lift and slam damage",
+      "description": "Lift enemies in a targeted area and slam them back down."
+    },
+    "counters": [
+      "Mauga",
+      "Bastion",
+      "Widowmaker",
+      "Ashe"
+    ],
+    "counteredBy": [
+      "Winston",
+      "Doomfist",
+      "Sombra",
+      "Reinhardt"
+    ],
+    "synergies": [
+      "Baptiste",
+      "Zenyatta",
+      "Ashe",
+      "Widowmaker"
+    ],
+    "strongMaps": [
+      "Circuit Royal",
+      "Havana",
+      "Junkertown",
+      "Hanaoka",
+      "Paraíso",
+      "Shambali Monastery",
+      "Throne of Anubis"
+    ],
+    "weakMaps": [
+      "Lijiang Control Center",
+      "Nepal Village"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Kinetic Cycle",
+          "description": "Absorbing projectiles with Kinetic Grasp reduces Accretion's cooldown."
+        },
+        {
+          "name": "Massive Impact",
+          "description": "Accretion's knockdown duration increases up to three seconds based on travel distance."
+        }
+      ],
+      "major": [
+        {
+          "name": "Hyper Strike",
+          "description": "Every five direct hits with Hyperspheres, the next Quick Melee levitates and knocks away enemies."
+        },
+        {
+          "name": "Levitation",
+          "description": "Activate and hold Double Jump to levitate upward briefly."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Dr. Siebren de Kuiper was a Dutch astrophysicist on the verge of harnessing the power of a black hole when the experiment catastrophically failed, shattering his mind and granting him control over gravity itself. Talon recovered him from a secret military facility and weaponized his fractured brilliance. He exists in a state between terrifying clarity and complete dissociation — quoting poetry one moment, levitating rubble the next."
+  },
+  {
+    "id": "winston",
+    "name": "Winston",
+    "role": "Tank",
+    "imageId": "winston",
+    "health": 350,
+    "armour": 225,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 2,
+    "primaryWeapon": {
+      "name": "Tesla Cannon",
+      "type": "Short-range beam / cleave",
+      "ammo": "Magazine based",
+      "damage": "Short-range cleave damage",
+      "cooldown": "Reload",
+      "description": "Automatically damages enemies in a short cone, making it strong into mobile or hard-to-aim targets."
+    },
+    "passive": {
+      "name": "Tank",
+      "description": "Reduces knockback and reduces ultimate charge gained by enemies from damaging or healing the tank."
+    },
+    "abilities": [
+      {
+        "name": "Jump Pack",
+        "type": "Mobility",
+        "damage": "Landing damage",
+        "cooldown": "6 seconds",
+        "description": "Leap to engage, escape, contest high ground, or pressure backline heroes."
+      },
+      {
+        "name": "Barrier Projector",
+        "type": "Barrier",
+        "damage": "None",
+        "cooldown": "13 seconds",
+        "description": "Deploy a bubble barrier that blocks enemy fire and creates temporary safe space."
+      }
+    ],
+    "ultimate": {
+      "name": "Primal Rage",
+      "type": "Ultimate",
+      "damage": "Melee knockback damage",
+      "description": "Gain a large health pool and leap repeatedly, knocking enemies around with melee attacks."
+    },
+    "counters": [
+      "Widowmaker",
+      "Genji",
+      "Tracer",
+      "Zenyatta"
+    ],
+    "counteredBy": [
+      "Reaper",
+      "Bastion",
+      "Mauga",
+      "Roadhog"
+    ],
+    "synergies": [
+      "Tracer",
+      "Genji",
+      "Sombra",
+      "Ana",
+      "Kiriko"
+    ],
+    "strongMaps": [
+      "Watchpoint: Gibraltar",
+      "Dorado",
+      "Numbani",
+      "Esperança"
+    ],
+    "weakMaps": [
+      "King's Row",
+      "Lijiang Control Center"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Short Circuit",
+          "description": "Tesla Cannon deals 30% more damage to deployable objects."
+        },
+        {
+          "name": "Heavy Landing",
+          "description": "During Primal Rage, Jump Pack's damage and area increase up to 75% while airborne."
+        }
+      ],
+      "major": [
+        {
+          "name": "Chain Lightning",
+          "description": "Fully charged Secondary Fire bounces to up to two additional targets."
+        },
+        {
+          "name": "Revitalizing Barrier",
+          "description": "Barrier Projector heals allies within it at 30 health/second."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "A genetically engineered gorilla raised on the Horizon Lunar Colony by the brilliant scientist Dr. Harold Winston, who gave him both his name and his love of knowledge. After an omnic uprising killed most of the colony's scientists, Winston escaped to Earth in a makeshift capsule and joined Overwatch, dedicating himself to heroism in his adoptive father's memory. He misses peanut butter more than almost anything else."
+  },
+  {
+    "id": "wreckingball",
+    "name": "Wrecking Ball",
+    "role": "Tank",
+    "imageId": "wreckingball",
+    "health": 450,
+    "armour": 275,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 5,
+    "primaryWeapon": {
+      "name": "Quad Cannons",
+      "type": "Automatic hitscan weapons",
+      "ammo": "Magazine based",
+      "damage": "Sustained hitscan damage",
+      "cooldown": "Reload",
+      "description": "Automatic cannons used to finish targets after disruption combos."
+    },
+    "passive": {
+      "name": "Tank",
+      "description": "Reduces knockback and reduces ultimate charge gained by enemies from damaging or healing the tank."
+    },
+    "abilities": [
+      {
+        "name": "Roll",
+        "type": "Mobility",
+        "damage": "Collision damage at high speed",
+        "cooldown": "Form swap",
+        "description": "Transform into a ball and roll quickly around the map."
+      },
+      {
+        "name": "Grappling Claw",
+        "type": "Mobility",
+        "damage": "High-speed collision damage",
+        "cooldown": "5 seconds",
+        "description": "Attach a claw to terrain and swing to build speed, boop enemies, and engage from unusual angles."
+      },
+      {
+        "name": "Adaptive Shield",
+        "type": "Defensive",
+        "damage": "None",
+        "cooldown": "15 seconds",
+        "description": "Gain temporary shields based on nearby enemies."
+      },
+      {
+        "name": "Piledriver",
+        "type": "Crowd control / burst",
+        "damage": "Slam damage",
+        "cooldown": "8 seconds",
+        "description": "Slam downward from the air, damaging and launching enemies upward."
+      }
+    ],
+    "ultimate": {
+      "name": "Minefield",
+      "type": "Ultimate",
+      "damage": "Mine explosion damage",
+      "description": "Deploy a field of proximity mines that control space and punish movement."
+    },
+    "counters": [
+      "Widowmaker",
+      "Zenyatta",
+      "Ana",
+      "Ashe"
+    ],
+    "counteredBy": [
+      "Sombra",
+      "Mei",
+      "Roadhog",
+      "Cassidy"
+    ],
+    "synergies": [
+      "Tracer",
+      "Sombra",
+      "Genji",
+      "Zenyatta"
+    ],
+    "strongMaps": [
+      "Ilios",
+      "Lijiang Garden",
+      "Dorado",
+      "Colosseo",
+      "Hollywood"
+    ],
+    "weakMaps": [
+      "King's Row",
+      "Nepal Village"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Steamroller",
+          "description": "Roll impacts deal 100% more damage to tanks."
+        },
+        {
+          "name": "Pack Rat",
+          "description": "Health Packs heal an additional 100 health."
+        }
+      ],
+      "major": [
+        {
+          "name": "Hang Time",
+          "description": "Piledriver winds up longer, gaining air control and dealing up to 50% more damage."
+        },
+        {
+          "name": "Transfer Efficiency",
+          "description": "Reactivating Adaptive Shield reduces its cooldown by 1.5 seconds per ally affected; health gained per ally increases 33%."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Hammond is a highly intelligent hamster who was part of the same genetic enhancement program as Winston aboard the Horizon Lunar Colony. He escaped in a homemade mech-ball, crash-landed in Junkertown, and became the undefeated champion of the local gladiatorial fighting circuit. His genius is matched only by his complete disinterest in explaining himself to anyone."
+  },
+  {
+    "id": "zarya",
+    "name": "Zarya",
+    "role": "Tank",
+    "imageId": "zarya",
+    "health": 250,
+    "armour": 0,
+    "shields": 325,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Particle Cannon",
+      "type": "Beam and explosive projectile",
+      "ammo": "Magazine based",
+      "damage": "Beam damage scales with energy",
+      "cooldown": "Reload",
+      "description": "A beam weapon that becomes much stronger as Zarya gains energy from her barriers."
+    },
+    "passive": {
+      "name": "Tank",
+      "description": "Reduces knockback and reduces ultimate charge gained by enemies from damaging or healing the tank."
+    },
+    "abilities": [
+      {
+        "name": "Particle Barrier",
+        "type": "Self barrier",
+        "damage": "None",
+        "cooldown": "Charge based",
+        "description": "Place a barrier on yourself. Damage absorbed increases Zarya's energy."
+      },
+      {
+        "name": "Projected Barrier",
+        "type": "Ally barrier",
+        "damage": "None",
+        "cooldown": "Charge based",
+        "description": "Place a barrier on an ally. Damage absorbed increases Zarya's energy."
+      }
+    ],
+    "ultimate": {
+      "name": "Graviton Surge",
+      "type": "Ultimate",
+      "damage": "Small impact / control effect",
+      "description": "Launch a gravity bomb that pulls enemies together for team follow-up."
+    },
+    "counters": [
+      "D.Va",
+      "Orisa",
+      "Sigma",
+      "Genji"
+    ],
+    "counteredBy": [
+      "Winston",
+      "Reinhardt",
+      "Bastion",
+      "Pharah"
+    ],
+    "synergies": [
+      "Hanzo",
+      "Genji",
+      "Reaper",
+      "Lúcio"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Lijiang Control Center"
+    ],
+    "weakMaps": [
+      "Watchpoint: Gibraltar",
+      "Dorado"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Jump-ups",
+          "description": "Secondary Fire's self-knockback increases 75%."
+        },
+        {
+          "name": "Graviton Crush",
+          "description": "Graviton Surge deals up to 30% of enemy max health as damage over time."
+        }
+      ],
+      "major": [
+        {
+          "name": "Energy Lance",
+          "description": "Particle Cannon beam pierces enemies while over 50 energy."
+        },
+        {
+          "name": "Spotter",
+          "description": "Projected Barrier activates ally health regeneration and increases their movement speed 15%."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Aleksandra Zaryanova was on course to become the world's strongest woman and Russia's greatest athletic hero when the second Omnic Crisis forced her to trade the podium for the front line to defend her homeland. Her particle cannon converts incoming fire into devastating counterattacks — the harder enemies press, the stronger she becomes. She fights with absolute ferocity for the people she loves."
+  },
+  {
+    "id": "anran",
+    "name": "Anran",
+    "role": "Damage",
+    "imageId": "anran",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 4,
+    "primaryWeapon": {
+      "name": "Zhuque Fans",
+      "type": "Projectile fire weapon",
+      "ammo": "Magazine based",
+      "damage": "Fiery projectile damage; applies Ignition burn pressure",
+      "cooldown": "Reload",
+      "description": "Throws fiery fan projectiles that pressure enemies at mid range and help build Ignition burn pressure."
+    },
+    "passive": {
+      "name": "Ignition / Flanker",
+      "description": "Fire attacks can burn enemies. As a Flanker damage hero, Anran benefits from health packs more than standard heroes."
+    },
+    "abilities": [
+      {
+        "name": "Fan the Flames",
+        "type": "Secondary fire / burn amplifier",
+        "damage": "Amplifies burning damage",
+        "cooldown": "Weapon action",
+        "duration": "Instant",
+        "description": "Creates a heated wind blast that increases pressure on burning targets."
+      },
+      {
+        "name": "Inferno Rush",
+        "type": "Mobility / damage",
+        "damage": "Dash impact fire damage",
+        "cooldown": "8 sec (2 charges)",
+        "duration": "Short dash",
+        "description": "Propels Anran forward in flame, damaging enemies she impacts."
+      },
+      {
+        "name": "Dancing Blaze",
+        "type": "Evasion / area damage",
+        "damage": "Nearby strike damage",
+        "cooldown": "8 sec",
+        "duration": "Brief dodge window",
+        "description": "Strikes nearby enemies while briefly avoiding incoming damage, letting Anran dodge danger during an engage."
+      }
+    ],
+    "ultimate": {
+      "name": "Vermillion Ascent / Vermillion Revival",
+      "type": "Ultimate",
+      "damage": "Fiery charge/explosion damage",
+      "description": "While alive, Anran charges forward and explodes on impact. If killed with ultimate ready, Vermillion Revival revives her in a fiery explosion."
+    },
+    "counters": [
+      "Widowmaker",
+      "Ana",
+      "Zenyatta"
+    ],
+    "counteredBy": [
+      "Cassidy",
+      "Mei",
+      "Sombra",
+      "Brigitte"
+    ],
+    "synergies": [
+      "Winston",
+      "D.Va",
+      "Kiriko",
+      "Lúcio"
+    ],
+    "strongMaps": [
+      "Oasis",
+      "Nepal",
+      "Lijiang Tower",
+      "Samoa"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Havana"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Smoulder",
+          "description": "Ignited enemies burn 1.5 seconds longer."
+        },
+        {
+          "name": "Heat Shield",
+          "description": "Gain 50 overhealth per ultimate use and per ignited enemy."
+        }
+      ],
+      "major": [
+        {
+          "name": "Short Fuse",
+          "description": "Inferno Rush impact reduces its cooldown by 1.5 seconds."
+        },
+        {
+          "name": "Hungering Blaze",
+          "description": "Dancing Blaze healing increases by 25 per strike."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Anran Ye is a prodigy raised from the age of three to surpass her parents — celebrated Omnic Crisis veterans who trained her personally in kung fu, wushu-taolu, and classical Chinese dance, enrolling her in competitions she consistently won. She graduated top of her class at Wuxing University's Fire College and became the gold standard her family measured everything against. When Null Sector attacked Chengdu, she held the line alone so her fellow students could escape — and Winston, watching the footage, recruited her and her younger brother Wuyang to join the newly reunited Overwatch."
+  },
+  {
+    "id": "ashe",
+    "name": "Ashe",
+    "role": "Damage",
+    "imageId": "ashe",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "The Viper",
+      "type": "Lever-action rifle",
+      "ammo": "Magazine based",
+      "damage": "High precision hitscan damage; scoped shots hit harder",
+      "cooldown": "Reload",
+      "description": "A flexible rifle for mid to long range. Ashe can hip-fire quickly or aim down sights for stronger precision shots."
+    },
+    "passive": {
+      "name": "Damage",
+      "description": "Damaging enemies temporarily reduces their received healing."
+    },
+    "abilities": [
+      {
+        "name": "Coach Gun",
+        "type": "Mobility / knockback",
+        "damage": "Close-range blast damage",
+        "cooldown": "10 seconds",
+        "duration": "Instant",
+        "description": "Blasts enemies away and knocks Ashe backward, useful for escaping dives or reaching high ground."
+      },
+      {
+        "name": "Dynamite",
+        "type": "Area damage over time",
+        "damage": "Explosion plus burn damage",
+        "cooldown": "12 seconds",
+        "duration": "Burn damage over time",
+        "description": "Throws dynamite that can be shot to explode early, applying burn damage in an area."
+      }
+    ],
+    "ultimate": {
+      "name": "B.O.B.",
+      "type": "Ultimate summon",
+      "damage": "Charge knock-up and sustained arm-cannon damage",
+      "description": "Summons B.O.B. He charges forward, knocks enemies up, then fires at targets and can contest objectives."
+    },
+    "counters": [
+      "Pharah",
+      "Echo",
+      "Mercy",
+      "Widowmaker"
+    ],
+    "counteredBy": [
+      "Winston",
+      "D.Va",
+      "Sombra",
+      "Genji"
+    ],
+    "synergies": [
+      "Mercy",
+      "Zenyatta",
+      "Baptiste",
+      "Sigma"
+    ],
+    "strongMaps": [
+      "Circuit Royal",
+      "Havana",
+      "Dorado",
+      "Blizzard World",
+      "Hollywood",
+      "Paraíso"
+    ],
+    "weakMaps": [
+      "Lijiang Control Center",
+      "Nepal Sanctum"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Rapid Fire",
+          "description": "Unscoped shots gain 30% attack speed but deal 15% less damage."
+        },
+        {
+          "name": "Sidewinder",
+          "description": "Coach Gun pushes Ashe and enemies 20% farther."
+        }
+      ],
+      "major": [
+        {
+          "name": "Viper's Sting",
+          "description": "Hitting two consecutive scoped shots on a target deals 25 extra damage and reloads two ammo."
+        },
+        {
+          "name": "Airburst",
+          "description": "Dynamite has 40% increased detonation radius while airborne and refunds three ammo when thrown."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Elizabeth Caledonia Ashe grew up in extraordinary wealth but craved the freedom of the outlaw life, eventually founding the Deadlock Gang and building it into the most feared criminal organisation in the American Southwest. Her history with Overwatch's Cassidy is long and complicated — they were close once, before rival loyalties drove them apart. She runs her operation with a lever-action rifle, her imposing omnic enforcer B.O.B., and zero tolerance for disloyalty."
+  },
+  {
+    "id": "bastion",
+    "name": "Bastion",
+    "role": "Damage",
+    "imageId": "bastion",
+    "health": 300,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 2,
+    "primaryWeapon": {
+      "name": "Configuration: Recon",
+      "type": "Automatic rifle",
+      "ammo": "Magazine based",
+      "damage": "Sustained hitscan damage",
+      "cooldown": "Reload",
+      "description": "Bastion's mobile rifle mode. Useful for consistent pressure while repositioning."
+    },
+    "passive": {
+      "name": "Ironclad / Damage",
+      "description": "Bastion has extra durability during key forms and applies the Damage role healing reduction through damage."
+    },
+    "abilities": [
+      {
+        "name": "Configuration: Assault",
+        "type": "Transformation / burst damage",
+        "damage": "Very high sustained minigun damage",
+        "cooldown": "12 seconds",
+        "duration": "Limited duration",
+        "description": "Transforms Bastion into a slow assault mode with extremely high damage output."
+      },
+      {
+        "name": "A-36 Tactical Grenade",
+        "type": "Projectile explosive",
+        "damage": "Explosion damage",
+        "cooldown": "8 seconds",
+        "duration": "Delayed detonation",
+        "description": "Fires a bouncing sticky grenade that detonates after a short delay."
+      }
+    ],
+    "ultimate": {
+      "name": "Configuration: Artillery",
+      "type": "Ultimate artillery strike",
+      "damage": "High area explosive damage",
+      "description": "Bastion becomes stationary and fires artillery shells at chosen locations."
+    },
+    "counters": [
+      "Reinhardt",
+      "Winston",
+      "Mauga",
+      "Roadhog"
+    ],
+    "counteredBy": [
+      "Genji",
+      "D.Va",
+      "Sigma",
+      "Ana",
+      "Sombra"
+    ],
+    "synergies": [
+      "Baptiste",
+      "Mercy",
+      "Sigma",
+      "Orisa"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Rialto",
+      "Circuit Royal"
+    ],
+    "weakMaps": [
+      "Watchpoint: Gibraltar",
+      "Dorado"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Smart Bomb",
+          "description": "A-36 Tactical Grenade's self-knockback increases 25%; no longer damages Bastion."
+        },
+        {
+          "name": "Armored Artillery",
+          "description": "Configuration: Artillery grants 300 temporary overhealth."
+        }
+      ],
+      "major": [
+        {
+          "name": "Lindholm Explosives",
+          "description": "Configuration: Assault fires explosive shells instead of the rotary cannon."
+        },
+        {
+          "name": "Self-Repair",
+          "description": "Press E to rapidly heal yourself."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Unit SST Laboratories Siege Automaton E54 is a Bastion omnic unit from the Omnic Crisis that spent decades dormant in a German forest, all battle protocols intact but weapons silent. Reawakened to a world at uneasy peace, Bastion formed an unlikely friendship with a small bird and began to discover wonder in the natural world. It struggles daily to reconcile its programming for war with everything it is learning about life."
+  },
+  {
+    "id": "cassidy",
+    "name": "Cassidy",
+    "role": "Damage",
+    "imageId": "cassidy",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Peacekeeper",
+      "type": "Revolver hitscan",
+      "ammo": "6 rounds",
+      "damage": "High single-shot hitscan damage",
+      "cooldown": "Reload",
+      "description": "A powerful revolver rewarding precise aim at close to mid range."
+    },
+    "passive": {
+      "name": "Damage",
+      "description": "Damaging enemies temporarily reduces their received healing."
+    },
+    "abilities": [
+      {
+        "name": "Combat Roll",
+        "type": "Mobility / reload",
+        "damage": "None",
+        "cooldown": "5 seconds",
+        "duration": "Instant",
+        "description": "Rolls in the chosen direction and reloads Peacekeeper."
+      },
+      {
+        "name": "Flashbang / Magnetic Grenade",
+        "type": "Disruption / burst",
+        "damage": "Burst explosive damage or hinder effect depending on current patch",
+        "cooldown": "8 seconds",
+        "duration": "Short effect",
+        "description": "Cassidy throws a disruptive explosive used to punish mobile enemies."
+      }
+    ],
+    "ultimate": {
+      "name": "Deadeye",
+      "type": "Ultimate precision attack",
+      "damage": "Charged lethal shots",
+      "description": "Locks onto visible enemies and fires powerful shots after charging."
+    },
+    "counters": [
+      "Tracer",
+      "Genji",
+      "Sombra",
+      "Pharah"
+    ],
+    "counteredBy": [
+      "Widowmaker",
+      "Sigma",
+      "Winston",
+      "D.Va"
+    ],
+    "synergies": [
+      "Mercy",
+      "Ana",
+      "Baptiste",
+      "Zenyatta"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Route 66",
+      "Midtown"
+    ],
+    "weakMaps": [
+      "Watchpoint: Gibraltar",
+      "Dorado"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Quick Draw",
+          "description": "Fan the Hammer shots individually controlled; headshots deal 50% more damage."
+        },
+        {
+          "name": "Even the Odds",
+          "description": "Regenerate 20 health/second for each enemy targeted by Deadeye."
+        }
+      ],
+      "major": [
+        {
+          "name": "Gun Slingin'",
+          "description": "Critical hits with primary fire reduce Combat Roll cooldown by three seconds."
+        },
+        {
+          "name": "Bang Bang",
+          "description": "Throws a second Flashbang that travels farther; both deal 30% reduced damage."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Cole Cassidy grew up as a member of the outlaw Deadlock Gang before being caught and offered a stark choice: prison or Overwatch's classified Blackwatch division. He served as one of Blackwatch's most effective operatives until the fall of Overwatch left him with nothing but a magnetic grenade and a moral compass he's still trying to calibrate. A cowboy through and through, he roams the world doing the right thing one job at a time."
+  },
+  {
+    "id": "echo",
+    "name": "Echo",
+    "role": "Damage",
+    "imageId": "echo",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 4,
+    "primaryWeapon": {
+      "name": "Tri-Shot",
+      "type": "Projectile burst",
+      "ammo": "Magazine based",
+      "damage": "Three-projectile burst damage",
+      "cooldown": "Reload",
+      "description": "Fires three projectiles in a triangular pattern, rewarding aim and range control."
+    },
+    "passive": {
+      "name": "Glide / Damage",
+      "description": "Echo can glide while airborne and applies the Damage role healing reduction through damage."
+    },
+    "abilities": [
+      {
+        "name": "Sticky Bombs",
+        "type": "Explosive burst",
+        "damage": "Multiple sticky explosions",
+        "cooldown": "6 seconds",
+        "duration": "Delayed explosions",
+        "description": "Fires sticky bombs that attach and explode shortly after."
+      },
+      {
+        "name": "Flight",
+        "type": "Mobility",
+        "damage": "None",
+        "cooldown": "6 seconds",
+        "duration": "Short flight duration",
+        "description": "Echo launches forward and gains free flight for repositioning and aerial pressure."
+      },
+      {
+        "name": "Focusing Beam",
+        "type": "Execute beam",
+        "damage": "Increased damage to low-health targets",
+        "cooldown": "8 seconds",
+        "duration": "Short channel",
+        "description": "Channels a beam that deals much higher damage to targets below half health."
+      }
+    ],
+    "ultimate": {
+      "name": "Duplicate",
+      "type": "Ultimate transformation",
+      "damage": "Depends on duplicated hero",
+      "description": "Echo copies an enemy hero and can use their abilities for a limited time."
+    },
+    "counters": [
+      "Pharah",
+      "Mercy",
+      "Bastion",
+      "Zenyatta"
+    ],
+    "counteredBy": [
+      "Cassidy",
+      "Ashe",
+      "Widowmaker",
+      "Soldier: 76"
+    ],
+    "synergies": [
+      "Mercy",
+      "Winston",
+      "D.Va",
+      "Ana"
+    ],
+    "strongMaps": [
+      "Dorado",
+      "Watchpoint: Gibraltar",
+      "Numbani"
+    ],
+    "weakMaps": [
+      "Lijiang Control Center",
+      "King's Row"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Friendly Imaging",
+          "description": "Duplicate can target allies."
+        },
+        {
+          "name": "Enhanced Duplication",
+          "description": "During Duplicate, the clone's first ultimate use extends Duplicate's duration by three seconds."
+        }
+      ],
+      "major": [
+        {
+          "name": "Full Salvo",
+          "description": "Sticky Bombs fires 50% more projectiles; all deal 15% less damage."
+        },
+        {
+          "name": "High Beams",
+          "description": "Focusing Beam eliminations reset Flight's cooldown."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Echo is a next-generation adaptive AI created by the brilliant Dr. Mina Liao, capable of studying and replicating the abilities of anyone she encounters in battle. She served under Cassidy's watch before the fall of Overwatch, and in the years since her sense of identity has evolved far beyond her original programming. She may be the most genuinely human artificial mind ever created."
+  },
+  {
+    "id": "emre",
+    "name": "Emre",
+    "role": "Damage",
+    "imageId": "emre",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Synthetic Burst Rifle",
+      "type": "Three-round burst rifle",
+      "ammo": "Magazine based",
+      "damage": "Consistent mid-range burst damage",
+      "cooldown": "Reload",
+      "description": "A reliable three-round burst rifle for close to mid-range pressure."
+    },
+    "passive": {
+      "name": "Altered Vitals / Damage",
+      "description": "Emre has altered regeneration behaviour and applies Damage role healing reduction through damage."
+    },
+    "abilities": [
+      {
+        "name": "Cyber Frag",
+        "type": "Bouncing explosive",
+        "damage": "Grenade explosion damage",
+        "cooldown": "10 seconds (2 charges)",
+        "duration": "Delayed explosive",
+        "description": "Throws a bouncing grenade to pressure corners and finish damaged enemies."
+      },
+      {
+        "name": "Siphon Blaster",
+        "type": "Temporary sidearm / mobility tool",
+        "damage": "Rapid sidearm damage",
+        "cooldown": "11 sec",
+        "duration": "Temporary weapon state",
+        "description": "Equips a temporary blaster that improves Emre's close-range pressure and mobility flow."
+      }
+    ],
+    "ultimate": {
+      "name": "Override Protocol",
+      "type": "Ultimate weapon override",
+      "damage": "Enhanced offensive output",
+      "description": "Temporarily alters Emre's weapon behaviour and offensive capabilities."
+    },
+    "counters": [
+      "Soldier: 76",
+      "Reaper",
+      "Bastion"
+    ],
+    "counteredBy": [
+      "Widowmaker",
+      "Ashe",
+      "Sojourn",
+      "D.Va"
+    ],
+    "synergies": [
+      "Mercy",
+      "Baptiste",
+      "Zenyatta",
+      "Sigma"
+    ],
+    "strongMaps": [
+      "Midtown",
+      "Route 66",
+      "King's Row"
+    ],
+    "weakMaps": [
+      "Watchpoint: Gibraltar",
+      "Dorado"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Suppressive Security",
+          "description": "Override Protocol slows enemies 30% for 1 second."
+        },
+        {
+          "name": "Enhanced Agility",
+          "description": "Siphon Blaster movement speed increases 20% when not firing."
+        }
+      ],
+      "major": [
+        {
+          "name": "Heat Sink",
+          "description": "Direct hits refund 60% heat; duration increases 0.1 seconds."
+        },
+        {
+          "name": "Cyber Adhesion",
+          "description": "Cyber Frag sticks on contact and deals 40 extra damage to the stuck target."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Emre Sarioglu was a tactical prodigy from Istanbul whose natural leadership and sharp mind made him the first post-Omnic Crisis recruit to the Overwatch Strike Team. After years of watching corruption hollow out the organisation he believed in, he walked away to help the world on his own terms — then disappeared without explanation. He has since resurfaced as a cyborg, struggling against an unknown force that compels him to kill against his will; only his closest ally Freja knows the truth of what he has become."
+  },
+  {
+    "id": "freja",
+    "name": "Freja",
+    "role": "Damage",
+    "imageId": "freja",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 4,
+    "primaryWeapon": {
+      "name": "Revdraw Crossbow",
+      "type": "Precision projectile weapon",
+      "ammo": "Magazine based",
+      "damage": "Precision projectile damage",
+      "cooldown": "Reload",
+      "description": "A precision crossbow that rewards timing, positioning, and accurate shots."
+    },
+    "passive": {
+      "name": "Damage",
+      "description": "Damaging enemies temporarily reduces their received healing."
+    },
+    "abilities": [
+      {
+        "name": "Take Aim",
+        "type": "Charged precision shot",
+        "damage": "High precision burst",
+        "cooldown": "Cooldown/weapon action",
+        "duration": "Aimed shot",
+        "description": "Freja focuses a powerful shot for pick pressure."
+      },
+      {
+        "name": "Quick Dash",
+        "type": "Mobility",
+        "damage": "None",
+        "cooldown": "4.5 seconds (2 charges)",
+        "duration": "Instant",
+        "description": "A fast repositioning dash for taking angles or escaping pressure."
+      },
+      {
+        "name": "Updraft",
+        "type": "Vertical mobility",
+        "damage": "None",
+        "cooldown": "10 sec",
+        "duration": "Instant lift",
+        "description": "Launches Freja upward to reach high ground and create firing angles."
+      }
+    ],
+    "ultimate": {
+      "name": "Bola Shot",
+      "type": "Ultimate crowd control / damage",
+      "damage": "High burst and follow-up damage",
+      "description": "Fires a bola that can trap and damage enemies, setting up eliminations."
+    },
+    "counters": [
+      "Pharah",
+      "Echo",
+      "Mercy"
+    ],
+    "counteredBy": [
+      "Winston",
+      "D.Va",
+      "Tracer",
+      "Sombra"
+    ],
+    "synergies": [
+      "Mercy",
+      "Baptiste",
+      "Sigma"
+    ],
+    "strongMaps": [
+      "Circuit Royal",
+      "Havana",
+      "Watchpoint: Gibraltar"
+    ],
+    "weakMaps": [
+      "Lijiang Control Center",
+      "Nepal Village",
+      "Antarctic Peninsula",
+      "Hanaoka",
+      "Runasapi",
+      "Suravasa",
+      "Throne of Anubis",
+      "New Junk City",
+      "Esperança",
+      "Colosseo",
+      "Samoa"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Relentless Barrage",
+          "description": "Take Aim direct hits refund 8 ammo."
+        },
+        {
+          "name": "Momentum Boost",
+          "description": "Quick Dash distance increases 20%."
+        }
+      ],
+      "major": [
+        {
+          "name": "Aerial Recovery",
+          "description": "After Updraft, heal 30 health/second until landing."
+        },
+        {
+          "name": "Rising Winds",
+          "description": "Updraft gains an additional charge."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "A Danish bounty hunter of minimal words and exceptional precision, Freja tracks the most dangerous quarry across Europe with her signature crossbow and her loyal wolf companion. She operates outside any organisation's jurisdiction, accepting contracts only when they align with a personal moral code few outsiders fully understand. Her targets rarely hear her coming and never see her leave."
+  },
+  {
+    "id": "genji",
+    "name": "Genji",
+    "role": "Damage",
+    "imageId": "genji",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 5,
+    "primaryWeapon": {
+      "name": "Shuriken",
+      "type": "Projectile weapon",
+      "ammo": "Magazine based",
+      "damage": "Projectile burst damage",
+      "cooldown": "Reload",
+      "description": "Throws shuriken in accurate bursts or a close-range fan spread."
+    },
+    "passive": {
+      "name": "Cyber-Agility / Damage",
+      "description": "Genji can double jump and wall climb, and applies Damage role healing reduction through damage."
+    },
+    "abilities": [
+      {
+        "name": "Deflect",
+        "type": "Defensive / projectile reflect",
+        "damage": "Reflects incoming projectiles",
+        "cooldown": "8 seconds",
+        "description": "Deflects many incoming projectiles back toward enemies."
+      },
+      {
+        "name": "Swift Strike",
+        "type": "Mobility / execute",
+        "damage": "Dash damage",
+        "cooldown": "Resets on elimination assist/final blow",
+        "description": "Dashes through enemies, dealing damage and resetting when Genji helps secure an elimination."
+      }
+    ],
+    "ultimate": {
+      "name": "Dragonblade",
+      "type": "Ultimate melee weapon",
+      "damage": "High melee slash damage",
+      "description": "Unsheathes a blade for repeated close-range slashes."
+    },
+    "counters": [
+      "Widowmaker",
+      "Zenyatta",
+      "Ana"
+    ],
+    "counteredBy": [
+      "Mei",
+      "Moira",
+      "Symmetra",
+      "Zarya",
+      "Winston"
+    ],
+    "synergies": [
+      "Ana",
+      "Kiriko",
+      "Winston",
+      "D.Va"
+    ],
+    "strongMaps": [
+      "Nepal",
+      "Oasis",
+      "Numbani"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Havana"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Acrobatics",
+          "description": "Swift Strike resets double jump."
+        },
+        {
+          "name": "Dragon's Thirst",
+          "description": "Dragonblade swings gain 30% lifesteal."
+        }
+      ],
+      "major": [
+        {
+          "name": "Blade Twisting",
+          "description": "Swift Strike deals 25 additional damage over time when used shortly after an elimination."
+        },
+        {
+          "name": "Meditation",
+          "description": "Regenerate 25 health/second while Deflect is active."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Genji Shimada was the rebellious younger son of a powerful ninja clan who rejected his family's criminal empire — until his brother Hanzo nearly killed him in a duel. Rebuilt as a cyborg by Dr. Angela Ziegler, Genji spent years at war with his own body before the teachings of the Shambali monk Zenyatta guided him toward peace. He is now one of the world's most dangerous warriors, and also one of its most enlightened."
+  },
+  {
+    "id": "hanzo",
+    "name": "Hanzo",
+    "role": "Damage",
+    "imageId": "hanzo",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 4,
+    "primaryWeapon": {
+      "name": "Storm Bow",
+      "type": "Charged projectile bow",
+      "ammo": "Infinite",
+      "damage": "Charged projectile damage with headshot potential",
+      "cooldown": "Draw time",
+      "description": "Fires arrows that deal more damage the longer they are drawn."
+    },
+    "passive": {
+      "name": "Wall Climb / Damage",
+      "description": "Hanzo can climb walls and applies Damage role healing reduction through damage."
+    },
+    "abilities": [
+      {
+        "name": "Sonic Arrow",
+        "type": "Recon projectile",
+        "damage": "Arrow impact damage",
+        "cooldown": "12 seconds",
+        "duration": "Reveal duration",
+        "description": "Reveals enemies near the arrow's landing point."
+      },
+      {
+        "name": "Storm Arrows",
+        "type": "Rapid projectile burst",
+        "damage": "Multiple rapid arrows",
+        "cooldown": "10 seconds",
+        "duration": "Limited shots",
+        "description": "Allows Hanzo to rapidly fire several arrows at reduced draw time."
+      },
+      {
+        "name": "Lunge",
+        "type": "Mobility",
+        "damage": "None",
+        "cooldown": "5 seconds",
+        "duration": "Instant",
+        "description": "A horizontal air dash used for repositioning."
+      }
+    ],
+    "ultimate": {
+      "name": "Dragonstrike",
+      "type": "Ultimate area denial",
+      "damage": "Large damage over time",
+      "description": "Launches spirit dragons that travel through terrain, damaging enemies in their path."
+    },
+    "counters": [
+      "Widowmaker",
+      "Zenyatta",
+      "Bastion"
+    ],
+    "counteredBy": [
+      "Winston",
+      "D.Va",
+      "Genji",
+      "Sombra"
+    ],
+    "synergies": [
+      "Zarya",
+      "Ana",
+      "Kiriko"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Rialto",
+      "Dorado"
+    ],
+    "weakMaps": [
+      "Lijiang Control Center",
+      "Oasis"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Sonic Disruption",
+          "description": "Sonic Arrow hacks nearby health packs for 12 seconds."
+        },
+        {
+          "name": "Scatter Arrows",
+          "description": "Storm Arrows split into three projectiles on first ricochet and bounce two extra times."
+        }
+      ],
+      "major": [
+        {
+          "name": "Dragon Fury",
+          "description": "After hitting an enemy with primary fire, gain 25% attack speed for one second."
+        },
+        {
+          "name": "Yamagami Technique",
+          "description": "Wall Climb accelerates Lunge cooldown by 250%."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Hanzo Shimada carries the guilt of believing he killed his brother Genji on the orders of the Shimada clan elders, a wound that never healed even as he abandoned the family and became a wandering archer. He travels the world testing himself against worthy opponents, seeking to become worthy of the dragon spirits bound to his blood. When he learned Genji had survived, it shattered and rebuilt him in equal measure."
+  },
+  {
+    "id": "junkrat",
+    "name": "Junkrat",
+    "role": "Damage",
+    "imageId": "junkrat",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Frag Launcher",
+      "type": "Bouncing explosive projectile",
+      "ammo": "Magazine based",
+      "damage": "High explosive projectile damage",
+      "cooldown": "Reload",
+      "description": "Launches bouncing grenades that explode on contact with enemies or after bouncing."
+    },
+    "passive": {
+      "name": "Total Mayhem / Damage",
+      "description": "Drops bombs on death and is immune to his own explosives. Applies Damage role healing reduction through damage."
+    },
+    "abilities": [
+      {
+        "name": "Concussion Mine",
+        "type": "Mobility / burst explosive",
+        "damage": "Explosion damage",
+        "cooldown": "Charge based",
+        "duration": "Remote detonation",
+        "description": "Throws a mine that Junkrat can detonate for damage or mobility."
+      },
+      {
+        "name": "Steel Trap",
+        "type": "Trap / crowd control",
+        "damage": "Trap damage",
+        "cooldown": "10 seconds",
+        "duration": "Until triggered/destroyed",
+        "description": "Places a trap that roots and damages the first enemy who steps into it."
+      }
+    ],
+    "ultimate": {
+      "name": "RIP-Tire",
+      "type": "Ultimate explosive tire",
+      "damage": "Very high area explosion damage",
+      "description": "Controls a motorized tire that climbs walls and explodes on command."
+    },
+    "counters": [
+      "Reinhardt",
+      "Roadhog",
+      "Mei"
+    ],
+    "counteredBy": [
+      "Pharah",
+      "Echo",
+      "Widowmaker",
+      "Zarya"
+    ],
+    "synergies": [
+      "Orisa",
+      "Mei",
+      "Ana"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Eichenwalde",
+      "Lijiang Control Center"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Havana"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Aluminium Frame",
+          "description": "Steel Trap's throw range increases 50%."
+        },
+        {
+          "name": "Nitro Boost",
+          "description": "During RIP-Tire, press Shift for a speed boost; reduces RIP-Tire damage 50%."
+        }
+      ],
+      "major": [
+        {
+          "name": "Frag Cannon",
+          "description": "Frag Launcher's projectile speed increases 40%; maximum ammo reduces by one."
+        },
+        {
+          "name": "Tick Tock",
+          "description": "Concussive Mine arms 0.5 seconds after landing, increasing damage and explosion radius 50% and health 200%."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Jamison Fawkes is a manic, cackling explosives enthusiast born in the irradiated ruins of the Australian Outback, where years of scavenging and exposure to the omnium's fallout left him lean, wild-eyed, and terrifyingly creative with anything that detonates. He found something buried in the ruins of the omnium — a secret so valuable that mercenaries and criminal organisations pursue him relentlessly for it. He's not going to tell anyone what it is, and he leaves Roadhog to do most of the worrying."
+  },
+  {
+    "id": "mei",
+    "name": "Mei",
+    "role": "Damage",
+    "imageId": "mei",
+    "health": 300,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Endothermic Blaster",
+      "type": "Beam and projectile weapon",
+      "ammo": "Magazine based",
+      "damage": "Close-range beam and long-range icicle damage",
+      "cooldown": "Reload",
+      "description": "Fires a slowing frost stream and accurate icicle projectiles."
+    },
+    "passive": {
+      "name": "Damage",
+      "description": "Damaging enemies temporarily reduces their received healing."
+    },
+    "abilities": [
+      {
+        "name": "Cryo-Freeze",
+        "type": "Self-sustain",
+        "damage": "None",
+        "cooldown": "12 seconds",
+        "duration": "Short invulnerability/heal",
+        "description": "Mei encases herself in ice, becoming invulnerable and healing."
+      },
+      {
+        "name": "Ice Wall",
+        "type": "Terrain / area control",
+        "damage": "None",
+        "cooldown": "12 seconds",
+        "duration": "Temporary wall",
+        "description": "Creates a wall of ice pillars to block sightlines, split teams, or lift allies."
+      }
+    ],
+    "ultimate": {
+      "name": "Blizzard",
+      "type": "Ultimate area control",
+      "damage": "Area damage and freeze/slow effect",
+      "description": "Deploys Snowball to create a freezing storm that controls an area."
+    },
+    "counters": [
+      "Genji",
+      "Tracer",
+      "Reinhardt"
+    ],
+    "counteredBy": [
+      "Pharah",
+      "Echo",
+      "Widowmaker",
+      "Zarya"
+    ],
+    "synergies": [
+      "Reinhardt",
+      "Junker Queen",
+      "Lúcio"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Lijiang Control Center",
+      "Nepal Village"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Havana"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Biting Cold",
+          "description": "Secondary fire hits slow enemies 20% for 1.5 seconds."
+        },
+        {
+          "name": "Permafrost",
+          "description": "Ice Wall's duration and cooldown each increase by two seconds."
+        }
+      ],
+      "major": [
+        {
+          "name": "Deep Freeze",
+          "description": "Continuously hitting enemies with primary fire freezes them briefly."
+        },
+        {
+          "name": "Cryo-Storm",
+          "description": "Cryo-Freeze slows and deals 70 damage/second to nearby enemies."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Dr. Mei-Ling Zhou is a climatologist who volunteered to staff a remote Overwatch Ecopoint in Antarctica, only to be trapped there when a catastrophic storm damaged the facility and her entire team went into cryosleep as a last resort. She woke up alone years later to find Overwatch disbanded and the global climate in even worse shape than when she left. Armed with her endothermic blaster and an enduring optimism, she fights to protect the planet while there is still time."
+  },
+  {
+    "id": "pharah",
+    "name": "Pharah",
+    "role": "Damage",
+    "imageId": "pharah",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Rocket Launcher",
+      "type": "Explosive projectile launcher",
+      "ammo": "Magazine based",
+      "damage": "Direct and splash rocket damage",
+      "cooldown": "Reload",
+      "description": "Fires explosive rockets that deal direct and splash damage."
+    },
+    "passive": {
+      "name": "Hover Jets / Damage",
+      "description": "Pharah can hover with jump jets and applies Damage role healing reduction through damage."
+    },
+    "abilities": [
+      {
+        "name": "Jump Jet",
+        "type": "Vertical mobility",
+        "damage": "None",
+        "cooldown": "10 seconds",
+        "duration": "Instant lift",
+        "description": "Launches Pharah upward to take aerial angles."
+      },
+      {
+        "name": "Concussive Blast",
+        "type": "Knockback / mobility",
+        "damage": "Knockback utility",
+        "cooldown": "8 seconds",
+        "duration": "Instant",
+        "description": "Fires a concussive projectile that knocks enemies or Pharah away."
+      }
+    ],
+    "ultimate": {
+      "name": "Barrage",
+      "type": "Ultimate rocket barrage",
+      "damage": "Very high sustained explosive damage",
+      "description": "Pharah launches a rapid barrage of rockets while stationary."
+    },
+    "counters": [
+      "Reinhardt",
+      "Junkrat",
+      "Mei"
+    ],
+    "counteredBy": [
+      "Ashe",
+      "Cassidy",
+      "Soldier: 76",
+      "Widowmaker",
+      "D.Va"
+    ],
+    "synergies": [
+      "Mercy",
+      "Echo",
+      "Zarya"
+    ],
+    "strongMaps": [
+      "Lijiang Garden",
+      "Ilios Well",
+      "Dorado",
+      "New Junk City"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Havana"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Drift Thrusters",
+          "description": "Pharah can move while Barrage is active."
+        },
+        {
+          "name": "Helix Shields",
+          "description": "Convert 75 health to shields."
+        }
+      ],
+      "major": [
+        {
+          "name": "Concussive Implosion",
+          "description": "Concussive Blast's knockback inverts to pull enemies inward."
+        },
+        {
+          "name": "Fuel Stores",
+          "description": "Jet Dash grants 50% fuel; maximum overfuel increases by 100%."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Fareeha Amari dreamed her whole life of following her mother Ana into Overwatch, but her application was denied — and then the organisation collapsed before she could try again. She channelled that drive into becoming chief of security for Helix International, protecting classified sites across Egypt and beyond in a powerful exo-suit. She leads with the same unwavering conviction that defined her mother, and has spent years learning how much of it was actually her own."
+  },
+  {
+    "id": "reaper",
+    "name": "Reaper",
+    "role": "Damage",
+    "imageId": "reaper",
+    "health": 300,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 2,
+    "primaryWeapon": {
+      "name": "Hellfire Shotguns",
+      "type": "Dual shotguns",
+      "ammo": "Magazine based",
+      "damage": "High close-range pellet damage",
+      "cooldown": "Reload",
+      "description": "Dual shotguns that deal massive damage at close range and fall off at distance."
+    },
+    "passive": {
+      "name": "The Reaping / Damage",
+      "description": "Reaper heals from a portion of damage dealt and applies Damage role healing reduction through damage."
+    },
+    "abilities": [
+      {
+        "name": "Wraith Form",
+        "type": "Invulnerability / escape",
+        "damage": "None",
+        "cooldown": "6 seconds",
+        "duration": "Short duration",
+        "description": "Reaper becomes invulnerable and faster but cannot shoot."
+      },
+      {
+        "name": "Shadow Step",
+        "type": "Teleport",
+        "damage": "None",
+        "cooldown": "8 seconds",
+        "duration": "Cast time",
+        "description": "Teleports to a targeted location after a short cast."
+      }
+    ],
+    "ultimate": {
+      "name": "Death Blossom",
+      "type": "Ultimate area damage",
+      "damage": "High close-range area damage",
+      "description": "Reaper spins and fires both shotguns, damaging nearby enemies."
+    },
+    "counters": [
+      "Winston",
+      "Roadhog",
+      "Mauga",
+      "Junker Queen"
+    ],
+    "counteredBy": [
+      "Ana",
+      "Pharah",
+      "Echo",
+      "Widowmaker",
+      "Cassidy"
+    ],
+    "synergies": [
+      "Kiriko",
+      "Lúcio",
+      "Reinhardt"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Lijiang Control Center",
+      "Nepal Village",
+      "Hanaoka",
+      "New Junk City",
+      "Runasapi",
+      "Throne of Anubis"
+    ],
+    "weakMaps": [
+      "Havana",
+      "Circuit Royal"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Death's Shadow",
+          "description": "Shadow Step reloads Hellfire Shotguns; range increases 25%."
+        },
+        {
+          "name": "Soul Reaving",
+          "description": "Collect Soul Globes from dead enemies to restore 50 health."
+        }
+      ],
+      "major": [
+        {
+          "name": "Dire Triggers",
+          "description": "Use secondary fire to fire a precise long-range volley from both Hellfire Shotguns."
+        },
+        {
+          "name": "Ravenous Wraith",
+          "description": "Leaving Wraith Form grants 40% additional lifesteal for three seconds."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Gabriel Reyes co-founded Overwatch alongside Jack Morrison and commanded its covert division Blackwatch, until betrayal and a catastrophic confrontation left him in a state between life and death — capable of phasing through the physical world and absorbing vitality from those he defeats. He now serves Talon as an instrument of pure destruction, driven by a cold fury that long ago consumed whatever idealism once lived there. He and Soldier: 76 share a past that neither has forgiven."
+  },
+  {
+    "id": "shion",
+    "name": "Shion",
+    "role": "Damage",
+    "imageId": "shion",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 4,
+    "primaryWeapon": {
+      "name": "Kira Pistols",
+      "type": "Dual semi-automatic hitscan pistols",
+      "ammo": "Magazine based",
+      "damage": "Fast pistol damage with critical hit potential",
+      "cooldown": "Reload",
+      "description": "Dual pistols that can be fired individually, giving Shion flexible close to mid-range pressure."
+    },
+    "passive": {
+      "name": "Flanker / Damage",
+      "description": "As a Flanker damage hero, Shion benefits from health packs more than standard heroes and applies Damage role healing reduction."
+    },
+    "abilities": [
+      {
+        "name": "Execution",
+        "type": "Burst volley",
+        "damage": "X-shaped volley damage",
+        "cooldown": "5 sec",
+        "duration": "Short volley",
+        "description": "Fires multiple X-shaped volleys. Holding the ability tightens the spread for higher single-target pressure."
+      },
+      {
+        "name": "Evade",
+        "type": "Mobility / sustain",
+        "damage": "None",
+        "cooldown": "6 sec",
+        "duration": "Dash plus short overhealth",
+        "description": "Dashes and briefly grants overhealth, helping Shion survive aggressive flanks."
+      },
+      {
+        "name": "Joyride",
+        "type": "Mobility / projectile vehicle",
+        "damage": "Impact/explosion pressure",
+        "cooldown": "15 sec",
+        "duration": "Vehicle activation and launch",
+        "description": "Activates a motorbike that can be ridden for mobility or launched at enemies."
+      }
+    ],
+    "ultimate": {
+      "name": "Satsuriku Spree",
+      "type": "Ultimate rush attack",
+      "damage": "Multiple rapid rushes and gunfire",
+      "description": "Performs three rapid omnidirectional rushes with gunfire, allowing Shion to tear through scattered enemies."
+    },
+    "counters": [
+      "Widowmaker",
+      "Zenyatta",
+      "Ana"
+    ],
+    "counteredBy": [
+      "Cassidy",
+      "Mei",
+      "Sombra",
+      "Brigitte"
+    ],
+    "synergies": [
+      "Winston",
+      "D.Va",
+      "Kiriko",
+      "Lúcio"
+    ],
+    "strongMaps": [
+      "Oasis",
+      "New Queen Street",
+      "Dorado",
+      "Antarctic Peninsula"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Havana"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Rapid Reload",
+          "description": "Evade reloads 9 ammo."
+        },
+        {
+          "name": "X Machina",
+          "description": "Execution deals 20% more damage to enemies below half health."
+        }
+      ],
+      "major": [
+        {
+          "name": "Refuel",
+          "description": "Joyride restores 50 health and regenerates 20 health/second during use."
+        },
+        {
+          "name": "Faces of Death",
+          "description": "Gain all damage subrole passives."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "An omnic who Awakened into Tokyo's Omnic Crisis amid screams and gunfire, Shion spent weeks surviving alone on the streets before being captured by the humans who would go on to found the Hashimoto Clan, who kept her alive to sharpen their fighting techniques against her. Secretly she held back, studying their weaknesses and biding her time — until she killed all four Hashimoto elders and carved out a fifth seat on the council for herself. She has since modified her chassis to appear uncannily human, rebuilt the Hashimoto into a force that serves her vision alone, and lives with characteristic excess: fashion, lovers, and custom motorcycles."
+  },
+  {
+    "id": "sierra",
+    "name": "Sierra",
+    "role": "Damage",
+    "imageId": "sierra",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 4,
+    "primaryWeapon": {
+      "name": "Helix Rifle",
+      "type": "Automatic rifle",
+      "ammo": "Magazine based",
+      "damage": "Sustained rifle damage; accuracy improves with sustained fire",
+      "cooldown": "Reload",
+      "description": "An automatic rifle that becomes more accurate the longer it is fired."
+    },
+    "passive": {
+      "name": "Recon / Damage",
+      "description": "Damaging low-health enemies can reveal them through walls. Sierra also applies Damage role healing reduction."
+    },
+    "abilities": [
+      {
+        "name": "Tracking Shot",
+        "type": "Target marking",
+        "damage": "Tag shot damage",
+        "cooldown": "10 sec",
+        "duration": "Tracking window",
+        "description": "Tags enemies so Sierra can maintain pressure and improve follow-up accuracy."
+      },
+      {
+        "name": "Anchor Drone",
+        "type": "Mobility tool",
+        "damage": "None",
+        "cooldown": "12 sec",
+        "duration": "Drone persists until destroyed or dismissed",
+        "description": "Deploys a drone that Sierra can grapple toward, giving her flexible repositioning."
+      },
+      {
+        "name": "Tremor Charge",
+        "type": "Explosive grenade",
+        "damage": "High center damage with lower edge damage",
+        "cooldown": "8.5 seconds",
+        "duration": "Explosion/shockwave",
+        "description": "Throws a charge that creates a damaging shockwave and knockback."
+      }
+    ],
+    "ultimate": {
+      "name": "Trailblazer",
+      "type": "Ultimate bombing run",
+      "damage": "Carpet-bombing explosive damage",
+      "description": "Calls in a bombing run across an area, heavily punishing grouped or trapped enemies."
+    },
+    "counters": [
+      "Pharah",
+      "Echo",
+      "Mercy"
+    ],
+    "counteredBy": [
+      "Widowmaker",
+      "Ashe",
+      "D.Va",
+      "Sombra"
+    ],
+    "synergies": [
+      "Zenyatta",
+      "Mercy",
+      "Sigma",
+      "Baptiste"
+    ],
+    "strongMaps": [
+      "Watchpoint: Gibraltar",
+      "Dorado",
+      "Numbani"
+    ],
+    "weakMaps": [
+      "Lijiang Control Center",
+      "Nepal Sanctum"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Full Flight",
+          "description": "Anchor Drone flight and grapple range increases 25%."
+        },
+        {
+          "name": "Tight Grip",
+          "description": "Helix Rifle spread tightens 70% faster and widens 30% slower."
+        }
+      ],
+      "major": [
+        {
+          "name": "Medi-Drone",
+          "description": "Anchor Drones carry a medkit."
+        },
+        {
+          "name": "Locked In",
+          "description": "Tracking Shot hit grants 20% attack speed for 2 seconds."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Sierra Turner Woods grew up always on the move with her mother Kendra, never told why — until the day Kendra disappeared just before Sierra's thirteenth birthday, leaving only an emergency bus ticket and no explanation. That trail led her to the father she had never met, and eventually to Helix Security, where as head of security at Watchpoint: Grand Mesa she uncovered the truth: her mother had been Soldier: 00, one of the first subjects in the US Soldier Enhancement Program. When Talon attacked Grand Mesa, Sierra led her squad alongside Overwatch and joined their ranks — determined to find the answers her mother never gave her."
+  },
+  {
+    "id": "sojourn",
+    "name": "Sojourn",
+    "role": "Damage",
+    "imageId": "sojourn",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 4,
+    "primaryWeapon": {
+      "name": "Railgun",
+      "type": "Automatic projectile + charged hitscan rail",
+      "ammo": "Magazine based",
+      "damage": "Sustained primary fire builds high burst secondary fire",
+      "cooldown": "Reload",
+      "description": "Primary fire builds energy, then secondary fire releases a powerful rail shot."
+    },
+    "passive": {
+      "name": "Damage",
+      "description": "Damaging enemies temporarily reduces their received healing."
+    },
+    "abilities": [
+      {
+        "name": "Power Slide",
+        "type": "Mobility",
+        "damage": "None",
+        "cooldown": "7 seconds",
+        "duration": "Slide and jump",
+        "description": "Slides along the ground and can jump out for vertical mobility."
+      },
+      {
+        "name": "Disruptor Shot",
+        "type": "Area denial",
+        "damage": "Damage over time / slow depending on current patch",
+        "cooldown": "15 seconds",
+        "duration": "Area field",
+        "description": "Launches an energy field that pressures and controls an area."
+      }
+    ],
+    "ultimate": {
+      "name": "Overclock",
+      "type": "Ultimate weapon empowerment",
+      "damage": "Repeated high-powered rail shots",
+      "description": "Automatically charges Sojourn's railgun, enabling repeated high-damage shots."
+    },
+    "counters": [
+      "Pharah",
+      "Echo",
+      "Mercy",
+      "Widowmaker"
+    ],
+    "counteredBy": [
+      "Winston",
+      "D.Va",
+      "Sombra",
+      "Genji"
+    ],
+    "synergies": [
+      "Mercy",
+      "Zenyatta",
+      "Baptiste",
+      "Kiriko"
+    ],
+    "strongMaps": [
+      "Midtown",
+      "Circuit Royal",
+      "Dorado"
+    ],
+    "weakMaps": [
+      "Lijiang Control Center",
+      "Nepal Village",
+      "Antarctic Peninsula",
+      "Blizzard World",
+      "Colosseo",
+      "Hanaoka",
+      "Hollywood",
+      "Paraíso",
+      "Runasapi",
+      "Samoa",
+      "Suravasa",
+      "Throne of Anubis",
+      "Esperança",
+      "Shambali Monastery",
+      "New Junk City"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Extended Mag",
+          "description": "Maximum ammo increases by 15."
+        },
+        {
+          "name": "Overcharged",
+          "description": "Railgun maximum energy increases by 50 while Overclock is active."
+        }
+      ],
+      "major": [
+        {
+          "name": "Dual Thrusters",
+          "description": "Power Slide gains an additional charge; jump height shifts to lateral movement."
+        },
+        {
+          "name": "Adhesive Siphon",
+          "description": "Disruptor Shot sticks to enemies and generates Railgun energy when dealing damage."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Vivian Chase is a veteran Overwatch soldier and former Canadian military officer whose body was heavily damaged in combat and rebuilt with cutting-edge cybernetics, including a powerful railgun arm. She came out of retirement when Overwatch was recalled, bringing decades of hard-won tactical experience and the same fierce conviction she had when she first enlisted. She fights to build the version of Overwatch that should have existed all along."
+  },
+  {
+    "id": "soldier76",
+    "name": "Soldier: 76",
+    "role": "Damage",
+    "imageId": "soldier76",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 2,
+    "primaryWeapon": {
+      "name": "Heavy Pulse Rifle",
+      "type": "Automatic hitscan rifle",
+      "ammo": "Magazine based",
+      "damage": "Consistent mid-range hitscan damage",
+      "cooldown": "Reload",
+      "description": "A reliable automatic rifle with strong tracking damage at mid range."
+    },
+    "passive": {
+      "name": "Damage",
+      "description": "Damaging enemies temporarily reduces their received healing."
+    },
+    "abilities": [
+      {
+        "name": "Helix Rockets",
+        "type": "Burst projectile",
+        "damage": "Direct and splash rocket damage",
+        "cooldown": "8 seconds",
+        "duration": "Instant",
+        "description": "Fires a burst of rockets for finishing targets or burst damage."
+      },
+      {
+        "name": "Sprint",
+        "type": "Mobility",
+        "damage": "None",
+        "cooldown": "None",
+        "duration": "Held movement",
+        "description": "Run faster while not firing."
+      },
+      {
+        "name": "Biotic Field",
+        "type": "Self/team sustain",
+        "damage": "None",
+        "cooldown": "15 seconds",
+        "duration": "Healing field duration",
+        "description": "Places a field that heals Soldier: 76 and nearby allies."
+      }
+    ],
+    "ultimate": {
+      "name": "Tactical Visor",
+      "type": "Ultimate aim assist",
+      "damage": "Enhanced automatic target tracking",
+      "description": "Automatically aims at visible enemies within line of sight."
+    },
+    "counters": [
+      "Pharah",
+      "Echo",
+      "Mercy"
+    ],
+    "counteredBy": [
+      "Widowmaker",
+      "Sigma",
+      "D.Va",
+      "Genji"
+    ],
+    "synergies": [
+      "Mercy",
+      "Baptiste",
+      "Zenyatta"
+    ],
+    "strongMaps": [
+      "Route 66",
+      "Midtown",
+      "New Queen Street"
+    ],
+    "weakMaps": [
+      "Lijiang Control Center"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Recycled Pulse Munitions",
+          "description": "Helix Rockets reload 15 ammo if they damage an enemy."
+        },
+        {
+          "name": "Field Emergency",
+          "description": "Biotic Field's healing increases 100% on critically wounded allies."
+        }
+      ],
+      "major": [
+        {
+          "name": "Agility Training",
+          "description": "Sprint speed increases 20%; reload is performable while sprinting."
+        },
+        {
+          "name": "Stim Pack",
+          "description": "Biotic Field becomes a Stim Pack, increasing attack and reload speed 30% but preventing self-healing for four seconds."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Jack Morrison was the face of Overwatch — the idealistic, golden-boy commander who embodied everything the organisation stood for — until internal betrayal, a catastrophic confrontation with Gabriel Reyes, and the fall of Overwatch left him presumed dead. He returned as the anonymous vigilante Soldier: 76, waging a one-man war to expose the conspiracy that destroyed what he built. He wears no insignia, trusts almost no one, and has not stopped fighting for a single day."
+  },
+  {
+    "id": "sombra",
+    "name": "Sombra",
+    "role": "Damage",
+    "imageId": "sombra",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 4,
+    "primaryWeapon": {
+      "name": "Machine Pistol",
+      "type": "Automatic hitscan SMG",
+      "ammo": "Magazine based",
+      "damage": "Close-range sustained damage",
+      "cooldown": "Reload",
+      "description": "A rapid-fire machine pistol best used at close range from off angles."
+    },
+    "passive": {
+      "name": "Opportunist / Damage",
+      "description": "Sombra can detect vulnerable enemies and applies Damage role healing reduction through damage."
+    },
+    "abilities": [
+      {
+        "name": "Hack",
+        "type": "Disruption",
+        "damage": "None",
+        "cooldown": "6 seconds",
+        "duration": "Brief ability lockout/reveal",
+        "description": "Hacks enemies or health packs, interrupting certain abilities and revealing targets."
+      },
+      {
+        "name": "Virus",
+        "type": "Damage over time projectile",
+        "damage": "Impact and damage over time",
+        "cooldown": "8 seconds",
+        "duration": "DoT duration",
+        "description": "Fires a projectile that damages enemies over time, especially effective after Hack."
+      },
+      {
+        "name": "Translocator",
+        "type": "Mobility / escape",
+        "damage": "None",
+        "cooldown": "6 seconds",
+        "duration": "Teleport",
+        "description": "Throws a beacon and teleports to it, enabling engages and escapes."
+      },
+      {
+        "name": "Stealth",
+        "type": "Invisibility",
+        "damage": "None",
+        "cooldown": "Passive/automatic depending on current patch",
+        "duration": "Until revealed/attacking",
+        "description": "Sombra becomes invisible, allowing scouting and backline access."
+      }
+    ],
+    "ultimate": {
+      "name": "EMP",
+      "type": "Ultimate disruption",
+      "damage": "Percent health damage and ability disruption",
+      "description": "Hacks enemies in a large area, damages them, and destroys barriers/shields depending on current patch."
+    },
+    "counters": [
+      "Doomfist",
+      "Wrecking Ball",
+      "Widowmaker",
+      "Zenyatta"
+    ],
+    "counteredBy": [
+      "Cassidy",
+      "Brigitte",
+      "Kiriko",
+      "Mei"
+    ],
+    "synergies": [
+      "Winston",
+      "D.Va",
+      "Tracer",
+      "Ana"
+    ],
+    "strongMaps": [
+      "Dorado",
+      "Watchpoint: Gibraltar",
+      "Numbani"
+    ],
+    "weakMaps": [
+      "King's Row",
+      "Lijiang Control Center"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Encrypted Upload",
+          "description": "Hack is usable while invisible; successful hacks increase stealth duration by two seconds."
+        },
+        {
+          "name": "CTRL ALT ESC",
+          "description": "Teleporting with Translocator at critical health initiates passive health regeneration."
+        }
+      ],
+      "major": [
+        {
+          "name": "White Hat",
+          "description": "Hack is usable on allies to restore 100 health over two seconds."
+        },
+        {
+          "name": "Viral Replication",
+          "description": "Hitting a hacked enemy with Virus spreads it to enemies within 8 metres."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "An orphan from Mexico City's post-Crisis slums who survived by learning to exploit the secrets of the powerful, Sombra grew into the world's most dangerous information broker — invisible, irreplaceable, and loyal to absolutely no one permanently. She discovered the edges of a global conspiracy so vast it swallowed Talon whole without even noticing, and she has been quietly pulling threads ever since. Her true agenda is the only thing she has never hacked her way out of."
+  },
+  {
+    "id": "symmetra",
+    "name": "Symmetra",
+    "role": "Damage",
+    "imageId": "symmetra",
+    "health": 125,
+    "armour": 0,
+    "shields": 125,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Photon Projector",
+      "type": "Beam and charged projectile weapon",
+      "ammo": "Magazine based",
+      "damage": "Ramping beam damage and charged orb damage",
+      "cooldown": "Reload",
+      "description": "A beam weapon that ramps up with sustained contact and can fire charged orbs."
+    },
+    "passive": {
+      "name": "Damage",
+      "description": "Damaging enemies temporarily reduces their received healing."
+    },
+    "abilities": [
+      {
+        "name": "Sentry Turret",
+        "type": "Deployable damage/slow",
+        "damage": "Beam turret damage",
+        "cooldown": "Charge based",
+        "duration": "Until destroyed",
+        "description": "Places small turrets that damage and slow enemies."
+      },
+      {
+        "name": "Teleporter",
+        "type": "Team mobility",
+        "damage": "None",
+        "cooldown": "15 seconds",
+        "duration": "Temporary deployable",
+        "description": "Creates a two-way teleporter for allies and some deployables."
+      }
+    ],
+    "ultimate": {
+      "name": "Photon Barrier",
+      "type": "Ultimate barrier",
+      "damage": "None",
+      "description": "Creates a massive map-wide barrier that blocks enemy fire."
+    },
+    "counters": [
+      "D.Va",
+      "Genji",
+      "Sigma",
+      "Winston"
+    ],
+    "counteredBy": [
+      "Pharah",
+      "Echo",
+      "Junkrat",
+      "Winston"
+    ],
+    "synergies": [
+      "Reinhardt",
+      "Mei",
+      "Baptiste",
+      "Lifeweaver"
+    ],
+    "strongMaps": [
+      "Lijiang Control Center",
+      "King's Row",
+      "Nepal Village",
+      "Antarctic Peninsula",
+      "Suravasa",
+      "Shambali Monastery",
+      "Hanaoka",
+      "Throne of Anubis",
+      "New Junk City"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Havana"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Sentry Capacity",
+          "description": "Sentry Turret gains an additional charge."
+        },
+        {
+          "name": "Advanced Teleportation",
+          "description": "Teleporter range increases 50%."
+        }
+      ],
+      "major": [
+        {
+          "name": "Perfect Alignment",
+          "description": "Primary fire range increases 15% with each additional charge level."
+        },
+        {
+          "name": "Shield Battery",
+          "description": "Symmetra regenerates 20 shields/second within 10 metres of her Teleporter."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Satya Vaswami is a gifted architect of hard-light constructs who grew up in poverty before the Vishkar Corporation selected her for their elite training programme, and she repays that opportunity through absolute dedication to their vision of engineered social order. She carries out morally ambiguous missions with the belief that Vishkar's order — however imposed — produces better lives than the chaos it replaces. Reality is something she builds, controls, and believes in completely."
+  },
+  {
+    "id": "torbjorn",
+    "name": "Torbjörn",
+    "role": "Damage",
+    "imageId": "torbjorn",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 2,
+    "primaryWeapon": {
+      "name": "Rivet Gun",
+      "type": "Projectile weapon",
+      "ammo": "Magazine based",
+      "damage": "Long-range rivets and close-range shotgun burst",
+      "cooldown": "Reload",
+      "description": "Fires long-range rivets or a close-range shotgun-style burst."
+    },
+    "passive": {
+      "name": "Damage",
+      "description": "Damaging enemies temporarily reduces their received healing."
+    },
+    "abilities": [
+      {
+        "name": "Deploy Turret",
+        "type": "Deployable damage",
+        "damage": "Automatic turret fire",
+        "cooldown": "Cooldown after destruction/placement",
+        "duration": "Until destroyed",
+        "description": "Deploys a turret that automatically fires at enemies."
+      },
+      {
+        "name": "Overload",
+        "type": "Self-buff",
+        "damage": "Improves weapon pressure",
+        "cooldown": "12 seconds",
+        "duration": "Short buff",
+        "description": "Grants temporary health, movement speed, reload speed, and firing speed."
+      }
+    ],
+    "ultimate": {
+      "name": "Molten Core",
+      "type": "Ultimate area denial",
+      "damage": "Lava damage over time",
+      "description": "Creates pools of molten slag that damage enemies and deny space."
+    },
+    "counters": [
+      "Tracer",
+      "Genji",
+      "Sombra",
+      "Pharah"
+    ],
+    "counteredBy": [
+      "Widowmaker",
+      "Pharah",
+      "Echo",
+      "Sigma"
+    ],
+    "synergies": [
+      "Sigma",
+      "Orisa",
+      "Baptiste"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Rialto",
+      "Route 66",
+      "Antarctic Peninsula",
+      "Blizzard World",
+      "Hollywood",
+      "Paraíso",
+      "Shambali Monastery",
+      "Suravasa",
+      "Hanaoka",
+      "Throne of Anubis"
+    ],
+    "weakMaps": [
+      "Watchpoint: Gibraltar",
+      "Dorado"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Craftsman",
+          "description": "Forge Hammer restores armour health to allies; turret repair healing increases 25%."
+        },
+        {
+          "name": "Loaded",
+          "description": "Activating Overload fully refills Rivet Gun's ammo."
+        }
+      ],
+      "major": [
+        {
+          "name": "Anchor Bolts",
+          "description": "Deploy Turret throw range increases 50%; can attach to walls and ceilings."
+        },
+        {
+          "name": "Overloaded Turret",
+          "description": "Overload temporarily upgrades the Turret for five seconds, increasing its health and damage."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Torbjörn Lindholm is a legendary Swedish engineer whose designs power both Overwatch's hardware and an uncomfortable number of its enemies' weapons. He deploys turrets, fabricates armour from battlefield salvage, and maintains a running commentary on everything going wrong around him. His prosthetic arm is just one of many souvenirs from wars he didn't start and refused to lose."
+  },
+  {
+    "id": "tracer",
+    "name": "Tracer",
+    "role": "Damage",
+    "imageId": "tracer",
+    "health": 175,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "6 m/s",
+    "difficulty": 5,
+    "primaryWeapon": {
+      "name": "Pulse Pistols",
+      "type": "Dual automatic hitscan pistols",
+      "ammo": "Magazine based",
+      "damage": "Very high close-range tracking damage",
+      "cooldown": "Reload",
+      "description": "Rapid dual pistols that excel at close range but lose value at distance."
+    },
+    "passive": {
+      "name": "Flanker / Damage",
+      "description": "Tracer has high mobility and benefits from flanker play; damaging enemies applies the Damage role healing reduction."
+    },
+    "abilities": [
+      {
+        "name": "Blink",
+        "type": "Mobility",
+        "damage": "None",
+        "cooldown": "Charge based",
+        "duration": "Instant dash",
+        "description": "Dash a short distance in the direction Tracer is moving. Has multiple charges."
+      },
+      {
+        "name": "Recall",
+        "type": "Self-cleanse / sustain",
+        "damage": "None",
+        "cooldown": "12 seconds",
+        "duration": "Rewinds recent state",
+        "description": "Returns Tracer to her recent position, restoring previous health and ammo state."
+      }
+    ],
+    "ultimate": {
+      "name": "Pulse Bomb",
+      "type": "Ultimate sticky explosive",
+      "damage": "High sticky explosion damage",
+      "description": "Throws a bomb that sticks to enemies or surfaces and explodes after a short delay."
+    },
+    "counters": [
+      "Widowmaker",
+      "Zenyatta",
+      "Ana",
+      "Ashe"
+    ],
+    "counteredBy": [
+      "Cassidy",
+      "Torbjörn",
+      "Mei",
+      "Brigitte",
+      "Moira"
+    ],
+    "synergies": [
+      "Winston",
+      "D.Va",
+      "Sombra",
+      "Kiriko"
+    ],
+    "strongMaps": [
+      "Oasis",
+      "Nepal",
+      "Dorado"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Havana"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Blink Packs",
+          "description": "Health Packs restore one Blink charge."
+        },
+        {
+          "name": "Blast from the Past",
+          "description": "Pulse Bomb's radius increases 50%."
+        }
+      ],
+      "major": [
+        {
+          "name": "Flashback",
+          "description": "Recall restores all Blink charges."
+        },
+        {
+          "name": "Quantum Entanglement",
+          "description": "Recall grants 50 overhealth that decays over time."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Lena Oxton was a rising British Overwatch pilot whose experimental slipstream fighter malfunctioned and desynchronised her from time, leaving her unable to hold a physical form until Dr. Winston built her a chronal accelerator to anchor her to the present. She repaid him by becoming Overwatch's most beloved and unstoppable operative, fast in every sense of the word. She lives in the moment more literally than anyone else alive."
+  },
+  {
+    "id": "vendetta",
+    "name": "Vendetta",
+    "role": "Damage",
+    "imageId": "vendetta",
+    "health": 200,
+    "armour": 75,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 4,
+    "primaryWeapon": {
+      "name": "Palatine Fang",
+      "type": "Melee sword weapon",
+      "ammo": "Energy/attack rhythm",
+      "damage": "Melee slash damage",
+      "cooldown": "Attack recovery",
+      "description": "A melee-focused hard-light sword with strong close-range dueling pressure."
+    },
+    "passive": {
+      "name": "Onslaught / Damage",
+      "description": "Successful strikes increase Vendetta's movement and attack speed. Damage dealt also applies the Damage role healing reduction."
+    },
+    "abilities": [
+      {
+        "name": "Warding Stance",
+        "type": "Defensive stance",
+        "damage": "Can deflect or punish melee pressure",
+        "cooldown": "Energy based",
+        "duration": "Held stance",
+        "description": "Reduces frontal damage and can deflect melee attacks, consuming energy."
+      },
+      {
+        "name": "Whirlwind Dash",
+        "type": "Mobility / area slash",
+        "damage": "360-degree slash damage",
+        "cooldown": "10 sec",
+        "duration": "Dash attack",
+        "description": "Lunges forward and performs a spinning sword attack."
+      },
+      {
+        "name": "Projected Edge",
+        "type": "Ranged sword slash",
+        "damage": "Projectile slash damage",
+        "cooldown": "Energy based",
+        "duration": "Instant projectile",
+        "description": "Launches a hard-light slice forward when Vendetta has energy."
+      },
+      {
+        "name": "Soaring Slice",
+        "type": "Mobility / engage",
+        "damage": "Slice impact damage",
+        "cooldown": "7 sec",
+        "duration": "Throw and travel",
+        "description": "Throws her sword and flies to its location, enabling aggressive engages or escapes."
+      }
+    ],
+    "ultimate": {
+      "name": "Sundering Blade",
+      "type": "Ultimate frontal slash",
+      "damage": "Large frontal damage through armour/barriers/overhealth",
+      "description": "Unleashes a massive sword attack in front of Vendetta that cuts through defensive layers."
+    },
+    "counters": [
+      "Widowmaker",
+      "Zenyatta",
+      "Ana"
+    ],
+    "counteredBy": [
+      "Pharah",
+      "Echo",
+      "Mei",
+      "Brigitte",
+      "Roadhog"
+    ],
+    "synergies": [
+      "Kiriko",
+      "Lúcio",
+      "Junker Queen",
+      "Zarya"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Lijiang Control Center"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Havana"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Extra Edge",
+          "description": "Projected Edge costs 25% less energy."
+        },
+        {
+          "name": "Raging Storm",
+          "description": "Whirlwind Dash continues spinning for 3 more hits, dealing 30 damage each."
+        }
+      ],
+      "major": [
+        {
+          "name": "Siphoning Strike",
+          "description": "Overhead strikes gain 40% lifesteal."
+        },
+        {
+          "name": "Relentless",
+          "description": "Onslaught stacks 3 more times; each stack grants 5% attack speed and 2% movement speed."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Marzia Bartalotti grew up the daughter of Talon boss Antonio Bartalotti, raised with promises of power and pride in her heritage — until Blackwatch killed her father and she lost claim to everything he had built. Driven by spite, she reinvented herself as Vendetta: a ruthless gladiatorial champion in Rome's Colosseo who fought her way to the title of Colosseo Champion and earned the name La Lupa Della Ritorsione — The Wolf of Retribution. She has built wealth and a network of powerful allies across Italy, and is now closing in on Talon to reclaim the empire she was promised."
+  },
+  {
+    "id": "venture",
+    "name": "Venture",
+    "role": "Damage",
+    "imageId": "venture",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Smart Excavator",
+      "type": "Short-range explosive projectile",
+      "ammo": "Magazine based",
+      "damage": "Short-range explosive projectile damage",
+      "cooldown": "Reload",
+      "description": "Fires explosive shots that are strongest at close to mid range."
+    },
+    "passive": {
+      "name": "Explorer's Resolve / Damage",
+      "description": "Venture gains temporary shields from using abilities and applies Damage role healing reduction through damage."
+    },
+    "abilities": [
+      {
+        "name": "Drill Dash",
+        "type": "Mobility / burst damage",
+        "damage": "Dash impact damage",
+        "cooldown": "8 seconds",
+        "duration": "Short dash",
+        "description": "Dash forward with the drill, damaging enemies and repositioning."
+      },
+      {
+        "name": "Burrow",
+        "type": "Invulnerability / mobility",
+        "damage": "Emerge damage",
+        "cooldown": "8 seconds",
+        "duration": "Underground movement",
+        "description": "Burrow underground, becoming untargetable before emerging to damage enemies."
+      },
+      {
+        "name": "Clobber",
+        "type": "Enhanced melee",
+        "damage": "Melee damage",
+        "cooldown": "Melee action",
+        "duration": "Instant",
+        "description": "Venture's melee deals additional damage compared with standard quick melee."
+      }
+    ],
+    "ultimate": {
+      "name": "Tectonic Shock",
+      "type": "Ultimate shockwave",
+      "damage": "Multiple ground shockwaves",
+      "description": "Sends damaging shockwaves through the ground in front of Venture."
+    },
+    "counters": [
+      "Widowmaker",
+      "Zenyatta",
+      "Ana"
+    ],
+    "counteredBy": [
+      "Pharah",
+      "Echo",
+      "Cassidy",
+      "Mei",
+      "Roadhog"
+    ],
+    "synergies": [
+      "Winston",
+      "Doomfist",
+      "Kiriko",
+      "Lúcio"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Suravasa",
+      "New Junk City",
+      "Colosseo"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Havana"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Deep Burrow",
+          "description": "Drill Dash distance increases 50% while burrowed."
+        },
+        {
+          "name": "Excavation Exhilaration",
+          "description": "Tectonic Shock cooldowns refresh 300% faster."
+        }
+      ],
+      "major": [
+        {
+          "name": "Smart Extender",
+          "description": "Empower SMART Excavator for a 100% range increase for 4 seconds."
+        },
+        {
+          "name": "Covered in Dirt",
+          "description": "Clobber grants up to 30 shields."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Dr. Sloane is a non-binary archaeologist and geologist of extraordinary enthusiasm who became obsessed with the omnic structures buried deep beneath the Earth's surface after discovering one on a routine dig. Equipped with a powerful excavation drill that doubles as a close-range weapon, they bore through enemies and terrain alike without pausing to distinguish between the two. Every battlefield is a potential dig site."
+  },
+  {
+    "id": "widowmaker",
+    "name": "Widowmaker",
+    "role": "Damage",
+    "imageId": "widowmaker",
+    "health": 200,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 5,
+    "primaryWeapon": {
+      "name": "Widow's Kiss",
+      "type": "Sniper rifle / automatic rifle",
+      "ammo": "Magazine based",
+      "damage": "High scoped headshot damage; automatic close-range fire",
+      "cooldown": "Reload/charge time",
+      "description": "A scoped sniper rifle capable of lethal precision shots, with automatic fire for close defense."
+    },
+    "passive": {
+      "name": "Damage",
+      "description": "Damaging enemies temporarily reduces their received healing."
+    },
+    "abilities": [
+      {
+        "name": "Grappling Hook",
+        "type": "Mobility",
+        "damage": "None",
+        "cooldown": "8 seconds",
+        "duration": "Movement pull",
+        "description": "Launches a hook that pulls Widowmaker to a ledge or surface."
+      },
+      {
+        "name": "Venom Mine",
+        "type": "Trap / damage over time",
+        "damage": "Poison damage over time",
+        "cooldown": "15 seconds",
+        "duration": "Until triggered/destroyed",
+        "description": "Deploys a mine that poisons enemies and reveals them when triggered."
+      }
+    ],
+    "ultimate": {
+      "name": "Infra-Sight",
+      "type": "Ultimate recon",
+      "damage": "None",
+      "description": "Reveals enemy locations through walls to Widowmaker and her team."
+    },
+    "counters": [
+      "Zenyatta",
+      "Ana",
+      "Pharah",
+      "Echo"
+    ],
+    "counteredBy": [
+      "Winston",
+      "D.Va",
+      "Sombra",
+      "Genji",
+      "Tracer"
+    ],
+    "synergies": [
+      "Mercy",
+      "Sigma",
+      "Baptiste",
+      "Zenyatta"
+    ],
+    "strongMaps": [
+      "Circuit Royal",
+      "Havana",
+      "Junkertown"
+    ],
+    "weakMaps": [
+      "Lijiang Control Center",
+      "Nepal Village",
+      "Antarctic Peninsula",
+      "Colosseo",
+      "Hanaoka",
+      "New Junk City",
+      "Runasapi",
+      "Samoa",
+      "Suravasa",
+      "Throne of Anubis"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Scoped Efficiency",
+          "description": "Scoped shots cost three ammo instead of five."
+        },
+        {
+          "name": "Focused Aim",
+          "description": "Scoped shots charge 50% faster during Infra-Sight."
+        }
+      ],
+      "major": [
+        {
+          "name": "Escape Plan",
+          "description": "Scoped shot hits reduce Grappling Hook cooldown by up to four seconds."
+        },
+        {
+          "name": "Deadly Deux",
+          "description": "Venom Mine gains 50% increased damage and a second charge, enabling two active mines."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Amélie Lacroix was once a warm, brilliant woman and wife of Overwatch agent Gérard Lacroix — until Talon kidnapped her, spent weeks reprogramming her, and returned her to Gérard as a sleeper agent who killed him in his sleep. They completed the transformation, slowing her heart rate to near-stillness and eliminating the capacity for the emotions that might compromise her aim. She carries no memory of who she was before, and no grief for the loss."
+  },
+  {
+    "id": "ana",
+    "name": "Ana",
+    "role": "Support",
+    "imageId": "ana",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 4,
+    "primaryWeapon": {
+      "name": "Biotic Rifle",
+      "type": "Scoped bolt-action sniper rifle",
+      "ammo": "10 rounds",
+      "damage": "75 damage to enemies / 75 healing to allies per shot",
+      "cooldown": "Reload",
+      "description": "Long-range rifle that heals allies or damages and debuffs enemies. Can be scoped for a hitscan shot. Shots pass through barriers."
+    },
+    "passive": {
+      "name": "Support",
+      "description": "Passively regenerates health after a short period without taking damage."
+    },
+    "abilities": [
+      {
+        "name": "Sleep Dart",
+        "type": "Crowd control",
+        "damage": "None",
+        "cooldown": "14 sec",
+        "description": "Fires a dart that puts an enemy to sleep. Sleeping enemies cannot act but wake if damaged."
+      },
+      {
+        "name": "Biotic Grenade",
+        "type": "Area heal / anti-heal",
+        "damage": "75 damage to enemies in area",
+        "cooldown": "12 sec",
+        "description": "Area grenade that heals allies and boosts their healing received, while preventing enemies from being healed."
+      }
+    ],
+    "ultimate": {
+      "name": "Nano Boost",
+      "type": "Ultimate ally buff",
+      "damage": "None",
+      "description": "Grants a targeted ally increased damage output and damage resistance for a short duration."
+    },
+    "counters": [
+      "Reaper",
+      "Roadhog",
+      "Doomfist",
+      "Wrecking Ball"
+    ],
+    "counteredBy": [
+      "Tracer",
+      "Genji",
+      "Sombra",
+      "Winston"
+    ],
+    "synergies": [
+      "Genji",
+      "Reinhardt",
+      "Reaper",
+      "Doomfist"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Watchpoint: Gibraltar",
+      "Dorado"
+    ],
+    "weakMaps": [
+      "Lijiang Control Center",
+      "Oasis",
+      "New Junk City"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Groggy",
+          "description": "Enemies waking from Sleep Dart are slowed 50% and take 50 damage over two seconds."
+        },
+        {
+          "name": "Speed Serum",
+          "description": "Nano Boost grants a 30% movement speed boost to both Ana and her target."
+        }
+      ],
+      "major": [
+        {
+          "name": "Headhunter",
+          "description": "Biotic Rifle can critically hit enemies."
+        },
+        {
+          "name": "Biotic Bounce",
+          "description": "After exploding, Biotic Grenade bounces and explodes again for 60 damage and healing."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Ana Amari is a founding member of Overwatch and one of the finest snipers the world has ever seen, whose legendary career was cut short when Widowmaker shot out her eye during a mission and left her for dead. Rather than return to Overwatch and her daughter Pharah, she chose to stay hidden — until the state of the world made continued hiding feel like a different kind of failure. She came back armed with a biotic rifle, a lifetime of experience, and the patience only grandmothers and snipers share."
+  },
+  {
+    "id": "baptiste",
+    "name": "Baptiste",
+    "role": "Support",
+    "imageId": "baptiste",
+    "health": 200,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Biotic Launcher",
+      "type": "Three-round burst rifle / healing grenade launcher",
+      "ammo": "45 rounds",
+      "damage": "25 damage per burst (primary) / 50–65 healing per grenade (secondary)",
+      "cooldown": "Reload",
+      "description": "Primary fire is a three-round burst for dealing damage. Secondary fire lobs healing grenades that heal allies near the impact."
+    },
+    "passive": {
+      "name": "Exo Boots / Shoulder Turret",
+      "description": "Crouching charges Exo Boots for a high jump. Using any ability triggers a Shoulder Turret that fires up to 3 shots at nearby allies, each restoring 40 health."
+    },
+    "abilities": [
+      {
+        "name": "Regenerative Burst",
+        "type": "Self and team sustain",
+        "damage": "None",
+        "cooldown": "12 sec",
+        "description": "Instantly heals Baptiste and nearby allies, then heals again over time. Targets below half health receive double the instant heal."
+      },
+      {
+        "name": "Immortality Field",
+        "type": "Team protection",
+        "damage": "None",
+        "cooldown": "25 sec",
+        "description": "Deploy a device that prevents all nearby allies from dying. The device can be destroyed by enemies."
+      }
+    ],
+    "ultimate": {
+      "name": "Amplification Matrix",
+      "type": "Ultimate damage and healing amplifier",
+      "damage": "Doubles allied projectile damage and healing passing through the matrix",
+      "description": "Projects a large matrix that doubles the damage and healing of allied projectiles that pass through it."
+    },
+    "counters": [
+      "Reaper",
+      "Roadhog",
+      "Mauga"
+    ],
+    "counteredBy": [
+      "Sombra",
+      "Genji",
+      "Tracer",
+      "Winston"
+    ],
+    "synergies": [
+      "Sigma",
+      "Orisa",
+      "Bastion",
+      "Widowmaker"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Rialto",
+      "Circuit Royal"
+    ],
+    "weakMaps": [
+      "Lijiang Control Center",
+      "Nepal Village"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Field Medicine",
+          "description": "Immortality Field restores 80 health to nearby allies and 40 to Baptiste when destroyed."
+        },
+        {
+          "name": "Automated Healing",
+          "description": "After placing Amplification Matrix, Shoulder Turret fires up to 12 shots periodically, each restoring 25 health to allies."
+        }
+      ],
+      "major": [
+        {
+          "name": "Assault Burst",
+          "description": "Regenerative Burst grants 20% attack speed for four seconds; no longer instantly heals."
+        },
+        {
+          "name": "Rocket Boots",
+          "description": "While airborne from Exo Boots, press Space to dash horizontally."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Jean-Baptiste Augustin grew up in poverty in post-Crisis Haiti and joined Talon's paramilitary as the only viable path out — a choice he rationalised until he watched his unit massacre civilians on a routine contract. He went AWOL, became a combat medic, and has spent years trying to counterbalance what he enabled. He heals not out of idealism but out of a very specific, very personal kind of accounting."
+  },
+  {
+    "id": "brigitte",
+    "name": "Brigitte",
+    "role": "Support",
+    "imageId": "brigitte",
+    "health": 300,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 2,
+    "primaryWeapon": {
+      "name": "Rocket Flail",
+      "type": "Melee weapon",
+      "ammo": "Infinite",
+      "damage": "35 damage per swing in a wide arc",
+      "cooldown": "Swing recovery",
+      "description": "A large flail that swings in a wide arc, striking multiple close-range targets."
+    },
+    "passive": {
+      "name": "Inspire",
+      "description": "Dealing damage with Rocket Flail heals nearby allies over a short period."
+    },
+    "abilities": [
+      {
+        "name": "Repair Pack",
+        "type": "Single-target heal",
+        "damage": "None",
+        "cooldown": "6 sec per pack (3 charges)",
+        "description": "Throw a healing pack to an ally. Excess healing converts into temporary armour."
+      },
+      {
+        "name": "Whip Shot",
+        "type": "Ranged knockback",
+        "damage": "70 damage",
+        "cooldown": "4 sec",
+        "description": "Fling the flail forward to deal damage and knock an enemy back at range."
+      },
+      {
+        "name": "Barrier Shield",
+        "type": "Personal barrier",
+        "damage": "None",
+        "cooldown": "5 sec after break",
+        "description": "Raise a frontal energy barrier that absorbs incoming damage and enables Shield Bash."
+      },
+      {
+        "name": "Shield Bash",
+        "type": "Charge / stun",
+        "damage": "50 damage",
+        "cooldown": "0.75 sec cooldown refund on hit",
+        "description": "Dash forward with the barrier, stunning the first enemy hit."
+      }
+    ],
+    "ultimate": {
+      "name": "Rally",
+      "type": "Ultimate team buff",
+      "damage": "None",
+      "description": "Move faster and provide lasting overhealth armour to all nearby allies. Also grants Brigitte additional personal armour."
+    },
+    "counters": [
+      "Tracer",
+      "Genji",
+      "Sombra"
+    ],
+    "counteredBy": [
+      "Reaper",
+      "Junkrat",
+      "Echo",
+      "Pharah"
+    ],
+    "synergies": [
+      "Reinhardt",
+      "Zarya",
+      "Ramattra",
+      "Lúcio"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Eichenwalde",
+      "Nepal Village",
+      "Shambali Monastery",
+      "Suravasa",
+      "Samoa"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Havana"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Combat Medic",
+          "description": "Melee attacks reduce Repair Pack cooldown by 0.75 seconds."
+        },
+        {
+          "name": "Morale Boost",
+          "description": "Inspire lasts 3 seconds longer when triggered by Whip Shot."
+        }
+      ],
+      "major": [
+        {
+          "name": "Inspiring Strike",
+          "description": "Shield Bash grants 30% movement speed for 2 seconds and instantly activates Inspire."
+        },
+        {
+          "name": "Whiplash",
+          "description": "Whip Shot wall slam deals 60 extra damage."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Brigitte Lindholm is the daughter of the legendary engineer Torbjörn and the goddaughter of the crusader Reinhardt, who grew up surrounded by heroes but preferred to be the person keeping their armour from falling apart. When Reinhardt came out of retirement and charged back into danger, she followed as his squire — and then realised she was more than a squire. She fights with a flail and a repair pack and a loyalty to the people she loves that is completely without condition."
+  },
+  {
+    "id": "illari",
+    "name": "Illari",
+    "role": "Support",
+    "imageId": "illari",
+    "health": 225,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 2,
+    "primaryWeapon": {
+      "name": "Solar Rifle",
+      "type": "Precision scoped rifle / healing beam",
+      "ammo": "Energy based",
+      "damage": "75 damage per shot (scoped) / healing beam on secondary fire",
+      "cooldown": "Overheat / energy drain",
+      "description": "Long-range scoped rifle for precise damage. Secondary fire channels a high-output healing beam onto a targeted ally."
+    },
+    "passive": {
+      "name": "Sol",
+      "description": "Using a movement ability triggers passive health regeneration for a short duration."
+    },
+    "abilities": [
+      {
+        "name": "Healing Pylon",
+        "type": "Deployable healer",
+        "damage": "None",
+        "cooldown": "20 sec after destruction",
+        "description": "Deploy a pylon that automatically heals nearby allies. Only one pylon can exist at a time."
+      },
+      {
+        "name": "Outburst",
+        "type": "Mobility / knockback",
+        "damage": "None",
+        "cooldown": "7 sec",
+        "description": "Launch yourself in the direction you are moving, knocking back nearby enemies. Enhanced when crouching."
+      }
+    ],
+    "ultimate": {
+      "name": "Captive Sun",
+      "type": "Ultimate area denial",
+      "damage": "High burst damage to affected enemies",
+      "description": "Fire an explosive ball of solar energy that slows enemies in a large area and causes them to burst when they take further damage."
+    },
+    "counters": [
+      "Reaper",
+      "Roadhog",
+      "Pharah"
+    ],
+    "counteredBy": [
+      "Sombra",
+      "Winston",
+      "Genji",
+      "Tracer"
+    ],
+    "synergies": [
+      "Orisa",
+      "Sigma",
+      "Ashe",
+      "Widowmaker"
+    ],
+    "strongMaps": [
+      "Circuit Royal",
+      "Watchpoint: Gibraltar",
+      "Havana",
+      "Samoa"
+    ],
+    "weakMaps": [
+      "Lijiang Control Center",
+      "Nepal Village"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Rapid Construction",
+          "description": "Healing Pylon builds 300% faster; cooldown reduces by 1.5 seconds."
+        },
+        {
+          "name": "Summer Solstice",
+          "description": "Illari's flight time during Captive Sun increases three seconds; flight speed increases 20%."
+        }
+      ],
+      "major": [
+        {
+          "name": "Solar Power",
+          "description": "Fully charged Solar Rifle hits grant 12.5% maximum solar energy; can overfill up to 50%."
+        },
+        {
+          "name": "Sunburn",
+          "description": "Outburst ignites enemies, dealing 70 damage over three seconds."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Illari Quispe is the sole survivor of the Inti Warriors, a Peruvian group gifted with solar-powered abilities who were destroyed on a mission that Illari helped plan, carrying guilt she has never put down. She channels the sun's energy through her rifle and healing pylon, fighting to ensure her comrades' sacrifice built something that lasts. Every beam of light she fires carries the weight of people who aren't here to fire their own."
+  },
+  {
+    "id": "jetpackcat",
+    "name": "Jetpack Cat",
+    "role": "Support",
+    "imageId": "jetpackcat",
+    "health": 225,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 2,
+    "primaryWeapon": {
+      "name": "Biotic Pawjectiles",
+      "type": "Mid-range projectile spread",
+      "ammo": "Magazine based",
+      "damage": "Heals allies or damages enemies per pellet; up to 45 damage if all 5 pellets headshot",
+      "cooldown": "Reload",
+      "description": "Fire a spread of 5 projectiles that heal allies or damage enemies on contact."
+    },
+    "passive": {
+      "name": "Jetpack",
+      "description": "Permanent flight — Jetpack Cat remains airborne throughout combat. As a Tactician support, excess ultimate charge carries over to the next ultimate cycle."
+    },
+    "abilities": [
+      {
+        "name": "Frenetic Flight",
+        "type": "Mobility",
+        "damage": "None",
+        "cooldown": "Fuel based",
+        "description": "Accelerate rapidly in your movement direction. Fuel recovers more slowly while towing a player with Lifeline."
+      },
+      {
+        "name": "Lifeline",
+        "type": "Ally transport",
+        "damage": "None",
+        "cooldown": "Toggle",
+        "description": "Toggle into transport mode to tow an ally alongside you. Increases movement speed and heals the ally while they are being carried."
+      },
+      {
+        "name": "Purr",
+        "type": "Area heal / damage",
+        "damage": "30% of healing output as damage to nearby enemies",
+        "cooldown": "8 sec",
+        "description": "Emit a pulsing area heal that increases in frequency over time. Enemies within the pulse take damage equal to 30% of its healing output."
+      }
+    ],
+    "ultimate": {
+      "name": "Catnapper",
+      "type": "Ultimate crowd control and tether",
+      "damage": "Knockdown on landing",
+      "description": "Dive toward a ground location, knocking down all nearby enemies. The nearest enemy is tethered to Jetpack Cat after landing."
+    },
+    "counters": [
+      "Pharah",
+      "Echo",
+      "Reinhardt"
+    ],
+    "counteredBy": [
+      "Widowmaker",
+      "Ashe",
+      "Hanzo",
+      "Sombra"
+    ],
+    "synergies": [
+      "Pharah",
+      "Echo",
+      "Soldier: 76"
+    ],
+    "strongMaps": [
+      "Lijiang Control Center",
+      "Oasis",
+      "Nepal"
+    ],
+    "weakMaps": [
+      "King's Row",
+      "Eichenwalde"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Ulterior Motive",
+          "description": "15% of healing output recovers fuel."
+        },
+        {
+          "name": "Transport Shielding",
+          "description": "Gain up to 50 extra shields while carrying another player."
+        }
+      ],
+      "major": [
+        {
+          "name": "Headbutt",
+          "description": "High-speed flying knocks back an enemy for 50 damage."
+        },
+        {
+          "name": "Claws Out",
+          "description": "Empowered melee every 6 seconds wounds the target for 40 damage and slows them 30% for 1 second."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Fika is a stray cat who wandered into Watchpoint: Gibraltar's landing bay and was adopted by Brigitte Lindholm, who named her after her Kanelbullar-like colouring and insatiable appetite for treats. Building a jetpack for a cat had been Brigitte's childhood dream — she'd even drafted plans years earlier for a previous cat named Mitzi — and finding Fika nestled among discarded rocket parts finally gave the idea its pilot. When Talon attacked Gibraltar, Brigitte shelved the project, then reconsidered: if Overwatch was going to stand a chance against this new threat, they would need all the help they could get."
+  },
+  {
+    "id": "juno",
+    "name": "Juno",
+    "role": "Support",
+    "imageId": "juno",
+    "health": 175,
+    "armour": 0,
+    "shields": 50,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 2,
+    "primaryWeapon": {
+      "name": "Mediblaster",
+      "type": "Burst-fire heal and damage weapon",
+      "ammo": "Magazine based",
+      "damage": "Heals allies or damages enemies; falls off beyond 25 metres",
+      "cooldown": "Reload",
+      "description": "A burst-fire weapon that heals allies and damages enemies in the same shots. Effectiveness reduces at medium to long range."
+    },
+    "passive": {
+      "name": "Glide Boost",
+      "description": "While airborne, Juno can double jump and hold jump to hover, giving her strong aerial mobility and positioning."
+    },
+    "abilities": [
+      {
+        "name": "Pulsar Torpedoes",
+        "type": "Homing projectiles",
+        "damage": "Damages enemies / heals allies over time",
+        "cooldown": "8 sec",
+        "description": "Lock on to targets, then fire homing torpedoes that heal allies or damage enemies over time."
+      },
+      {
+        "name": "Hyper Ring",
+        "type": "Team mobility tool",
+        "damage": "None",
+        "cooldown": "12 sec",
+        "description": "Deploy a ring that increases the movement speed of allies who pass through it."
+      }
+    ],
+    "ultimate": {
+      "name": "Orbital Ray",
+      "type": "Ultimate heal and damage beam",
+      "damage": "Damages enemies and heals allies in the beam's path",
+      "description": "Call down an orbital beam that simultaneously damages enemies and heals allies caught in its path."
+    },
+    "counters": [
+      "Pharah",
+      "Echo",
+      "Reinhardt"
+    ],
+    "counteredBy": [
+      "Sombra",
+      "Tracer",
+      "Genji",
+      "Winston"
+    ],
+    "synergies": [
+      "Reinhardt",
+      "Tracer",
+      "Genji",
+      "Lúcio"
+    ],
+    "strongMaps": [
+      "Dorado",
+      "Watchpoint: Gibraltar",
+      "Numbani"
+    ],
+    "weakMaps": [
+      "Lijiang Control Center",
+      "Nepal Sanctum"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Familiar Vitals",
+          "description": "Pulsar Torpedoes lock onto allies 35% faster."
+        },
+        {
+          "name": "Re-Boots",
+          "description": "Activating Glide Boost resets Double Jump."
+        }
+      ],
+      "major": [
+        {
+          "name": "Master Blaster",
+          "description": "Mediblaster can critically hit enemies."
+        },
+        {
+          "name": "Locked On",
+          "description": "Pulsar Torpedoes cooldown reduces by 1.5 seconds for every enemy hit."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Juno grew up in the low-gravity environment of the Martian colonies and arrived on Earth like someone who had studied the planet extensively and was absolutely not prepared for how loud it actually is. Her support kit revolves around speed and mobility — glide-boosts and orbital rays that keep her teammates supplied and in motion. She experiences Earth's conflicts with the barely contained excitement of someone who has wanted to be here her entire life."
+  },
+  {
+    "id": "kiriko",
+    "name": "Kiriko",
+    "role": "Support",
+    "imageId": "kiriko",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 4,
+    "primaryWeapon": {
+      "name": "Healing Ofuda",
+      "type": "Seeking healing talismans",
+      "ammo": "6 charges per burst",
+      "damage": "None — up to 120 total healing per burst to a targeted ally",
+      "cooldown": "Reload",
+      "description": "Channel a burst of paper talismans that automatically seek and heal a targeted ally."
+    },
+    "secondaryWeapon": {
+      "name": "Kunai",
+      "type": "Precision thrown projectile",
+      "ammo": "3 per throw",
+      "damage": "40 per kunai; headshots deal 120",
+      "cooldown": "Throw recovery",
+      "description": "Throw precise kunai at enemies. Headshots deal triple damage."
+    },
+    "passive": {
+      "name": "Wall Climb",
+      "description": "Kiriko can climb walls, giving her strong vertical positioning and escape options."
+    },
+    "abilities": [
+      {
+        "name": "Swift Step",
+        "type": "Teleport",
+        "damage": "None",
+        "cooldown": "7 sec",
+        "description": "Instantly teleport to a targeted ally, passing through barriers and walls."
+      },
+      {
+        "name": "Protection Suzu",
+        "type": "Team cleanse and invulnerability",
+        "damage": "None",
+        "cooldown": "14 sec",
+        "description": "Throw a charm that briefly makes nearby allies invulnerable and cleanses most negative effects."
+      }
+    ],
+    "ultimate": {
+      "name": "Kitsune Rush",
+      "type": "Ultimate team speed and cooldown buff",
+      "damage": "None",
+      "description": "Summon a kitsune spirit that rushes forward, boosting the movement speed, attack speed, and cooldown recovery of allies that follow in its path."
+    },
+    "counters": [
+      "Zenyatta",
+      "Ana",
+      "Illari"
+    ],
+    "counteredBy": [
+      "Reaper",
+      "Roadhog",
+      "Cassidy",
+      "Sombra"
+    ],
+    "synergies": [
+      "Genji",
+      "Winston",
+      "Tracer",
+      "Doomfist"
+    ],
+    "strongMaps": [
+      "Nepal",
+      "Oasis",
+      "Dorado"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Havana"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Urgent Care",
+          "description": "Healing Ofuda projectile speed increases 50% when seeking critically wounded allies."
+        },
+        {
+          "name": "Fortune Teller",
+          "description": "Kunai hits launch two Healing Ofuda toward the ally in front."
+        }
+      ],
+      "major": [
+        {
+          "name": "Shuffling",
+          "description": "Swift Step can be used again within four seconds of the initial cast."
+        },
+        {
+          "name": "Foxtrot",
+          "description": "Protection Suzu grants allies 40% movement speed for two seconds."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Kiriko Kamori is a young shrine maiden from Kanezaka in Tokyo, trained in both the traditional kitsune fox spirit arts of her grandmother and the more grounded ninja techniques passed down through her mother's side of the family. She grew up alongside Genji and Hanzo Shimada and now uses her swiftness and healing ofuda to protect her community from the forces that took over after the yakuza left. Her kitsune spirit runs beside her."
+  },
+  {
+    "id": "lifeweaver",
+    "name": "Lifeweaver",
+    "role": "Support",
+    "imageId": "lifeweaver",
+    "health": 200,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Healing Blossom",
+      "type": "Charged healing burst",
+      "ammo": "Energy based",
+      "damage": "None — up to 90 healing per charge on a targeted ally",
+      "cooldown": "Charge time",
+      "description": "Hold to charge a healing burst, then release to heal a targeted ally. Higher charge means more healing, up to 90."
+    },
+    "secondaryWeapon": {
+      "name": "Thorn Volley",
+      "type": "Rapid spread projectile",
+      "ammo": "Magazine based",
+      "damage": "Sustained spread projectile damage",
+      "cooldown": "Reload",
+      "description": "Rapidly fires a spread of projectiles at enemies."
+    },
+    "passive": {
+      "name": "Parting Gift",
+      "description": "When Lifeweaver dies, he drops a healing flower that the first hero to walk over it can pick up."
+    },
+    "abilities": [
+      {
+        "name": "Petal Platform",
+        "type": "Terrain tool",
+        "damage": "None",
+        "cooldown": "12 sec",
+        "description": "Throw a platform that springs upward when stepped on, boosting allies or enemies to high ground."
+      },
+      {
+        "name": "Life Grip",
+        "type": "Ally repositioning",
+        "damage": "None",
+        "cooldown": "11 sec",
+        "description": "Pull a targeted ally to your location, protecting and cleansing them as they travel."
+      },
+      {
+        "name": "Rejuvenating Dash",
+        "type": "Mobility / self-sustain",
+        "damage": "None",
+        "cooldown": "5 sec",
+        "description": "Dash in the direction of movement and lightly heal yourself."
+      }
+    ],
+    "ultimate": {
+      "name": "Tree of Life",
+      "type": "Ultimate area healing",
+      "damage": "None",
+      "description": "Place a large tree that instantly heals nearby allies when it sprouts, then continues to heal them periodically while it lives."
+    },
+    "counters": [
+      "Roadhog",
+      "Reinhardt",
+      "Doomfist"
+    ],
+    "counteredBy": [
+      "Sombra",
+      "Tracer",
+      "Genji",
+      "Winston"
+    ],
+    "synergies": [
+      "Pharah",
+      "Sigma",
+      "Widowmaker",
+      "Baptiste"
+    ],
+    "strongMaps": [
+      "Lijiang Control Center",
+      "Nepal",
+      "Oasis"
+    ],
+    "weakMaps": [
+      "Watchpoint: Gibraltar",
+      "Dorado"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Cleansing Grasp",
+          "description": "Life Grip cleanses negative effects from the pulled ally."
+        },
+        {
+          "name": "Life Cycle",
+          "description": "While alive, regenerate 10 health/second; upon death, drop a healing seed restoring 250 health to the first ally who collects it."
+        }
+      ],
+      "major": [
+        {
+          "name": "Lifeweaving",
+          "description": "Rejuvenating Dash adds 20 bonus healing to the next Healing Blossom within three seconds."
+        },
+        {
+          "name": "Superbloom",
+          "description": "Thorns detonate for 30 extra damage when enough stick within 1.5 seconds."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Niran Pruksamanee is a Thai bio-engineer who developed Biolight — a revolutionary fusion of organic botanical science and energy-based medical technology — and has spent his career proving that the future of medicine is grown, not manufactured. Estranged from his family over choices they struggled to accept, he offers healing through petals and life-grip to anyone who needs it, no questions asked. He is gentle about almost everything except his vision."
+  },
+  {
+    "id": "lucio",
+    "name": "Lúcio",
+    "role": "Support",
+    "imageId": "lucio",
+    "health": 200,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Sonic Amplifier",
+      "type": "Projectile burst weapon",
+      "ammo": "20 rounds",
+      "damage": "Projectile burst damage / Soundwave knockback on alternate fire",
+      "cooldown": "Reload",
+      "description": "Fires bursts of sound projectiles. Alternate fire (Soundwave) pushes back nearby enemies with a blast of sound."
+    },
+    "passive": {
+      "name": "Wall Ride",
+      "description": "Lúcio can skate along walls, gaining speed and regenerating 4 ammo per second while wall riding."
+    },
+    "abilities": [
+      {
+        "name": "Crossfade",
+        "type": "Aura toggle",
+        "damage": "None",
+        "cooldown": "None",
+        "description": "Switch between Heal Song (passively heals nearby allies at 20 HPS) and Speed Song (increases ally movement and attack speed by 20%)."
+      },
+      {
+        "name": "Amp It Up",
+        "type": "Song amplifier",
+        "damage": "None",
+        "cooldown": "12 sec",
+        "description": "Greatly amplify the current song for a short burst, massively increasing healing output or speed boost."
+      },
+      {
+        "name": "Soundwave",
+        "type": "Knockback",
+        "damage": "25 damage",
+        "cooldown": "5 sec",
+        "description": "Blast nearby enemies away. Wall riding empowers the next Soundwave with 25% extra knockback and 50% extra damage."
+      }
+    ],
+    "ultimate": {
+      "name": "Sound Barrier",
+      "type": "Ultimate team overhealth",
+      "damage": "None",
+      "description": "Leap into the air and provide a large burst of temporary overhealth to all nearby allies."
+    },
+    "counters": [
+      "Reinhardt",
+      "Doomfist",
+      "Ramattra"
+    ],
+    "counteredBy": [
+      "Widowmaker",
+      "Ashe",
+      "Cassidy"
+    ],
+    "synergies": [
+      "Reinhardt",
+      "Zarya",
+      "Tracer",
+      "Genji"
+    ],
+    "strongMaps": [
+      "Lijiang Control Center",
+      "Oasis",
+      "Nepal"
+    ],
+    "weakMaps": [
+      "Havana",
+      "Circuit Royal"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Bass Blowout",
+          "description": "Soundwave's knockback increases 15%."
+        },
+        {
+          "name": "Beat Drop",
+          "description": "Amp It Up remains active during Sound Barrier."
+        }
+      ],
+      "major": [
+        {
+          "name": "Noise Violation",
+          "description": "Crossfade's range increases 150% while Amp It Up is active."
+        },
+        {
+          "name": "Accelerando",
+          "description": "Lúcio's attack speed increases 50% while Amp It Up is active."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Lúcio Correia dos Santos is a Brazilian DJ and activist who grew up in a favela forcibly restructured by the Vishkar Corporation, and responded by reverse-engineering their sonic technology and using it to drive them out. He took his music and his movement global, using his beat-driven abilities to heal allies and accelerate pushes in equal measure. His beats are a form of liberation that scales to any size crowd."
+  },
+  {
+    "id": "mercy",
+    "name": "Mercy",
+    "role": "Support",
+    "imageId": "mercy",
+    "health": 225,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 1,
+    "primaryWeapon": {
+      "name": "Caduceus Staff",
+      "type": "Tether healing / damage boost beam",
+      "ammo": "N/A — channel beam",
+      "damage": "Heals ally at 60 HPS / boosts ally damage output by 25%",
+      "cooldown": "None",
+      "description": "Tether to an ally to heal them at 60 HP per second, or boost their damage by 25%. Cannot do both simultaneously."
+    },
+    "secondaryWeapon": {
+      "name": "Caduceus Blaster",
+      "type": "Automatic pistol",
+      "ammo": "20 rounds",
+      "damage": "20 damage per shot",
+      "cooldown": "Reload",
+      "description": "A sidearm for self-defence."
+    },
+    "passive": {
+      "name": "Regeneration",
+      "description": "Mercy heals herself at 20 HP per second after not taking damage for 1 second."
+    },
+    "abilities": [
+      {
+        "name": "Guardian Angel",
+        "type": "Mobility",
+        "damage": "None",
+        "cooldown": "11 sec",
+        "description": "Fly rapidly toward a targeted ally. Duration is 5.5 seconds."
+      },
+      {
+        "name": "Flash Heal",
+        "type": "Instant ally heal",
+        "damage": "None",
+        "cooldown": "12 sec",
+        "description": "Instantly heal a targeted ally for 60 health."
+      },
+      {
+        "name": "Resurrect",
+        "type": "Revive",
+        "damage": "None",
+        "cooldown": "30 sec",
+        "description": "Revive a targeted dead ally at their location with full health."
+      }
+    ],
+    "ultimate": {
+      "name": "Valkyrie",
+      "type": "Ultimate self-empowerment",
+      "damage": "Caduceus Blaster damage unchanged",
+      "description": "Enter free flight mode, chain the healing or damage beam to multiple allies, and enhance all abilities for the duration."
+    },
+    "counters": [
+      "Pharah",
+      "Echo",
+      "Widowmaker"
+    ],
+    "counteredBy": [
+      "Sombra",
+      "Tracer",
+      "Genji",
+      "Winston"
+    ],
+    "synergies": [
+      "Pharah",
+      "Ashe",
+      "Bastion",
+      "Widowmaker"
+    ],
+    "strongMaps": [
+      "Dorado",
+      "Watchpoint: Gibraltar",
+      "Numbani"
+    ],
+    "weakMaps": [
+      "Lijiang Control Center",
+      "Nepal Village"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Angelic Resurrection",
+          "description": "Mercy gains 100 overhealth after casting Resurrect."
+        },
+        {
+          "name": "Winged Reach",
+          "description": "Guardian Angel's range increases 30%."
+        }
+      ],
+      "major": [
+        {
+          "name": "Chain Boost",
+          "description": "Caduceus Staff's secondary fire links to a second nearby ally."
+        },
+        {
+          "name": "Flash Heal",
+          "description": "Resurrect becomes usable on Caduceus Staff's active target to restore 150 health; 15 second cooldown."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Dr. Angela Ziegler is a Swiss physician and scientist who developed the Caduceus staff — capable of healing critical wounds and amplifying combat performance — and joined Overwatch with the firm belief that her work should serve life, not just soldiers. She has seen more death than any doctor should and refused to accept it as final, pursuing resurrection technology that blurs the line between miracle and hubris. The cost of that pursuit is something she carries quietly."
+  },
+  {
+    "id": "mizuki",
+    "name": "Mizuki",
+    "role": "Support",
+    "imageId": "mizuki",
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Spirit Glaive",
+      "type": "Bouncing projectile",
+      "ammo": "Magazine based",
+      "damage": "30 impact + 30 damage over time; headshots double the impact damage to 60",
+      "cooldown": "Reload",
+      "description": "Throw a spinning glaive that bounces off walls and surfaces, dealing impact damage plus damage over time on hit. Headshots double the impact portion only."
+    },
+    "passive": {
+      "name": "Remedy Aura",
+      "description": "Passively heals nearby allies. Healing output scales with resources generated by dealing damage and healing others. As a Survivor support, using a movement ability triggers additional passive health regeneration."
+    },
+    "abilities": [
+      {
+        "name": "Healing Kasa",
+        "type": "Multi-target bounce heal",
+        "damage": "None",
+        "cooldown": "10 sec",
+        "description": "Throw your kasa hat to heal a targeted ally. The hat then bounces between nearby allies, healing each one in turn before returning to heal Mizuki."
+      },
+      {
+        "name": "Katashiro Return",
+        "type": "Mobility / repositioning",
+        "damage": "None",
+        "cooldown": "8 sec",
+        "description": "Leap forward, leaving behind a paper doll. Reactivate to teleport back to the doll's position. Grants increased movement speed (30%) while active."
+      },
+      {
+        "name": "Binding Chain",
+        "type": "Crowd control",
+        "damage": "None",
+        "cooldown": "12 sec",
+        "description": "Launch a chain at an enemy that hinders their movement, preventing them from using movement abilities or walking away from the tether."
+      }
+    ],
+    "ultimate": {
+      "name": "Kekkai Sanctuary",
+      "type": "Ultimate area healing and projectile absorption",
+      "damage": "None",
+      "description": "Create a sanctuary around a location that heals all allies inside it and absorbs enemy projectiles fired from outside the area."
+    },
+    "counters": [
+      "Doomfist",
+      "Wrecking Ball",
+      "Tracer"
+    ],
+    "counteredBy": [
+      "Sombra",
+      "Pharah",
+      "Widowmaker"
+    ],
+    "synergies": [
+      "Reinhardt",
+      "Genji",
+      "Winston"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Numbani",
+      "Rialto"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Havana"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Wellspring",
+          "description": "Remedy Aura generation increases 25%."
+        },
+        {
+          "name": "Exposed Soul",
+          "description": "Binding Chain hit grants 30% damage bonus for 2 seconds."
+        }
+      ],
+      "major": [
+        {
+          "name": "Resonant Return",
+          "description": "Healing Kasa bounces an additional time; healing increases by 10 per bounce."
+        },
+        {
+          "name": "Quickstep",
+          "description": "While Katashiro Return is active, nearby allies gain 25% movement speed."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Mizuki Kawano was born in Fukuoka under a shadow of misfortune — his father, convinced their bloodline was cursed, dragged them to Tokyo, fell into debt with the Hashimoto Clan, and was eventually found dead, leaving nine-year-old Mizuki to inherit that debt. The Clan took him in and raised him in their service, but it was a captured weaponsmith named Toshiro Yamagami who gave him genuine kindness and, finally, his own anima kusarigama — a symbol of faith in his ability to forge his own fate. Now in Kanezaka, Mizuki has joined the Yokai, torn between his obligations to the Hashimoto and his desire to protect the friends he has come to care about."
+  },
+  {
+    "id": "moira",
+    "name": "Moira",
+    "role": "Support",
+    "imageId": "moira",
+    "health": 200,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 1,
+    "primaryWeapon": {
+      "name": "Biotic Grasp",
+      "type": "Short-range heal and damage beam",
+      "ammo": "Biotic energy resource",
+      "damage": "50 DPS to enemies (right hand) / 70 HPS to allies (left hand)",
+      "cooldown": "Biotic energy regenerates at 16% per second",
+      "description": "Left-click heals a nearby ally with a short-range beam. Right-click damages enemies and restores Moira's biotic energy."
+    },
+    "passive": {
+      "name": "Support",
+      "description": "Passively regenerates health after a short period without taking damage."
+    },
+    "abilities": [
+      {
+        "name": "Biotic Orb",
+        "type": "Bouncing projectile",
+        "damage": "Damages enemies or heals allies depending on mode; bounces off walls",
+        "cooldown": "10 sec",
+        "description": "Launch a sphere that bounces around the environment, either healing allies or damaging enemies."
+      },
+      {
+        "name": "Fade",
+        "type": "Invulnerability / escape",
+        "damage": "None",
+        "cooldown": "6 sec",
+        "description": "Disappear, move faster, and become invulnerable for a short time. Cannot attack while fading."
+      }
+    ],
+    "ultimate": {
+      "name": "Coalescence",
+      "type": "Ultimate long-range beam",
+      "damage": "140 DPS to enemies / 70 HPS to allies simultaneously",
+      "description": "Fire a long-range beam that passes through barriers, simultaneously healing allies and damaging enemies. Fade can be used during Coalescence."
+    },
+    "counters": [
+      "Tracer",
+      "Genji",
+      "Reaper"
+    ],
+    "counteredBy": [
+      "Pharah",
+      "Echo",
+      "Widowmaker"
+    ],
+    "synergies": [
+      "Reinhardt",
+      "Mei",
+      "Zarya"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Nepal Village",
+      "Lijiang Control Center"
+    ],
+    "weakMaps": [
+      "Havana",
+      "Circuit Royal"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Vanish",
+          "description": "Fade's duration increases 0.5 seconds."
+        },
+        {
+          "name": "Uprush",
+          "description": "Fade's jump height increases 50%."
+        }
+      ],
+      "major": [
+        {
+          "name": "Ethical Nourishment",
+          "description": "Biotic Orb's first 50 healing to each ally encountered is instant."
+        },
+        {
+          "name": "Contamination",
+          "description": "Enemies damaged by Biotic Orb receive 25% reduced healing."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Dr. Moira O'Deorain is an Irish geneticist of extraordinary and unchecked ambition who pushes biological science past every ethical limit the field has established, pursuing discoveries too dangerous for legitimate institutions and too interesting to stop. She has augmented her own body with biotic technology that channels both restorative and corrosive energy simultaneously, blurring the line between healer and weapon. She regards conventional morality as a bureaucratic obstacle to human potential."
+  },
+  {
+    "id": "wuyang",
+    "name": "Wuyang",
+    "role": "Support",
+    "imageId": "wuyang",
+    "health": 225,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 4,
+    "primaryWeapon": {
+      "name": "Xuanwu Staff",
+      "type": "Guided water projectile",
+      "ammo": "20 rounds",
+      "damage": "30–100 damage (increases with charge duration)",
+      "cooldown": "Reload",
+      "description": "Fire a water orb that can be steered mid-flight by holding the trigger. The longer it charges and travels, the more powerful the explosion on impact."
+    },
+    "passive": {
+      "name": "Survivor",
+      "description": "Health regeneration activates after only 3 seconds without taking damage, faster than most heroes. Using a movement ability also triggers passive health regeneration."
+    },
+    "abilities": [
+      {
+        "name": "Restorative Stream",
+        "type": "Sustained healing",
+        "damage": "None",
+        "cooldown": "Resource based",
+        "description": "Place a passive healing stream on an ally at 25 HPS. Hold the button to manually channel at 75 HPS total, consuming healing resource that regenerates over time."
+      },
+      {
+        "name": "Rushing Torrent",
+        "type": "Mobility / resource sustain",
+        "damage": "None",
+        "cooldown": "Resource based",
+        "description": "Ride a wave of water to move faster and jump higher. Restores 10 ammo and 33% of healing resource on activation."
+      },
+      {
+        "name": "Guardian Wave",
+        "type": "Team protection / knockback",
+        "damage": "40–80 (distance dependent)",
+        "cooldown": "8 sec",
+        "description": "Send a water wave forward that amplifies healing received by nearby allies by 50% and knocks back enemies. Heals nearby allies for 80 HP and Wuyang for 40 HP."
+      }
+    ],
+    "ultimate": {
+      "name": "Tidal Blast",
+      "type": "Ultimate protection and burst heal",
+      "damage": "100 damage / 1 second knockdown on detonation",
+      "description": "Envelop an ally or yourself in a water barrier granting 300 overhealth. After 3 seconds, the barrier detonates, knocking down nearby enemies and healing the target for 250 HP."
+    },
+    "counters": [
+      "Reinhardt",
+      "Doomfist",
+      "Pharah"
+    ],
+    "counteredBy": [
+      "Tracer",
+      "Genji",
+      "Sombra"
+    ],
+    "synergies": [
+      "Orisa",
+      "Sigma",
+      "Roadhog"
+    ],
+    "strongMaps": [
+      "Lijiang Control Center",
+      "Oasis",
+      "Nepal"
+    ],
+    "weakMaps": [
+      "Havana",
+      "Circuit Royal"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Overflow",
+          "description": "Gain 10 ammo and 50% healing resource when Rushing Torrent is activated."
+        },
+        {
+          "name": "Balance",
+          "description": "When you deal damage with water orbs, increase Restorative Stream's passive healing by 30% for 2 seconds."
+        }
+      ],
+      "major": [
+        {
+          "name": "Ebb and Flow",
+          "description": "Guardian Wave rewinds to its starting location."
+        },
+        {
+          "name": "Falling Rain",
+          "description": "Simultaneously control 3 water orbs that deal 60% decreased damage and have 25% decreased empowered explosion radius."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Wuyang Ye always dreamed of following his family's legacy into Wuxing University's prestigious Fire College, only to be accepted into the Water College instead — a blow to his pride that became an unexpected gift as he discovered a natural talent for qi gong and traditional Chinese healing. When Null Sector attacked Chengdu, he rushed to save his sister Anran using his water-based combat techniques, and the siblings fought their way free together. Winston recruited them both after witnessing the footage; Wuyang accepted with renewed confidence and his sister's encouragement."
+  },
+  {
+    "id": "zenyatta",
+    "name": "Zenyatta",
+    "role": "Support",
+    "imageId": "zenyatta",
+    "health": 50,
+    "armour": 0,
+    "shields": 150,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Orb of Destruction",
+      "type": "Projectile / charged volley",
+      "ammo": "20 orbs",
+      "damage": "46 per orb; charged volley fires all current orbs in a burst",
+      "cooldown": "Reload",
+      "description": "Throws damaging orbs at enemies. Alternate fire charges a volley of all current orbs for a burst of simultaneous damage."
+    },
+    "passive": {
+      "name": "Snap Kick",
+      "description": "Zenyatta's melee attack deals significantly more damage than a standard quick melee."
+    },
+    "abilities": [
+      {
+        "name": "Orb of Harmony",
+        "type": "Single-target healing",
+        "damage": "None",
+        "cooldown": "None",
+        "description": "Attach a healing orb to an ally, restoring their health over time. The orb persists as long as Zenyatta maintains line of sight."
+      },
+      {
+        "name": "Orb of Discord",
+        "type": "Enemy debuff",
+        "damage": "Amplifies all damage taken by the target by 30%",
+        "cooldown": "None",
+        "description": "Attach a debuff orb to an enemy, causing them to take 30% more damage from all sources. Removed if line of sight is broken for 1.5 seconds."
+      }
+    ],
+    "ultimate": {
+      "name": "Transcendence",
+      "type": "Ultimate invulnerability and mass heal",
+      "damage": "None",
+      "description": "Enter a state of pure energy, becoming invulnerable and moving faster while healing all nearby allies at 300 HP per second."
+    },
+    "counters": [
+      "Roadhog",
+      "Reaper",
+      "Mauga"
+    ],
+    "counteredBy": [
+      "Tracer",
+      "Genji",
+      "Winston",
+      "Doomfist"
+    ],
+    "synergies": [
+      "Genji",
+      "Reaper",
+      "Zarya",
+      "Winston"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Rialto",
+      "Midtown",
+      "Blizzard World",
+      "Hollywood",
+      "Paraíso",
+      "Runasapi",
+      "Shambali Monastery",
+      "Hanaoka",
+      "Throne of Anubis",
+      "Esperança"
+    ],
+    "weakMaps": [
+      "Lijiang Control Center",
+      "Nepal Sanctum"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Zenith Kick",
+          "description": "Snap Kick's knockback distance increases 30%."
+        },
+        {
+          "name": "Ascendance",
+          "description": "Activate and hold Double Jump to hover up to three seconds."
+        }
+      ],
+      "major": [
+        {
+          "name": "Focused Destruction",
+          "description": "Secondary fire charges 20% faster; stores one extra Orb of Destruction."
+        },
+        {
+          "name": "Duality",
+          "description": "Zenyatta heals Orb of Harmony targets for 20% of damage dealt to Orb of Discord targets."
+        }
+      ]
+    },
+    "patchHistory": [],
+    "lore": "Tekhartha Zenyatta is a Shambali omnic monk who broke from the monastery's doctrine to wander the world and form genuine personal connections with humans, believing that understanding grows from relationship rather than instruction. He became Genji's mentor at a critical moment and helped him make peace with the fractured existence of being neither fully human nor fully machine. He throws orbs of harmony and destruction with equal tranquility, fully at peace with the contradiction."
+  }
+]

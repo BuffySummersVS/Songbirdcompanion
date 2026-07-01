@@ -1,0 +1,116 @@
+export default {
+  id: 'expert-composition-adaptation',
+  title: 'Composition Adaptation',
+  subtitle: 'Recognising when and how to change your team composition mid-match',
+  category: 'expert',
+  pathId: 'expert',
+  order: 2,
+  prerequisites: ['expert-advanced-compositions'],
+  xpReward: 70,
+  estimatedMinutes: 7,
+  difficulty: 5,
+  tags: ['adaptation', 'hero-swap', 'composition', 'flexibility', 'expert'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Composition adaptation is the mid-match process of recognising that your current hero selection is not winning and making systematic changes. Most players adapt by instinct — swapping out of frustration when they die. Expert players adapt by diagnosis — identifying the structural reason the current composition is losing and selecting heroes that address that specific problem.',
+    },
+    {
+      type: 'text',
+      heading: 'Diagnosing Before Swapping',
+      body: 'Before swapping, ask "why are we losing?" Common structural causes: your dive comp cannot reach their dive-resistant supports; your brawl comp is being poked out by long-range damage; your poke comp gets dived every fight. Once you identify the cause, you can identify the hero swap that addresses it — not just "pick something different."',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Targeted vs Reactive Swapping',
+      body: 'Reactive: Ana dies twice, gets frustrated, switches to Zenyatta. Nothing fundamentally changes. Targeted: The team diagnoses that the enemy\'s brawl sustain is too high for their dive composition. The Tracer swaps to Sombra (hack removes key sustain cooldowns), the Winston stays but targets Moira instead. This structural change addresses the actual problem.',
+    },
+    {
+      type: 'text',
+      heading: 'When to Adapt',
+      body: 'Adapt when: you have lost three consecutive fights using the same composition and approach, the enemy composition directly hard-counters one of your key heroes, the map changes to a segment that does not favour your composition, or your team\'s communication makes it clear the current plan is not working. Do not adapt after one bad fight — fights can be lost to poor execution, not composition.',
+    },
+    {
+      type: 'text',
+      heading: 'The Cost of Swapping',
+      body: 'Every hero swap resets ultimate charge (capped at a fraction of the new hero\'s cost), requires adjustment time on an unfamiliar hero, and may disrupt the coordination your team has built. These are real costs. Adapt when the structural problem costs more to maintain than the swap costs to make — not at the first sign of struggle.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'The Composition Cascade',
+      body: 'One swap often triggers others — swapping a support may change the healing profile, which changes which tank survives, which changes what the damage players can execute. Before swapping, think one level ahead: "If I go Sombra, does our team have someone to heal me when I take dive risks?" Unplanned cascading swaps often make things worse.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-expert-composition-adaptation',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What distinguishes a "targeted" swap from a "reactive" swap?',
+        options: [
+          'Targeted swaps happen faster; reactive swaps happen after multiple deaths',
+          'Targeted swaps address a diagnosed structural problem; reactive swaps are driven by frustration without clear diagnosis',
+          'Targeted swaps change your role; reactive swaps keep you in the same role',
+          'Targeted swaps only happen when you have an ultimate charged; reactive swaps can happen any time',
+        ],
+        correct: 1,
+        explanation: 'Targeted swaps come from diagnosing WHY your composition is losing, then selecting a hero that specifically addresses that reason. Reactive swaps come from frustration or general dissatisfaction — they may change something, but not necessarily the right thing.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'After how many consecutive fight losses should you consider adapting your composition?',
+        options: [
+          'After the very first lost fight',
+          'Never — commit to your composition regardless of results',
+          'After roughly three consecutive losses where the structural cause is clear, not just poor execution',
+          'Only after the enemy team suggests you should swap',
+        ],
+        correct: 2,
+        explanation: 'One lost fight can happen due to poor execution, bad timing, or simple bad luck. Three consecutive losses in the same way suggest a structural issue with the composition or approach — that is the signal to adapt. Earlier adaptation risks fixing the wrong problem.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Swapping heroes mid-match is always free — it costs nothing and should happen whenever you get eliminated.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Swapping costs ultimate charge (capped at a fraction of the new hero\'s cost), adjustment time, and may disrupt team coordination. These are real costs that must be weighed against the structural benefit of the swap. Swap when the problem costs more than the fix.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'Your dive composition cannot reach enemy supports because Brigitte and Roadhog are deterring every dive. What is a targeted swap to address this?',
+        options: [
+          'Swap your support to Zenyatta for more damage',
+          'Swap your Genji to Sombra (hack disrupts Brigitte\'s shield and Roadhog\'s heal, opening the dive window)',
+          'Swap your Winston to Reinhardt for more barrier play',
+          'Swap your support to Ana so you can sleep one of them at the start of each fight',
+        ],
+        correct: 1,
+        explanation: 'Sombra\'s hack removes Brigitte\'s ability to protect against dive and Roadhog\'s ability to heal through damage — specifically solving the problem of dive-resistant heroes. This is targeted: the swap directly addresses the structural reason dive is failing.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'What should you consider before making a composition swap?',
+        options: [
+          'Only whether the new hero is stronger statistically',
+          'Whether the swap addresses the diagnosed structural problem AND whether the swap creates downstream effects the team can handle',
+          'Whether the new hero is one you personally enjoy playing',
+          'Whether the new hero has a shorter respawn time',
+        ],
+        correct: 1,
+        explanation: 'A targeted swap must address the actual problem, and you must think one step ahead about how it changes the team\'s dynamics. A damage swap might change healing requirements; a tank swap changes which engagements are viable. Plan for the cascade.',
+      },
+    ],
+  },
+};

@@ -1,0 +1,116 @@
+export default {
+  id: 'advanced-rotations',
+  title: 'Rotations',
+  subtitle: 'Moving between positions without losing ground',
+  category: 'advanced',
+  pathId: 'advanced',
+  order: 13,
+  prerequisites: ['advanced-objective-control'],
+  xpReward: 65,
+  estimatedMinutes: 6,
+  difficulty: 4,
+  tags: ['rotations', 'movement', 'positioning', 'map-awareness', 'advanced'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'A rotation is the movement of one or more players from one position to another, typically in response to enemy pressure or to secure a new opportunity. Rotations that are too slow lose ground. Rotations that are poorly timed create vulnerabilities. Smart rotations are the difference between a team that adapts and a team that gets picked off mid-movement.',
+    },
+    {
+      type: 'text',
+      heading: 'When to Rotate',
+      body: 'Rotate when: your current position is being outflanked, you have won a fight and need to push forward to the next hold, an enemy flank threatens your backline, or the objective has shifted (payload moved, point contested from a new angle). Do not rotate out of fear when you have a strong position — enemies may just be making noise to draw you out of cover.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'The Safe Rotation',
+      body: 'Your team is holding high ground on Watchpoint: Gibraltar. An enemy Pharah is taking aim at your position. Rotating straight across the open rooftop gets you all killed by Pharah. The smart rotation is through the interior building stairs — using cover throughout the movement. Rotating safely means finding the covered path, not just the direct path.',
+    },
+    {
+      type: 'text',
+      heading: 'Rotating as a Unit',
+      body: 'Rotating one player at a time is a stagger — it creates a series of 1v5 situations as each solo mover gets caught. When your team needs to rotate, move simultaneously or cover each other. One player holds the current position (using an ability or long-range threat to keep enemies occupied) while the others move, then the holder follows.',
+    },
+    {
+      type: 'text',
+      heading: 'Anticipatory Rotations',
+      body: 'The best rotations happen before the enemy forces you to move, not after they have already taken your position. If you see an enemy flanker moving toward your backline, rotate a player to intercept before they arrive. If you know the enemy will push a specific angle next fight, pre-position there before the fight. Reactive rotations are always slower than proactive ones.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'The Mid-Rotation Death',
+      body: 'Moving across open ground while enemies are watching is one of the most preventable deaths in Overwatch. Before rotating, identify: Is there cover along the path? Are enemies watching that lane? Is the timing right? Walking through an open area while the enemy sniper is looking that direction is not a rotation — it is a donation.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-advanced-rotations',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'When should you initiate a rotation?',
+        options: [
+          'Whenever the enemy team is moving, to mirror their movements',
+          'When your position is being outflanked, you need to push forward after a win, or the objective has shifted',
+          'Only after all five of your teammates agree to rotate simultaneously',
+          'Rotations should be avoided — holding one position all game is optimal',
+        ],
+        correct: 1,
+        explanation: 'Rotate in response to real threats or opportunities: flank pressure, fight wins that open new ground, or objective shifts. Avoid rotating out of fear when your current position is still strong — enemies may intentionally pressure you to abandon a good hold.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'What is wrong with rotating players one at a time across open ground?',
+        options: [
+          'It uses too much health pack resources for the individual movers',
+          'It creates sequential individual vulnerabilities — each moving player can be caught before reaching safety',
+          'One-at-a-time rotations are slower than group rotations, but equally safe',
+          'Nothing — moving one at a time is the correct approach so you always have someone holding',
+        ],
+        correct: 1,
+        explanation: 'Staggered individual rotations create a series of isolated targets. Each player crossing open ground alone faces an entire enemy team\'s attention. Move simultaneously or use a cover holder to mask the rotation.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'The fastest path between two positions is almost always the best rotation route.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. The fastest route is often the most exposed one. The right rotation route uses cover throughout the movement — it may be longer but dramatically safer. A slower rotation that keeps you alive is better than a fast rotation that gets you killed mid-movement.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'You see an enemy flanker moving toward your support\'s position. What is the ideal response?',
+        options: [
+          'Wait until the flanker reaches the support, then respond to the fight',
+          'Rotate a player to intercept the flanker before they reach the support',
+          'Tell the support to rotate away before the flanker arrives',
+          'Ignore the flank and push more aggression from the front to compensate',
+        ],
+        correct: 1,
+        explanation: 'Anticipatory rotations — intercepting the flanker before they arrive — are more effective than reactive responses after the support is already under attack. Pre-positioning for predictable enemy movement is how you win before a fight starts.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'Your team needs to move from one area of the map to another. A Widowmaker is watching the main route. What should you do?',
+        options: [
+          'Rush through the open route before Widowmaker can track all five players',
+          'Wait until Widowmaker uses her ultimate before rotating',
+          'Find an alternate covered route, or use covering abilities (barriers, speed boost) to cross safely',
+          'Send one player to bait the Widowmaker while the rest rotate',
+        ],
+        correct: 2,
+        explanation: 'Rotating into a Widowmaker\'s sightline costs lives. The solution is either an alternate covered route that avoids the sightline entirely, or using covering abilities — such as Reinhardt\'s Barrier Field, Sigma\'s Experimental Barrier, or Lúcio\'s speed boost to minimise exposure time. Rushing open ground against a watching Widowmaker is preventable.',
+      },
+    ],
+  },
+};

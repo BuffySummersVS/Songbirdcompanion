@@ -1,0 +1,116 @@
+export default {
+  id: 'expert-advanced-target-priority',
+  title: 'Advanced Target Priority',
+  subtitle: 'Expert-level decisions on who to kill first',
+  category: 'expert',
+  pathId: 'expert',
+  order: 6,
+  prerequisites: ['expert-macro-positioning'],
+  xpReward: 70,
+  estimatedMinutes: 7,
+  difficulty: 5,
+  tags: ['target-priority', 'decision-making', 'focus', 'expert'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Basic target priority says: kill supports first. Expert target priority says: kill the target whose elimination most disrupts the enemy win condition right now. The default is often a support, but sometimes it is the tank preventing your advance, the damage hero about to use a game-changing ultimate, or the off-angle threat about to flank your support.',
+    },
+    {
+      type: 'text',
+      heading: 'Situational Priority Factors',
+      body: 'Priority is dynamic, not static. Factors that override the default (supports first): A damage hero is about to use Graviton/Blizzard/Dragon Strike (kill them before they cast). A tank\'s barrier is the only thing keeping the enemy alive (break the barrier first, not the supports). A flanker is about to reach your support (peel for them instead of forward aggression). Read the fight state every second.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Override Scenarios',
+      body: 'Scenario 1: Enemy Zarya has full charge and Graviton ready. Priority becomes: kill Zarya before she uses it, even though your default would be the support. Scenario 2: Enemy Reinhardt\'s barrier is at full health blocking all your damage. Priority becomes: break the barrier, then refocus on supports. Scenario 3: Enemy Tracer has Pulse Bomb and is beelining toward your tank. Priority becomes: kill Tracer before she plants the bomb.',
+    },
+    {
+      type: 'text',
+      heading: 'The Opportunity Kill',
+      body: 'Not every priority override is planned — sometimes a target presents itself as an opportunity. A support steps out of cover alone, a damage hero dives too deep, a tank pushes far ahead of their team. Recognising opportunistic kills and taking them immediately — rather than waiting for the "planned" target — is expert-level target flexibility.',
+    },
+    {
+      type: 'text',
+      heading: 'Communicating Priority Changes',
+      body: 'Expert target priority is only valuable if the team can act on it. A solo player switching to a new priority while the team continues on the old target wastes both efforts. Call priority changes concisely and immediately: "Zarya is about to Grav — kill Zarya first" or "Tracer has bomb — focus Tracer now." Fast callouts let the team pivot before the window closes.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'Priority vs Distraction',
+      body: 'Not every threat is worth changing priority. If a flanker is annoying but not immediately dangerous, switching your entire team to chase them may give the enemy a numbers advantage on the main objective. Assess whether the override threat is "fight-deciding if unaddressed" or just a nuisance. Only override priority for genuinely fight-deciding threats.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-expert-advanced-target-priority',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is the expert-level approach to target priority?',
+        options: [
+          'Always kill supports first, regardless of the fight state',
+          'Kill the target whose elimination most disrupts the enemy win condition in the current moment — which is usually a support, but not always',
+          'Target the lowest-health enemy to secure eliminations quickly',
+          'Kill the enemy tank first to remove their main source of pressure',
+        ],
+        correct: 1,
+        explanation: 'Expert target priority is situational, not formulaic. The default is often supports, but fight state can override this — an about-to-fire ultimate user, a barrier blocking all damage, or an immediate flanker threat may all justify overriding the default priority.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'The enemy Zarya has full charge and you suspect she has Graviton Surge ready. What should your priority be?',
+        options: [
+          'Continue on the enemy supports — killing healers is always the right call',
+          'Switch priority to Zarya to prevent the Graviton from landing',
+          'Fall back and avoid engaging until she uses it on nothing',
+          'Use all your ultimates simultaneously to end the fight before she can cast',
+        ],
+        correct: 1,
+        explanation: 'A charged Graviton Surge is a fight-deciding threat. Killing Zarya before she casts it is an override situation — the default target priority becomes secondary to preventing a single ability that could wipe your team.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'If an enemy flanker is annoying but not immediately dangerous, your entire team should switch priority to eliminate them.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Priority should only override the default for "fight-deciding if unaddressed" threats. A nuisance flanker dealing chip damage is not worth pulling five players off the main fight to address. Assess the actual threat level before calling a priority switch.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'An enemy support steps out of cover alone with low health while your team is focused elsewhere. What is this?',
+        options: [
+          'A trap — lone supports are always bait',
+          'An opportunity kill — a target has presented itself as immediately eliminatable outside of the default plan',
+          'Not relevant to the current fight — stay on the called target',
+          'A sign that the support is about to use a defensive ultimate',
+        ],
+        correct: 1,
+        explanation: 'Opportunity kills are targets that break cover or make positioning mistakes. Expert players recognise these moments and act immediately rather than waiting for a more "planned" approach. A solo support briefly exposed is often the fastest and cheapest path to 5v4.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'Why must priority changes be communicated immediately rather than acted on individually?',
+        options: [
+          'Individual priority switches are against the rules at high level play',
+          'Without a callout, one player switches to the new target while four continue on the old one, splitting damage and wasting both efforts',
+          'Priority changes require team vote before they can be implemented',
+          'Callouts reduce individual reaction time',
+        ],
+        correct: 1,
+        explanation: 'A solo priority switch divides your team\'s damage — one player on the new target, four on the old. Neither target dies. Fast callouts ("Zarya is about to Grav — focus Zarya now") align the team before the window closes. Priority is only useful if the whole team acts on it.',
+      },
+    ],
+  },
+};

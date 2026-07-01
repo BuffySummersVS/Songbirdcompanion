@@ -1,0 +1,115 @@
+export default {
+  id: 'advanced-playing-around-cooldowns',
+  title: 'Playing Around Cooldowns',
+  subtitle: 'Timing actions around ability availability',
+  category: 'advanced',
+  pathId: 'advanced',
+  order: 14,
+  prerequisites: ['advanced-rotations'],
+  xpReward: 70,
+  estimatedMinutes: 7,
+  difficulty: 4,
+  tags: ['cooldowns', 'timing', 'windows', 'ability-management', 'advanced'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Every ability has a cooldown. Cooldowns create windows — moments when an ability is unavailable and the hero is temporarily weakened. Playing around cooldowns means engaging when enemy key cooldowns are down, protecting when your own are down, and making enemies burn their defensive abilities before you commit your full force.',
+    },
+    {
+      type: 'text',
+      heading: 'Identifying Key Cooldowns',
+      body: 'Not every cooldown creates a meaningful window. Key cooldowns are the ones that make a hero dangerous or survivable: Reinhardt\'s charge (escape/aggression), Ana\'s sleep dart (crowd control), Roadhog\'s self-heal (survivability), Lucio\'s sound barrier (team saving). When these are on cooldown, the hero is significantly more vulnerable or less effective. These are your engagement windows.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Baiting Cooldowns',
+      body: 'The enemy Roadhog just used his self-heal to recover from your burst damage. His key survivability cooldown is now on a 10-second cooldown. This is your window — engage Roadhog now. He cannot heal through your damage until it comes back. If you wait 12 seconds, the window closes and you are fighting a fully-equipped Roadhog again.',
+    },
+    {
+      type: 'text',
+      heading: 'Your Own Cooldown Discipline',
+      body: 'Playing around cooldowns applies to your own as well. After using a major defensive ability (Ana\'s sleep, Reinhardt\'s shield break), be aware that you are in a vulnerability window. Play more cautiously until the cooldown returns. Do not take risks that require the defensive ability you just used — you do not have it anymore.',
+    },
+    {
+      type: 'text',
+      heading: 'Baiting Defensive Cooldowns',
+      body: 'Before fully committing your team, send in enough pressure to bait enemy defensive cooldowns. If a slight probe makes the enemy Lucio burn Sound Barrier or Ana use Nano Boost reactively, your main assault can hit a team without those defensive tools. The investment of a minor probe to drain major defensive cooldowns is almost always worth it.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Keep a rough mental timer on one or two key enemy cooldowns throughout the match — particularly escape abilities and defensive cooldowns. When you see them used, count to roughly when they will be back. Engage during the window; respect the timing when they are recharged.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-advanced-playing-around-cooldowns',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is a "cooldown window" in Overwatch?',
+        options: [
+          'The time it takes for a hero to reach full ultimate charge',
+          'A period when a key ability is unavailable, making the hero temporarily weaker or less effective',
+          'The brief moment between a hero dying and respawning',
+          'A window of time where you can swap heroes without losing ultimate charge',
+        ],
+        correct: 1,
+        explanation: 'A cooldown window is the period between an ability being used and becoming available again. During this time, the hero loses whatever advantage that ability provided — making it the ideal time to engage or push an advantage.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'The enemy Roadhog just used his Take a Breather (self-heal). When should you engage him?',
+        options: [
+          'Wait for it to recharge so the fight is fair',
+          'Immediately — his key survivability cooldown is down and he cannot heal through your damage right now',
+          'Only engage if your team has an ultimate ready',
+          'Do not engage Roadhog at all — he is always too tanky',
+        ],
+        correct: 1,
+        explanation: 'Roadhog\'s Take a Breather is his primary survivability tool. When it is on cooldown, he cannot recover from burst damage. Engaging immediately after he uses it gives you a window to deal significant damage without him healing back to full.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'After using one of your major defensive abilities, you should immediately engage more aggressively to press the advantage.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. After using a major defensive ability, you are in a vulnerability window — the ability you depended on is unavailable. Play more cautiously until it recharges. Taking risks that would require the defensive ability you just spent is a common way to die unnecessarily.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'What is the purpose of "baiting" an enemy defensive cooldown before your main engagement?',
+        options: [
+          'To trick enemies into changing hero',
+          'To drain the enemy\'s key defensive tool so your main assault hits them without their protection',
+          'To reduce enemy ultimate charge by making them use abilities',
+          'To waste enemy health before the real fight',
+        ],
+        correct: 1,
+        explanation: 'Baiting defensive cooldowns with a minor probe removes them from the following fight. If a small pressure forces Sound Barrier or Nano Boost to be used reactively and prematurely, your main assault engages a team without their strongest defensive options.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'Which abilities should you prioritise tracking cooldowns for?',
+        options: [
+          'All abilities equally — every cooldown matters the same',
+          'Only offensive cooldowns, since those directly affect damage output',
+          'Key cooldowns that define a hero\'s survivability or danger: escape tools, crowd control, major defensive saves',
+          'Passives and always-on effects, since these are the hardest to see',
+        ],
+        correct: 2,
+        explanation: 'Not all cooldowns create meaningful windows. Track the ones that matter most: escape tools (if they cannot escape, they are committed), crowd control (if it is down, they cannot lock you down), and major defensive saves (if it is down, they cannot sustain through your damage). These are the windows that win fights.',
+      },
+    ],
+  },
+};

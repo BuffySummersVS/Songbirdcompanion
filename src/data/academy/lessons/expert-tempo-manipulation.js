@@ -1,0 +1,116 @@
+export default {
+  id: 'expert-tempo-manipulation',
+  title: 'Tempo Manipulation',
+  subtitle: 'Actively controlling when and how fights happen',
+  category: 'expert',
+  pathId: 'expert',
+  order: 7,
+  prerequisites: ['expert-advanced-target-priority'],
+  xpReward: 70,
+  estimatedMinutes: 7,
+  difficulty: 5,
+  tags: ['tempo', 'control', 'timing', 'initiative', 'expert'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Advanced players react to tempo changes. Expert players manufacture them. Tempo manipulation is the active creation of fight conditions that favour your team — forcing fights before enemies are ready, delaying fights until you are, and creating false pressure that causes enemies to burn resources on nothing. This goes beyond responding to what happens; it is making things happen.',
+    },
+    {
+      type: 'text',
+      heading: 'Forcing Fights',
+      body: 'Force fights when: you have ultimate advantage (fight before they recharge), you are ahead on objective (force them to contest on your terms), or the stagger window is open (push before the last respawning enemy returns). Forced fights are often won before the first shot fires because you chose the moment, position, and resource state. The enemy reacts; you act.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'The False Pressure Fake',
+      body: 'Your tank feints an aggressive push at the main choke, drawing the enemy team to respond, then pulls back. The enemy committed their defensive cooldowns (Roadhog\'s Take a Breather triggered, Lucio boosted early). Now your team flanks from a secondary route while those cooldowns are on cooldown. You manufactured a window by creating pressure that never committed.',
+    },
+    {
+      type: 'text',
+      heading: 'Delaying Fights',
+      body: 'Sometimes the best tempo manipulation is refusing to fight. If the enemy has a massive ultimate advantage, stall — use health packs, stay in cover, use abilities to delay without committing. Every second they wait charges your ultimates while they sit on ones they cannot use. Stall until the window improves, then force the fight. Passive delay is an active strategy.',
+    },
+    {
+      type: 'text',
+      heading: 'Using False Pressure',
+      body: 'False pressure creates a fight that never happens, burning enemy resources for no gain. A Pharah flying overhead makes enemies look up — not committing to a dive, just threatening. A flanker approaching a position makes the enemy post a guard — not necessarily following through. The threat of action forces resource commitment even when action never materialises.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'The Overforced Fight',
+      body: 'Forcing a fight at the wrong moment — when you have ultimate disadvantage, when your team is split, when you are at a positional disadvantage — gives away the initiative. You force a fight; it goes badly; the enemy now has momentum. Force fights from positions of strength, not just because you can.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-expert-tempo-manipulation',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What distinguishes "tempo manipulation" from simply having good fight tempo?',
+        options: [
+          'Tempo manipulation requires all five players to act simultaneously',
+          'Good tempo is reactive — adjusting to the pace of fights. Tempo manipulation is proactive — actively creating the conditions that favour your team',
+          'Tempo manipulation only applies on attack; fight tempo applies on defence',
+          'Tempo manipulation requires ultimate abilities; fight tempo uses cooldowns only',
+        ],
+        correct: 1,
+        explanation: 'Good fight tempo is about taking advantage of existing conditions. Tempo manipulation is manufacturing those conditions — forcing fights when the enemy is not ready, delaying fights until you are, or creating false pressure that wastes enemy resources. You make things happen rather than responding to them.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'When should you force a fight?',
+        options: [
+          'Any time you feel confident, regardless of game state',
+          'When you have ultimate advantage, are ahead on objective, or the stagger window is open — you chose the moment from a position of strength',
+          'Only when the enemy team is fully grouped together',
+          'When you have been waiting more than 60 seconds since the last fight',
+        ],
+        correct: 1,
+        explanation: 'Force fights from positions of strength: ultimate advantage, objective lead, or enemy stagger. Forcing fights from positions of weakness — ultimate disadvantage, enemy full reset, poor positioning — gives away the initiative and risks a decisive enemy counter.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Delaying a fight (staying in cover, stalling) is a passive strategy with no active benefit.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Stalling when the enemy has ultimate advantage is an active tempo strategy. While the enemy waits with charged ultimates they cannot efficiently use, your team charges their own ultimates. Every second of effective stall shifts the ultimate balance. Passive delay is an active tempo tool.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'A tank feints an aggressive push, drawing defensive cooldowns from the enemy, then pulls back. The team then flanks while those cooldowns are on cooldown. What is this technique?',
+        options: [
+          'A bait-and-switch involving ultimate abilities',
+          'False pressure — creating a fight that never fully commits, burning enemy resources for no gain',
+          'A standard counter-attack following a defensive hold',
+          'A rotation to a second objective',
+        ],
+        correct: 1,
+        explanation: 'False pressure uses the threat of commitment to drain enemy resources without actually committing. The feint costs you nothing; the enemy spends real cooldowns responding to a non-existent engagement. That window — immediately after their defensive cooldowns fire — is when you actually engage.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'What is the risk of forcing a fight when your team is at ultimate disadvantage?',
+        options: [
+          'Your heroes charge ultimate slower during a forced fight',
+          'You give away the initiative — fighting on the enemy\'s preferred terms, giving them the resource advantage window they needed',
+          'The enemy team is not allowed to use ultimates in fights you initiate',
+          'Force fighting drains your cooldowns faster than normal engagements',
+        ],
+        correct: 1,
+        explanation: 'Forcing a fight from ultimate disadvantage walks into the enemy\'s strongest window — they have ultimates ready, you do not. This is the opposite of tempo manipulation: you are giving them the fight conditions they want, not the ones you manufactured for yourself.',
+      },
+    ],
+  },
+};

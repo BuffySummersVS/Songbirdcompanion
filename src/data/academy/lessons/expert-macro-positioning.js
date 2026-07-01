@@ -1,0 +1,115 @@
+export default {
+  id: 'expert-macro-positioning',
+  title: 'Macro Positioning',
+  subtitle: 'Where your team stands at the map-wide scale',
+  category: 'expert',
+  pathId: 'expert',
+  order: 5,
+  prerequisites: ['expert-resource-economy'],
+  xpReward: 70,
+  estimatedMinutes: 7,
+  difficulty: 5,
+  tags: ['macro', 'positioning', 'map-control', 'formation', 'expert'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Micro positioning is where you stand relative to enemies in a fight. Macro positioning is where your team stands relative to the map — controlling high ground, holding key areas, and maintaining formations that let you respond to threats from any direction. Expert players think at the macro level constantly: not just "am I safe here?" but "is my team in the right formation for this map segment?"',
+    },
+    {
+      type: 'text',
+      heading: 'Formation Principles',
+      body: 'A good team formation covers multiple threat vectors, protects the most vulnerable heroes, and maintains healing reach (supports stay within healing range of DPS and tank). Too tight and you are vulnerable to AOE. Too spread and your supports cannot maintain everyone. The ideal formation varies by map segment — tighter in corridors, more spread on open ground.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Pre-Fight Formation vs Post-Win Formation',
+      body: 'Before a fight, your team\'s formation is about preparation — covering angles, protecting healers, establishing crossfires. After winning a fight, formation shifts to exploitation — pushing toward the objective, taking high ground before the enemy respawns, establishing the next defensive line. Expert teams transition between these formations fluidly, not reactively.',
+    },
+    {
+      type: 'text',
+      heading: 'High Ground Macro Priority',
+      body: 'High ground is a persistent macro advantage. A team that owns high ground at the start of a map segment controls sightlines, makes dives riskier (enemies must push upward), and can safely retreat downward. Prioritising high ground before fights begin — moving there during the approach phase rather than during combat — gives a systematic advantage that compounds over a match.',
+    },
+    {
+      type: 'text',
+      heading: 'The Macro Mistake: Stacking Too Deep',
+      body: 'Stacking too deep into a point or payload pushes your team into the enemy\'s defensive setup rather than keeping them at the choke. Expert teams hold the last cover position before the objective, force enemies to push out or lose ground, rather than pushing deep into a crossfire. Every metre forward has to be earned, not assumed.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'During quiet moments between fights, mentally map your team\'s formation. Ask: "Is everyone where they should be? Are our supports in range of everyone? Are we on high ground or being denied it?" Three seconds of macro assessment can set up the next fight better than any individual play.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-expert-macro-positioning',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is the difference between "micro" and "macro" positioning?',
+        options: [
+          'Micro is for damage dealers; macro is for tank players',
+          'Micro is individual positioning relative to enemies; macro is team formation relative to the map as a whole',
+          'Micro happens in fights; macro happens only at the start of a match',
+          'Macro positioning uses character movement; micro positioning uses ability use timing',
+        ],
+        correct: 1,
+        explanation: 'Micro positioning is about individual decisions in a fight — ducking behind a pillar, angling for cover. Macro positioning is about team formation at the map level — controlling high ground, spreading correctly for AOE vs corridor play, maintaining formation for response capability.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'What are the key principles of a good team formation?',
+        options: [
+          'Everyone grouped together for maximum mutual protection',
+          'Maximum spread so no ability can hit two players simultaneously',
+          'Covering multiple threat vectors, protecting vulnerable heroes, and maintaining healing range',
+          'Tank at the front, supports at the back, damage players scattered throughout',
+        ],
+        correct: 2,
+        explanation: 'Good formations balance coverage (multiple threat vectors addressed), protection (vulnerable heroes behind cover), and healing reach (supports can actually reach everyone needing healing). Too tight risks AOE; too spread loses healing coverage. The balance shifts by map segment.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'High ground should only be contested if there are enemies already on it.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. High ground is most valuable when taken proactively — before enemies claim it. Approaching a map segment and establishing high ground before the enemy arrives gives a systematic advantage that is much harder to gain reactively after the enemy holds it.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'After winning a fight, how should your team\'s formation shift?',
+        options: [
+          'Remain in the same formation to prepare for the next immediate engagement',
+          'Fully spread out to search for any remaining enemies',
+          'Transition from preparation formation to exploitation formation — push toward the objective and take the next defensive position',
+          'Regroup at spawn to fully reset before advancing',
+        ],
+        correct: 2,
+        explanation: 'Post-fight, the formation goal shifts from fight preparation to objective exploitation. Take the high ground before enemies respawn, push to the next defensible position, get onto the objective. The transition must happen fluidly — reactive formation changes after enemies have already repositioned come too late.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'What is wrong with pushing "too deep" into an enemy-held objective?',
+        options: [
+          'You get too far from health packs',
+          'You push into the enemy\'s defensive setup and crossfires rather than forcing them to push out of their hold',
+          'Your tank cannot maintain shield charge while advancing that far',
+          'Deep pushes always result in being outflanked from behind',
+        ],
+        correct: 1,
+        explanation: 'Pushing too deep puts your team in the enemy\'s preferred fighting position — surrounded by their angles, their cover, their defensive setup. Holding the last cover before the objective forces enemies to push out to contest, creating a more favourable engagement where you have cover and they must advance into it.',
+      },
+    ],
+  },
+};

@@ -1,0 +1,115 @@
+export default {
+  id: 'masterclass-communication-principles',
+  title: 'Communication Principles',
+  subtitle: 'The framework for elite team communication',
+  category: 'masterclass',
+  pathId: 'masterclass',
+  order: 3,
+  prerequisites: ['masterclass-team-leadership'],
+  xpReward: 75,
+  estimatedMinutes: 8,
+  difficulty: 5,
+  tags: ['communication', 'callouts', 'information', 'framework', 'masterclass'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Communication is the bandwidth of team intelligence. Every relevant thing your teammates cannot see and cannot hear without you is information that must be transmitted through communication. Elite communication is not just callouts — it is a complete framework: what to say, when to say it, how to say it, and what to stay silent about.',
+    },
+    {
+      type: 'text',
+      heading: 'The Signal-to-Noise Principle',
+      body: 'Voice chat has limited bandwidth. Every word you say competes with every other word for attention. High signal information (enemy position, ability state, target calls) should dominate. Low signal information ("gg that fight," "they\'re so good," personal reactions) should be minimised or eliminated entirely. Teams that fill voice chat with noise train teammates to tune out communication — including the signal.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'High-Signal vs Low-Signal Communication',
+      body: 'Low signal: "Oh no, they got me again. That Tracer is insane. I\'m so bad." (Transmits emotional state, zero actionable information.) High signal: "Tracer flanking right — she just blinked behind our support." (Position, ability state, threat target — all actionable.) The same time investment produces completely different values. Guard your team\'s communication bandwidth.',
+    },
+    {
+      type: 'text',
+      heading: 'Timing of Communication',
+      body: 'Information has two timing requirements: before it is needed (predictive callouts) and as it becomes relevant (live callouts). "Zarya might have Grav — spread formation" is predictive: it prepares the team before the threat. "Grav down!" mid-fight is live: it updates the team immediately. Both are valuable but serve different functions. Elite communicators use both — prediction to prepare, live calls to update.',
+    },
+    {
+      type: 'text',
+      heading: 'Acknowledging Information',
+      body: 'Communication is a two-way process. When a teammate makes a callout, acknowledge it if you will act on it: "Got it" or a specific echo. Silence to a callout leaves the caller uncertain whether the team heard and processed the information. A culture of brief acknowledgements transforms callouts from monologues into actual communication — confirmed information that the team is acting on.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Before a match, agree on two things with your team: (1) what types of information will be called out (flanker position, ability states, target calls), and (2) what will NOT be communicated (emotional reactions, commentary, extended analysis during fights). Two minutes of agreement multiplies communication effectiveness for the entire match.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-masterclass-communication-principles',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is the "signal-to-noise" principle in team communication?',
+        options: [
+          'Speaking loudly and clearly so teammates can hear you',
+          'Maximising actionable, high-value information in communication and minimising emotional reactions and irrelevant commentary',
+          'Using voice chat only for critical information and staying silent otherwise',
+          'Ensuring all five players communicate equally so no voice dominates',
+        ],
+        correct: 1,
+        explanation: 'Voice chat bandwidth is limited. High-signal information (position, ability states, target calls) competes for attention with low-signal noise (reactions, commentary, personal analysis). Filling the channel with noise trains teammates to tune out all communication — including the signal. Protect the channel\'s information density.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'Which of these is high-signal communication?',
+        options: [
+          '"Oh man, I keep dying to that Tracer — she\'s so fast."',
+          '"Tracer flanking right — just blinked behind our support."',
+          '"Good try everyone — that fight was close."',
+          '"I think the enemy team is going to push soon, maybe."',
+        ],
+        correct: 1,
+        explanation: '"Tracer flanking right — just blinked behind our support" contains position (flanking right), ability state (just blinked — cooldown on), and threat target (support is at risk). This is fully actionable. The other options contain emotional reactions, opinions, or vague uncertainty — all noise.',
+      },
+      {
+        id: 'q3',
+        type: 'multiple-choice',
+        question: 'What is the difference between a "predictive callout" and a "live callout"?',
+        options: [
+          'Predictive callouts are made by the team leader; live callouts by any player',
+          'Predictive callouts prepare the team for a likely threat before it happens; live callouts update the team as information becomes available mid-fight',
+          'Live callouts use voice chat; predictive callouts are made through pings',
+          'Predictive callouts are longer; live callouts are shorter',
+        ],
+        correct: 1,
+        explanation: 'Both are valuable and serve different functions. "Zarya might have Grav — spread" prepares the team before the threat arrives. "Grav down!" during a fight updates the team immediately. Elite communicators use both — prediction to shape preparation, live calls to update the picture.',
+      },
+      {
+        id: 'q4',
+        type: 'true-false',
+        question: 'When a teammate makes a callout, staying silent shows you heard and are acting on it, keeping the channel clean.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Silence to a callout leaves the caller uncertain whether the information was received. A brief acknowledgement — "got it" — confirms the information was processed and the team is acting on it. Without acknowledgement, callouts are monologues; with it, they become confirmed team intelligence.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'What is the most efficient way to improve team communication at the start of a match?',
+        options: [
+          'Ask everyone to be quiet unless they have something very important to say',
+          'Agree on what types of information will and will not be communicated before the match starts',
+          'Designate one player to make all communication decisions',
+          'Play without voice chat for the first two rounds to assess individual play',
+        ],
+        correct: 1,
+        explanation: 'Two minutes of pre-match agreement — what to call out (enemy positions, ability states, target calls) and what not to (reactions, commentary, extended analysis during fights) — multiplies communication effectiveness for the entire match. Agreement sets shared expectations and filters for all five players simultaneously.',
+      },
+    ],
+  },
+};

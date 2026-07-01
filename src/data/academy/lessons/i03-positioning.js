@@ -1,0 +1,131 @@
+﻿export default {
+  id: 'positioning',
+  title: 'Positioning',
+  subtitle: 'Where you stand decides everything',
+  category: 'intermediate',
+  pathId: 'spatial-awareness',
+  order: 3,
+  prerequisites: ['high-ground'],
+  xpReward: 60,
+  estimatedMinutes: 6,
+  difficulty: 3,
+  tags: ['positioning', 'spatial', 'cover', 'escape'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Positioning is where you choose to stand on the map at any given moment. It is one of the most important skills in Overwatch — a well-positioned player contributes significantly even before firing a single shot.',
+    },
+    {
+      type: 'text',
+      heading: 'What Makes a Position Good?',
+      body: 'A good position gives you: cover nearby to retreat to, a clear angle to shoot enemies or heal teammates, LoS to your support (or teammates if you are support), and at least two escape routes if you need to disengage.',
+    },
+    {
+      type: 'text',
+      heading: 'Tank Positioning',
+      body: 'Tanks should be near the front, creating space by pushing into angles and forcing the enemy to react to them. A tank hiding at the back of their team provides no space for damage heroes to follow up into. At the same time, a tank charging ahead without their team has no backup.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Ideal Tank Positioning',
+      body: 'Reinhardt stands at the entrance to the objective with his shield up, giving his team cover to walk behind him. He holds position — not too far forward that supports lose LoS, not so far back that he provides no threat.',
+    },
+    {
+      type: 'text',
+      heading: 'Damage Positioning',
+      body: 'Damage heroes need to be close enough to deal effective damage but far enough back to survive. Flankers (Genji, Tracer, Sombra) position behind the enemy to attack supports. Snipers (Widowmaker, Hanzo) stay at range from high ground. Mid-range heroes (Soldier: 76, Sojourn) position at the edge of the front line.',
+    },
+    {
+      type: 'text',
+      heading: 'Support Positioning',
+      body: 'Supports should be behind the front line — not in the back corner, but far enough to react before they are killed. You need LoS to your teammates to heal them, but being too close to the front means every ability the enemy uses on your tank hits you too.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'The Corner Trap',
+      body: 'If you position so the only way forward is through the enemy team, you are in a trap. Always know your retreat angle. A position with no escape is a liability even if it has a great angle.',
+    },
+    {
+      type: 'text',
+      heading: 'Repositioning',
+      body: 'Positioning is not static. You must reposition as the fight evolves — when the payload moves, when an enemy flanker appears, or when your team regroups at a different angle. The best players are constantly moving to better positions rather than holding one spot all game.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Every time you die, ask: "Where was I when I died, and where should I have been?" Improving positioning eliminates a huge number of preventable deaths.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-positioning',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'Which of the following best describes a good position in Overwatch?',
+        options: [
+          'As close to the enemy as possible to deal maximum damage',
+          'A location with cover nearby, escape routes, and LoS to heal/be healed',
+          'The highest point on the map regardless of context',
+          'Directly behind the tank at all times',
+        ],
+        correct: 1,
+        explanation: 'A good position has cover nearby to retreat to, at least two escape routes, and LoS to teammates (or to targets if you are damage). The exact position depends on your role and hero.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'You are playing Support. Your entire team is engaged at the front line and you are standing right next to the tank. What is the risk?',
+        options: [
+          'You cannot see your teammates\' health bars from this close',
+          'Any ability targeting the tank at point-blank range will also hit you',
+          'The tank\'s barrier is blocking your healing beam',
+          'Standing near tanks is the correct positioning for supports',
+        ],
+        correct: 1,
+        explanation: 'Being too close to the front line means you take AoE damage from abilities targeting the tank. Supports should be slightly behind the front line — close enough to maintain LoS for healing, but not close enough to be hit by every ability aimed at the tank.',
+      },
+      {
+        id: 'q3',
+        type: 'multiple-choice',
+        question: 'A Reinhardt holds his shield at the back of his team, near his spawn, to avoid dying. Is this good positioning?',
+        options: [
+          'Yes — a Reinhardt alive in the back is better than a dead Reinhardt at the front',
+          'No — tanks create space by being at the front. A Reinhardt at the back provides nothing',
+          'Yes — tanks should protect the objective by anchoring in the backline',
+          'It depends on how many healers are nearby',
+        ],
+        correct: 1,
+        explanation: 'Tanks exist to create space by being at the front. A Reinhardt hiding at the back provides no pressure — the enemy can push forward freely because there is no threat. Tanks must lead from the front.',
+      },
+      {
+        id: 'q4',
+        type: 'true-false',
+        question: 'Once you find a good position, you should stay in it for the rest of the team fight.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Positioning is dynamic. As the fight evolves — payload moves, enemies reposition, teammates die — your position must change. Staying in one spot all game is predictable and reactive players will punish it.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'You are a Tracer and you have positioned directly in front of the enemy team with no escape route. The enemy Moira uses her Fade and reappears behind you. What should you have done differently?',
+        options: [
+          'Used Blink to teleport forward and escape',
+          'Positioned with at least one escape route, avoiding being surrounded',
+          'Recalled to safety — Recall is designed for this situation',
+          'Stayed in position and used the crossfire to your advantage',
+        ],
+        correct: 1,
+        explanation: 'No position should have zero escape routes. Tracer\'s Blink and Recall help, but if you are surrounded with no way out, abilities alone cannot save you. Good positioning anticipates flanks.',
+      },
+    ],
+  },
+};

@@ -1,0 +1,115 @@
+export default {
+  id: 'masterclass-mental-resilience',
+  title: 'Mental Resilience',
+  subtitle: 'Maintaining performance under pressure, setbacks, and adversity',
+  category: 'masterclass',
+  pathId: 'masterclass',
+  order: 10,
+  prerequisites: ['masterclass-macro-decision-making'],
+  xpReward: 75,
+  estimatedMinutes: 8,
+  difficulty: 5,
+  tags: ['mental-game', 'tilt', 'resilience', 'mindset', 'masterclass'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Mental resilience is the ability to maintain your decision quality and execution standard under adverse conditions: after losing fights, during losing streaks, when teammates are frustrated, when the score is against you. Every skill you have built means nothing if it collapses under pressure. The mental game is not separate from the strategy game — it enables it.',
+    },
+    {
+      type: 'text',
+      heading: 'Tilt and Its Mechanism',
+      body: 'Tilt is the state where emotional disruption degrades decision quality. Tilted players become impulsive, focus on blame rather than solutions, and make increasingly poor decisions that compound the losses. The mechanism is straightforward: frustration narrows attention to the immediate cause of frustration, blocking the broader strategic view that good decisions require. Recognising you are tilted is the first step to addressing it.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Tilt Recognition',
+      body: 'Signs of tilt: decisions are becoming impulsive ("I\'m just going to try to kill them all myself"), voice communication is becoming negative or blaming ("this team is hopeless"), strategic thinking is narrowing ("I just need to deal more damage"), and basic habits are breaking down (not checking flanks, not calling targets). When you notice these, you are tilted. Stop, breathe, reset.',
+    },
+    {
+      type: 'text',
+      heading: 'The Reset Protocol',
+      body: 'Between fights — even two to three seconds of respawn time — is enough for a mental reset. The protocol: (1) Identify one specific thing that went wrong (not "everything"). (2) Identify the action that would have avoided it. (3) Set a single intention for the next fight. This three-step process breaks the tilt cycle by converting emotion into actionable analysis. The analysis itself is calming.',
+    },
+    {
+      type: 'text',
+      heading: 'Resilience in Team Environments',
+      body: 'Team tilt is contagious. When one player expresses frustration, it activates emotional responses in teammates, narrowing their thinking as well. Resilient players do not just manage their own tilt — they model calm, analytical behaviour that slows team tilt propagation. A single player staying calm and constructive during adversity can anchor the whole team\'s mental state.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Establish a personal rule: make no communication when tilted that you would not be comfortable saying in a completely calm state. If you feel the impulse to say something about a teammate\'s mistake or the quality of your team, it is a signal that you are tilted. Switch to private analysis instead.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-masterclass-mental-resilience',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is "tilt" and how does it affect decision quality?',
+        options: [
+          'A technique for leaning into advantageous angles to maintain pressure during fights',
+          'An emotional state that narrows attention and degrades decision quality, producing increasingly impulsive play',
+          'A vocal communication pattern used to maintain team morale and coordination under pressure',
+          'The habit of chasing eliminated enemies aggressively rather than holding a safer position',
+        ],
+        correct: 1,
+        explanation: 'Tilt is emotional disruption that narrows attention to the immediate source of frustration, blocking the broader strategic view good decisions require. It produces impulsive play, blame behaviour, and compounding poor decisions. Recognising it is the first step to addressing it.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'Which of these is a sign of tilt?',
+        options: [
+          'Requesting a shot call change from your tank player',
+          'Pausing to reassess your positioning before the next fight',
+          '"I\'m just going to try to carry them all myself" and blaming teammates in voice chat',
+          'Switching to a different hero to try a new approach',
+        ],
+        correct: 2,
+        explanation: 'Impulsive solo-carry thinking and blame communication are classic tilt signs. They indicate attention has narrowed to emotion rather than analysis, and strategic thinking has been replaced by reactive frustration. These mental signals — not mechanical errors alone — tell you that you are tilted.',
+      },
+      {
+        id: 'q3',
+        type: 'multiple-choice',
+        question: 'What is the three-step reset protocol for between fights?',
+        options: [
+          'Identify all mistakes, plan solutions for each, communicate the solutions to the team',
+          'Breathe, clear your head, focus on the next fight without analysing the previous one',
+          'Identify one specific thing that went wrong, identify the action that would have avoided it, set a single intention for the next fight',
+          'Ask a teammate to help identify what went wrong so you have objective feedback',
+        ],
+        correct: 2,
+        explanation: 'The reset protocol converts emotion into analysis: one specific error identified, the correct action named, and one intention set. This breaks the tilt cycle because analysis itself is calming — you have replaced helpless frustration with a concrete, forward-looking plan that fits in two to three seconds of respawn time.',
+      },
+      {
+        id: 'q4',
+        type: 'true-false',
+        question: 'Team tilt only affects the players who are individually frustrated — calm players are unaffected.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Team tilt is contagious. One player expressing frustration activates emotional responses in teammates, narrowing their thinking and spreading the tilt cycle. Conversely, one player modelling calm, analytical behaviour can slow or stop the propagation. The mental environment of the team is a shared resource.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'What is the personal communication rule for managing tilt?',
+        options: [
+          'Only communicate when you have won three consecutive fights to ensure you are in a positive mindset',
+          'Say nothing to teammates during fights — communication causes distraction',
+          'Apply a calm filter: if you would not say it when composed, do not say it when frustrated — the impulse itself signals tilt',
+          'Always check in with teammates to share your current emotional state so they can adjust',
+        ],
+        correct: 2,
+        explanation: 'The rule creates a tilt filter. If you feel the impulse to comment on a teammate\'s mistake or the quality of your team, that impulse is itself a tilt signal. Switching to private analysis — rather than public criticism — both prevents spreading tilt and redirects your attention to what can actually help.',
+      },
+    ],
+  },
+};

@@ -1,0 +1,115 @@
+export default {
+  id: 'masterclass-closing-winning-games',
+  title: 'Closing Winning Games',
+  subtitle: 'Not throwing the lead when you are ahead',
+  category: 'masterclass',
+  pathId: 'masterclass',
+  order: 12,
+  prerequisites: ['masterclass-playing-from-behind'],
+  xpReward: 75,
+  estimatedMinutes: 8,
+  difficulty: 5,
+  tags: ['closing', 'lead-management', 'consistency', 'pressure', 'masterclass'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Playing from behind is hard. Playing from ahead is harder in a different way. Leads in Overwatch are fragile — one wrong engagement, one wasted ultimate, one bad rotation can hand a losing team exactly the opening they need. The art of closing winning games is playing the lead correctly: using your advantage systematically, avoiding forced fights, and denying the trailing team the one-fight comeback opportunity.',
+    },
+    {
+      type: 'text',
+      heading: 'The "Throw" Mechanism',
+      body: 'Leads are thrown through specific patterns: overconfidence forcing unnecessary fights (you have the lead, so you pick unfavourable engagements expecting easy wins), passivity giving the enemy time to recharge (you won a fight but do not press the advantage, allowing them to reset), and panic when a fight is unexpectedly close (treating the first bad fight as a crisis and breaking coordination). Each pattern is recognisable and preventable.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'The Classic Throw',
+      body: 'Your team is ahead 99% to 60% on a control point. Instead of holding the point conservatively, the team forces an aggressive push toward the enemy spawn to "finish it." They walk into the enemy team with full ultimates, get wiped, and the enemy captures to 80% while your team respawns staggered. One unnecessary forced fight cost a 39% lead. The win condition when ahead is "hold what you have," not "take more."',
+    },
+    {
+      type: 'text',
+      heading: 'Playing the Lead Correctly',
+      body: 'When ahead: fight on your terms, not the enemy\'s. Take fights at positions you have already established, not new risky positions. Force the enemy to come to you rather than pushing deep into their setup. Use ultimates to maintain the lead, not to extend it greedily. Every fight when ahead asks: "Is this fight necessary to win?" If no, do not fight it.',
+    },
+    {
+      type: 'text',
+      heading: 'Denying the Comeback',
+      body: 'The trailing team is looking for the one-fight window — a situation where they can win a decisive fight and erase the deficit. Deny them by: not giving them fights at their chosen position, spreading formation against AOE (deny their Graviton/Blizzard), keeping ultimate advantage (do not waste ultimates to extend a safe lead), and never staggering (dying one at a time turns a 5v5 into a series of 5v4s).',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'When ahead, change your default fight evaluation. Instead of "can we win this fight?" ask "do we need to fight this fight?" The answer is often no. Forcing an unnecessary fight when you have a winning lead is gambling with a sure thing.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-masterclass-closing-winning-games',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What are the three main patterns through which leads are thrown?',
+        options: [
+          'Overusing ultimates, ignoring the objective, and poor communication',
+          'Overconfidence in unnecessary fights, passivity that lets the enemy reset, and panic when a fight is unexpectedly close',
+          'Wrong compositions, poor positioning, and slow rotations',
+          'Chasing flankers, ignoring support players, and incorrect target priority',
+        ],
+        correct: 1,
+        explanation: 'The three throw patterns: overconfidence (forcing fights you don\'t need to win), passivity (not pressing advantages, letting the enemy reset), and panic (treating a bad fight as a crisis that breaks coordination). Recognising these patterns while ahead lets you avoid them deliberately.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'When your team is leading 99% to 60% on a control point, what is the correct approach?',
+        options: [
+          'Push aggressively toward the enemy spawn to secure the win quickly before they recharge',
+          'Hold your current position conservatively — force the enemy to come to you and fight on your terms',
+          'Switch to a more aggressive composition now that you have enough time to adapt',
+          'Split your team — three on point, two hunting remaining enemies',
+        ],
+        correct: 1,
+        explanation: 'The win condition when ahead is "hold what you have." Forcing unnecessary fights — pushing toward their spawn instead of holding the point — gives away positional advantage, risks a fight at their terms, and often produces the exact scenario where they can win a decisive fight. Hold, force them to come, fight on your terms.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Using all your ultimates to aggressively extend a safe lead is always the correct play when ahead.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Using ultimates to maintain a lead is correct; burning them greedily to extend a safe lead wastes economy that could win the decisive fight. When ahead, ultimate advantage is a deterrent — the enemy must fight cautiously knowing you have them. Spending ultimates unnecessarily eliminates that deterrent.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'The trailing team is looking for a "one-fight window." How do you deny them?',
+        options: [
+          'Force more fights to keep them on the back foot and limit their planning time',
+          'Deny their preferred fight position, spread against AOE ultimates, and maintain your ultimate advantage without staggering',
+          'Win every fight decisively and quickly so they cannot build momentum toward a comeback',
+          'Communicate the comeback threat clearly so the team can adjust their level of aggression',
+        ],
+        correct: 1,
+        explanation: 'Denying the comeback means denying the specific conditions the trailing team needs for their decisive fight: their chosen position, their AOE potential, their ultimate window. Play at positions you control, spread against AOE threats, keep your ultimates as a deterrent, and never die one at a time.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'When ahead, what question should you ask before every fight?',
+        options: [
+          '"Can we win this fight?" — you need to confirm you have the advantage',
+          '"Do we need to fight this fight?" — many fights when ahead are unnecessary risks',
+          '"Do we have enough ultimates to guarantee a win?" — only fight with surplus',
+          '"Is the enemy composition stronger than ours right now?" — position only if favourable',
+        ],
+        correct: 1,
+        explanation: '"Do we need to fight this fight?" changes the evaluation from skill/odds to necessity. When ahead, many fights are optional — avoiding them costs nothing. Forcing optional fights is gambling a sure thing against the risk of the one-fight comeback. The default when ahead should be to avoid fights you don\'t need to win.',
+      },
+    ],
+  },
+};

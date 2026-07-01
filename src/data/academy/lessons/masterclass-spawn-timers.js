@@ -1,0 +1,116 @@
+export default {
+  id: 'masterclass-spawn-timers',
+  title: 'Spawn Timers',
+  subtitle: 'Using respawn timing as a strategic resource',
+  category: 'masterclass',
+  pathId: 'masterclass',
+  order: 13,
+  prerequisites: ['masterclass-closing-winning-games'],
+  xpReward: 75,
+  estimatedMinutes: 7,
+  difficulty: 5,
+  tags: ['spawn-timers', 'stagger', 'timing', 'respawn', 'masterclass'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Spawn timers are a precise, exploitable mechanic. Every eliminated hero respawns after a fixed delay and then travels back to the fight. The time between an elimination and an enemy\'s return to combat is a window — a period where your team has numbers advantage. Masterclass players know when these windows open and close, and they plan fights around them.',
+    },
+    {
+      type: 'text',
+      heading: 'Stagger Exploitation',
+      body: 'When enemies die at different times, they respawn and return at different times — they are staggered. A staggered team fights as a sequence of individuals, not a coordinated group. Every second a respawned hero spends travelling back to the objective is a second your team fights with numbers advantage. The fastest path to consistent fight wins is creating and exploiting stagger.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Stagger in Action',
+      body: 'Fight one: Your team wins and five enemies die — two at the start, three at the end. The early two respawn and rush back. Your team is still on the objective when those two arrive. You have a 5v2 — fight and win. The next three arrive while you still have a numbers advantage. Never face the full 5v5 — you faced two 5v2s instead. Strategic stagger management turns one fight win into three consecutive advantages.',
+    },
+    {
+      type: 'text',
+      heading: 'Creating Stagger',
+      body: 'You can create stagger deliberately. If you eliminate one enemy early in a fight, prevent the others from dying by peeling or delaying — then eliminate the second enemy 15 seconds later. The first enemy respawns and arrives just as the second dies. The enemy team is perpetually split. Controlled elimination timing is stagger creation.',
+    },
+    {
+      type: 'text',
+      heading: 'Spawn Distances and Map Awareness',
+      body: 'Spawn rooms are at fixed map locations. Knowing how far each spawn room is from the objective tells you how much time you have after eliminating an enemy before they can return. On maps with far spawns, your window after a team wipe is large — push immediately and push far. On maps with close spawns, the window is short — push quickly but do not overextend.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'Stagger Trap: Chasing Kills',
+      body: 'The stagger trap is chasing eliminations at the cost of time near the objective. If two enemies flee and your whole team chases them across the map, the three respawned enemies retake the objective unopposed. Use stagger to hold the objective, not to chase every last elimination. Kills near the objective create stagger value. Kills far from it may cost you the map.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-masterclass-spawn-timers',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is "stagger" in the context of Overwatch spawn timing?',
+        options: [
+          'The animation delay when a hero uses an ability rapidly after another',
+          'When enemies die at different times, causing them to respawn and return to combat at different times rather than as a coordinated group',
+          'A technique where one player staggers their position behind the rest of the team',
+          'The time between fights where both teams reset their positions',
+        ],
+        correct: 1,
+        explanation: 'Stagger is when enemies die at different times, causing them to return to the fight one or two at a time rather than as a coordinated group. Your team can fight successive 5v1, 5v2, and 5v3 situations instead of one even 5v5 — massively advantageous for your numbers position throughout the extended push.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'After winning a fight, two enemies come back quickly while three are still respawning. What should you do?',
+        options: [
+          'Wait for all five to respawn for a fair fight on the objective',
+          'Immediately fight the returning two while you have numbers advantage — this is the stagger window',
+          'Retreat from the objective to prevent the two from contesting',
+          'Use all remaining ultimates to clear the two instantly',
+        ],
+        correct: 1,
+        explanation: 'Stagger creates successive numbers advantages. Two enemies returning while your team is still at five is a 5v2 — fight it and win. The three remaining will respawn while you are fighting or after the two are down. Strategic stagger exploitation means never giving the full team time to regroup.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'You can deliberately create stagger by timing your eliminations to be spaced apart rather than all at once.',
+        options: ['True', 'False'],
+        correct: 0,
+        explanation: 'True. Eliminating enemies at spaced intervals — rather than a simultaneous team wipe — keeps them returning to the fight continuously staggered. The first kill respawns while you are killing the second; the second respawns while you are killing the third. You are perpetually in a numbers advantage.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'Your team wins a fight on a map where the enemy spawn is very far from the objective. What should this tell you?',
+        options: [
+          'Be cautious — far spawns mean enemies have more time to regroup before returning, which is dangerous',
+          'You have a large push window — move to the objective immediately and advance as far as possible before they return',
+          'The size of your window does not matter much since eliminations are never permanent',
+          'Hold your current position to consolidate — avoid overextending before the enemy can respawn and flank',
+        ],
+        correct: 1,
+        explanation: 'Far spawns mean more travel time — larger windows of pure numbers advantage. Knowing the spawn distance lets you calibrate how aggressively to push after a win. Far spawn = push fast and far. Close spawn = push quickly but stay closer to defensive position as the window will be short.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'Two enemies flee from a fight and run away from the objective. What is the stagger trap if your whole team chases them?',
+        options: [
+          'The two enemies might turn around and fight you from behind',
+          'Your whole team leaves the objective undefended while three respawned enemies retake it unopposed',
+          'Chasing consumes HP that you will need for the next fight',
+          'Both enemies will reach a health pack and return with an advantage',
+        ],
+        correct: 1,
+        explanation: 'Chasing eliminations away from the objective is the stagger trap. The kills score points but leave the objective vacant. Three respawned enemies walk onto an empty point and retake it while your team is across the map chasing two fleeing heroes. Kills near the objective create stagger value; kills far from it may lose the map.',
+      },
+    ],
+  },
+};

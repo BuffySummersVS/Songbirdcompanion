@@ -1,0 +1,116 @@
+export default {
+  id: 'advanced-ultimate-tracking',
+  title: 'Ultimate Tracking',
+  subtitle: 'Knowing which enemy ultimates are charged',
+  category: 'advanced',
+  pathId: 'advanced',
+  order: 8,
+  prerequisites: ['advanced-fight-planning'],
+  xpReward: 70,
+  estimatedMinutes: 7,
+  difficulty: 4,
+  tags: ['ultimate-tracking', 'game-awareness', 'ult-economy', 'advanced'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Ultimate tracking is the practice of estimating which enemy ultimates are currently charged. A team that knows "they probably have Graviton Surge ready" can plan around it. A team that has no idea what is coming walks into wipes. You will never have perfect information, but educated tracking dramatically improves fight decisions.',
+    },
+    {
+      type: 'text',
+      heading: 'How to Track Ultimates',
+      body: 'Track from the last time you saw an ultimate used. If the enemy Zarya used Graviton Surge two fights ago and it has been 90+ seconds, she is likely charged again. Listen for ability sounds — some ultimates have distinctive audio cues. Watch for the visual effects (gold glow on high-charge heroes for some abilities). Pay attention to which enemies have been taking a lot of damage — they build charge faster.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Tracking in Practice',
+      body: 'Fight one: Enemy Zarya uses Graviton Surge. You note it mentally. Fight two (90 seconds later): You have no idea if she has it again but she has been in every fight and taking damage — she might. Before engaging fight two, you play more cautiously, spread your team, and have a break-out plan. Fight two goes by and no Graviton. Fight three: She almost certainly has it now. You plan specifically for the Graviton before engaging.',
+    },
+    {
+      type: 'text',
+      heading: 'Priority Ultimates to Track',
+      body: 'Not all ultimates are equally dangerous. Prioritise tracking: game-changing AOE ultimates (Graviton Surge, Earthshatter, Blizzard, D.Matrix), defensive ultimates that can deny your own (Sound Barrier, Transcendence, Coalescence), and ultimates that can instantly eliminate a teammate (Pulse Bomb, Whole Hog, Death Blossom). Tracking four or five key ultimates is more useful than trying to track all ten.',
+    },
+    {
+      type: 'text',
+      heading: 'Communicating Your Tracking',
+      body: 'Ultimate tracking is most powerful when shared. Calling out "I think their Zarya has Grav — they didn\'t use it last fight" changes how all five of your teammates play the next engagement. You do not need to be certain — a probability call is enough: "Watch for Sound Barrier, Lucio has been alive all game."',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'Do Not Overcommit to Tracking',
+      body: 'Ultimate tracking is a tool, not a guarantee. You can be wrong — enemies may have used an ultimate you did not see, or they may have charged faster than expected. Use tracking to inform decisions, not to make absolute commitments. "They probably have it" changes your positioning; it does not mean you refuse to fight entirely.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-advanced-ultimate-tracking',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is ultimate tracking?',
+        options: [
+          'Measuring how quickly your own ultimates charge',
+          'Estimating which enemy ultimates are currently charged based on fight history and timing',
+          'Counting how many ultimates your team has used this match',
+          'A scoreboard metric showing ultimate charge percentages for all players',
+        ],
+        correct: 1,
+        explanation: 'Ultimate tracking is estimating enemy ultimate readiness based on when you last saw each ultimate used and how much time and damage exposure has passed since. It is educated inference, not perfect information.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'The enemy Zarya used Graviton Surge two fights ago, and it has been over two minutes since. What should you assume?',
+        options: [
+          'She definitely does not have it — ultimates take at least five minutes to recharge',
+          'She probably has it again — enough time and combat has passed for it to recharge',
+          'Only her healing taken determines ultimate charge, so you cannot estimate from time alone',
+          'She will not use it unless she is at full health',
+        ],
+        correct: 1,
+        explanation: 'Ultimates build charge through dealing and receiving damage over time. Two minutes of active combat is generally enough to recharge most ultimates. If Zarya has been in fights since she last used Graviton Surge, she has likely recharged — plan accordingly.',
+      },
+      {
+        id: 'q3',
+        type: 'multiple-choice',
+        question: 'Which type of ultimates should you prioritise tracking above others?',
+        options: [
+          'Mobility ultimates that make heroes harder to catch',
+          'Game-changing AOE abilities (Graviton, Earthshatter), defensive ultimates that deny yours (Sound Barrier), and kill-securing ultimates (Pulse Bomb)',
+          'Self-heal ultimates, since those affect your damage output calculations',
+          'You should track all ten equally — no ultimate is more important than another',
+        ],
+        correct: 1,
+        explanation: 'Not all ultimates require equal mental bandwidth. AOE wipes, defensive ultimates that cancel yours, and burst-kill ultimates are the highest-priority tracking targets because being surprised by them has the most severe consequences.',
+      },
+      {
+        id: 'q4',
+        type: 'true-false',
+        question: 'If you think the enemy might have a game-changing ultimate ready, your only option is to refuse to engage until you confirm they have used it.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Tracking informs your approach, not whether you fight at all. If you suspect a Graviton Surge is ready, you can spread your team, position with escape routes, have a break-out plan, and push more cautiously — rather than refusing to engage entirely or ignoring the possibility.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'What is the most effective way to benefit from your ultimate tracking knowledge?',
+        options: [
+          'Keep it to yourself and adjust your own play based on the information',
+          'Share your tracking estimates with your team so all five players can adjust their play',
+          'Only share tracking information if you are 100% certain the enemy has the ultimate',
+          'Save ultimate tracking information until the final round of the map',
+        ],
+        correct: 1,
+        explanation: 'Sharing your tracking estimates — even uncertain ones like "I think their Zarya has Grav" — changes how all five teammates approach the next fight. Probability calls are enough; you do not need certainty. Information shared is information multiplied.',
+      },
+    ],
+  },
+};

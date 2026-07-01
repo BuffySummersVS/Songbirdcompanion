@@ -1,0 +1,116 @@
+export default {
+  id: 'expert-information-gathering',
+  title: 'Information Gathering',
+  subtitle: 'Using map awareness and game cues to build strategic intelligence',
+  category: 'expert',
+  pathId: 'expert',
+  order: 14,
+  prerequisites: ['expert-mid-fight-adaptation'],
+  xpReward: 75,
+  estimatedMinutes: 8,
+  difficulty: 5,
+  tags: ['information', 'awareness', 'scouting', 'map-reading', 'expert'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Information is the raw material of good decisions. In Overwatch, you are always operating with incomplete information about enemy positions, cooldown states, and intentions. Expert players maximise the information they gather through deliberate attention to game cues — and they act on that information while it is still current.',
+    },
+    {
+      type: 'text',
+      heading: 'Information Sources',
+      body: 'Kill feed: shows which enemies died and when, giving respawn timing estimates. Sound cues: ability sounds reveal what enemies are doing even off-screen. Kill feed eliminations: an eliminated enemy tells you their cooldowns reset on respawn. Damage indicators: red arrows showing incoming damage direction reveal an enemy\'s position without line of sight. Teammate callouts: the most direct information source. Each is a data stream — expert players consume all simultaneously.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Intelligence Synthesis',
+      body: 'Kill feed shows the enemy Tracer was eliminated 15 seconds ago. Standard respawn is ~10 seconds — she should be back now. You have not seen her on main: she is probably flanking. Your support needs a peel. At the same time, you hear Reinhardt\'s Fire Strike hit a wall to the right of the choke — he is approaching that angle. You now know: Tracer on your right flank, Reinhardt approaching the side. You adjust formation before either appears.',
+    },
+    {
+      type: 'text',
+      heading: 'Active vs Passive Information',
+      body: 'Passive information is what you observe during normal play — kill feed, sound, damage indicators. Active information is information you deliberately seek: peeking a corner to check an angle before committing, using a hero ability to scout (Hanzo\'s Sonic Arrow, Sombra\'s Translocator on a flank), or sending a hero ahead of the team to check high ground. Expert players use active information gathering before fights begin.',
+    },
+    {
+      type: 'text',
+      heading: 'Information Decay',
+      body: 'Information has a shelf life. Enemy positions change every second. A flank scouted 20 seconds ago may be clear now; it may have three enemies on it. Act on information while it is current. "I scouted that flank 30 seconds ago" is nearly useless — conditions change too fast. The most recent information takes precedence over older, "more thorough" intelligence.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'Over-Investing in Information',
+      body: 'Gathering information indefinitely prevents action. At some point, you have enough information to make a reasonable decision — waiting for perfect certainty means never acting. Expert players gather the minimum information needed to make an intelligent decision, then act decisively. Perfect information is a fantasy; good-enough information is the expert standard.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-expert-information-gathering',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What are the main passive information sources available to all players during a match?',
+        options: [
+          'Team voice chat and personal game sense only',
+          'Kill feed, sound cues, damage direction indicators, and teammate callouts',
+          'The scoreboard and post-fight statistics only',
+          'Ultimate charge percentages shown on the HUD for all heroes',
+        ],
+        correct: 1,
+        explanation: 'Passive information streams available every second include: kill feed (death timing, respawn estimation), sound cues (ability use off-screen), damage direction indicators (incoming attack position), and teammate callouts. Expert players consume all simultaneously rather than just focusing on what is directly in front of them.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'The kill feed shows the enemy Tracer was eliminated 15 seconds ago. What information can you infer?',
+        options: [
+          'Tracer is no longer a threat for the rest of the match',
+          'Tracer has respawned and is probably flanking since she has not appeared on the main approach',
+          'The team that eliminated Tracer has an ultimate advantage',
+          'Tracer\'s player probably switched heroes and you will not see her again',
+        ],
+        correct: 1,
+        explanation: 'Standard respawn timing means Tracer is almost certainly back in the fight. She has not appeared on the main approach, suggesting she is flanking. This inference — from kill feed timing + absence on main — allows you to anticipate and counter the flank before Tracer actually appears.',
+      },
+      {
+        id: 'q3',
+        type: 'multiple-choice',
+        question: 'What distinguishes "active" information gathering from "passive" information?',
+        options: [
+          'Active information comes from ultimates; passive comes from regular abilities',
+          'Passive information is observed during normal play; active information is deliberately sought through peeking, scouting abilities, or sending heroes ahead to check positions',
+          'Active gathering requires voice communication; passive is solo-only',
+          'Passive information is more reliable than actively gathered information',
+        ],
+        correct: 1,
+        explanation: 'Passive information comes from what you notice during normal play. Active information gathering means deliberately seeking intelligence: peeking corners before committing, using scouting abilities (Hanzo\'s Sonic Arrow), sending a hero ahead to check high ground. Active gathering gives you information before you need to commit to a fight.',
+      },
+      {
+        id: 'q4',
+        type: 'true-false',
+        question: 'Information scouted 30 seconds ago is just as reliable as information from 5 seconds ago.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Information decays rapidly — enemy positions change every second. Information from 30 seconds ago describes conditions that no longer exist. Expert players act on current information, not historical observations. "I scouted that flank 30 seconds ago" is insufficient to make safe decisions about flanking right now.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'What is the danger of over-investing in information gathering before acting?',
+        options: [
+          'You may gather too much information, making decisions harder to process',
+          'Waiting for perfect certainty prevents action — expert play means gathering enough information for an intelligent decision, then acting decisively',
+          'Over-gathering information reveals your position to enemies',
+          'There is no danger — more information is always better before committing to a fight',
+        ],
+        correct: 1,
+        explanation: 'Information gathering is a means to an end, not an end itself. Waiting for perfect certainty means never acting — conditions change faster than you can achieve certainty. The expert standard is: gather enough information for a reasonable, intelligent decision, then act. Analysis paralysis from over-gathering is a real failure mode.',
+      },
+    ],
+  },
+};

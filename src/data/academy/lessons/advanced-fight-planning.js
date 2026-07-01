@@ -1,0 +1,115 @@
+export default {
+  id: 'advanced-fight-planning',
+  title: 'Fight Planning',
+  subtitle: 'Deciding what to do before a fight starts',
+  category: 'advanced',
+  pathId: 'advanced',
+  order: 7,
+  prerequisites: ['advanced-win-conditions'],
+  xpReward: 65,
+  estimatedMinutes: 6,
+  difficulty: 4,
+  tags: ['fight-planning', 'pre-fight', 'coordination', 'decision-making', 'advanced'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Most players decide what to do during a fight. Advanced players decide what to do before it starts. Fight planning is the process of assessing the situation — ultimate status, enemy positions, map state, and your team\'s condition — and forming a plan before the first shot is fired. Plans do not survive contact perfectly, but they give your team a direction.',
+    },
+    {
+      type: 'text',
+      heading: 'Pre-Fight Assessment',
+      body: 'Before engaging, quickly assess: What ultimates do your team have? What ultimates do the enemy likely have? Where is the enemy positioned? Where does your team need to be to win? What is the biggest threat you need to neutralise first? This assessment takes two to three seconds and fundamentally changes the quality of your engagement.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Planned vs Reactive Engagement',
+      body: 'Reactive: Your tank sees an enemy, walks toward them, fight breaks out, people use abilities without coordination, someone dies first, the team scrambles. Planned: "Their Ana has Nano — we should not engage until she uses it or we have a plan to kill her first. Let\'s hold for 20 seconds and see if they push." The planned approach might not be perfect but it avoids the worst-case reactively walking into Nano Boost.',
+    },
+    {
+      type: 'text',
+      heading: 'Role-Specific Planning',
+      body: 'Each role has planning responsibilities. Tanks should plan engagement paths and call when to push. Damage players should plan target priority — who is the kill-shot target this fight? Support players should plan their positioning and which teammate most needs protection. When everyone plans their role going into a fight, coordination happens naturally rather than through chaos.',
+    },
+    {
+      type: 'text',
+      heading: 'Adjusting Plans Mid-Fight',
+      body: 'A fight plan is not a script. Enemies will do unexpected things — a support might teleport away, a flanker might appear. The plan gives you a starting point; your game sense adjusts from there. The value of a plan is that it reduces decision fatigue at the start of a fight, letting you focus on adapting rather than starting from zero.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'The simplest version of fight planning: before every fight, state one clear intent. "We are going after their Mercy first." "We are holding high ground until they come to us." One sentence of direction beats five seconds of chaos.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-advanced-fight-planning',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is fight planning?',
+        options: [
+          'Choosing which heroes to play at the start of the match',
+          'Assessing the situation and forming a course of action before a fight starts',
+          'Tracking how many fights your team has won this match',
+          'Deciding when to leave a fight and reset',
+        ],
+        correct: 1,
+        explanation: 'Fight planning happens before the engagement — assessing ultimate status, enemy positions, threats, and target priority to form a direction before the first shot is fired. It reduces reactive chaos and improves team coordination.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'Which of these is part of a good pre-fight assessment?',
+        options: [
+          'Checking how many kills you personally have gotten this match',
+          'Assessing your team\'s ultimates, the enemy\'s likely ultimates, enemy positions, and the biggest threat to neutralise first',
+          'Counting how many times you have died this map',
+          'Identifying which enemy player has the best aim',
+        ],
+        correct: 1,
+        explanation: 'Pre-fight assessment is about the current game state: ultimates, positioning, threats. This takes only seconds but gives your team a basis for coordinated action rather than reactive chaos.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'A fight plan must be executed exactly as designed — deviating from the plan during a fight means you failed.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Plans give a direction, not a script. Enemies do unexpected things and fights evolve unpredictably. The value of a plan is that it reduces decision fatigue at the start of the fight — it gives you a starting point to adapt from, not a checklist to follow exactly.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'You know the enemy team likely has Nano Boost (Ana\'s ultimate) charged. What should your fight plan account for?',
+        options: [
+          'Ignore it — ultimates do not matter until they are actually used',
+          'Avoid engaging until the Nano is used, or specifically plan to kill Ana before she can use it',
+          'Rush in immediately before Ana can build more charge',
+          'Switch your entire team to tanks so the Nano boost matters less',
+        ],
+        correct: 1,
+        explanation: 'Knowing a dangerous ultimate is ready should directly influence your fight plan. Either delay the fight to bait the Nano, plan to eliminate Ana before she can use it, or have a counter-strategy in mind. Walking into a known Nano without a plan is avoidable.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'What is the simplest form of fight planning you can apply immediately?',
+        options: [
+          'Writing a detailed three-step plan for every possible scenario the enemy might try',
+          'Waiting until you have complete information about all enemy ability states before any fight',
+          'Stating one clear intent before the fight: "We\'re going after their Mercy first" or "Hold high ground until they come to us"',
+          'Letting the tank decide everything and following their movement',
+        ],
+        correct: 2,
+        explanation: 'One clear directive — a single sentence of direction — dramatically improves team coordination without requiring complex planning. It aligns five players around a unified purpose and reduces the "everyone doing different things" chaos that loses most fights.',
+      },
+    ],
+  },
+};

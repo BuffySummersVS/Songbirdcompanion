@@ -1,0 +1,133 @@
+﻿export default {
+  id: 'basic-team-fighting',
+  title: 'Basic Team Fighting',
+  subtitle: 'Fighting together, not alone',
+  category: 'beginner',
+  pathId: 'reading-game',
+  order: 3,
+  prerequisites: ['scoreboard'],
+  xpReward: 50,
+  estimatedMinutes: 5,
+  difficulty: 2,
+  tags: ['teamwork', 'fighting', 'coordination', 'basics'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Overwatch is a team game. The biggest improvement a beginner can make is simply learning to fight together rather than alone. A 5v5 fight where your team works as a unit will almost always beat a team of five solo players.',
+    },
+    {
+      type: 'text',
+      heading: 'Do Not Trickle',
+      body: 'Trickling means engaging the enemy team one player at a time instead of all together. If only two players are fighting while the other three are still running from spawn, the enemy team fights 5v2, 5v3, then 5v4 — and usually wins each engagement. Wait for your team before committing to a fight.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'The Trickle Problem',
+      body: 'Even if the enemy team has lost two players, engaging too early with three players gives the enemy a winnable 3v3. Wait for a full 5v3 advantage before pushing.',
+    },
+    {
+      type: 'text',
+      heading: 'Focus One Target',
+      body: 'Damage is most effective when the whole team focuses the same enemy. If five players all shoot different enemies, no one dies. If five players shoot the same enemy, they die in seconds. Call out targets or follow your teammates\' focus.',
+    },
+    {
+      type: 'text',
+      heading: 'Peel for Supports',
+      body: 'When an enemy flanker reaches your support heroes, your supports will often call for help — this is called a "peel". Damage heroes should leave the main fight briefly to eliminate the flanker, then return. Dead supports mean no healing for the rest of the fight.',
+    },
+    {
+      type: 'text',
+      heading: 'Use the Ping System',
+      body: 'Overwatch has a ping system that allows you to mark targets, call out enemies, or mark locations without voice chat. Middle-click or your designated ping key marks a point in the world that your team can see. Use it to call out flankers, mark low-health enemies, or signal where to attack.',
+    },
+    {
+      type: 'text',
+      heading: 'When to Disengage',
+      body: 'If your team is losing a fight badly — multiple teammates dead, your support is down, and the enemy has all their abilities — disengage. Reset to spawn and come back with your full team. Continuing a fight you cannot win costs more time than resetting.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Even without voice chat, great team fighting is possible. Watch where your teammates are pushing, follow their lead on focus targets, and hold your position near the objective.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-basic-team-fighting',
+    xpReward: 30,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is "trickling" in Overwatch?',
+        options: [
+          'Slowly moving the payload rather than rushing it',
+          'Engaging the enemy team one player at a time instead of all together',
+          'Using your ultimate ability too early',
+          'Falling back to the objective instead of chasing enemies',
+        ],
+        correct: 1,
+        explanation: 'Trickling means engaging the enemy piecemeal — one or two players at a time — rather than waiting for the full team. The enemy team gets to fight 5v1, 5v2, etc. and usually wins each engagement.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'Your two support heroes have just been killed. What should the remaining three players do?',
+        options: [
+          'Rush the enemy immediately to try to win the 3v5',
+          'Fall back and wait for the supports to respawn before engaging again',
+          'Each player fights their own 1v1 to even the odds',
+          'Use all remaining ultimates at once to try to win',
+        ],
+        correct: 1,
+        explanation: 'Without supports, your team has no healing. Engaging in a 3v5 without heals almost always means three more deaths. Waiting for your supports to respawn resets the fight to fair ground.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Focusing fire on the same target is generally more effective than splitting damage across multiple enemies.',
+        options: ['True', 'False'],
+        correct: 0,
+        explanation: 'True. Split damage keeps all enemies alive, allowing the enemy support to heal them all. Focused fire eliminates one enemy fast, creating a numbers advantage for your team.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'What does "peeling for supports" mean?',
+        options: [
+          'Staying near supports to receive healing at all times',
+          'Leaving the main fight briefly to eliminate an enemy attacking your support heroes',
+          'Using support ultimates defensively during a push',
+          'Positioning supports behind a barrier for protection',
+        ],
+        correct: 1,
+        explanation: 'Peeling means temporarily leaving the main engagement to deal with an enemy flanker who is targeting your support heroes. Dead supports end the team fight quickly.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'Your team is losing a fight badly — three teammates are dead and the enemy has all their abilities. What is the best action?',
+        options: [
+          'Keep fighting and try to take at least one enemy down',
+          'Disengage and wait for the full team to respawn before re-engaging',
+          'Use your ultimate immediately regardless of situation',
+          'Retreat to high ground and continue the fight from there',
+        ],
+        correct: 1,
+        explanation: 'Continuing a 2v5 fight almost always means two more deaths. Disengaging and resetting with the full team gives you a better chance at the next fight.',
+      },
+      {
+        id: 'q6',
+        type: 'true-false',
+        question: 'The ping system in Overwatch can only be used with voice chat activated.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. The ping system works completely independently of voice chat. Middle-click (or your dedicated ping key) to mark targets, locations, or threats for your entire team to see.',
+      },
+    ],
+  },
+};

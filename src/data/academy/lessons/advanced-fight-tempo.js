@@ -1,0 +1,115 @@
+export default {
+  id: 'advanced-fight-tempo',
+  title: 'Fight Tempo',
+  subtitle: 'Controlling the pace of engagements',
+  category: 'advanced',
+  pathId: 'advanced',
+  order: 3,
+  prerequisites: ['advanced-resource-trading'],
+  xpReward: 65,
+  estimatedMinutes: 6,
+  difficulty: 4,
+  tags: ['tempo', 'pace', 'initiative', 'engagement', 'advanced'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Tempo refers to who controls the pace of a fight. A team with tempo dictates when fights start, when they disengage, and when they reset. A team without tempo reacts — they fight when forced to, on the enemy\'s terms. Winning tempo is one of the most consistent ways to win games without relying on superior mechanical skill.',
+    },
+    {
+      type: 'text',
+      heading: 'Gaining Tempo',
+      body: 'Tempo is gained by acting when the enemy cannot respond effectively. Engaging when an enemy key cooldown just expired, when an enemy is low but waiting for healing, or when an enemy is rotating back from spawn. The enemy being "one second late" at a fight is a massive tempo advantage — you already have the angle, the positioning, and the initiative.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Tempo in Practice',
+      body: 'Your team just won a fight with all five members alive and no ultimates used. The enemy team is staggering back from spawn — they will arrive in groups of one or two. Instead of waiting for them to regroup, you push immediately. You fight each respawning player before they can coordinate. This is a tempo advantage: you act while the enemy cannot respond as a unit.',
+    },
+    {
+      type: 'text',
+      heading: 'Losing Tempo',
+      body: 'Tempo is lost by hesitating after a successful fight, waiting for "the perfect setup," or letting a defeated enemy fully reset before re-engaging. A team that wins a fight but then takes 30 seconds to regroup and push has given away their tempo advantage — the enemy has respawned, recharged, and set up a new defence.',
+    },
+    {
+      type: 'text',
+      heading: 'Holding Tempo Defensively',
+      body: 'On defence, your goal is to deny the attacker\'s tempo — don\'t let them snowball fight wins into objective progress. Hold chokes, use abilities to delay rather than commit, and stagger fights rather than losing your whole team simultaneously. A defence that "loses slowly" is often winning — making the enemy spend more time and resources for each fight.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'After every team fight you win, immediately ask: "Can we push right now?" Most of the time the answer is yes. The 10–20 seconds after a won fight are the highest-tempo window in the game — use them.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-advanced-fight-tempo',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What does "tempo" mean in the context of Overwatch?',
+        options: [
+          'The speed at which you deal damage during a fight',
+          'Who controls the pace of engagements — who dictates when fights start and end',
+          'The rate at which your ultimate charge builds',
+          'How quickly you can move between map locations',
+        ],
+        correct: 1,
+        explanation: 'Tempo is about control of pacing. The team with tempo chooses when fights happen, on what terms, and when to disengage. The team without tempo reacts to the other team\'s decisions.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'What is the best time to engage an enemy team to gain tempo advantage?',
+        options: [
+          'When all five enemies are alive and fully healed',
+          'When an enemy key cooldown just expired or an enemy is staggering back from spawn',
+          'Immediately after your whole team used their ultimates',
+          'When the enemy team is grouped together for maximum AoE',
+        ],
+        correct: 1,
+        explanation: 'Tempo advantages come from acting when the enemy cannot respond effectively — when their abilities are on cooldown, when they\'re split up, or when they\'re mid-rotation. Engaging before they can coordinate multiplies your advantage.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Winning a team fight and then waiting 30 seconds to regroup before pushing is a good way to maintain tempo.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Waiting after a won fight gives the enemy time to respawn, recharge abilities, and set up a new defence. The highest-tempo window is immediately after a won fight — the enemy is staggered, low, or returning from spawn. Hesitating throws away that advantage.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'As a defending team, how do you hold tempo?',
+        options: [
+          'Rushing the enemy spawn to stop them before they can attack',
+          'Using abilities to delay attackers rather than committing fully, and staggering fights',
+          'Always holding the high ground and never engaging at ground level',
+          'Grouping all five players in one spot to ensure no one dies alone',
+        ],
+        correct: 1,
+        explanation: 'Defensive tempo is about delay and denial. Using abilities to slow pushes, holding chokes, and staggering fights (not losing all five at once) forces attackers to spend more time and resources on each advance. "Losing slowly" on defence is often winning.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'The enemy team had their support eliminated and pulled back to heal. What should your team do?',
+        options: [
+          'Wait for the support to respawn so the fight is fair',
+          'Immediately push the advantage before they can reset and regroup',
+          'Use this time to save all your ultimates for the next fight',
+          'Fall back to your spawn to fully heal your own team first',
+        ],
+        correct: 1,
+        explanation: 'When the enemy loses a key player (especially a support), their ability to sustain a fight drops dramatically. Pushing immediately exploits the tempo window — the longer you wait, the closer the support gets to rejoining or the team gets to resetting.',
+      },
+    ],
+  },
+};

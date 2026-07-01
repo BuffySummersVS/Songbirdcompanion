@@ -1,0 +1,299 @@
+﻿[
+  {
+    "id": "s3-into-the-tigers-den",
+    "title": "Season 3: Into the Tiger's Den",
+    "category": "Season",
+    "startDate": "2026-06-16",
+    "endDate": "2026-08-11",
+    "description": "Third season of the Reign of Talon arc. Introduces Damage hero Shion and Tokyo-based Hybrid map Neon Junction. Features the Anima Strike story event, Nyan Café collection, YOASOBI music collaboration, and Community Crafted experimental gameplay.",
+    "sourceUrl": "https://news.blizzard.com/en-us/article/24271881/ride-in-with-claws-out-for-reign-of-talon-season-3-into-the-tigers-den"
+  },
+  {
+    "id": "anima-strike",
+    "title": "Anima Strike",
+    "category": "Limited Event",
+    "startDate": "2026-06-16",
+    "endDate": "2026-07-06",
+    "description": "Three-week narrative story event set across Neon Junction's Hashimoto, Yokai, and Subway locations. Complete daily and weekly challenges to earn over 50 themed rewards, with branching paths and an unlockable prestige track.",
+    "sourceUrl": "https://news.blizzard.com/en-us/article/24271881/ride-in-with-claws-out-for-reign-of-talon-season-3-into-the-tigers-den"
+  },
+  {
+    "id": "street-rebels-collection",
+    "title": "Street Rebels Collection",
+    "category": "Collection",
+    "startDate": "2026-06-16",
+    "endDate": "2026-08-11",
+    "description": "Limited shop collection blending summer streetwear with oni folklore aesthetics. Features skins that are equal parts stylish and dangerous.",
+    "sourceUrl": "https://news.blizzard.com/en-us/article/24271881/ride-in-with-claws-out-for-reign-of-talon-season-3-into-the-tigers-den"
+  },
+  {
+    "id": "nyan-cafe-collection",
+    "title": "Nyan Café Collection",
+    "category": "Collection",
+    "startDate": "2026-06-23",
+    "endDate": "2026-08-11",
+    "description": "Playful feline-themed cosmetics bringing heroes to Kanezaka's cutest café. Includes cat-inspired emotes and animations, plus Ultra Skins for Kiriko and Sierra.",
+    "sourceUrl": "https://news.blizzard.com/en-us/article/24271881/ride-in-with-claws-out-for-reign-of-talon-season-3-into-the-tigers-den"
+  },
+  {
+    "id": "yoasobi-collab",
+    "title": "YOASOBI Collaboration",
+    "category": "Crossover",
+    "startDate": "2026-06-30",
+    "endDate": "2026-08-11",
+    "description": "Collaboration with Japanese music duo YOASOBI featuring an original song written for Overwatch, an animated music video, and a new short story set in the Reign of Talon universe.",
+    "sourceUrl": "https://news.blizzard.com/en-us/article/24271881/ride-in-with-claws-out-for-reign-of-talon-season-3-into-the-tigers-den"
+  },
+  {
+    "id": "community-crafted-s3",
+    "title": "Community Crafted",
+    "category": "Limited Event",
+    "startDate": "2026-06-30",
+    "endDate": "2026-07-13",
+    "description": "Four community creators — Guxue, Ocie, Apply, and mL7support — designed two-week gameplay experiments for Reinhardt, Baptiste, Ashe, and Sombra. Described by Blizzard as more of a design conversation than a balance patch.",
+    "sourceUrl": "https://news.blizzard.com/en-us/article/24271881/ride-in-with-claws-out-for-reign-of-talon-season-3-into-the-tigers-den"
+  },
+  {
+    "id": "s2-summit",
+    "title": "Season 2: Summit",
+    "category": "Season",
+    "startDate": "2026-04-14",
+    "endDate": "2026-06-16",
+    "description": "Second season of the Reign of Talon arc. Continued the climb toward the summit with seasonal celebrations, a Mythic sun god skin, and OWCS Champions Clash esports events.",
+    "sourceUrl": "https://overwatch.blizzard.com/en-us/news/"
+  },
+  {
+    "id": "ow-10th-anniversary",
+    "title": "Overwatch 10th Anniversary",
+    "category": "Anniversary",
+    "startDate": "2026-05-12",
+    "endDate": "2026-06-01",
+    "description": "Celebration of ten years of Overwatch. Featured returning seasonal game modes, limited-time anniversary cosmetics, and commemorative content marking a decade of the franchise.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "hatreds-reckoning",
+    "title": "Hatred's Reckoning x Overwatch",
+    "category": "Crossover",
+    "startDate": "2026-04-28",
+    "endDate": "2026-06-16",
+    "description": "Overwatch crossover with the Hatred's Reckoning universe from Sanctuary, bringing themed cosmetics and story content tied to the Reign of Talon narrative.",
+    "sourceUrl": "https://overwatch.blizzard.com/en-us/news/"
+  },
+  {
+    "id": "nier-automata",
+    "title": "Nier: Automata x Overwatch",
+    "category": "Crossover",
+    "startDate": "2026-03-10",
+    "endDate": "2026-04-14",
+    "description": "Collaboration with Square Enix's acclaimed action RPG Nier: Automata. Featured hero skins and cosmetics inspired by 2B, 9S, and the YoRHa universe.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "hello-kitty",
+    "title": "Hello Kitty and Friends x Overwatch",
+    "category": "Crossover",
+    "startDate": "2026-02-23",
+    "endDate": "2026-06-16",
+    "description": "Collaboration with Sanrio's Hello Kitty and Friends franchise, bringing adorable character-inspired cosmetics to Overwatch heroes.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "s1-conquest",
+    "title": "Season 1: Conquest",
+    "category": "Season",
+    "startDate": "2026-02-10",
+    "endDate": "2026-04-14",
+    "description": "Inaugural season of the Reign of Talon story arc, launching Overwatch's new narrative-driven seasonal format. Introduced 10 new heroes: Domina, Anran, Emre, Freja, Sierra, Vendetta, Mizuki, Jetpack Cat, Wuyang, and more.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "s20-vendetta",
+    "title": "Season 20: Vendetta",
+    "category": "Season",
+    "startDate": "2025-12-09",
+    "endDate": "2026-02-10",
+    "description": "Twentieth season of Overwatch, introducing the Vendetta Damage hero and themed seasonal content bridging into the Reign of Talon arc.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "winter-wonderland-2025",
+    "title": "Winter Wonderland 2025",
+    "category": "Holiday",
+    "startDate": "2025-12-09",
+    "endDate": "2026-01-07",
+    "description": "Annual winter holiday event featuring returning limited-time game modes, festive cosmetics, holiday-themed challenges, and seasonal arcade brawls.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "s19-haunted-masquerade",
+    "title": "Season 19: Haunted Masquerade",
+    "category": "Season",
+    "startDate": "2025-10-14",
+    "endDate": "2025-12-09",
+    "description": "Halloween-themed nineteenth season featuring masquerade cosmetics, spooky arcade modes, and limited-time seasonal content.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "persona5-collab",
+    "title": "Persona 5 x Overwatch",
+    "category": "Crossover",
+    "startDate": "2025-09-16",
+    "endDate": "2025-10-13",
+    "description": "Collaboration with Atlus's Persona 5, featuring Phantom Thieves-inspired hero skins and cosmetics bringing the stylish world of the Metaverse to Overwatch.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "s18-stadium-quickplay",
+    "title": "Season 18: Stadium Quickplay",
+    "category": "Season",
+    "startDate": "2025-08-26",
+    "endDate": "2025-10-13",
+    "description": "Eighteenth season introducing Stadium Quickplay — a new mode blending the hero-upgrade progression system of Stadium with the accessibility of standard Quickplay.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "gi-joe-collab",
+    "title": "G.I. Joe x Overwatch",
+    "category": "Crossover",
+    "startDate": "2025-07-01",
+    "endDate": "2025-08-25",
+    "description": "Collaboration with the iconic G.I. Joe franchise bringing military-themed hero skins and cosmetics celebrating the Real American Hero universe.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "s17-powered-up",
+    "title": "Season 17: Powered Up!",
+    "category": "Season",
+    "startDate": "2025-06-24",
+    "endDate": "2025-08-25",
+    "description": "Superhero-themed seventeenth season of Overwatch featuring powered-up cosmetics, the G.I. Joe crossover, and summer seasonal content.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "street-fighter-6",
+    "title": "Street Fighter 6 x Overwatch",
+    "category": "Crossover",
+    "startDate": "2025-05-20",
+    "endDate": "2025-06-23",
+    "description": "Collaboration with Capcom's Street Fighter 6 featuring iconic fighting game character-themed skins and cosmetics for Overwatch heroes.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "gundam-wing",
+    "title": "Gundam Wing x Overwatch",
+    "category": "Crossover",
+    "startDate": "2025-04-29",
+    "endDate": "2025-06-23",
+    "description": "Collaboration with the beloved Gundam Wing anime series, bringing Mobile Suit-inspired mecha hero skins and cosmetics to Overwatch.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "s16",
+    "title": "Season 16",
+    "category": "Season",
+    "startDate": "2025-04-22",
+    "endDate": "2025-06-23",
+    "description": "Sixteenth season of Overwatch featuring the Gundam Wing and Street Fighter 6 crossovers alongside seasonal content and competitive updates.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "le-sserafim",
+    "title": "LE SSERAFIM Homecoming",
+    "category": "Crossover",
+    "startDate": "2025-03-18",
+    "endDate": "2025-04-22",
+    "description": "Collaboration with K-pop group LE SSERAFIM featuring artist-inspired hero skins and cosmetics alongside exclusive music content.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "s15-honor-and-glory",
+    "title": "Season 15: Honor and Glory",
+    "category": "Season",
+    "startDate": "2025-02-18",
+    "endDate": "2025-04-22",
+    "description": "Fifteenth season of Overwatch featuring the LE SSERAFIM crossover and the introduction of the Hero Perk system — an in-match levelling mechanic that unlocks Minor and Major hero upgrades.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "avatar-airbender",
+    "title": "Avatar: The Last Airbender x Overwatch",
+    "category": "Crossover",
+    "startDate": "2024-12-17",
+    "endDate": "2025-02-17",
+    "description": "Collaboration with Nickelodeon's Avatar: The Last Airbender bringing elemental bender-themed hero skins inspired by Aang, Zuko, and the beloved animated series.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "s14-hazard",
+    "title": "Season 14: Hazard",
+    "category": "Season",
+    "startDate": "2024-12-10",
+    "endDate": "2025-02-17",
+    "description": "Fourteenth season introducing Tank hero Hazard — a high-mobility brawler who manipulates gravity. Featured winter seasonal content and the Avatar: The Last Airbender crossover.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "ow-classic-2024",
+    "title": "Overwatch Classic",
+    "category": "Limited Event",
+    "startDate": "2024-11-12",
+    "endDate": "2024-12-03",
+    "description": "Special throwback event recreating the original Overwatch 1 experience — original hero kits, abilities, and balance before years of patches — letting players revisit the game as it launched.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "halloween-terror-2024",
+    "title": "Halloween Terror 2024",
+    "category": "Holiday",
+    "startDate": "2024-10-15",
+    "endDate": "2024-11-04",
+    "description": "Annual Halloween event featuring spooky-themed limited cosmetics, the Junkenstein's Revenge co-op brawl, and seasonal Halloween challenges.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "mha-collab",
+    "title": "My Hero Academia x Overwatch",
+    "category": "Crossover",
+    "startDate": "2024-10-17",
+    "endDate": "2024-12-09",
+    "description": "Collaboration with the massively popular My Hero Academia anime, featuring hero skins inspired by iconic Pro Heroes and Villains from the UA universe.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "s13-spellbinder",
+    "title": "Season 13: Spellbinder",
+    "category": "Season",
+    "startDate": "2024-10-15",
+    "endDate": "2024-12-09",
+    "description": "Spellcraft-themed thirteenth season featuring magical cosmetics, the Halloween Terror 2024 event, the My Hero Academia crossover, and the Overwatch Classic throwback event.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "anniversary-2024",
+    "title": "Anniversary 2024",
+    "category": "Anniversary",
+    "startDate": "2024-09-24",
+    "endDate": "2024-10-14",
+    "description": "Annual anniversary celebration featuring returning limited-time modes, anniversary remix cosmetics, and community-favourite content from across Overwatch's history.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "wow-collab-2024",
+    "title": "World of Warcraft x Overwatch",
+    "category": "Crossover",
+    "startDate": "2024-09-17",
+    "endDate": "2024-10-15",
+    "description": "Collaboration with Blizzard's own World of Warcraft, bringing Azeroth-themed hero skins and cosmetics celebrating iconic WoW characters and factions.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  },
+  {
+    "id": "s12-new-frontiers",
+    "title": "Season 12: New Frontiers",
+    "category": "Season",
+    "startDate": "2024-08-20",
+    "endDate": "2024-10-15",
+    "description": "Ancient Egyptian-themed twelfth season of Overwatch. Featured the World of Warcraft crossover, Anniversary 2024, and a thematic focus on new horizons and exploration.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Overwatch_seasonal_events"
+  }
+]

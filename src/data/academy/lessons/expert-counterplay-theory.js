@@ -1,0 +1,116 @@
+export default {
+  id: 'expert-counterplay-theory',
+  title: 'Counterplay Theory',
+  subtitle: 'Systematic approaches to countering any threat',
+  category: 'expert',
+  pathId: 'expert',
+  order: 10,
+  prerequisites: ['expert-ultimate-economy'],
+  xpReward: 70,
+  estimatedMinutes: 7,
+  difficulty: 5,
+  tags: ['counterplay', 'adaptation', 'theory', 'problem-solving', 'expert'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Counterplay theory is a systematic framework for identifying and addressing threats rather than reacting emotionally or randomly. When something is beating your team, you have a structured set of responses: change composition, change position, change timing, or change target priority. Applying the right response to the right problem is what separates systematic experts from skilled reactors.',
+    },
+    {
+      type: 'text',
+      heading: 'The Four Counterplay Levers',
+      body: 'Composition lever: swap to a hero that directly counters the threat. Position lever: change where you are so the threat cannot reach you or is easier to deal with. Timing lever: fight when the threat is unavailable (cooldown, respawn, out of position). Priority lever: focus the threat before it can execute its role. Every problem has at least one applicable lever — expert players identify which one is most accessible.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Counterplay Matrix in Practice',
+      body: 'Problem: Enemy Pharah is dominating every fight. Composition lever: Swap to hitscan (Soldier: 76, Cassidy). Position lever: Fight inside buildings where Pharah cannot fly. Timing lever: Engage when Pharah is reloading or descending. Priority lever: Focus Pharah first before engaging the ground team. All four levers apply — choose the most accessible one or combine them.',
+    },
+    {
+      type: 'text',
+      heading: 'Counterplay vs Crutch',
+      body: 'A counterplay response solves the problem for one fight or segment. A crutch response avoids the problem entirely. Counter-picking is a counterplay — it addresses the threat. Refusing to engage any fights near a Widowmaker and playing entirely defensively is a crutch. Crutches may avoid the threat but they do not eliminate it and often cost objective progress.',
+    },
+    {
+      type: 'text',
+      heading: 'Layered Counterplay',
+      body: 'The most robust counterplay combines multiple levers simultaneously. Against Pharah: Soldier: 76 (composition) takes high ground on the side (position) and engages when Pharah starts her dive animation (timing). This layered approach is more reliable than any single lever because it limits Pharah\'s ability to adjust. The more levers applied, the more constrained the threat.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'Over-Countering',
+      body: 'Over-countering means devoting so many resources to neutralising one threat that your team becomes vulnerable to others. Counter-picking three heroes to shut down a Pharah while leaving the rest of the enemy team unaddressed. Balance: you need enough counterplay to neutralise the key threat without sacrificing your overall composition viability.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-expert-counterplay-theory',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What are the four counterplay levers?',
+        options: [
+          'Attack, defend, rotate, reset',
+          'Composition, position, timing, and target priority',
+          'Ultimate, cooldown, movement, and aim',
+          'Tank, damage, support, and flexibility',
+        ],
+        correct: 1,
+        explanation: 'The four levers are: composition (swap heroes), position (change where you fight), timing (fight when the threat is unavailable), and priority (focus the threat first). Every problem has at least one applicable lever — expert play is identifying the most accessible and effective one.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'Against a dominant Pharah, which counterplay lever does "fighting inside a building" represent?',
+        options: [
+          'Composition lever',
+          'Priority lever',
+          'Position lever',
+          'Timing lever',
+        ],
+        correct: 2,
+        explanation: 'Moving indoors is a position lever — changing where you fight so the threat (Pharah\'s aerial attacks) is less effective or inaccessible. Indoor combat reduces Pharah\'s angles and effectiveness without requiring a composition swap.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'A "crutch" response is better than a counterplay response because it completely avoids the threat.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. A crutch avoids the threat but does not eliminate it, and often costs objective progress. Refusing to engage near a Widowmaker may avoid her shots, but you also make no progress on the map. Counterplay actively addresses the threat so you can continue playing freely.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'What is "layered counterplay"?',
+        options: [
+          'Using multiple sequential counterpicks in the same match',
+          'Applying multiple counterplay levers simultaneously against the same threat for a more robust and less adjustable response',
+          'Counterplaying in multiple fights before the first one resolves',
+          'Combining ultimate abilities to directly counter an enemy ultimate',
+        ],
+        correct: 1,
+        explanation: 'Layered counterplay applies multiple levers at once — composition + position + timing. Against Pharah: hitscan hero (composition) + high ground position + engaging during Pharah\'s reload (timing). Each layer constrains Pharah\'s ability to adjust, making the overall counterplay more reliable.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'What is the risk of "over-countering" one specific threat?',
+        options: [
+          'The countered hero becomes more powerful as a result',
+          'Devoting too many resources to neutralising one threat leaves the rest of the enemy team unaddressed, creating new vulnerabilities',
+          'Over-countering causes your team to lose ultimate charge faster',
+          'The over-countered hero will switch to a stronger hero',
+        ],
+        correct: 1,
+        explanation: 'Over-countering sacrifices composition viability to address one threat. If three heroes are specifically picked to shut down Pharah but those heroes are weak against the rest of the enemy team, you\'ve neutralised one problem while creating three others. Balance counterplay with overall team viability.',
+      },
+    ],
+  },
+};

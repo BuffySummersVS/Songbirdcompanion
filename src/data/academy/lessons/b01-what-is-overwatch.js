@@ -1,0 +1,118 @@
+﻿export default {
+  id: 'what-is-overwatch',
+  title: 'What is Overwatch?',
+  subtitle: 'The basics of the game',
+  category: 'beginner',
+  pathId: 'foundations',
+  order: 1,
+  prerequisites: [],
+  xpReward: 50,
+  estimatedMinutes: 4,
+  difficulty: 1,
+  tags: ['basics', 'game-overview'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Overwatch is a team-based hero shooter developed by Blizzard Entertainment. Two teams of five players each compete across a variety of maps using a roster of unique heroes, each with their own abilities and role.',
+    },
+    {
+      type: 'callout',
+      variant: 'info',
+      title: '5v5 Format',
+      body: 'Overwatch switched from 6v6 to 5v5 in 2022. Each team now has one Tank, two Damage heroes, and two Support heroes — though Open Queue allows any combination.',
+    },
+    {
+      type: 'text',
+      heading: 'Three Roles',
+      body: 'Every hero belongs to one of three roles. Tanks absorb damage and create space at the front. Damage heroes eliminate enemies and secure picks. Support heroes heal allies and provide utility. Each role is essential — a team missing any one of them will struggle.',
+    },
+    {
+      type: 'text',
+      heading: 'Free to Play',
+      body: 'Overwatch is free to play on PC, PlayStation, Xbox, Nintendo Switch, and mobile. Cosmetic items can be earned or purchased, but all heroes and gameplay content are available at no cost.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'You can swap heroes between respawns. If one hero is not working, try a different one — Overwatch rewards adaptability.',
+    },
+    {
+      type: 'text',
+      heading: 'Seasons and Updates',
+      body: 'Overwatch runs on a seasonal model. Each season (approximately 9 weeks) brings new maps, hero adjustments, a seasonal Battle Pass, and sometimes entirely new heroes or game modes.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-what-is-overwatch',
+    xpReward: 30,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'How many players are on each team in a standard Overwatch match?',
+        options: ['4', '5', '6', '8'],
+        correct: 1,
+        explanation: 'Overwatch uses 5v5 — two teams of five players each. This changed from the original 6v6 format in 2022.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'What are the three hero roles in Overwatch?',
+        options: [
+          'Attacker, Defender, Medic',
+          'Tank, Damage, Support',
+          'Tank, Healer, Flanker',
+          'Vanguard, Striker, Anchor',
+        ],
+        correct: 1,
+        explanation: 'The three roles are Tank, Damage, and Support. Each has a distinct function — space-making, eliminations, and healing/utility.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Overwatch requires a purchase to play.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'Overwatch is free to play. All heroes and gameplay content are available without spending money.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'In the standard Role Queue, what is the team composition?',
+        options: [
+          '2 Tanks, 2 Damage, 1 Support',
+          '1 Tank, 2 Damage, 2 Support',
+          '2 Tanks, 1 Damage, 2 Support',
+          '1 Tank, 3 Damage, 1 Support',
+        ],
+        correct: 1,
+        explanation: 'Standard Role Queue is 1 Tank, 2 Damage, 2 Support. This ensures every team has a balanced composition.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'Overwatch is available on which combination of console platforms?',
+        options: [
+          'PlayStation only',
+          'PlayStation and Xbox only',
+          'Xbox and Nintendo Switch only',
+          'PlayStation, Xbox, and Nintendo Switch',
+        ],
+        correct: 3,
+        explanation: 'Overwatch is available on PlayStation, Xbox, and Nintendo Switch (as well as PC). All three major console platforms are supported.',
+      },
+      {
+        id: 'q6',
+        type: 'true-false',
+        question: 'You can swap heroes between your respawns in Overwatch.',
+        options: ['True', 'False'],
+        correct: 0,
+        explanation: 'Yes — you can change your hero at any respawn. Adaptability is a core skill in Overwatch.',
+      },
+    ],
+  },
+};

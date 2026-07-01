@@ -1,0 +1,115 @@
+export default {
+  id: 'masterclass-macro-decision-making',
+  title: 'Macro Decision Making',
+  subtitle: 'High-level strategic decisions that shape an entire match',
+  category: 'masterclass',
+  pathId: 'masterclass',
+  order: 9,
+  prerequisites: ['masterclass-professional-positioning'],
+  xpReward: 75,
+  estimatedMinutes: 8,
+  difficulty: 5,
+  tags: ['macro', 'strategy', 'decision-making', 'match-management', 'masterclass'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Micro decisions are made inside fights. Macro decisions shape the conditions in which fights happen. Macro decision making is the management of the match at the highest level: when to fight, when to stall, when to switch compositions, when to force the objective, and how to manage time and resources over the full duration of the game.',
+    },
+    {
+      type: 'text',
+      heading: 'The Time Economy',
+      body: 'Overwatch matches have time constraints. On payload and control maps, time pressure determines when you must fight regardless of resource readiness. Macro decision making includes managing this time economy: when does the timer become the primary factor? Can you stall without losing the match? Do you need to force a fight now because time is running out? Time is a resource with a different kind of scarcity than ultimates or HP.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Macro vs Micro Decision',
+      body: 'Micro: "Focus the Lucio in this fight." Macro: "We are ahead on the payload — we should stall the next fight rather than committing to a full engagement. If we trade even but waste 40 seconds of their time, we win." The macro decision shapes what the micro decisions are trying to achieve. Without macro alignment, micro excellence produces wins that are contextually meaningless.',
+    },
+    {
+      type: 'text',
+      heading: 'Objective Prioritisation',
+      body: 'Macro decision making includes knowing when objectives take absolute priority over fight outcomes. With ten seconds left on the timer and the objective half-captured, a single player contesting is more valuable than five players getting four kills. At the macro level, every fight result is filtered through: "did this advance our objective position?" Not every fight win is a macro win.',
+    },
+    {
+      type: 'text',
+      heading: 'Composition Macro Decisions',
+      body: 'Macro decisions include when to swap compositions. Not just "this hero isn\'t working" but "our composition\'s win condition does not match this map segment." An aggressive dive composition that was effective in the open outdoor section may underperform in the enclosed indoor section of the same map. Macro composition decisions anticipate the changing conditions of a match, not just the current fight.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Before every fight, ask one macro question: "Does winning this fight move us closer to winning the match?" Sometimes the answer is yes. Sometimes the answer is "we should not fight this fight at all." That second answer is only available to players thinking at the macro level.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-masterclass-macro-decision-making',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is the relationship between macro and micro decisions?',
+        options: [
+          'Macro decisions happen later in the match; micro decisions happen earlier',
+          'Macro decisions shape the conditions in which fights occur; micro decisions are made within those fights',
+          'Macro is about team decisions; micro is about individual hero ability use',
+          'They are equivalent — all decisions are equally macro and micro',
+        ],
+        correct: 1,
+        explanation: 'Macro shapes context; micro operates within that context. A macro decision to stall for time shapes all subsequent micro decisions (play conservatively, contest rather than fight, use abilities for delay). Without macro alignment, micro decisions optimise for the wrong things.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'What is the "time economy" in Overwatch macro play?',
+        options: [
+          'The time it takes to charge ultimates per fight',
+          'Managing time pressure from match timers — when does the clock force you to fight regardless of resource readiness?',
+          'Tracking how long each fight lasts to optimise respawn timing',
+          'The rate at which the payload moves per second',
+        ],
+        correct: 1,
+        explanation: 'Time is a resource with unique scarcity — it cannot be recovered. Macro decision making includes managing when the timer becomes the primary factor: can you stall while the timer works in your favour, or must you force a fight before time expires? Time management changes which fights you choose to engage.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Winning a team fight always advances your macro objective position.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. A team fight won far from the objective, while wasting 30 seconds of time you could have spent pushing, may be a macro loss despite a fight win. Macro decision making filters every fight outcome through "did this advance our objective position?" Some fights won in the wrong place at the wrong time are macro irrelevant or even harmful.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'With ten seconds left on the timer and the objective half-captured, what is the highest macro priority?',
+        options: [
+          'Getting eliminations to create a numbers advantage for the next attempt',
+          'Having at least one player contesting the objective — even one contester stops cap or prevents capture',
+          'Using remaining ultimates to win the fight decisively',
+          'Retreating to regroup before the timer expires',
+        ],
+        correct: 1,
+        explanation: 'At the macro level, ten seconds and half-captured means one player on the objective stops it being fully captured (or captures it in time). Eliminations and fight wins matter less than the objective state at that moment. The macro filter shows what matters: the objective, not the scoreboard.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'What macro question should you ask before every fight?',
+        options: [
+          '"Do we have more total HP than the enemy right now?"',
+          '"Does winning this fight move us closer to winning the match?"',
+          '"Is our ultimate advantage large enough to guarantee a win?"',
+          '"Are all five of our players in position for a coordinated engage?"',
+        ],
+        correct: 1,
+        explanation: '"Does winning this fight move us closer to winning the match?" is the macro filter. Sometimes the answer is "we should not fight at all — stalling benefits us more." Only players thinking at the macro level have access to that answer. Without the question, every fight is fought without knowing whether it should be.',
+      },
+    ],
+  },
+};

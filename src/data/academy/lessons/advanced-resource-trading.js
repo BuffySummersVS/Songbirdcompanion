@@ -1,0 +1,116 @@
+export default {
+  id: 'advanced-resource-trading',
+  title: 'Resource Trading',
+  subtitle: 'Spending HP, cooldowns, and ultimates efficiently',
+  category: 'advanced',
+  pathId: 'advanced',
+  order: 2,
+  prerequisites: ['advanced-space-creation'],
+  xpReward: 65,
+  estimatedMinutes: 6,
+  difficulty: 4,
+  tags: ['resources', 'trading', 'efficiency', 'cooldowns', 'advanced'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Every action in Overwatch costs a resource: HP taken, a cooldown spent, ultimate charge used, or positioning given up. "Trading" means exchanging your resources for the enemy\'s. Winning trades means spending less to accomplish more. Losing trades means spending more than you gain — the path to defeat.',
+    },
+    {
+      type: 'text',
+      heading: 'The Three Resource Types',
+      body: 'HP is the most immediate resource — you only get it back through healing. Cooldowns are renewable but have delays; using a key cooldown early leaves you defenceless until it resets. Ultimate charge is the most valuable — it builds slowly and a wasted ultimate is a significant cost. Good players are constantly asking "what am I spending, and what am I getting in return?"',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Trade Math',
+      body: 'Your team uses three ultimates and gets two kills. The enemy uses two ultimates and gets three kills, plus your tank dies without using his ultimate. The enemy won that trade: they spent less charge, got more value, and denied your tank\'s ultimate. Understanding this math in real time is what separates advanced players.',
+    },
+    {
+      type: 'text',
+      heading: 'Cooldown Trading',
+      body: 'Using an offensive cooldown to bait out an enemy defensive cooldown is a winning trade — you spent something small to eliminate something larger from their toolkit. If a Reinhardt spends one of his two Fire Strike charges (built passively rather than tied to a single fixed cooldown) and forces a Lucio to use Sound Barrier immediately to save a low teammate, Reinhardt won that exchange. The barrier is now gone, and Lucio\'s ultimate charge must build back up from zero before Sound Barrier is available again.',
+    },
+    {
+      type: 'text',
+      heading: 'Unfavourable Trades',
+      body: 'Sometimes trading unfavourably is strategically correct. Sacrificing a support to allow the team to capture the payload checkpoint can be worth it. The key is intention — an unintentional bad trade is a mistake, but a deliberate sacrifice for strategic gain is a decision. Know when you are making a bad trade and why it is worth making.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'The Death-Ultimate Loss',
+      body: 'Dying without using your ultimate when it is charged is one of the most costly trades in the game. You hand the enemy a kill (progress toward their ultimates) while wasting your own charge. If your ultimate is ready, use it before you die in a losing fight rather than holding it for a "perfect moment" that never comes.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-advanced-resource-trading',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'Which of these represents a "winning trade"?',
+        options: [
+          'Using your ultimate to get one kill, while the enemy uses nothing to kill two of your teammates',
+          'Using a short-cooldown ability to bait out an enemy long-cooldown defensive ability',
+          'Healing yourself back to full HP using a short cooldown, at the cost of leaving your team without your support',
+          'Dying to force the enemy to use a movement ability to escape',
+        ],
+        correct: 1,
+        explanation: 'A winning trade means spending less to gain more. Baiting an enemy\'s major defensive cooldown with a minor offensive one eliminates a large resource from their toolkit while only costing you a small one.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'What are the three main resource types tracked in Overwatch?',
+        options: [
+          'Damage, healing, and kill streaks',
+          'HP, cooldowns, and ultimate charge',
+          'Position, momentum, and time',
+          'Eliminations, assists, and objective time',
+        ],
+        correct: 1,
+        explanation: 'HP (your health), cooldowns (your abilities), and ultimate charge are the three core resources. Every fight involves spending and exchanging these. Managing them well determines who wins.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'An intentional unfavourable trade — spending more than you gain — can sometimes be the strategically correct decision.',
+        options: ['True', 'False'],
+        correct: 0,
+        explanation: 'True. A calculated sacrifice can be worth it if it buys strategic value — capturing an objective, securing a spawn advantage, or allowing teammates to survive a fight. The key is that the decision is deliberate, not accidental.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'Why is dying with a fully charged ultimate particularly costly?',
+        options: [
+          'It resets the cooldown on all your other abilities',
+          'It causes your teammates to lose morale and play worse',
+          'You hand the enemy a kill (charging their ultimates) while wasting your own charge entirely',
+          'Your ultimate charge transfers to a random enemy hero',
+        ],
+        correct: 2,
+        explanation: 'Dying with a full ultimate is a double loss: the enemy gets kill credit (helping them build their ultimates) and your charge resets to zero. If the fight is lost, using your ultimate before dying — even if it only buys a few seconds — is almost always the better choice.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'Your team uses four ultimates and wins a fight, getting all five enemies. The enemy used zero ultimates. Did you win that trade?',
+        options: [
+          'Yes — you won the fight, so the trade was worth it',
+          'It depends on what objective progress your team secured during the fight',
+          'Probably not — spending four ultimates for one teamwipe, while the enemy preserved all theirs, leaves you in a poor ultimate economy position',
+          'Yes — ultimate economy only matters in the final fight of the map',
+        ],
+        correct: 2,
+        explanation: 'Winning a fight by burning four ultimates while the enemy preserves all of theirs puts you at a significant disadvantage for the next fight. The enemy now has more ultimates charged, and may win the next exchange without spending anything. Fight wins matter, but the resources you spend to get them matter too.',
+      },
+    ],
+  },
+};

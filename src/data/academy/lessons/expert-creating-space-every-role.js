@@ -1,0 +1,115 @@
+export default {
+  id: 'expert-creating-space-every-role',
+  title: 'Creating Space: Every Role',
+  subtitle: 'How Tanks, Damage, and Supports each create space at expert level',
+  category: 'expert',
+  pathId: 'expert',
+  order: 8,
+  prerequisites: ['expert-tempo-manipulation'],
+  xpReward: 70,
+  estimatedMinutes: 8,
+  difficulty: 5,
+  tags: ['space-creation', 'roles', 'tanks', 'damage', 'supports', 'expert'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Every role creates space, but expert space creation in each role looks different from basic play. A basic tank walks forward and absorbs damage. An expert tank uses their kit to create geometric advantages for their entire team. This lesson breaks down expert-level space creation for each role.',
+    },
+    {
+      type: 'text',
+      heading: 'Tanks: Space Architect',
+      body: 'Expert tanks do not just occupy space — they architect it. Reinhardt does not just walk forward; he positions his barrier to block the sightlines he wants closed while leaving the angles he wants open. Winston does not just dive; he dives at the exact moment that forces enemies to turn their backs to his team. Sigma does not just throw rocks; he uses Kinetic Grasp to bait offensive commitments before counterattacking. Each tank ability is a spatial tool.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Support Space Creation',
+      body: 'Basic Lucio: stays near team and heals. Expert Lucio: uses wall-riding to flank to high ground, uses Speed Boost to push the team through a choke during a healing window, uses Sound Barrier to enable a push that would otherwise cost casualties. The expert support does not just keep the team alive — they enable the team to hold positions they otherwise could not.',
+    },
+    {
+      type: 'text',
+      heading: 'Damage: Creating Space Through Threat',
+      body: 'Expert damage players create space through threat even when they are not shooting. A Widowmaker in a threatening position diverts enemy attention and peeling resources even between shots. A Sombra approaching a flank creates anxiety that changes enemy formation. A Pharah flying overhead changes enemy sight angles. Expert damage players understand that their positioning creates space continuously, not just during shots fired.',
+    },
+    {
+      type: 'text',
+      heading: 'Supports: Enabling Space Others Cannot Hold',
+      body: 'Expert supports hold the team in positions that would be unsustainable without their output. An Ana using Biotic Grenade on enemies allows the team to hold a high-damage position because enemy self-healing is shut off. A Kiriko using Swift Step to teleport into a high-pressure zone to rescue a flanking teammate enables an aggressive position that would otherwise collapse. The expert support\'s space creation is invisible — it is what would have happened without them.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Ask yourself this after each match: "What spaces did I enable my team to hold that they could not have held without me?" If you cannot answer it, you were playing reactively. Expert play leaves an answer.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-expert-creating-space-every-role',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'How does an expert tank differ from a basic tank in terms of space creation?',
+        options: [
+          'An expert tank deals more damage and absorbs more hits',
+          'An expert tank uses their kit to architect geometric advantages — controlling sightlines, enabling angles, and timing dives to force favourable reactions',
+          'An expert tank stays further back to survive longer',
+          'An expert tank focuses entirely on protecting the support players',
+        ],
+        correct: 1,
+        explanation: 'Expert tanks are spatial architects. Reinhardt\'s barrier blocks specific sightlines intentionally, not just "in front of him." Winston\'s dive timing forces backlines to turn away from main team fights. Every ability is used as a spatial tool, not just a mechanical one.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'How does a Widowmaker create space when she is not actively shooting?',
+        options: [
+          'She does not — space is only created by active abilities and damage',
+          'Her presence in a threatening position diverts enemy attention, peeling resources, and changes enemy formation even between shots',
+          'She creates space by scouting enemy positions for her team',
+          'Her high ground position provides cover for teammates moving below',
+        ],
+        correct: 1,
+        explanation: 'Presence creates threat. A Widowmaker on flank high ground forces the enemy to post a flanker to deal with her, diverts healer attention, and changes formation — all without firing a shot. Expert damage players understand that threat is spatial even when it is not active damage.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Expert supports create space by enabling the team to hold positions that would be unsustainable without their specific output.',
+        options: ['True', 'False'],
+        correct: 0,
+        explanation: 'True. The expert support\'s space creation is often invisible — you do not see it, you see what would have happened without it. An Ana Biotic Grenade shutting off enemy self-healing allows the team to hold a high-damage position. A Kiriko teleport saves a position that would otherwise collapse. The space they create is the absence of collapse.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'An expert Lucio uses Speed Boost to push the team through a choke during a healing window. What space has he created?',
+        options: [
+          'He moved the team faster, so they arrive with more HP intact, creating time-based space',
+          'He enabled the team to cross dangerous open ground before enemies can respond, creating a position the team could not hold without the boost window',
+          'He increased the team\'s damage output during the push phase',
+          'He created auditory cover with his music to mask the team\'s footsteps',
+        ],
+        correct: 1,
+        explanation: 'The Speed Boost enables a crossing that would otherwise cost casualties. The team now holds a position — say, a choke corner — that enemies expected to be impossible to contest. Expert Lucio made that position viable through timing and ability use, not just through healing.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'After a match, what question should expert players ask to evaluate their spatial contribution?',
+        options: [
+          '"How many eliminations did I contribute to the total?"',
+          '"What spaces did I enable my team to hold that they could not have held without me?"',
+          '"How much damage did I block or absorb this match?"',
+          '"Did I survive longer than the enemy\'s equivalent role player?"',
+        ],
+        correct: 1,
+        explanation: 'The expert-level self-evaluation question is about spatial enabling, not individual metrics. It forces the player to think about their contribution to the team\'s ability to hold positions — the invisible but essential layer of expert play that eliminates and kill counts do not capture.',
+      },
+    ],
+  },
+};

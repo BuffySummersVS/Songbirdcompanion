@@ -1,0 +1,116 @@
+export default {
+  id: 'advanced-off-angles',
+  title: 'Off-Angles',
+  subtitle: 'Attacking from unexpected directions',
+  category: 'advanced',
+  pathId: 'advanced',
+  order: 4,
+  prerequisites: ['advanced-fight-tempo'],
+  xpReward: 65,
+  estimatedMinutes: 5,
+  difficulty: 4,
+  tags: ['off-angles', 'flanking', 'positioning', 'pressure', 'advanced'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'An off-angle is a position that attacks the enemy from a direction they are not watching. Most players naturally face the main threat — the enemy tank pushing forward, the main assault team. An off-angle player attacks from a different vector, splitting enemy attention and creating crossfires.',
+    },
+    {
+      type: 'text',
+      heading: 'Why Off-Angles Work',
+      body: 'Enemies can only face one direction at a time. If your main group presses from the front and an off-angle player attacks from a flank, the enemy must choose what to respond to. Turning to deal with the flank exposes them to the main group. Ignoring the flank means taking free damage. Either option puts them at a disadvantage.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Effective vs Ineffective Off-Angles',
+      body: 'Effective: A Soldier: 76 climbs high ground on the side of a choke while the tank engages frontally. The enemy must look up to deal with him, exposing them to the tank. Ineffective: A Reaper runs solo into the enemy backline with no coordination, dies without support, and leaves his team 4v5.',
+    },
+    {
+      type: 'text',
+      heading: 'The Coordination Requirement',
+      body: 'Off-angles only create value when timed with main team pressure. An off-angle player who engages alone without main team follow-up just gets focused and eliminated. The golden rule: engage the off-angle when the enemy is already dealing with your main group. If your team is behind cover and not engaging, your flank will be met with the full enemy team.',
+    },
+    {
+      type: 'text',
+      heading: 'Maintaining the Off-Angle',
+      body: 'Once you establish an off-angle, do not stay there indefinitely. Enemies will adapt — they will rotate a player to deal with you, or change their formation. Be ready to fall back, relocate, or rejoin your team. An off-angle is a tool, not a permanent camp. The moment enemies adjust, your advantage is gone.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'The Lone Wolf Mistake',
+      body: 'The most common off-angle error is engaging without team coordination, then getting eliminated alone. This gives the enemy a numbers advantage and often costs the team the fight. Always know what your team is doing before committing to an off-angle.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-advanced-off-angles',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is an "off-angle" in Overwatch?',
+        options: [
+          'Any position on high ground above the main fight',
+          'A position that attacks the enemy from a direction they are not watching',
+          'A defensive position behind your own team',
+          'A wide arc movement to disengage from a fight',
+        ],
+        correct: 1,
+        explanation: 'An off-angle attacks from a direction the enemy is not focused on. Since most enemies face the main threat, off-angles come from the sides or rear, splitting attention and forcing uncomfortable choices.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'Why do off-angles create an advantage even without guaranteed kills?',
+        options: [
+          'They increase your own movement speed',
+          'They make it impossible for enemies to group up',
+          'They force enemies to split their attention — dealing with both the main group and the flanker disadvantages both responses',
+          'They guarantee the high ground for your entire team',
+        ],
+        correct: 2,
+        explanation: 'Off-angles work by creating a dilemma. Turning to deal with the flank exposes the enemy to the main group; ignoring the flank means taking free damage. Either choice puts them at a disadvantage even if the flanker does not secure a kill.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'An off-angle player should engage independently, drawing enemy attention regardless of whether the main team is pushing.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Off-angles require coordination. If the main team is not applying pressure when you engage from a flank, the entire enemy team can turn and focus you. The off-angle must engage while the enemy is already occupied with the main group.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'The enemy team starts rotating a player to challenge your off-angle. What should you do?',
+        options: [
+          'Stay and fight — you were there first',
+          'Immediately use your ultimate to win the 1v1',
+          'Assess whether the angle is still viable; be ready to fall back or relocate if the advantage is gone',
+          'Call for your whole team to come to your position',
+        ],
+        correct: 2,
+        explanation: 'An off-angle loses value the moment the enemy adapts. Once they rotate a player to deal with you, your angle is no longer "off" — it is contested. Be ready to fall back, find a new angle, or rejoin the main group.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'Which of these is an example of an effective off-angle?',
+        options: [
+          'A Reaper charges into the enemy backline while his team is behind cover not yet engaging',
+          'A Soldier: 76 takes high ground on the side of a choke while the tank pushes frontally, splitting enemy attention',
+          'A Tracer chases a fleeing enemy hero all the way to the enemy spawn',
+          'A Widowmaker snipes from the same angle every fight so the enemy expects it',
+        ],
+        correct: 1,
+        explanation: 'Soldier: 76 on side high ground is effective because it is coordinated with the tank\'s frontal pressure. The enemy is already dealing with the tank when the Soldier starts firing from above, creating a real dilemma. Reaper without team engagement, Tracer chasing, and predictable Widowmaker all have major flaws.',
+      },
+    ],
+  },
+};

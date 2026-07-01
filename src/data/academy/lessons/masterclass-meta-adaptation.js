@@ -1,0 +1,115 @@
+export default {
+  id: 'masterclass-meta-adaptation',
+  title: 'Meta Adaptation',
+  subtitle: 'Adapting to the evolving game meta and maintaining competitive relevance',
+  category: 'masterclass',
+  pathId: 'masterclass',
+  order: 14,
+  prerequisites: ['masterclass-spawn-timers'],
+  xpReward: 80,
+  estimatedMinutes: 8,
+  difficulty: 5,
+  tags: ['meta', 'adaptation', 'patches', 'evolution', 'masterclass'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'The meta — the currently strongest strategies, compositions, and heroes — changes with every patch. A masterclass player is not just skilled in the current meta; they are skilled at adapting to any meta. They understand why things are strong or weak, not just what is currently strong or weak. That understanding enables rapid adjustment when patches change the balance.',
+    },
+    {
+      type: 'text',
+      heading: 'Why Metas Exist',
+      body: 'Metas emerge when certain heroes, compositions, or strategies are systematically stronger than their alternatives under the current game rules. This happens due to: ability stats (damage, cooldown, healing values), synergy between specific heroes, map environments favouring certain playstyles, or community discovery of previously underutilised strategies. Understanding which of these factors drives a meta tells you how stable it is and when it is likely to change.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Adapting to a Patch',
+      body: 'A patch significantly reduces Roadhog\'s hook damage. Players who understand why Roadhog was strong (one-shot hook combo, high individual threat) recognise that he no longer serves that win condition reliably. They adapt immediately — not waiting for tier lists — because they understand the underlying mechanic change. Players who relied on knowing "Roadhog is meta" without understanding why are slower to adapt.',
+    },
+    {
+      type: 'text',
+      heading: 'Fundamental vs Meta Skills',
+      body: 'Some skills are fundamental — they remain effective regardless of meta: positioning, target priority, team communication, resource economy, and mental resilience. Others are meta-dependent — specific to the current hero balance. Masterclass players invest heavily in fundamental skills because they transfer across all metas. When the meta shifts, fundamentals remain; the meta-specific techniques must be updated.',
+    },
+    {
+      type: 'text',
+      heading: 'Leading vs Following the Meta',
+      body: 'Most players follow the meta — they play whatever is currently recognised as strong. Expert and masterclass players can lead the meta — identifying underutilised strategies that are strong before the community broadly recognises them. This requires understanding the underlying mechanics well enough to evaluate compositions and strategies independently, not just deferring to community consensus.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'When a major patch drops, spend 30 minutes reading the patch notes and asking: "What specific mechanics changed? Who benefits from these changes, and who is hurt?" This analysis predicts the meta shift before it is fully established — giving you an adaptation lead over players who wait for content creators to tell them what is strong.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-masterclass-meta-adaptation',
+    xpReward: 45,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is the "meta" in Overwatch?',
+        options: [
+          'The total number of heroes currently available to play',
+          'The currently strongest strategies, compositions, and heroes given the present game balance',
+          'The official competitive ruleset used in professional tournaments',
+          'A measurement of individual player performance across a season',
+        ],
+        correct: 1,
+        explanation: 'The meta is the emergent set of strategies and heroes that are systematically stronger than alternatives under current game rules. It emerges from ability stats, hero synergies, map environments, and community discovery. It changes with patches and ongoing community exploration.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'Why does understanding WHY something is meta help more than knowing WHAT is meta?',
+        options: [
+          'Understanding helps you explain the meta to teammates more effectively',
+          'You can immediately evaluate patch changes and adapt — rather than waiting for the community to establish new tier lists',
+          'Understanding why reduces the number of heroes you need to learn',
+          'Tier lists are always delayed, so understanding allows you to access them earlier',
+        ],
+        correct: 1,
+        explanation: 'Understanding the underlying mechanic behind a meta hero or strategy lets you evaluate patch changes independently. If you know Roadhog is strong because of the one-shot hook combo, you know immediately when that is nerfed whether Roadhog remains viable. Players who only know "Roadhog is meta" must wait for tier lists.',
+      },
+      {
+        id: 'q3',
+        type: 'multiple-choice',
+        question: 'Which of these is a fundamental skill that transfers across all metas?',
+        options: [
+          'Mastery of the currently strongest hero',
+          'Knowledge of which ultimates currently deal the most damage',
+          'Positioning, target priority, communication, and resource economy',
+          'Running the composition currently used in professional tournaments',
+        ],
+        correct: 2,
+        explanation: 'Fundamental skills — positioning, target priority, communication, and resource economy — remain effective regardless of which heroes or strategies are dominant. They are the stable foundation that persists through meta shifts. Investing in fundamentals produces returns across every meta that follows.',
+      },
+      {
+        id: 'q4',
+        type: 'true-false',
+        question: 'Most competitive players lead the meta — identifying strong strategies before the community broadly recognises them.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Most players follow the meta — playing what is already recognised as strong. Leading the meta — independently evaluating compositions and strategies based on mechanical understanding — requires deep game knowledge and is less common. It is a masterclass skill that confers a temporary edge before others catch up.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'A major patch drops. What is the masterclass approach to adapting?',
+        options: [
+          'Wait for content creators and tier lists to establish what is now strong',
+          'Continue playing what you know until you observe losses from outdated strategies',
+          'Read the patch notes immediately, identify which mechanics changed and who benefits, and adapt before the community establishes a new tier list',
+          'Play every hero for one match to test which ones feel stronger after the patch',
+        ],
+        correct: 2,
+        explanation: 'Reading patch notes analytically — identifying which mechanics changed and tracing their downstream effects on hero viability and composition strength — gives an adaptation lead over players who wait for community consensus. The analysis takes 30 minutes and can produce days or weeks of understanding advantage before the meta stabilises publicly.',
+      },
+    ],
+  },
+};

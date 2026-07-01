@@ -1,0 +1,115 @@
+export default {
+  id: 'advanced-space-creation',
+  title: 'Space Creation',
+  subtitle: 'How to control the map by controlling zones',
+  category: 'advanced',
+  pathId: 'advanced',
+  order: 1,
+  prerequisites: ['counter-picking'],
+  xpReward: 65,
+  estimatedMinutes: 6,
+  difficulty: 4,
+  tags: ['space', 'map-control', 'positioning', 'advanced'],
+
+  content: [
+    {
+      type: 'text',
+      body: '"Space" in Overwatch refers to geographic control — the parts of the map your team safely occupies and can fight from. Creating space means pushing enemies out of positions they want to hold, or denying areas before the enemy reaches them. Every role creates space differently, but the goal is the same: fight from an advantageous position.',
+    },
+    {
+      type: 'text',
+      heading: 'How Each Role Creates Space',
+      body: 'Tanks create space by physically walking forward, forcing enemies to respond to their presence. A Reinhardt advancing with barrier up pushes the engagement zone toward the enemy. Damage heroes create space through eliminations — a dead enemy occupies zero space. Supports create space indirectly by keeping their team alive long enough to push and hold zones.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Reading the Map',
+      body: 'On a payload escort map, the enemy team will try to hold a choke just before the next checkpoint. Your team\'s job is to "take space" by breaking through that choke. If you kill two defenders, the remaining three may be forced to fall back — you just created space by reducing their ability to contest.',
+    },
+    {
+      type: 'text',
+      heading: 'Holding Space vs Overextending',
+      body: 'Holding space means occupying a position that gives you a consistent advantage — you are difficult to reach, difficult to dislodge, and have clear sightlines. Overextending means pushing beyond positions your team can hold, becoming isolated and easy to focus. Good space creation advances to the next defensible line, not recklessly into enemy-favoured territory.',
+    },
+    {
+      type: 'text',
+      heading: 'Space Denial',
+      body: 'You can also create space by denying it to the enemy — controlling high ground before they do, using abilities that zone (Mei\'s wall, Junkrat traps, Symmetra turrets) to make areas unsafe, or threatening flanks that force enemies to position defensively. Space denial often wins fights before they start.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Before engaging, ask: "Where should my team be standing to win this fight?" Then move to get there before the enemy does. Good space is taken proactively, not reactively.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-advanced-space-creation',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What does "creating space" mean in Overwatch?',
+        options: [
+          'Moving your team further apart so abilities are harder to land',
+          'Controlling geographic areas of the map so your team can fight from advantageous positions',
+          'Spreading your ultimate charge across multiple heroes',
+          'Keeping track of how many enemies are alive at any moment',
+        ],
+        correct: 1,
+        explanation: 'Space refers to geographic control. Creating space means pushing enemies out of advantageous positions and occupying those positions yourself, giving your team a better angle to fight from.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'How does a Tank hero like Reinhardt primarily create space?',
+        options: [
+          'By dealing high burst damage to eliminate enemies quickly',
+          'By healing teammates so they can push forward safely',
+          'By advancing physically and forcing enemies to respond to his presence',
+          'By flanking the enemy backline to disrupt their supports',
+        ],
+        correct: 2,
+        explanation: 'Tanks create space by advancing their physical presence — moving forward, forcing enemies to either retreat or commit to fighting a heavily-armoured opponent. Their presence alone pushes the engagement zone forward.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Overextending and creating space are effectively the same thing — you just push forward as far as possible.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Creating space means advancing to positions your team can actually hold and fight from. Overextending means pushing beyond those positions into zones where you are isolated and easy to eliminate. Good space creation advances to the next defensible line.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'Which of these is an example of "space denial"?',
+        options: [
+          'Rushing to the enemy spawn door',
+          'Placing Symmetra turrets in corners to make an area unsafe for enemies to enter',
+          'Running away from a fight to reset',
+          'Using an ultimate ability to get three eliminations',
+        ],
+        correct: 1,
+        explanation: 'Space denial means making areas of the map unsafe or unusable for the enemy without necessarily occupying them yourself. Zoning abilities like Symmetra turrets, Mei walls, or Junkrat traps deny enemy access to specific zones.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'Before engaging a team fight, what should you ask yourself?',
+        options: [
+          '"How many ultimates does the enemy team have?"',
+          '"Which enemy has the most HP?"',
+          '"Where should my team be standing to win this fight?"',
+          '"Who on my team has the most damage output?"',
+        ],
+        correct: 2,
+        explanation: 'The key question before a fight is about positioning, not individual matchups. Identifying the ideal fighting position and getting there proactively gives your team a spatial advantage before the first shot is fired.',
+      },
+    ],
+  },
+};

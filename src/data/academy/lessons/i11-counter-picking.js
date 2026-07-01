@@ -1,0 +1,126 @@
+﻿export default {
+  id: 'counter-picking',
+  title: 'Counter Picking',
+  subtitle: 'Swapping to heroes with an advantage',
+  category: 'intermediate',
+  pathId: 'team-strategy',
+  order: 4,
+  prerequisites: ['team-compositions'],
+  xpReward: 60,
+  estimatedMinutes: 5,
+  difficulty: 4,
+  tags: ['counter-picking', 'hero-swap', 'adaptability', 'strategy'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Counter picking means switching to a hero who has a natural advantage over a hero that is giving your team trouble. It is one of the most powerful adaptations in Overwatch — recognising when a hero swap is the solution.',
+    },
+    {
+      type: 'text',
+      heading: 'Hard Counters vs Soft Counters',
+      body: 'A hard counter severely disadvantages the target — Sombra\'s hack disabling most of Symmetra\'s kit, Ana\'s Anti-Heal directly stopping Roadhog\'s Self-Heal, or Cassidy\'s Magnetic Grenade being nearly impossible to avoid. A soft counter has a meaningful advantage but the matchup remains playable with good play from either side.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Classic Counter Examples',
+      body: 'Pharah → Countered by hitscan heroes (Soldier: 76, McCree/Cassidy, Widowmaker). Widowmaker → Countered by dive heroes (Genji, Tracer, Winston). Symmetra → Countered by Sombra (hack disables turrets and most of her kit). Reinhardt → Countered by Pharah and Echo (attack from above and outside his swing range).',
+    },
+    {
+      type: 'text',
+      heading: 'When to Counter Pick',
+      body: 'Counter pick when: a single enemy hero is clearly carrying the match, your current hero is explicitly losing their matchup, or the enemy composition as a whole does not align with your hero\'s strengths. Do not counter pick out of frustration after one bad encounter — look at the pattern over several fights.',
+    },
+    {
+      type: 'text',
+      heading: 'The Cost of Swapping',
+      body: 'Swapping heroes has a cost: you reset your ultimate charge (capped at 15% of the new hero\'s cost), and it takes time to build momentum on an unfamiliar hero mid-match. This is why you should not swap constantly — every swap resets your ult charge and disrupts your rhythm.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: '"Counter-Pick" is Not the Only Solution',
+      body: 'Good positioning and teamwork can overcome many unfavourable hero matchups. A Widowmaker with excellent position and a peeling support can survive a Tracer dive. Swapping to a Widowmaker counter is not always necessary if your fundamentals are solid.',
+    },
+    {
+      type: 'text',
+      heading: 'Coordination Matters',
+      body: 'Counter picking only helps if it addresses the actual problem. If the enemy Pharah is dominant and you swap to Soldier: 76 but the whole team ignores her, the problem continues. Communicate the swap and the plan: "I am going Soldier to deal with Pharah — play aggressive when she is down."',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Check SongBird\'s CounterWatch feature for researched counter-pick data on every hero in the game. Understanding counters before you need them in-match saves valuable decision time.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-counter-picking',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is a "hard counter" in Overwatch?',
+        options: [
+          'Any hero who deals extra damage to a specific role',
+          'A hero who severely disadvantages another hero due to ability interactions',
+          'A counter-pick that requires perfect aim to be effective',
+          'A strategy of switching heroes after every death',
+        ],
+        correct: 1,
+        explanation: 'A hard counter severely disadvantages a specific hero due to how their abilities interact — Sombra\'s hack on Symmetra removes most of her kit, for example. The target hero is not just weaker; they are fundamentally disrupted.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'The enemy Pharah is getting kills every fight. Which type of hero should you consider switching to?',
+        options: [
+          'A close-range hero like Reaper or Symmetra',
+          'A hitscan hero with good airborne tracking like Soldier: 76 or McCree',
+          'A high-mobility hero like Tracer to dodge her rockets',
+          'A tank to absorb her rocket splash damage',
+        ],
+        correct: 1,
+        explanation: 'Pharah is most effectively countered by hitscan heroes — those whose bullets travel instantly rather than as projectiles. Soldier: 76 and McCree/Cassidy can reliably hit an airborne moving Pharah.',
+      },
+      {
+        id: 'q3',
+        type: 'multiple-choice',
+        question: 'What happens to your ultimate charge when you swap heroes?',
+        options: [
+          'You keep all your current ultimate charge on the new hero',
+          'Your charge resets to 0% completely',
+          'Your charge is capped at 15% of the new hero\'s ultimate cost',
+          'Your charge transfers fully but you must unlock the new ultimate first',
+        ],
+        correct: 2,
+        explanation: 'When swapping heroes, your charge is capped at 15% of the new hero\'s ultimate cost. If you were at 90% charge, you lose most of that investment. This is the main cost of counter-picking mid-match.',
+      },
+      {
+        id: 'q4',
+        type: 'true-false',
+        question: 'Counter-picking is always the correct solution when losing a fight.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Many fight losses come down to positioning, coordination, or cooldown mismanagement — not hero choice. Counter-picking is valuable when a specific hero is clearly the problem, but swapping will not fix fundamental errors.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'You just swapped to a Sombra counter-pick to deal with the enemy Symmetra. But your team continues losing the fights. What might be happening?',
+        options: [
+          'Sombra is not a counter to Symmetra after all',
+          'Your team may not be following up after your hack, or there is another issue beyond Symmetra',
+          'You did not communicate the swap so your team does not know the plan',
+          'Both B and C are possible explanations',
+        ],
+        correct: 3,
+        explanation: 'Both are valid explanations. A counter-pick only works if the team coordinates around it. If you hack Symmetra but your team is not in position to follow up, the hack window is wasted. And the team loss may have other causes beyond Symmetra.',
+      },
+    ],
+  },
+};

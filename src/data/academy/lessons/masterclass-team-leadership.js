@@ -1,0 +1,116 @@
+export default {
+  id: 'masterclass-team-leadership',
+  title: 'Team Leadership',
+  subtitle: 'Carrying team energy and culture to peak performance',
+  category: 'masterclass',
+  pathId: 'masterclass',
+  order: 2,
+  prerequisites: ['masterclass-shot-calling'],
+  xpReward: 75,
+  estimatedMinutes: 8,
+  difficulty: 5,
+  tags: ['leadership', 'team-culture', 'morale', 'environment', 'masterclass'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Leadership in Overwatch is not about authority — it is about influence. A team leader shapes the environment in which their team plays: the emotional tone, the willingness to try difficult strategies, the response to setbacks. Teams with positive, constructive leaders consistently outperform teams of equal skill with toxic or directionless environments.',
+    },
+    {
+      type: 'text',
+      heading: 'Energy Carries',
+      body: 'Confidence and focus are contagious. When a player responds to a lost fight with "good fight, let\'s go left flank next" they communicate that the loss was a data point, not a catastrophe. When someone says "we\'re terrible" after the same loss, they communicate helplessness. The team\'s collective belief in the next fight is directly shaped by how the most vocal player frames the previous one.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Leadership After a Loss',
+      body: 'Fight lost. Two options: "We just keep dying to that Zarya — I don\'t know what to do" versus "Their Zarya bubbles the support before we can burst them down — let\'s bait her bubble before we commit next time." Same loss, two different frames. The second creates a plan, communicates competence, and gives the team something actionable. That is leadership.',
+    },
+    {
+      type: 'text',
+      heading: 'Constructive Correction',
+      body: 'Leaders correct mistakes constructively: on what to do, not who is to blame. "If we spread out before the Grav, fewer of us get caught" versus "you always group up like that." One creates learning; one creates defensiveness. Defensiveness reduces information sharing (players stop calling mistakes to avoid blame), which reduces team coordination. Constructive correction builds a team that learns faster.',
+    },
+    {
+      type: 'text',
+      heading: 'Creating Psychological Safety',
+      body: 'Psychological safety is the confidence to try difficult things without fear of blame. Teams with psychological safety attempt riskier cross-map strategies, call out more information (including their own mistakes), and adapt faster. Create it by responding positively when teammates try things that fail: "good idea, almost worked — their Kiriko was too fast" instead of "why did you do that?"',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'The Absent Leader',
+      body: 'The opposite of good leadership is not bad leadership — it is no leadership. Teams without anyone shaping the environment drift toward the path of least resistance: silence, blame culture, or despair after losses. Even a single player consistently modeling constructive framing transforms a team\'s environment. You do not need a title; you need to act.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-masterclass-team-leadership',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What does "team leadership" in Overwatch primarily involve?',
+        options: [
+          'Being assigned the team captain role and directing all players',
+          'Influencing the team\'s emotional environment, constructive response to losses, and willingness to try difficult strategies',
+          'Having the highest eliminations and carrying the team through individual performance',
+          'Making all strategic decisions unilaterally for the team',
+        ],
+        correct: 1,
+        explanation: 'Leadership in Overwatch is about influence over environment, not authority. The leader shapes the emotional tone and collective belief that enables the team to play at their best. This is independent of role or any formal designation.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'After a lost fight, which response demonstrates leadership?',
+        options: [
+          '"We\'re terrible — we just can\'t play against that comp."',
+          '"Good fight, their Zarya bubbles the support before we can burst — let\'s bait the bubble first next fight."',
+          '"Everyone just needs to play better."',
+          'Silence — do not comment on losses so you do not affect morale negatively.',
+        ],
+        correct: 1,
+        explanation: 'Leadership frames losses as data points with actionable analysis. The second response identifies the specific problem and gives a concrete plan. This communicates competence, provides direction, and prevents despair — even though both first and second options describe the same loss.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Correcting a teammate\'s mistake by calling out who made the error creates better team performance than explaining what to do differently.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Blaming creates defensiveness, which reduces information sharing — players stop calling out mistakes to avoid blame, reducing coordination. Constructive correction focuses on what to do differently, not who is responsible. Teams that learn faster are teams that can honestly analyse mistakes without fear.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'What is "psychological safety" in the context of Overwatch team play?',
+        options: [
+          'The feeling that the game is balanced and fair',
+          'Confidence to try difficult things — risky strategies, unusual calls, honest mistake reporting — without fear of blame',
+          'A guarantee that no player will be insulted or harassed',
+          'Playing with teammates at a similar skill level to feel comfortable',
+        ],
+        correct: 1,
+        explanation: 'Psychological safety is the team environment where trying difficult things and failing is safe. Teams with it attempt riskier cross-map strategies, call out more information, and adapt faster because players are not self-censoring to avoid blame. It is built by responding positively to attempts, not just to successes.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'A teammate tries a risky flank strategy and it fails. What is the leadership response?',
+        options: [
+          '"Why did you do that? We needed you on the main fight."',
+          '"Good idea — almost worked. Their Kiriko was too fast with the Suzu. Let\'s try that angle when Kiriko has used her teleport."',
+          'No comment — failures should not be acknowledged',
+          '"Next time just play safe and do not try risky things."',
+        ],
+        correct: 1,
+        explanation: 'The leadership response acknowledges the attempt, identifies why it failed (specific information), and builds on it for next time. This creates psychological safety — the teammate learns without shame and will communicate and try again. Punishment or silence both reduce future information and creativity.',
+      },
+    ],
+  },
+};

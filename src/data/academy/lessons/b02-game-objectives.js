@@ -1,0 +1,127 @@
+﻿export default {
+  id: 'game-objectives',
+  title: 'Game Objectives',
+  subtitle: 'What you are actually trying to win',
+  category: 'beginner',
+  pathId: 'foundations',
+  order: 2,
+  prerequisites: ['what-is-overwatch'],
+  xpReward: 50,
+  estimatedMinutes: 5,
+  difficulty: 1,
+  tags: ['modes', 'objectives', 'maps'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Overwatch has six different map types, each with its own objective. Understanding what you are trying to accomplish in each mode is the first step to playing well — your hero ability choices and positioning should always serve the objective.',
+    },
+    {
+      type: 'text',
+      heading: 'Escort',
+      body: 'The attacking team must escort a payload (a vehicle) to the end of a track before time runs out. The defending team tries to stall it. The payload moves automatically when attackers are near it and defenders are not. Examples: Dorado, Rialto, Junkertown.',
+    },
+    {
+      type: 'text',
+      heading: 'Control',
+      body: 'Both teams fight over a single central point. The first team to reach 100% capture progress wins the round. Matches are best-of-three. The point resets each round. Examples: Ilios, Oasis, Nepal, Lijiang Tower.',
+    },
+    {
+      type: 'text',
+      heading: 'Hybrid',
+      body: 'A combination of Assault and Escort. Attackers must first capture a point, then escort the unlocked payload to the end. Examples: King\'s Row, Blizzard World, Eichenwalde.',
+    },
+    {
+      type: 'text',
+      heading: 'Push',
+      body: 'Both teams fight over a robot in the center of the map. The team that controls the robot pushes it toward the enemy base. The team that pushes the robot furthest before time ends wins. Examples: New Queen Street, Colosseo, Esperança.',
+    },
+    {
+      type: 'text',
+      heading: 'Flashpoint',
+      body: 'The map has five capture points. Teams must capture three of them to win. After a point is captured, the next active point activates randomly. Examples: New Junk City, Suravasa.',
+    },
+    {
+      type: 'text',
+      heading: 'Clash',
+      body: 'Five points are arranged in a line. Teams win rounds by capturing points sequentially. The first team to win five rounds wins the match. Examples: Hanaoka, Throne of Anubis.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Always stay near the objective unless you have a specific reason not to. Many players lose matches by winning fights away from the point while the enemy captures uncontested.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-game-objectives',
+    xpReward: 30,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'In Escort mode, what makes the payload move?',
+        options: [
+          'It moves automatically on a timer',
+          'Attackers must stand next to it while no defenders are nearby',
+          'Attackers must push a button to activate it',
+          'Only the tank role can move the payload',
+        ],
+        correct: 1,
+        explanation: 'The payload moves when attackers are near it and no defenders are blocking. If a defender is near the payload, it stops. If only attackers are near, it moves.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'How many rounds must a team win to take a Control map?',
+        options: ['1', '2', '3', '5'],
+        correct: 1,
+        explanation: 'Control is best-of-three. The first team to win 2 rounds takes the map. Each round is played on a different sub-map, and the point resets to 0% at the start of each round.',
+      },
+      {
+        id: 'q3',
+        type: 'multiple-choice',
+        question: 'What makes Hybrid mode different from pure Escort?',
+        options: [
+          'There are two payloads',
+          'Attackers must capture a point before the payload is unlocked',
+          'Both teams escort their own payload',
+          'The payload moves in both directions',
+        ],
+        correct: 1,
+        explanation: 'Hybrid maps require attackers to first capture a point (like Assault mode), which unlocks the payload. Then they must escort it to the end.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'In Push mode, what is the core mechanic?',
+        options: [
+          'Capturing and holding five separate points',
+          'Escorting a payload while defending your own',
+          'Fighting over a robot that pushes toward the enemy base',
+          'Attacking a fortified point in waves',
+        ],
+        correct: 2,
+        explanation: 'Push maps feature a robot in the center of the map. Whichever team controls the robot pushes it toward the enemy base. The team that pushes it furthest wins.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'How many points must a team capture to win in Flashpoint mode?',
+        options: ['2 of 3', '3 of 5', '4 of 5', '5 of 7'],
+        correct: 1,
+        explanation: 'Flashpoint maps have five points. The first team to capture three of them wins. Points activate randomly after being captured.',
+      },
+      {
+        id: 'q6',
+        type: 'true-false',
+        question: 'Staying near the objective is almost always the right decision in Overwatch.',
+        options: ['True', 'False'],
+        correct: 0,
+        explanation: 'Yes — winning team fights off the objective while the enemy captures uncontested is a common mistake. Fights near the objective have immediate impact on the game.',
+      },
+    ],
+  },
+};

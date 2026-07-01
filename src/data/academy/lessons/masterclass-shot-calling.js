@@ -1,0 +1,115 @@
+export default {
+  id: 'masterclass-shot-calling',
+  title: 'Shot Calling',
+  subtitle: 'Leading your team through real-time communication',
+  category: 'masterclass',
+  pathId: 'masterclass',
+  order: 1,
+  prerequisites: ['expert-information-gathering'],
+  xpReward: 75,
+  estimatedMinutes: 8,
+  difficulty: 5,
+  tags: ['shot-calling', 'leadership', 'communication', 'in-game', 'masterclass'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'A shot caller is the player who makes real-time decisions for the whole team — calling when to engage, who to target, when to retreat, and which objectives to prioritise. Shot calling turns five individually skilled players into one coherent unit. It does not require being the best mechanical player; it requires the clearest fight-state awareness and the willingness to commit to decisions publicly.',
+    },
+    {
+      type: 'text',
+      heading: 'What Good Shot Calls Look Like',
+      body: 'Good shot calls are: short, specific, and timely. "Mercy focus" is better than "kill the support healer in the back." "Push right now" is better than "I think we should maybe try pushing if everyone is ready." "Fall back" is better than nothing. Bad shot calls are long explanations, hesitant suggestions, or calls that arrive after the window has already closed. Commit, say it fast, say it specific.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Shot Call Sequence',
+      body: 'Fight starts. "Focus Lucio." Lucio dies. "Push left — Mercy is peeking." The team pushes. Mercy retreats. "On objective — two coming from spawn." Team holds the objective. This is six words per call, maximum. The information-to-word ratio is as high as it can be. That is the model for shot calling.',
+    },
+    {
+      type: 'text',
+      heading: 'Who Should Shot Call',
+      body: 'The shot caller is usually the player with the broadest fight-state view — often a tank (who sees the front line and all angles), sometimes a support (who has to watch every teammate constantly). It does not have to be the team captain or most experienced player. It has to be whoever is most aware of the full picture at any given moment. Great teams have flexible shot calling — different players call for what they can best see.',
+    },
+    {
+      type: 'text',
+      heading: 'Handling Disagreement',
+      body: 'During a fight, contradicting the shot caller mid-call is worse than following a suboptimal call. Five players acting on a slightly wrong plan together beats five players acting on five different opinions simultaneously. Save disagreements for between fights: "That angle wasn\'t working — want to try the left side next fight?" Teams that debate mid-fight lose fights.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Start shot calling by making exactly one call per fight. One target call. That is it. Build the habit of committing to one public call before adding more. The first barrier is just making the call at all — once that is automatic, refining it becomes much easier.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-masterclass-shot-calling',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What makes a shot call "good"?',
+        options: [
+          'It is thorough, explaining the reasoning behind the call for teammates to understand',
+          'It is short, specific, and timely — communicated before the window it addresses has closed',
+          'It comes from the most mechanically skilled player on the team',
+          'It is agreed upon by all five players before being executed',
+        ],
+        correct: 1,
+        explanation: 'Good shot calls are short (low words), specific (exact target or action), and timely (before the window closes). Long explanations, hedge words, and late calls all reduce effectiveness. "Focus Mercy" in two words beats a three-sentence explanation that arrives two seconds too late.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'Who should make shot calls in a team?',
+        options: [
+          'Always the tank player, since they are at the front of every fight',
+          'The player with the highest career rank on the team',
+          'Whoever has the broadest fight-state view at any moment — often a tank or support, but not exclusively',
+          'Only one designated player per match, always the same person',
+        ],
+        correct: 2,
+        explanation: 'Shot calling follows information, not role or seniority. The player who can best see the current fight state makes the call for that moment. Great teams have flexible shot calling — different players contribute calls for what they can best observe.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Contradicting a shot caller mid-fight with a better idea helps the team make smarter decisions.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Five players acting on a slightly wrong plan together beats five players acting on five different opinions. Mid-fight disagreements fragment the team\'s action. Hold disagreements for between fights and address them calmly: "That angle wasn\'t working — want to try the left side next fight?"',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'Which of the following is a good example of a shot call?',
+        options: [
+          '"Everyone, I think we should try to focus on the support players because that worked last time, if everyone is ready."',
+          '"Focus Mercy."',
+          '"I\'m going to try something — follow me if you think it\'s a good idea."',
+          '"Someone should probably do something about their tank."',
+        ],
+        correct: 1,
+        explanation: '"Focus Mercy" is two words, specific (exact hero name), and immediately actionable. The other options are hedged, vague, or too long. Specificity and brevity are the two most important properties of a shot call.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'What is the first shot-calling habit to build?',
+        options: [
+          'Making detailed multi-step plans for every fight',
+          'Making exactly one call per fight — start with a target call — then refine from there as it becomes automatic',
+          'Shot calling requires years of experience before starting',
+          'Recording your voice and reviewing it to improve communication quality',
+        ],
+        correct: 1,
+        explanation: 'The first barrier to shot calling is simply making a call at all. Start with one target call per fight — just name the focus target. That is it. Once making a call is automatic, layer on position calls, retreat calls, and more. The habit builds on itself.',
+      },
+    ],
+  },
+};

@@ -1,0 +1,115 @@
+export default {
+  id: 'masterclass-coaching-concepts',
+  title: 'Coaching Concepts',
+  subtitle: 'How to analyse, teach, and improve your own and your team\'s play',
+  category: 'masterclass',
+  pathId: 'masterclass',
+  order: 6,
+  prerequisites: ['masterclass-predicting-enemy-decisions'],
+  xpReward: 75,
+  estimatedMinutes: 8,
+  difficulty: 5,
+  tags: ['coaching', 'improvement', 'analysis', 'feedback', 'masterclass'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Coaching is the process of identifying the specific errors that cause losses, the specific habits that produce wins, and systematically modifying behaviour to favour the latter. Self-coaching is applying this process to your own play. Team coaching applies it to a group. The masterclass player is always coaching themselves — even without formal review, between fights in real time.',
+    },
+    {
+      type: 'text',
+      heading: 'Root Cause Analysis',
+      body: 'Most visible mistakes are symptoms, not causes. A player dies — that is a symptom. Why did they die? They were overextended. Why were they overextended? They pushed forward when the tank had not established position. The root cause is "pushing before the tank," not "dying." Fix the root cause and the symptom disappears. Fix only the symptom and it returns a different way.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Coaching vs Criticising',
+      body: 'Criticism: "You keep dying alone." Coaching: "You push before the tank has the angle covered — wait for the tank to reach the corner, then follow. The gap between you and the tank is what they are exploiting." The same observation — you keep dying alone — produces either defensiveness or a concrete behavioural change depending on whether it is delivered as criticism or coaching.',
+    },
+    {
+      type: 'text',
+      heading: 'The Coaching Loop',
+      body: 'Effective coaching follows a loop: Observe → Identify (what happened) → Diagnose (why it happened) → Prescribe (what to do differently) → Practice → Observe again. Skipping diagnosis (going from observation straight to prescription) often produces wrong prescriptions. "You died" → "play more aggressively" may be the opposite of the correct solution.',
+    },
+    {
+      type: 'text',
+      heading: 'Coaching Yourself in Real Time',
+      body: 'Between fights, run a compressed self-coaching loop: "I died because I didn\'t check the right flank before pushing. Next fight: check right before I move." This takes three seconds and produces a concrete, targeted adjustment. Over a match, compounded micro-corrections accumulate into significantly better play — without video review, without a coach, in real time.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Pick one thing to improve per match, not five. "Today I am working on spreading formation before ultimates are used." One focused target produces faster improvement than five half-attended targets. Track whether you succeeded at the one thing at the match end.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-masterclass-coaching-concepts',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is "root cause analysis" in the context of Overwatch improvement?',
+        options: [
+          'Analysing which hero abilities cause the most team fight losses',
+          'Tracing a visible mistake back to the underlying decision or habit that caused it, rather than only addressing the surface symptom',
+          'Reviewing the statistics from past matches to find patterns in hero selection',
+          'Identifying the enemy\'s root strategy in each fight',
+        ],
+        correct: 1,
+        explanation: 'Root cause analysis goes beneath the visible mistake. A death is a symptom; the overextension that led to it is the cause; the reason for the overextension (pushing before the tank) is the root cause. Fixing root causes eliminates the conditions that produce multiple symptoms.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'What distinguishes coaching from criticism?',
+        options: [
+          'Coaching is positive; criticism is negative',
+          'Coaching identifies a specific behaviour and provides a concrete prescription to change it; criticism identifies a symptom without explaining causation or providing a path to improvement',
+          'Coaching only happens after a match; criticism can happen during one',
+          'Coaching is for lower-ranked players; criticism is used with experienced teammates',
+        ],
+        correct: 1,
+        explanation: 'The key difference is actionability. "You keep dying alone" is a criticism — it names the problem but provides no path forward. "You push before the tank has the angle — wait for the tank first" is coaching because it diagnoses the cause and prescribes a specific behavioural change.',
+      },
+      {
+        id: 'q3',
+        type: 'multiple-choice',
+        question: 'What is the correct order of the coaching loop?',
+        options: [
+          'Prescribe → Practice → Observe → Identify → Diagnose',
+          'Observe → Identify → Diagnose → Prescribe → Practice → Observe again',
+          'Diagnose → Observe → Identify → Prescribe → Practice',
+          'Identify → Prescribe → Practice → Observe → Diagnose',
+        ],
+        correct: 1,
+        explanation: 'The loop is: Observe (what happened), Identify (what specifically), Diagnose (why), Prescribe (what to change), Practice (execute the change), Observe again (did it work). Skipping diagnosis produces wrong prescriptions — the change may not address the actual root cause.',
+      },
+      {
+        id: 'q4',
+        type: 'true-false',
+        question: 'Real-time self-coaching between fights — running a compressed identify-diagnose-prescribe loop — is too slow to be useful during a match.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. A compressed self-coaching loop takes three seconds: "I died because I didn\'t check the right flank. Next fight: check right before I move." Applied consistently across a match, micro-corrections accumulate into significantly improved play. Real-time self-coaching is one of the highest-return habits at the masterclass level.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'How many improvement targets should you focus on per match?',
+        options: [
+          'As many as possible — the more you focus on, the more you improve',
+          'One clearly defined target — focused attention produces faster improvement than distributed attention across multiple targets',
+          'At least three — one mechanical, one strategic, one communication',
+          'Targets should be identified after the match using statistics, not before',
+        ],
+        correct: 1,
+        explanation: 'One focused target per match produces faster improvement than five half-attended ones. Splitting attention across multiple targets means none get enough focus to become automatic. "Today: spread formation before ultimates land." One thing, measurable, end-of-match check.',
+      },
+    ],
+  },
+};

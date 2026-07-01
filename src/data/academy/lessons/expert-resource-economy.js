@@ -1,0 +1,115 @@
+export default {
+  id: 'expert-resource-economy',
+  title: 'Resource Economy',
+  subtitle: 'Managing all team resources across an entire match',
+  category: 'expert',
+  pathId: 'expert',
+  order: 4,
+  prerequisites: ['expert-reading-enemy-win-conditions'],
+  xpReward: 70,
+  estimatedMinutes: 7,
+  difficulty: 5,
+  tags: ['resource-economy', 'match-management', 'ultimates', 'cooldowns', 'expert'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Resource economy is the management of all your team\'s resources across an entire match — not just one fight. A team with consistently better resource management will outperform a more mechanically skilled team over a full game. Expert players think in terms of match-long economy: every use of a resource should build toward a cumulative advantage.',
+    },
+    {
+      type: 'text',
+      heading: 'The Economy Cycle',
+      body: 'Resources (HP, cooldowns, ultimates) are spent in fights and recharged between them. The goal is to enter each fight with more resources than the enemy, use fewer resources to win each fight, and build a cumulative surplus. A team that wins every fight on a shoestring budget — barely spending ultimates — builds a growing advantage as enemies burn more to achieve the same results.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Economy Over a Full Match',
+      body: 'Fight 1: You win using zero ultimates, they use two. Fight 2: You win using one ultimate, they use two. Fight 3: You win using one ultimate (Zarya charges her ult), they use three. By fight four, you have two ultimates ready; they have zero. This accumulated economy advantage creates an inevitable decisive fight where you dominate. Economy wins were not visible fight-by-fight — they compound over time.',
+    },
+    {
+      type: 'text',
+      heading: 'Healing Economy',
+      body: 'Healing is a consumable resource — support heroes have limited output and cooldowns. Healing wasted on unhealable situations (a teammate diving alone into five enemies) is healing that could have sustained a winnable fight. Expert supports triage healing: prioritise teammates who can survive with healing, deprioritise those taking environmental damage or fighting at unsustainable odds.',
+    },
+    {
+      type: 'text',
+      heading: 'Avoiding Economy Waste',
+      body: 'Economy waste is spending resources for no return: dying without using your ultimate, using healing on a doomed player, blowing a key cooldown on a target that escapes. Expert players minimise waste through deliberate timing. Before using any significant resource, ask: "Is this the right moment, or am I spending this under pressure and it won\'t change the outcome?"',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'At the end of a match, the team that used fewer total resources to win each fight will almost always have had the better economy. Track this mentally: after every fight, assess whether you spent more or less than the enemy. Consistent economy advantage compounds into decisive late-match power.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-expert-resource-economy',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is "resource economy" in Overwatch?',
+        options: [
+          'Managing individual hero cooldowns within a single fight',
+          'Managing all team resources across an entire match to build cumulative advantage',
+          'Deciding which heroes to buy with in-game currency',
+          'Tracking how many health packs your team uses per fight',
+        ],
+        correct: 1,
+        explanation: 'Resource economy operates at the match level, not the fight level. The goal is a cumulative surplus — consistently spending less than the enemy to achieve the same or better results across multiple fights, building a compounding advantage.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'If your team wins fight one using zero ultimates and the enemy used two, what has happened economically?',
+        options: [
+          'Nothing meaningful — single fight results do not affect economy',
+          'Your team has an economy advantage — you won while they spent significant resources',
+          'You should have used your ultimates too, to get even further ahead',
+          'The enemy saved their ultimate charge for the next fight, so the economy is even',
+        ],
+        correct: 1,
+        explanation: 'Winning a fight while the enemy spent resources (ultimates, cooldowns) is a positive trade in economy terms. They must rebuild that resource; you still have yours. Compound this advantage across multiple fights and the gap in available resources grows.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Healing a teammate who is completely surrounded and certain to die is a good use of healing resources.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Healing wasted on unwinnable situations is healing unavailable for survivable ones. Expert supports triage — prioritising heroes who can survive with healing over those already committed to an unwinnable position. The healable fight, not the lost one, is where your output matters.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'What is "economy waste"?',
+        options: [
+          'Using too many abilities in a single fight rather than saving them',
+          'Spending significant resources (ultimates, cooldowns, HP) for no return — dying without using your ult, healing doomed players, blowing cooldowns that change nothing',
+          'Having too many healing sources on your team so some output is redundant',
+          'Using the wrong hero for a given map, wasting their kit',
+        ],
+        correct: 1,
+        explanation: 'Economy waste is any resource expenditure that produces no meaningful result. Dying with a full ultimate, using a cooldown that does not change the fight outcome, or healing a player who dies immediately after — these are the most common forms of economy waste that separate expert play from good play.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'Over five fights, your team consistently wins but uses two ultimates per fight while the enemy uses three. What is the long-term result?',
+        options: [
+          'No meaningful difference — you both win and lose fights equally',
+          'Your team builds a cumulative resource surplus; the enemy is always spending more to achieve the same results, creating an inevitable economy advantage for you',
+          'The team using more ultimates is actually building more charge from their use',
+          'This advantage only matters in the final fight of the match',
+        ],
+        correct: 1,
+        explanation: 'Consistently spending fewer resources to win fights builds a cumulative advantage. The enemy is depleting more each fight while you preserve more. This compounding surplus eventually creates a decisive fight where you have a significant ultimate advantage over an enemy who has been spending more. Economy advantages are invisible until they are decisive.',
+      },
+    ],
+  },
+};

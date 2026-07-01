@@ -1,0 +1,115 @@
+export default {
+  id: 'advanced-ability-layering',
+  title: 'Ability Layering',
+  subtitle: 'Combining abilities for compounding impact',
+  category: 'advanced',
+  pathId: 'advanced',
+  order: 9,
+  prerequisites: ['advanced-ultimate-tracking'],
+  xpReward: 65,
+  estimatedMinutes: 6,
+  difficulty: 4,
+  tags: ['ability-layering', 'combos', 'synergy', 'coordination', 'advanced'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Ability layering is the practice of combining abilities across multiple heroes so that each ability amplifies the others. Individual abilities are strong; layered abilities can be fight-winning. The difference between a good team and a great team is often that the great team\'s abilities compound each other rather than being used independently.',
+    },
+    {
+      type: 'text',
+      heading: 'The Three Layers',
+      body: 'Think of ability layering in three tiers: Setup (abilities that create a window), Execute (abilities that deal damage or eliminate inside that window), and Sustain (abilities that keep the execution going or protect those executing). A Zarya bubble creating charge → Graviton Surge (setup) → Hanzo Dragon Strike (execute) → Lucio Speed Boost for escape (sustain) is a classic three-layer ultimate combination.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Beyond Ultimates',
+      body: 'Layering happens with regular abilities too. Ana\'s Biotic Grenade prevents healing (setup) → tank dives and deals damage without the enemy being able to heal (execute) → Kiriko cleanses before the grenade expires to reset the healing (sustain). This three-second window is created by layering two abilities across two heroes.',
+    },
+    {
+      type: 'text',
+      heading: 'Calling Your Layer',
+      body: 'For ability layering to work, the timing must be communicated. "I\'m throwing Grenade in three seconds — dive now" is the callout. Without communication, ability A gets used, nothing follows, the window closes unused. The callout does not need to be complex — naming the ability and a countdown is enough: "Grav in three, Dragon ready?"',
+    },
+    {
+      type: 'text',
+      heading: 'Identifying Synergies on Your Team',
+      body: 'Look at your current hero lineup and find which abilities naturally enhance others. Setup abilities: sleep dart, freeze, hook, Graviton, Earthshatter. Execute abilities: high burst damage, ultimate strikes. Sustain abilities: shields, healing amplification, cleanse. If your team has a setup and an execute but no sustain, the combo works — just know there will be a vulnerability after.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Before using a setup ability, ask: "What is my execute?" Before using an execute ability, ask: "Has the setup happened yet?" Pausing for one second to check creates dramatically better ability layering than using abilities on instinct.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-advanced-ability-layering',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is "ability layering"?',
+        options: [
+          'Using all of your own abilities in rapid succession for maximum personal damage',
+          'Combining abilities across multiple heroes so each ability amplifies the effect of others',
+          'Saving your abilities until the enemy uses theirs first',
+          'Using abilities in alphabetical order based on their in-game names',
+        ],
+        correct: 1,
+        explanation: 'Ability layering is about cross-hero synergy — setup abilities creating windows that execute abilities capitalise on. Individual abilities are strong; layered abilities compound and can be fight-winning.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'In the Zarya Graviton → Hanzo Dragon Strike combo, what role does the Graviton Surge play?',
+        options: [
+          'Execute — it deals the most damage and wins the fight',
+          'Sustain — it keeps the team healthy during the fight',
+          'Setup — it creates the window (grouped enemies) for the execute (Dragon Strike) to maximise impact',
+          'Counter — it blocks enemy abilities from interrupting the combo',
+        ],
+        correct: 2,
+        explanation: 'Graviton Surge is the setup — it groups all enemies in one place, creating a window of maximum vulnerability. Dragon Strike is the execute — it deals massive damage to grouped enemies. Without the setup, Dragon Strike hits scattered enemies and loses much of its value.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Ability layering only applies to ultimate abilities, not regular cooldowns.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Ability layering works with all abilities. Ana\'s Biotic Grenade preventing healing while a tank dives for free damage is a two-ability layer using regular cooldowns. Recognising setup-execute-sustain patterns among non-ultimate abilities is just as valuable.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'What is the biggest obstacle to effective ability layering in most matches?',
+        options: [
+          'Heroes do not have abilities that work well together in Overwatch',
+          'Lack of communication — without callouts, abilities are used at different times and the window closes unused',
+          'Players use abilities too slowly, making combos unreliable',
+          'Ability layering only works at the highest ranks of competitive play',
+        ],
+        correct: 1,
+        explanation: 'Timing is everything in ability layering, and timing requires communication. If Ana uses Biotic Grenade but no one knows to follow up, the window closes unused. A simple callout — "Grenade out, dive now" — turns a wasted ability into a fight winner.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'Before using a setup ability like Ana\'s Sleep Dart, what should you confirm?',
+        options: [
+          'That your ultimate is fully charged',
+          'What the execute ability is and who will use it',
+          'That all five enemies are present so the setup affects as many as possible',
+          'That your health is at maximum to survive the counter-attack',
+        ],
+        correct: 1,
+        explanation: 'A setup ability only creates value if an execute follows. Before landing Sleep Dart, confirm who is going to follow up and with what — a burst damage hero needs to be in position to capitalise on the sleeping target. Setting up without an execute is just a delayed re-fight.',
+      },
+    ],
+  },
+};

@@ -1,0 +1,115 @@
+export default {
+  id: 'masterclass-playing-from-behind',
+  title: 'Playing From Behind',
+  subtitle: 'Comeback mechanics and the mindset for deficit play',
+  category: 'masterclass',
+  pathId: 'masterclass',
+  order: 11,
+  prerequisites: ['masterclass-mental-resilience'],
+  xpReward: 75,
+  estimatedMinutes: 8,
+  difficulty: 5,
+  tags: ['comeback', 'deficit', 'resilience', 'strategy', 'masterclass'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Playing from behind is one of the highest-pressure states in Overwatch. The enemy has an advantage — objective progress, ultimate surplus, better positioning — and your team must overcome it. The masterclass approach: do not try to erase the deficit in one move. Play the game in front of you, reduce the gap incrementally, and be ready to act when the opportunity opens.',
+    },
+    {
+      type: 'text',
+      heading: 'The Panic Response',
+      body: 'The most common behind-deficit mistake is the panic response — trying to win back everything immediately. Teams force fights at bad odds, use ultimates reactively rather than strategically, and abandon their composition\'s win condition chasing shortcuts. Panic compounds the deficit. The counter-approach: play more conservatively than normal, build resources back up, and avoid feeding the enemy further ahead.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Deficit Management',
+      body: 'You are 60% to 100% captured on a control point. Panic: rush back immediately and force a 5v5 against an enemy with ultimates and full positions. Result: full team wipe, now 100% captured. Masterclass: use two players to contest and stall while the rest recharge abilities and reposition. Force the enemy to fight on a less-than-ideal timer. The goal is not to immediately recapture — it is to stop their progress and create a better fight.',
+    },
+    {
+      type: 'text',
+      heading: 'Asymmetric Strategies',
+      body: 'Playing from behind allows (and sometimes requires) asymmetric strategies — approaches the leading team cannot use because they would give up their lead. A losing team can stall, dive for pure disruption without expecting to win the fight, use risky flanks that might work even if unlikely, or force fights at unideal times just to bait defensive cooldowns. Calculated risk is available to the losing team in ways the winning team cannot match without giving up their advantage.',
+    },
+    {
+      type: 'text',
+      heading: 'The Incremental Recovery',
+      body: 'Deficits are recovered incrementally, not in one sweep. Win one fight on favourable terms, even if you trade evenly rather than dominating. Build ultimate charge. Get one player in a better position. Each small recovery reduces the deficit. Three consecutive even-trade fights after the enemy burned their ultimates flips the economy. Incremental recovery is slower and less dramatic than a comeback play — but it works more reliably.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'When behind, set the goal for the next fight one level lower than your normal goal. Not "win this fight" but "trade even and build economy." Not "push the objective" but "contest and stall." Smaller, achievable goals reduce panic and keep the team focused on what is actually possible.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-masterclass-playing-from-behind',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is the "panic response" to playing from behind and why is it counterproductive?',
+        options: [
+          'Switching to a more aggressive composition to quickly erase the deficit — can work but is risky',
+          'Trying to win everything back immediately by forcing fights and using ultimates reactively — compounds the deficit by taking poor fights and wasting resources',
+          'Calling a team meeting to discuss the deficit and plan a comeback strategy together',
+          'Playing passively and waiting for the leading team to make mistakes',
+        ],
+        correct: 1,
+        explanation: 'The panic response tries to erase the deficit in one move — forcing fights at bad odds, burning ultimates reactively. It compounds the deficit because losses compound: each badly-forced fight gives the leading team more resources and further cements their advantage. The counter is playing conservatively, rebuilding economy, and waiting for a genuine opportunity.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'The enemy team holds a control point at 70% with ultimates charged. What is the masterclass deficit approach?',
+        options: [
+          'Rush back with all five players and force the fight immediately — you need the point back now',
+          'Use two players to contest and stall progress while the rest recharge and reposition for a better fight',
+          'Concede the point and prepare for the next round',
+          'Switch compositions entirely to counter their current setup',
+        ],
+        correct: 1,
+        explanation: 'Stall with the minimum number of players needed while the rest recover — build ultimate charge, reposition, prepare the next fight. The goal is not immediate recapture but stopping the 70% from becoming 100%. Creating a better fight condition is worth more than forcing a losing fight immediately.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Asymmetric strategies — high-risk approaches a leading team cannot use without giving up their advantage — are available to the team playing from behind.',
+        options: ['True', 'False'],
+        correct: 0,
+        explanation: 'True. A losing team can attempt risky flanks, force fights at non-ideal times to bait cooldowns, or stall aggressively — all of which a leading team cannot match without giving up their positional or resource advantage. The freedom of having less to lose enables risk-taking that gives the deficit team genuine comeback paths.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'What is the most reliable method of recovering from a deficit?',
+        options: [
+          'A single decisive comeback fight that burns all available ultimates at once for maximum impact',
+          'Incremental recovery — winning small fights on better terms and rebuilding resources steadily over multiple engagements',
+          'Switching to a composition that prioritises burst damage and aggression to erase the deficit quickly',
+          'Playing defensively and waiting for the leading team to overcommit before responding',
+        ],
+        correct: 1,
+        explanation: 'Incremental recovery is slower and less dramatic than a comeback play, but more reliable. Three consecutive even-trade fights that let you build ultimates while the enemy burns theirs systematically flips the economy. The deficit is erased fight by fight, not fight by fight and back by comeback play.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'When behind, what should the team\'s immediate fight goal be changed to?',
+        options: [
+          'The goal should remain exactly the same — consistency is key regardless of the score',
+          'One level lower than normal: trade evenly instead of winning outright, contest rather than capture — goals that are actually achievable in the current state',
+          'Winning every fight definitively — you need the resources back quickly to catch up',
+          'Focusing entirely on eliminating their strongest player to reduce their output',
+        ],
+        correct: 1,
+        explanation: 'Lowering the fight goal to something immediately achievable reduces panic and refocuses the team on what is actually possible in the current game state. "Trade even" is achievable when "win decisively" is not. Achievable goals build momentum; impossible goals build frustration.',
+      },
+    ],
+  },
+};

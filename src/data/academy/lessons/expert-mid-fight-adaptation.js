@@ -1,0 +1,115 @@
+export default {
+  id: 'expert-mid-fight-adaptation',
+  title: 'Mid-Fight Adaptation',
+  subtitle: 'Adjusting your plan as a fight unfolds in real time',
+  category: 'expert',
+  pathId: 'expert',
+  order: 13,
+  prerequisites: ['expert-reading-enemy-cooldowns'],
+  xpReward: 70,
+  estimatedMinutes: 7,
+  difficulty: 5,
+  tags: ['adaptation', 'real-time', 'decision-making', 'flexibility', 'expert'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'No fight plan survives contact with the enemy unchanged. Expert players enter fights with a plan and adapt that plan in real time as the fight evolves. The skill is not speed of reflexes — it is speed of strategic reassessment: recognising when the fight has changed, identifying the new correct action, and executing it before the window closes.',
+    },
+    {
+      type: 'text',
+      heading: 'Reading Fight State Continuously',
+      body: 'Mid-fight, your awareness must span multiple layers simultaneously: your own health and cooldowns, your team\'s status (who is low, who is out of position), the enemy\'s status (who is exposed, who has used abilities), and the objective state (is anyone contesting, does the fight have time pressure). Expert players update this picture continuously — not just at the start of the fight, but every two to three seconds throughout it.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Plan Change Mid-Fight',
+      body: 'Plan: Kill the enemy Mercy first. The fight starts and Mercy immediately Guardian Angels away to a safe position. New situation: Mercy is inaccessible. The plan becomes stale in two seconds. Expert adaptation: immediately call a new target (the next most impactful enemy available) without breaking stride. The plan changed; the execution continues without pause.',
+    },
+    {
+      type: 'text',
+      heading: 'The Three Mid-Fight Decisions',
+      body: 'Every mid-fight adaptation resolves to one of three decisions: Switch target (the current target is no longer killable or worth pursuing). Change positioning (the fight shifted and you need a better angle or cover). Use or save an ability (a window opened or closed). Expert players make these three decisions fluidly, without stopping to consider whether they are "allowed" to deviate from the original plan.',
+    },
+    {
+      type: 'text',
+      heading: 'Knowing When to Retreat',
+      body: 'Mid-fight adaptation sometimes means recognising the fight is lost and retreating before losing more. If three teammates are down and the enemy has ultimates, adapting means withdrawing the two survivors, not committing to a 2v5. The fastest adaptation is sometimes stopping a losing fight rather than adapting within it. Know when the fight is over.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Practice mid-fight awareness by mentally narrating the fight state every few seconds: "Support low — peel. Enemy Ana used sleep on our tank — push now. We have three alive, they have two — push objective immediately." This narration habit builds the continuous assessment that makes mid-fight adaptation automatic.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-expert-mid-fight-adaptation',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is "mid-fight adaptation"?',
+        options: [
+          'Switching heroes between fights based on what you learned from the last one',
+          'Adjusting your plan and actions in real time as a fight evolves, based on continuously updated fight state awareness',
+          'Making sure all five team members are present before any fight starts',
+          'Adapting your aim technique to different enemy heroes mid-fight',
+        ],
+        correct: 1,
+        explanation: 'Mid-fight adaptation is about strategic reassessment in real time — recognising when the fight has changed from what you planned for, identifying the new correct action, and executing it before the window closes. Speed of reassessment is the skill, not just speed of reflexes.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'How often should you update your assessment of the fight state during an engagement?',
+        options: [
+          'Once at the start of the fight and again if something dramatic happens',
+          'Continuously — every two to three seconds throughout the fight',
+          'Only when a teammate calls out information',
+          'Only when you are personally being targeted',
+        ],
+        correct: 1,
+        explanation: 'Fight states change rapidly. Your health, team status, enemy status, and objective state all change every second. Updating your picture continuously — not just reactively — is what allows adaptation before windows close rather than after they already have.',
+      },
+      {
+        id: 'q3',
+        type: 'multiple-choice',
+        question: 'Your planned focus target (Mercy) Guardian Angels to safety mid-fight. What should you do?',
+        options: [
+          'Continue pursuing Mercy to maintain focus fire discipline',
+          'Wait at the original position for Mercy to return',
+          'Immediately call a new target — the plan became stale and execution must continue without pause',
+          'Retreat and re-plan before engaging again',
+        ],
+        correct: 2,
+        explanation: 'When the focus target becomes inaccessible, the plan is stale. Expert adaptation means calling a new target immediately — "Mercy fled, focus Lucio now" — and continuing execution without breaking stride. Hesitating to deviate from the original plan loses the fight window.',
+      },
+      {
+        id: 'q4',
+        type: 'true-false',
+        question: 'The three mid-fight decisions are: switch target, change positioning, and use or save an ability.',
+        options: ['True', 'False'],
+        correct: 0,
+        explanation: 'True. Every mid-fight adaptation resolves to one of these three decisions. Expert players make them fluidly and without analysis paralysis — the target became unreachable (switch target), the fight shifted (change position), or a window opened or closed (ability decision). These three cover almost every mid-fight scenario.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'Three of your teammates have been eliminated and the enemy team has ultimates charged. What is the expert mid-fight adaptation?',
+        options: [
+          'Use all remaining abilities to attempt a comeback with the two survivors',
+          'Continue fighting — giving up mid-fight is never the right call',
+          'Recognise the fight is lost and retreat the two survivors rather than committing them to a hopeless 2v5',
+          'Have the two survivors split up and try to survive as long as possible individually',
+        ],
+        correct: 2,
+        explanation: 'Sometimes adaptation means stopping a losing fight. Committing two players to a 2v5 against a team with ultimates costs two more deaths for nothing. Retreating the survivors preserves two respawn timers and gets them back into the next fight faster. Knowing when the fight is over is part of expert adaptation.',
+      },
+    ],
+  },
+};

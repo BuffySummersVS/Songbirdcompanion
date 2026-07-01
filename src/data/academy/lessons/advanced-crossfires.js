@@ -1,0 +1,115 @@
+export default {
+  id: 'advanced-crossfires',
+  title: 'Crossfires',
+  subtitle: 'Attacking enemies from multiple simultaneous angles',
+  category: 'advanced',
+  pathId: 'advanced',
+  order: 5,
+  prerequisites: ['advanced-off-angles'],
+  xpReward: 65,
+  estimatedMinutes: 5,
+  difficulty: 4,
+  tags: ['crossfire', 'coordination', 'angles', 'team-play', 'advanced'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'A crossfire is when enemies are caught between two or more attack vectors — they take damage from multiple directions simultaneously. Unlike an off-angle (one flanker + one main group), a crossfire specifically places enemies in a position where there is no safe direction to face. They are always exposing themselves to someone.',
+    },
+    {
+      type: 'text',
+      heading: 'Setting Up a Crossfire',
+      body: 'Crossfires require pre-positioning, not reactive flanking. If your team is at point A and enemies are at point B, you need a player to take position C before the fight starts. Then when the fight begins, enemies at B are caught between A and C simultaneously. The key word is "simultaneously" — both attacks must happen at the same time.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Crossfire Scenario',
+      body: 'On King\'s Row Point A, your team holds the main entrance while a Genji pre-positions on the upper balcony. When the enemy pushes through the main door, they face your team from the front and Genji from above. The tank cannot face both directions at once. This is a crossfire — coordinated, pre-planned, simultaneous.',
+    },
+    {
+      type: 'text',
+      heading: 'The Timing Problem',
+      body: 'The most common crossfire failure is mistimed engagement. If one attacker engages two seconds before the other, the enemy focuses the solo threat, eliminates them, then deals with the second attacker. The power of a crossfire comes from the simultaneity — the moment it becomes sequential, it becomes two individual fights that the enemy can handle separately.',
+    },
+    {
+      type: 'text',
+      heading: 'Crossfires on Defence',
+      body: 'Crossfires are equally powerful in defence. Placing defenders at two angles that overlap a choke point forces attackers to always be exposed to someone. On maps with flanking routes, using one player to hold the flank while the main group holds the front creates a defending crossfire — attackers can never safely commit to either approach.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Before fights on maps you know well, identify "crossfire positions" — spots where two players can cover overlapping angles. Communicate with a teammate: "I\'ll go left balcony, you hold main — engage together when I say go."',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-advanced-crossfires',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What distinguishes a crossfire from a simple off-angle?',
+        options: [
+          'A crossfire uses ultimate abilities, while an off-angle does not',
+          'A crossfire catches enemies between two or more attack vectors simultaneously, leaving no safe direction',
+          'An off-angle involves a single hero, while a crossfire requires the whole team',
+          'A crossfire only works on defence, while off-angles work on offence',
+        ],
+        correct: 1,
+        explanation: 'A crossfire specifically traps enemies between multiple simultaneous angles — they are always exposed to someone, regardless of which direction they face. An off-angle is one additional vector; a crossfire is about overlapping vectors that leave no safe position.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'What is the critical timing requirement for a crossfire to work?',
+        options: [
+          'The flanking player must engage first to draw enemy attention',
+          'Both attackers must engage simultaneously — if one attacks before the other, the enemy can deal with each threat separately',
+          'The main group must wait for confirmation of a kill before engaging',
+          'Crossfires only work at the start of a fight, not mid-fight',
+        ],
+        correct: 1,
+        explanation: 'Simultaneity is what makes crossfires work. If one attacker engages early, the enemy can focus and eliminate that threat before the second attacker arrives. The power of a crossfire is that the enemy must choose which threat to face, not that they face threats sequentially.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Crossfires can only be used on offence — they are not applicable on defence.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Crossfires are powerful on defence too. Placing defenders at angles that overlap a choke or entry point forces attackers to always be exposed to someone. A flanking defender + main defender creates a defensive crossfire that attackers cannot safely address.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'Your crossfire setup fails because the flanker is eliminated before the main group engages. What went wrong?',
+        options: [
+          'The flanker was not skilled enough to survive',
+          'The crossfire was not timed simultaneously — the flanker engaged alone and was focused before the main group arrived',
+          'Crossfires require three or more players to work correctly',
+          'The flanking position was chosen poorly, regardless of timing',
+        ],
+        correct: 1,
+        explanation: 'Timing is the most common crossfire failure. When the flanker engages before the main group, the enemy can focus and eliminate the solo threat. The crossfire only becomes effective when both threats appear at the same moment.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'What should you do to set up a crossfire before a fight starts?',
+        options: [
+          'Wait for the fight to develop organically and then flank once enemies are distracted',
+          'Pre-position one player at the crossfire angle before engagement, then signal to attack simultaneously',
+          'Use a tank to push forward and create space while everyone else watches',
+          'Only attempt crossfires when you have ultimate advantage',
+        ],
+        correct: 1,
+        explanation: 'Crossfires are built on pre-positioning, not reactive flanking. The player taking the second angle must be in position before the fight starts. Then both groups engage at the same time on a coordinated signal.',
+      },
+    ],
+  },
+};

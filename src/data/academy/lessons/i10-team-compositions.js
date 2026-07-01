@@ -1,0 +1,127 @@
+﻿export default {
+  id: 'team-compositions',
+  title: 'Team Compositions',
+  subtitle: 'Dive, Brawl, and Poke',
+  category: 'intermediate',
+  pathId: 'team-strategy',
+  order: 3,
+  prerequisites: ['staggering'],
+  xpReward: 60,
+  estimatedMinutes: 6,
+  difficulty: 3,
+  tags: ['team-comp', 'dive', 'brawl', 'poke', 'strategy'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'A team composition is the collection of heroes your team runs together. Not every hero combination works — some hero kits synergise, while others create conflicting needs. Understanding the three major composition archetypes helps you pick heroes that complement your team.',
+    },
+    {
+      type: 'text',
+      heading: 'Dive',
+      body: 'Dive compositions use mobile heroes who engage together, take specific targets, then disengage. The goal is to surround key enemy targets from multiple angles simultaneously — hitting before the enemy can react. Dive lives and dies by coordination: if the whole team dives together, it works; if they arrive one at a time, they die.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Dive Heroes',
+      body: 'Tank: Winston, D.Va, Wrecking Ball. Damage: Genji, Tracer, Sombra, Sojourn, Echo. Support: Lúcio (speed), Kiriko (mobility teleport). The synergy: everyone has a movement ability to engage and disengage quickly.',
+    },
+    {
+      type: 'text',
+      heading: 'Brawl / Rush',
+      body: 'Brawl compositions fight as a single close-range unit, using raw sustained damage and durable heroes to outlast the enemy. Brawl does not take multiple angles — everyone fights together at the front. It relies on supports with strong AoE healing and tanks who can anchor a brawl position.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Brawl Heroes',
+      body: 'Tank: Reinhardt, Junker Queen, Zarya, Orisa, Mauga. Damage: Reaper, Symmetra, Mei, Venture, Torbjörn. Support: Lúcio (healing amp), Baptiste (field and crossfade), Moira (high AoE heal). The synergy: everyone wants to be in close range together.',
+    },
+    {
+      type: 'text',
+      heading: 'Poke',
+      body: 'Poke compositions deal damage from long range, whittling enemies down before fully committing to a fight. The goal is to bring the enemy to 50–60% HP before the real engagement starts. Poke requires sustained damage output and ranged healers to keep heroes alive across longer distances.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Poke Heroes',
+      body: 'Tank: Sigma, Roadhog, Orisa, Ramattra. Damage: Sojourn, Hanzo, Ashe, Widowmaker, Soldier: 76, Cassidy. Support: Baptiste (immortality field + long-range heals), Zenyatta (Discord for extra damage), Ana (sleeping flankers, long-range heal darts). The synergy: everyone has good ranged damage output.',
+    },
+    {
+      type: 'text',
+      heading: 'Composition Synergy',
+      body: 'Your team composition must be internally consistent. A tank that wants to brawl (Reinhardt) paired with a support who needs dive mobility (Kiriko) creates conflicting requirements. A brawl tank and a dive support will constantly be out of position relative to each other. Match your heroes\' ranges and movement styles.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'You do not need to know the meta to play well. Ask: "Does everyone on my team want to be in the same place at the same time?" If yes, the composition has synergy. If not, someone may need to swap.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-team-compositions',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'Which description best matches a "Dive" composition?',
+        options: [
+          'High-health heroes fighting together at close range using sustained damage',
+          'Mobile heroes who engage simultaneously from multiple angles, then disengage',
+          'Ranged heroes who whittle enemies down before committing to a fight',
+          'A mix of all three archetypes to cover all situations',
+        ],
+        correct: 1,
+        explanation: 'Dive compositions use mobile heroes who coordinate an engagement from multiple angles simultaneously, then disengage. Coordination is the key — arriving one at a time destroys the dive.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'Your team is running Reinhardt, Reaper, Symmetra, Moira, and Baptiste. Which archetype is this?',
+        options: ['Dive', 'Poke', 'Brawl', 'Hybrid'],
+        correct: 2,
+        explanation: 'Reinhardt, Reaper, and Symmetra all want close-range engagements. Moira and Baptiste are both strong AoE healers. This is a Brawl composition — fight close, heal hard, outlast the enemy.',
+      },
+      {
+        id: 'q3',
+        type: 'multiple-choice',
+        question: 'Your team has picked Hanzo, Sojourn, Sigma, Ana, and Baptiste. What is the composition type, and what should you do?',
+        options: [
+          'Dive — engage immediately at close range',
+          'Brawl — stay grouped together and push forward',
+          'Poke — deal ranged damage to weaken the enemy before committing',
+          'Sustain — play defensively and wait for the enemy to attack',
+        ],
+        correct: 2,
+        explanation: 'Two long-range damage dealers (Hanzo, Sojourn), a long-range tank (Sigma), and two long-range supports (Ana, Baptiste) make this a Poke composition — a valid 1 Tank, 2 Damage, 2 Support Role Queue team. Whittle the enemy down from range before committing to the full fight.',
+      },
+      {
+        id: 'q4',
+        type: 'true-false',
+        question: 'A team with Reinhardt (needs to be close) and Kiriko (teleports to allies for mobility) is a well-synergised composition.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'Not necessarily. Reinhardt wants to brawl at close range, but if he charges forward without Kiriko following, she cannot heal him. Kiriko\'s teleport helps bridge the gap, but the pairing requires careful coordination and can leave supports isolated.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'The key to a Dive composition is:',
+        options: [
+          'Each dive hero individually picking a different target for maximum spread',
+          'The whole team engaging simultaneously from multiple angles',
+          'The tank diving in first to absorb damage, then the damage heroes following 5 seconds later',
+          'Only damage heroes dive; the tank and supports hold ground',
+        ],
+        correct: 1,
+        explanation: 'The cardinal rule of Dive is everyone engages simultaneously. Staggering dive arrivals lets the enemy focus one dive hero at a time and kill them each. A coordinated simultaneous dive is far more overwhelming.',
+      },
+    ],
+  },
+};

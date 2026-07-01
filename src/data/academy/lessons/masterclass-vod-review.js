@@ -1,0 +1,116 @@
+export default {
+  id: 'masterclass-vod-review',
+  title: 'VOD Review',
+  subtitle: 'Using replay footage to accelerate improvement',
+  category: 'masterclass',
+  pathId: 'masterclass',
+  order: 7,
+  prerequisites: ['masterclass-coaching-concepts'],
+  xpReward: 75,
+  estimatedMinutes: 8,
+  difficulty: 5,
+  tags: ['vod-review', 'replays', 'analysis', 'improvement', 'masterclass'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'VOD review — watching recordings of your own games — is the single most effective improvement tool available to competitive Overwatch players. It breaks the constraint of in-game awareness: you can see everything simultaneously, pause at key moments, and analyse decisions without the pressure of live play. Players who review their own footage improve faster than those who rely solely on playing more.',
+    },
+    {
+      type: 'text',
+      heading: 'What to Look For',
+      body: 'Do not watch VODs to feel good or to find clips. Watch them to find your actual mistakes. Specifically: positioning errors (where were you and where should you have been?), decision timing errors (too early, too late?), target priority errors (wrong focus?), and communication gaps (information available but not called out). These are the categories that produce the most improvement per review session.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Effective VOD Review Protocol',
+      body: 'Step 1: Watch the first 10 minutes at normal speed, noting timestamps where things went wrong. Step 2: Rewind to each timestamp. Pause at the moment before the error. Ask: "What information was available? What was I doing? What should I have done?" Step 3: Write down one concrete lesson per error. End session with a list of specific, actionable changes — not "play better," but "check left flank before pushing past point A."',
+    },
+    {
+      type: 'text',
+      heading: 'Camera Perspective',
+      body: 'Review from multiple perspectives: your own POV (what you saw and when), overhead/spectator view (what was actually happening), and teammate perspectives (what they needed from you that you couldn\'t see). Each perspective reveals different categories of error. Your POV shows decision errors with correct information; spectator view reveals positioning and timing errors you couldn\'t detect from inside the fight.',
+    },
+    {
+      type: 'text',
+      heading: 'Reviewing Wins',
+      body: 'Do not only review losses. Wins contain valuable information too — particularly fights you won by the skin of your teeth. A near-loss reveals moments where, with slightly worse luck, the outcome would have flipped. These moments often show habits that succeeded despite being suboptimal. Reviewing near-wins finds errors that luck masked in the result.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'Review Trap: Watching for Highlights',
+      body: 'The main VOD review trap is watching for good moments rather than mistakes. It feels validating to watch your best plays, but watching highlights identifies nothing to improve. Force yourself to find at least three concrete errors per review session, regardless of the match result. If you cannot find three, you are not looking hard enough or watching critically enough.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-masterclass-vod-review',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'Why is VOD review more effective than simply playing more games?',
+        options: [
+          'VOD review is faster and lets you practice more matches per hour',
+          'It removes the cognitive pressure of live play, allows pausing at key moments, and provides simultaneous views unavailable during live matches',
+          'Watching matches trains muscle memory the same way playing does',
+          'VODs show information that is hidden during live play due to game mechanics',
+        ],
+        correct: 1,
+        explanation: 'VOD review breaks the live play constraint. You can see all ten players simultaneously, pause at critical moments, and analyse decisions without the pressure of real-time execution. This enables depth of analysis impossible during active play where you are also executing.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'What are the four main error categories to look for in VOD review?',
+        options: [
+          'Aim errors, ability timing, hero selection, and ultimate use',
+          'Positioning errors, decision timing errors, target priority errors, and communication gaps',
+          'Team fight wins, individual duels, ultimate value, and map control',
+          'First-fight results, mid-match performance, clutch plays, and close fights',
+        ],
+        correct: 1,
+        explanation: 'The four categories producing the most improvement per review session: positioning (where were you?), decision timing (when did you act?), target priority (who did you shoot?), and communication (information available but not called?). These cover the most systematic improvement opportunities.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'VOD review of matches you won is unnecessary — wins only need to be analysed for what worked.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Wins — especially close ones — reveal habits that succeeded despite being suboptimal. The margin of error in a near-win shows which patterns could flip to a loss with slightly worse luck. Reviewing wins finds the same types of errors that losses do, just with a different outcome obscuring them.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'In VOD review, what is the correct question to ask at a moment of error?',
+        options: [
+          '"Why did my teammate not help me here?"',
+          '"What information was available, what was I doing, and what should I have done differently?"',
+          '"Was this error the main reason we lost the fight?"',
+          '"How could the enemy have been countered better at this moment?"',
+        ],
+        correct: 1,
+        explanation: 'The three-part review question — available information, actual action, correct action — diagnoses both the decision quality and the information processing quality. Asking about teammate responsibility or enemy play misdirects the review from your own improvement opportunities.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'What is the "review trap" to avoid during VOD sessions?',
+        options: [
+          'Reviewing too many fights in one session and losing focus',
+          'Watching for highlights and good moments instead of errors — this feels validating but identifies nothing to improve',
+          'Pausing too often and not watching fights at natural speed',
+          'Only reviewing from your own POV instead of spectator view',
+        ],
+        correct: 1,
+        explanation: 'The most common VOD review trap is watching for highlights. It feels good to relive great plays, but highlights show what worked, not what needs improvement. Force yourself to find concrete errors — at least three per session. If you cannot find them, you are not watching critically enough.',
+      },
+    ],
+  },
+};

@@ -1,0 +1,115 @@
+export default {
+  id: 'expert-hero-flexibility',
+  title: 'Hero Flexibility',
+  subtitle: 'Playing multiple heroes to adapt to any situation',
+  category: 'expert',
+  pathId: 'expert',
+  order: 11,
+  prerequisites: ['expert-counterplay-theory'],
+  xpReward: 70,
+  estimatedMinutes: 7,
+  difficulty: 5,
+  tags: ['hero-pool', 'flexibility', 'adaptation', 'versatility', 'expert'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'A one-hero main is a one-strategy player. At expert level, every match can require a different hero depending on the map, the enemy composition, and how the match evolves. Hero flexibility — the ability to play multiple heroes at a competitive level within your role — is not about playing every hero; it is about never being locked into a losing pick.',
+    },
+    {
+      type: 'text',
+      heading: 'Building a Hero Pool',
+      body: 'A hero pool is 3–5 heroes per role that you can play at a consistently high level. The pool should include: a primary main (your best hero), a flex option within the same archetype, and a counter to your main\'s common weaknesses. Support: Lucio + Ana + Kiriko covers speed, burst heal, and cleanse. Damage: Soldier: 76 + Tracer + Ashe covers different range profiles. Pool with purpose, not randomly.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'When Flexibility Wins',
+      body: 'Your team is running a dive composition and losing because the enemy has Roadhog + Brigitte as anti-dive. A one-hero Genji main keeps playing Genji and keeps losing. A flexible player assesses: "My dive is not working — Sombra can hack Brigitte\'s rally and Roadhog\'s heal, opening the dive window." The swap may cost ultimate charge; it wins the map.',
+    },
+    {
+      type: 'text',
+      heading: 'Flexibility vs Instability',
+      body: 'Flexibility means intentional, strategic swaps. Instability means swapping impulsively whenever struggling, never building momentum on any hero. The difference: flexible players swap with a specific plan addressing a diagnosed problem. Unstable players swap out of frustration without a clear hypothesis about why the new hero will succeed where the old one failed.',
+    },
+    {
+      type: 'text',
+      heading: 'How to Expand Your Pool',
+      body: 'Expand deliberately: pick one additional hero that covers a gap your current pool has. If you main Mercy (single-target healing), add Lucio (area heal, mobility). If you main Genji (close-range dive), add Ashe (range, hitscan). Practice the new hero in unranked or with bots until the basics are automatic, then integrate into competitive. Do not add a hero before the fundamentals are solid.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Review your last five matches and ask: "Was there a map or enemy composition where a different hero in my pool would have been clearly better?" If yes, note what that hero was. That is the gap in your current pool to address in practice.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-expert-hero-flexibility',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is the purpose of building a hero pool?',
+        options: [
+          'Playing as many heroes as possible to keep the game interesting',
+          'Having 3–5 heroes per role at a consistently high level so you are never locked into a losing pick',
+          'Spreading practice time across all heroes equally',
+          'Selecting heroes that counter the same enemy heroes as your main',
+        ],
+        correct: 1,
+        explanation: 'A hero pool is deliberate, not random. The goal is having enough options to address different maps, enemy compositions, and strategic scenarios without being locked into a hero that is not working. Quality over quantity — 3–5 high-level heroes beats 15 mediocre ones.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'What differentiates "flexibility" from "instability" when swapping heroes?',
+        options: [
+          'Flexibility uses ultimates before swapping; instability swaps mid-fight',
+          'Flexible swaps are intentional and address a diagnosed problem; unstable swaps are impulsive reactions to struggling without a clear plan',
+          'Flexibility means only swapping once per map; instability means swapping more than twice',
+          'Unstable swaps are caused by the enemy countering you; flexible swaps are proactive',
+        ],
+        correct: 1,
+        explanation: 'The test of flexibility vs instability is the reasoning behind the swap. "Sombra can hack Brigitte\'s rally to open the dive window" is a diagnosed, purposeful swap. "I keep dying so I\'ll try someone else" is instability — no hypothesis, no purpose, no plan.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'A player who only plays one hero at a high level will always underperform a player with a flexible pool.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. A highly skilled one-hero main can still outperform a flexible player on maps and in matchups that favour their hero. One-tricking becomes a liability specifically when the meta, map, or enemy composition makes that hero less effective — and the player has no viable alternative.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'You main Mercy (single-target healing focus). Which hero would best expand your pool\'s coverage?',
+        options: [
+          'Ana — another healing-focused support',
+          'Lucio — area healing, speed boost, and mobility offer a completely different support profile',
+          'Moira — similar to Mercy in that she is often played in a healing-first style',
+          'Zenyatta — he has a harmony orb similar to Mercy\'s healing beam concept',
+        ],
+        correct: 1,
+        explanation: 'Adding Lucio fills the gaps Mercy cannot address: area-effect healing (for fights spread across space), speed boost for team movement, sound barrier for team saves, and high mobility. Pool expansion should address weaknesses in your current coverage, not stack similar heroes.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'When is the right time to add a new hero to your competitive pool?',
+        options: [
+          'As soon as you have played the hero once in practice mode',
+          'Immediately when you think a hero might be useful in your current match',
+          'After fundamentals are automatic through unranked or bot practice — not before the basics are consistent',
+          'Only when your main is disabled by an update',
+        ],
+        correct: 2,
+        explanation: 'New heroes should be competitive-ready before being added to your pool. Using an unreliable hero in ranked play underperforms even a less-than-ideal main pick. Practice in unranked until the hero feels consistent, then integrate deliberately.',
+      },
+    ],
+  },
+};

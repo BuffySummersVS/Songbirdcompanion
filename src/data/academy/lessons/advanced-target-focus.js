@@ -1,0 +1,116 @@
+export default {
+  id: 'advanced-target-focus',
+  title: 'Focus Fire',
+  subtitle: 'Coordinating damage on a single target',
+  category: 'advanced',
+  pathId: 'advanced',
+  order: 10,
+  prerequisites: ['advanced-ability-layering'],
+  xpReward: 65,
+  estimatedMinutes: 5,
+  difficulty: 4,
+  tags: ['focus-fire', 'target-priority', 'coordination', 'damage', 'advanced'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Focus fire means your entire team dealing damage to one target simultaneously. A hero with two people shooting at them may survive; the same hero with five people shooting at them will not. Individual damage is overcome by healing; concentrated damage overwhelms it. Focus fire is the mechanical expression of coordinated play.',
+    },
+    {
+      type: 'text',
+      heading: 'Why Focus Fire Wins Fights',
+      body: 'A support can heal one target effectively. Two supports can keep two targets alive. But no amount of healing overcomes concentrated team damage on a single hero. The math is simple: if your team deals 500 damage per second to one hero and their supports heal 300 damage per second, your target takes net 200 per second. If your damage is split across three heroes, each takes net 83 damage per second — everyone survives.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'The Split Damage Problem',
+      body: 'Your team has four damage dealers splitting fire: Soldier: 76 shoots the tank, Genji throws shuriken at a flanker, Junkrat lobs grenades at the support, Cassidy shoots the enemy tank. Nothing dies. The enemy supports heal everyone. Compare: all four focus the support — the support takes overwhelming damage, healing cannot keep up, support dies in two seconds, fight becomes 5v4.',
+    },
+    {
+      type: 'text',
+      heading: 'Calling Focus Targets',
+      body: 'Focus fire requires a call — someone needs to name the target. "Mercy is the focus" or "Kill the Lucio" or even just the hero name over voice chat is enough. In the absence of a call, damage players naturally diverge to whatever is in front of them. One callout unifies five independently tracking players into a coordinated lethal force.',
+    },
+    {
+      type: 'text',
+      heading: 'Adapting Focus Targets',
+      body: 'Focus targets should change when the situation changes. If the initial focus target is shielded, healed back to full, or dives out of range, immediately switch to a new call. Hesitating on a "bad" focus target while everyone hopes someone else will call the switch is how fights are lost. Be willing to update the call as the fight evolves.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'Do Not Chase the Swap',
+      body: 'A common mistake is chasing a focus target as they retreat — following a Mercy across the map while your team is 4v5. Kill targets that can be reached at cost-effective risk. If your focus target escapes, immediately call a new one rather than pursuing at the expense of your team.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-advanced-target-focus',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'Why does concentrated damage on one target win fights more reliably than split damage?',
+        options: [
+          'Focused damage deals extra bonus damage as a game mechanic',
+          'Concentrated damage exceeds what supports can heal; split damage allows supports to maintain multiple targets',
+          'Hitting the same target repeatedly builds up a damage multiplier',
+          'Focused damage reduces the cooldown on your abilities',
+        ],
+        correct: 1,
+        explanation: 'Supports can maintain multiple targets if damage is spread. Concentrated damage on one target overwhelms healing capacity — if your team deals 500 DPS to one hero and supports heal at 300 HPS, the target still takes 200 net damage per second. Split damage allows all targets to survive.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'What is required for effective focus fire?',
+        options: [
+          'Everyone naturally shoots the same target without any communication',
+          'A callout naming the focus target so all players converge damage simultaneously',
+          'Using all ultimates at once to overwhelm any single target',
+          'Waiting for the tank to engage first before anyone else shoots',
+        ],
+        correct: 1,
+        explanation: 'Without a callout, players naturally diverge — shooting whatever is in front of them. A single callout naming the focus target aligns five independently tracking players into coordinated, healing-overwhelming damage.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Once a focus target is called, you should maintain it regardless of what happens — switching targets mid-fight is always a mistake.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Focus targets should be updated when the situation changes — if the target is shielded, escapes, or is healed back to full. Hesitating on a bad focus target costs the fight. A new call should happen quickly: "Mercy ran — kill the Lucio now."',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'Your focus target (Mercy) retreats behind cover and is no longer hittable. What should you do?',
+        options: [
+          'Chase Mercy across the map to finish the job',
+          'Wait in position until Mercy comes back out',
+          'Immediately call a new focus target and converge damage on them',
+          'Stop attacking and regroup before choosing any target',
+        ],
+        correct: 2,
+        explanation: 'When the focus target escapes, the correct response is to immediately call a new target — not chase at the cost of your positioning or fight. "Mercy ran — focus Lucio" redirects the team\'s damage without breaking formation.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'In a fight where no one calls a focus target, what typically happens?',
+        options: [
+          'Players instinctively converge on the correct target based on game sense',
+          'Damage splits across multiple targets, healing keeps everyone alive, and no eliminations happen',
+          'The tank becomes the de facto focus target for the team',
+          'Players find better individual duels and the fights are decided by aim',
+        ],
+        correct: 1,
+        explanation: 'Without a call, players shoot whatever is in front of them. Split damage is manageable for supports, so no one dies. Fights become prolonged attritional battles where the team with better healing wins — rather than fights decided by coordinated burst damage.',
+      },
+    ],
+  },
+};

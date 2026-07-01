@@ -1,0 +1,115 @@
+export default {
+  id: 'expert-ultimate-economy',
+  title: 'Elite Ultimate Economy',
+  subtitle: 'Mastering ultimate usage, timing, and denial at expert level',
+  category: 'expert',
+  pathId: 'expert',
+  order: 9,
+  prerequisites: ['expert-creating-space-every-role'],
+  xpReward: 70,
+  estimatedMinutes: 7,
+  difficulty: 5,
+  tags: ['ultimate-economy', 'ult-timing', 'ult-denial', 'expert'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Advanced players manage their own ultimates. Expert players manage ultimate economy at the match level — tracking all ten ultimates, manipulating when ultimates are used on both sides, and identifying the decisive fight where ultimate advantage becomes insurmountable. Elite ultimate economy is a game within the game.',
+    },
+    {
+      type: 'text',
+      heading: 'Ultimate Generation Rates',
+      body: 'Ultimates charge at different rates for different heroes, but the universal principle is: dealing damage, taking damage, and healing output all contribute to charge. Heroes in high-activity positions charge faster. Passive heroes playing far from the action charge slowly. Positioning your heroes in positions where they naturally generate charge — without overextending — is systematic ultimate accumulation.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'The Decisive Fight Window',
+      body: 'Over three fights, your team has been building a two-ultimate advantage. In fight four, you have five ultimates available; the enemy has three. This is the decisive fight — do not waste it. Force the fight NOW on your terms, use the ultimates precisely, and win the fight that matters. Expert economy is about identifying and exploiting this decisive window.',
+    },
+    {
+      type: 'text',
+      heading: 'Ultimate Denial',
+      body: 'Denying the enemy ultimate charge is as important as building your own. Killing enemies before they can use their ultimates (especially low-health enemies waiting to charge) removes their charge. Repositioning out of high-charge positions (so enemies cannot get chip damage on you) reduces their generation. Some heroes (Sombra) can literally pause enemy charge with hack. Denial is active, not passive.',
+    },
+    {
+      type: 'text',
+      heading: 'High-Value vs Low-Value Ultimates',
+      body: 'Not all ultimates trade equally. A Transcendence that saves five teammates from a Blizzard is the highest-value trade in the game. A Photon Barrier that goes unused because enemies pushed a different angle is wasted. Before using a defensive ultimate, confirm: "Will this change the outcome?" Before using an offensive one: "Is this the moment where the investment pays maximum dividends?"',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Track a simple tally: after each fight, how many ultimates did your team spend vs the enemy? Consistently spending fewer for the same result is the economy margin you are looking for. When that margin reaches two or three ultimates ahead, force the decisive fight.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-expert-ultimate-economy',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What does "elite ultimate economy" involve beyond just managing your own ultimate?',
+        options: [
+          'Using your ultimate on cooldown to maximise total uses per match',
+          'Tracking all ten ultimates across both teams, manipulating when they are used on both sides, and identifying the decisive fight window',
+          'Saving all ultimates until the final fight of the map',
+          'Ensuring every team member uses their ultimate in every fight',
+        ],
+        correct: 1,
+        explanation: 'Elite ultimate economy operates at the match level. You track both teams\' ultimates, look to manipulate when enemy ultimates are wasted (through false pressure or bait), and identify when your cumulative advantage is large enough to force the decisive fight. It is a game within the game.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'How do heroes accumulate ultimate charge most efficiently?',
+        options: [
+          'By staying alive as long as possible without engaging',
+          'By dealing damage, taking damage, and contributing healing output — high-activity roles in the fight',
+          'By having the highest hero-specific base charge rate',
+          'By staying near the objective regardless of fight involvement',
+        ],
+        correct: 1,
+        explanation: 'Ultimate charge accumulates through activity — dealing damage, receiving damage, and healing. Heroes in high-activity positions (close to fights, frequently contributing to them) charge faster than passive heroes playing conservatively far from action.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Ultimate denial — preventing the enemy from charging their ultimates — is a passive benefit of good play but cannot be actively pursued.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Ultimate denial is an active strategy. Killing low-health enemies before they charge, repositioning out of positions where enemies can chip damage on you, and using heroes like Sombra (hack pauses charge) are all active denial tools. Denial requires intention, not just luck.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'What is the "decisive fight window"?',
+        options: [
+          'The last fight of a match, when nothing can reverse the outcome',
+          'A fight where your team has accumulated enough ultimate advantage that the margin is insurmountable — the ideal moment to force the fight you want to win decisively',
+          'Any fight where all ten ultimates are available and likely to be used',
+          'The first fight of a map, before any ultimates have been charged',
+        ],
+        correct: 1,
+        explanation: 'The decisive fight window is when your cumulative economy advantage reaches a tipping point — say, five ultimates to their three. Forcing the fight at this exact moment maximises the return on your economic management. Waiting squanders the window as the enemy recharges.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'A Transcendence (Zenyatta\'s ultimate) that saves five teammates from a Blizzard is considered what?',
+        options: [
+          'Wasted — defensive ultimates do not generate kills',
+          'Low value — saving teammates costs the same as securing kills',
+          'The highest-value ultimate use in that scenario — it cancelled an entire enemy fight-winning ability and preserved five friendly resources simultaneously',
+          'Average value — all ultimates that achieve their intended purpose are equal',
+        ],
+        correct: 2,
+        explanation: 'A Transcendence cancelling a Blizzard is extraordinarily high value: it negated the enemy ultimate entirely (wasting their investment) and preserved five teammate lives (five resources kept). The combined value — denial plus preservation — is one of the highest-impact ultimate uses in the game.',
+      },
+    ],
+  },
+};

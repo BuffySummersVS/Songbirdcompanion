@@ -1,0 +1,126 @@
+﻿export default {
+  id: 'high-ground',
+  title: 'High Ground',
+  subtitle: 'Elevation changes everything',
+  category: 'intermediate',
+  pathId: 'spatial-awareness',
+  order: 2,
+  prerequisites: ['line-of-sight'],
+  xpReward: 60,
+  estimatedMinutes: 5,
+  difficulty: 3,
+  tags: ['positioning', 'high-ground', 'elevation', 'spatial'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'High ground refers to any elevated position above the enemy. In Overwatch, elevation is one of the most powerful positional advantages — it improves your sightlines, makes you harder to reach, and forces enemies to aim upward to fight you.',
+    },
+    {
+      type: 'text',
+      heading: 'Why High Ground is Powerful',
+      body: 'From high ground you have a broader field of view — you can see behind cover that is blocking ground-level players. Enemies aiming upward is mechanically harder for many heroes. Flankers and melee heroes have to climb to reach you, giving you time to react.',
+    },
+    {
+      type: 'callout',
+      variant: 'info',
+      title: 'Best Heroes for High Ground',
+      body: 'Hanzo, Widowmaker, Ashe, Sojourn, Pharah, and Ana thrive from elevation. Their long-range or aerial kits are designed to punish enemies below. Ana\'s Sleep Dart, for example, is much easier to land from above.',
+    },
+    {
+      type: 'text',
+      heading: 'When High Ground Hurts You',
+      body: 'High ground is not always the right choice. If you are playing a hero who needs to be close (Reaper, Roadhog, Reinhardt), being elevated puts you out of effective range. High ground can also isolate you from your supports if they are on the ground.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'The Solo High-Ground Mistake',
+      body: 'Jumping to high ground without coordinating with your team is a common error. If the enemy team focuses you on high ground while your supports are below, you will die quickly with no heals. High-ground pushes must be timed with your team.',
+    },
+    {
+      type: 'text',
+      heading: 'Contesting High Ground',
+      body: 'If the enemy team has high ground, the fight is on their terms. Your options: clear the high ground hero (usually a diving damage dealer like Genji, Tracer, or D.Va), use your own high ground to match their angle, or use abilities that can reach elevated positions (Pharah\'s rockets, Junkrat\'s grenades, Hanzo\'s Storm Arrows bouncing off surfaces).',
+    },
+    {
+      type: 'text',
+      heading: 'High Ground and Pharah',
+      body: 'Pharah occupies a different kind of elevation — she flies. Flying heroes are exposed from all angles but can also attack from angles no other hero can reach. Her natural counters are heroes with good airborne tracking: Soldier: 76 (Tactical Visor), McCree/Cassidy (Fan the Hammer), and Hitscan heroes in general.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Learning the high-ground routes on each map is one of the highest-value things you can study. Maps like Ilios Ruins, King\'s Row, and Eichenwalde have high-ground positions that control the entire fight from one location.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-high-ground',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'Which of the following is NOT an advantage of high ground?',
+        options: [
+          'Broader field of view over cover',
+          'Enemies must aim upward to hit you',
+          'You deal more damage from elevation',
+          'Flankers need to climb to reach you',
+        ],
+        correct: 2,
+        explanation: 'Elevation does not increase damage in Overwatch. The advantages of high ground are better sightlines, making enemies aim upward, and slowing flanker approaches. Damage stays the same.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'You are playing Reinhardt and the enemy team holds the high ground above the capture point. What is NOT an effective counter?',
+        options: [
+          'Sending a diving hero like D.Va or Genji to force them down',
+          'Using Junkrat to lob grenades up to the elevated position',
+          'Climbing up with Reinhardt to fight them at high ground',
+          'Using Pharah to attack from a matching elevation',
+        ],
+        correct: 2,
+        explanation: 'Reinhardt is a melee-range hero with a slow charge ability. Climbing to high ground with Reinhardt leaves him out of his element and exposed. Sending a dive hero or using Pharah are better counters.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Taking high ground alone without coordinating with your team is always a smart play.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Solo high ground without team coordination often means you are out of support LoS and can be focused by the entire enemy team. High-ground pushes are most effective when timed with your team.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'Pharah is dominating your team from the air. Which hero type is generally best to counter her?',
+        options: [
+          'Melee damage heroes like Reaper',
+          'Hitscan heroes with good airborne tracking like Soldier: 76',
+          'Tank heroes who can shield the incoming rockets',
+          'Support heroes who can sleep dart her',
+        ],
+        correct: 1,
+        explanation: 'Pharah\'s greatest weakness is hitscan heroes with good airborne tracking. Soldier: 76, McCree/Cassidy, and Widowmaker can consistently hit a moving airborne target. Melee heroes cannot reach her.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'Which hero is best suited to use high ground as a primary position?',
+        options: [
+          'Roadhog — his Hook needs LoS from above',
+          'Reinhardt — his swing can hit enemies below',
+          'Widowmaker — her scope and long-range kit is designed for elevated positions',
+          'Wrecking Ball — his grapple swings work best from high points',
+        ],
+        correct: 2,
+        explanation: 'Widowmaker is purpose-built for high ground. Her scoped rifle, long range, and grappling hook all complement elevated positions. Roadhog and Reinhardt are brawl heroes who need close range.',
+      },
+    ],
+  },
+};

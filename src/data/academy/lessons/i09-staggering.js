@@ -1,0 +1,126 @@
+﻿export default {
+  id: 'staggering',
+  title: 'Staggering',
+  subtitle: 'Disrupting enemy respawn timers',
+  category: 'intermediate',
+  pathId: 'team-strategy',
+  order: 2,
+  prerequisites: ['regrouping'],
+  xpReward: 60,
+  estimatedMinutes: 5,
+  difficulty: 4,
+  tags: ['stagger', 'respawn', 'timing', 'strategy'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Staggering is the act of causing enemy heroes to die at different times so they respawn at different times — preventing the enemy team from reassembling as a full unit. A well-executed stagger extends your window of numerical advantage by 20–30 seconds or more.',
+    },
+    {
+      type: 'text',
+      heading: 'How Respawn Works',
+      body: 'When heroes die in Overwatch, they respawn on a roughly 10-second timer (longer in competitive/overtime situations). If all five enemy heroes die within a few seconds of each other, they all respawn together and return as a group. If you spread the kills over 30 seconds, they return in twos and ones — and you fight them one at a time.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Stagger in Action',
+      body: 'Your team kills two enemies at the start of a fight, then wins the 5v3 and kills the remaining three. The first two enemies return to the point alone 10 seconds later and face your still-grouped team. You fight 5v2 and win. Those two die. By the time the original three respawn and return, you have won the round.',
+    },
+    {
+      type: 'text',
+      heading: 'How to Stagger Enemies',
+      body: 'Staggering happens when you pick off isolated enemies before the main fight begins. A flanker killing one support before the fight starts creates a stagger — the rest of the team fights 5v4 and the support returns alone. Finishing retreating enemies quickly (rather than letting them escape) also prevents a clean enemy regroup.',
+    },
+    {
+      type: 'text',
+      heading: 'Anti-Stagger: Reset Together',
+      body: 'Teams avoid being staggered by resetting together. If two players die and three are alive, the three living players wait near spawn for their teammates before re-engaging. This is the regroup strategy from the previous lesson — it specifically prevents the enemy from converting a pick into an extended stagger advantage.',
+    },
+    {
+      type: 'callout',
+      variant: 'warning',
+      title: 'When Stagger Works Against You',
+      body: 'If your team is being staggered — dying at different times — you are constantly fighting at a numbers disadvantage. The fix: all living members hold back, wait for respawns, and regroup before pushing.',
+    },
+    {
+      type: 'text',
+      heading: 'Stagger and Map Pressure',
+      body: 'On Escort and Hybrid maps, staggering enemies away from the payload gives your team extended time to push without opposition. Kill an enemy near your spawn or far from the action, and they have a long walk back — buying your team 20+ seconds of free payload time.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'After winning a fight, always chase down retreating enemies if you can safely do so. Letting enemies escape and regroup removes most of the advantage you earned from the fight.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-staggering',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What does "staggering" mean in Overwatch?',
+        options: [
+          'Using ultimates at different times to keep the enemy team off-balance',
+          'Causing enemies to die at different times so their respawns are spread out',
+          'Moving side-to-side to avoid enemy aim',
+          'Positioning heroes at different distances from the objective',
+        ],
+        correct: 1,
+        explanation: 'Staggering means killing enemies at different times so they respawn at different times, preventing the enemy team from regrouping as a full unit and extending your numerical advantage.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'Your team kills all five enemies within 3 seconds of each other. What is the likely result?',
+        options: [
+          'The enemy team is completely staggered and returns in ones and twos',
+          'All five enemies respawn together and return as a full team',
+          'The first two kills stagger respawns; the last three respawn together',
+          'Respawn timing is random regardless of when deaths occur',
+        ],
+        correct: 1,
+        explanation: 'If all five enemies die within a few seconds of each other, they all respawn at roughly the same time and return together. This is the opposite of a stagger — the enemy resets cleanly.',
+      },
+      {
+        id: 'q3',
+        type: 'multiple-choice',
+        question: 'How does "regrouping" help prevent your team from being staggered?',
+        options: [
+          'Regrouping has nothing to do with staggering — they are separate concepts',
+          'By waiting for the full team before re-engaging, you avoid your players dying one-by-one at different times',
+          'Regrouping resets the respawn timer for all players simultaneously',
+          'Regrouping prevents enemies from gaining ult charge during your respawn',
+        ],
+        correct: 1,
+        explanation: 'Regrouping is the counter to being staggered. If your team holds near spawn until everyone is alive, you re-engage as a group instead of feeding back one at a time — which is exactly what the enemy team wants.',
+      },
+      {
+        id: 'q4',
+        type: 'true-false',
+        question: 'Letting a retreating enemy escape safely is fine — they will return with their full team anyway.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Letting enemies escape means they regroup cleanly and return with their full team. Chasing and finishing retreating enemies extends your advantage by staggering their respawns and potentially killing them far from the objective.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'On an Escort map, your team kills the enemy support at the enemy spawn area. Why is this particularly valuable?',
+        options: [
+          'Support kills grant extra objective progress',
+          'The support has a long walk back from spawn, giving your team 20+ seconds of free payload push',
+          'Supports killed near spawn have a double respawn timer',
+          'Killing near spawn denies the enemy team their spawn-room healing',
+        ],
+        correct: 1,
+        explanation: 'Killing enemies far from the action — especially near their own spawn — gives them a long walk back. This is free time for your team to move the payload, capture the objective, or set up advantageous positions.',
+      },
+    ],
+  },
+};

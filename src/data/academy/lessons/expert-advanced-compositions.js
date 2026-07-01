@@ -1,0 +1,115 @@
+export default {
+  id: 'expert-advanced-compositions',
+  title: 'Advanced Compositions',
+  subtitle: 'Understanding composition archetypes and their strengths',
+  category: 'expert',
+  pathId: 'expert',
+  order: 1,
+  prerequisites: ['advanced-playing-around-cooldowns'],
+  xpReward: 70,
+  estimatedMinutes: 7,
+  difficulty: 5,
+  tags: ['compositions', 'team-building', 'archetypes', 'strategy', 'expert'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'A team composition is more than five heroes — it is a statement of how your team intends to win. Every composition has inherent strengths, weaknesses, and a win condition baked into the hero selection. Expert players choose compositions intentionally and play to those compositions\' strengths rather than hoping for the best.',
+    },
+    {
+      type: 'text',
+      heading: 'Core Composition Archetypes',
+      body: 'Dive: High mobility heroes that bypass barriers and kill backline threats rapidly (Winston, Tracer, Genji). Strength: eliminates supports, difficult to pin down. Weakness: sustained fight at close range, poke damage. Brawl: Short-range sustained damage with strong healing (Reinhardt, Moira, Lucio). Strength: high sustain, control in close range. Weakness: long-range poke, dive disruption. Poke/Spam: Long-range heroes building a damage lead before committing (Bastion, Pharah, Ana). Strength: forces defensive play, safe engagement. Weakness: mobile dive compositions, enclosed maps.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Hybrid Compositions',
+      body: 'Modern Overwatch often uses hybrid compositions that blend archetypes. A "dive-brawl" hybrid might run Winston (dive) with Reinhardt (brawl) to offer both flexibility — dive the backline if it is vulnerable, brawl at the choke if the enemy is dug in. Hybrid compositions trade peak efficiency in one archetype for adaptability across multiple.',
+    },
+    {
+      type: 'text',
+      heading: 'Composition vs Map Type',
+      body: 'Compositions interact with map geometry. Dive compositions excel on open maps with vertical movement options. Brawl compositions are strongest on tight choke maps where enemies cannot spread out. Poke compositions need sightlines and distance. Selecting a composition without considering the map is a strategic error — the best composition in the wrong environment underperforms.',
+    },
+    {
+      type: 'text',
+      heading: 'Compositions Are Negotiated',
+      body: 'At high levels of play, composition is a dialogue. Your team\'s comp constrains what the enemy can effectively run. Their comp constrains yours. When you pick a dive comp and the enemy counters with anti-dive tools (Roadhog, Brigitte, Moira), your win condition becomes harder to execute. Recognising when your composition is being hard-countered — and adapting — is the mark of an expert player.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Before committing to a composition at the start of a match, ask: "What is our win condition? What does this map favour? What does the enemy composition do to us?" Answer these three questions and your team will play with more direction than 90% of opponents.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-expert-advanced-compositions',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is a "dive" composition designed to do?',
+        options: [
+          'Hold a defensive position and sustain through incoming damage',
+          'Build up a damage lead from range before committing',
+          'Use high mobility to bypass barriers and eliminate enemy backline threats rapidly',
+          'Use area denial abilities to control zones and restrict enemy movement',
+        ],
+        correct: 2,
+        explanation: 'Dive compositions use high-mobility heroes to jump over or around barriers and reach the enemy backline — specifically targeting supports. Winston, Tracer, and Genji are canonical dive heroes because they can rapidly reach and eliminate non-tank heroes before the enemy can regroup.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'A brawl composition is best suited for which type of map?',
+        options: [
+          'Open maps with long sightlines and vertical movement options',
+          'Tight choke maps where enemies cannot spread out and must fight at close range',
+          'Any map where your team has higher individual mechanical skill',
+          'Maps with multiple flanking routes that reward mobility',
+        ],
+        correct: 1,
+        explanation: 'Brawl compositions excel in close quarters where their short-range sustained damage and healing output is maximised. Tight chokes force enemies to fight at brawl range, neutralising poke and dive compositions that rely on range or space to be effective.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'A composition that works well on one map is equally effective on all other maps.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Composition effectiveness depends heavily on map geometry. Dive needs open vertical space; brawl needs tight chokes; poke needs sightlines. The same five heroes that dominate on one map may significantly underperform on another with different geometry.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'The enemy team runs Roadhog, Brigitte, and Moira against your dive composition. What is happening?',
+        options: [
+          'The enemy has made poor hero choices that give you an advantage',
+          'The enemy is running an anti-dive composition specifically designed to counter your win condition',
+          'The enemy is running a brawl composition that happens to also be strong against dive',
+          'Roadhog, Brigitte, and Moira are general-purpose heroes with no specific anti-dive properties',
+        ],
+        correct: 1,
+        explanation: 'Roadhog (hook range, high burst), Brigitte (anti-flanker, stun), and Moira (close-range sustain, hard to dive onto) are classic anti-dive heroes. Recognising when the enemy has specifically countered your composition is the first step to adapting — either change your approach or change some heroes.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'What are the three questions to answer before committing to a composition?',
+        options: [
+          '"What are our hero win rates? What do we enjoy playing? What did we run last map?"',
+          '"What is our win condition? What does this map favour? What does the enemy composition do to us?"',
+          '"Who on our team has the most hours? What is the current meta? Who has the best aim?"',
+          '"What ultimates does each hero have? What are their cooldown times? What is their damage output?"',
+        ],
+        correct: 1,
+        explanation: 'Win condition, map geometry, and enemy composition matchup are the three strategic filters for composition decisions. Answering these three questions gives your team a composed, intentional direction rather than hoping five randomly selected heroes happen to work together.',
+      },
+    ],
+  },
+};

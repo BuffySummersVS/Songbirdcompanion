@@ -1,0 +1,115 @@
+export default {
+  id: 'masterclass-predicting-enemy-decisions',
+  title: 'Predicting Enemy Decisions',
+  subtitle: 'Anticipating what the enemy will do before they do it',
+  category: 'masterclass',
+  pathId: 'masterclass',
+  order: 5,
+  prerequisites: ['masterclass-reading-team-fights'],
+  xpReward: 75,
+  estimatedMinutes: 8,
+  difficulty: 5,
+  tags: ['prediction', 'game-sense', 'anticipation', 'reading', 'masterclass'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Prediction is the masterclass version of reaction. Instead of waiting for the enemy to act and responding, you anticipate what they will do based on position, composition, ultimate status, and behavioural patterns — and you prepare or preempt before they act. A player who is never surprised by what the enemy does is reading several steps ahead.',
+    },
+    {
+      type: 'text',
+      heading: 'Prediction Inputs',
+      body: 'Every enemy decision is constrained by their resources and options. A Reinhardt with a broken barrier must either find cover or commit — he cannot hold ground. A Tracer with no cooldowns available cannot dive safely. An Ana with Nano Boost charged will likely Nano her most dangerous hero before or during the next fight. Each constraint narrows the enemy\'s options — your prediction is about which of their remaining options they will choose.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Pattern-Based Prediction',
+      body: 'Over two fights, the enemy Genji has flanked your support from the left side of the map. Fight three: You have not seen Genji at the start of the fight. Prediction: he is flanking left again. You pre-position a hero to cover that angle. Genji appears — you are already facing him. Three-fight pattern prediction turns a third successful flank into a denied flank. Enemies repeat patterns; you exploit them.',
+    },
+    {
+      type: 'text',
+      heading: 'Compositional Prediction',
+      body: 'Compositions narrow options. A team running a brawl composition will not dive your backline — they don\'t have the mobility. A poke composition will not walk into a close-range brawl. Knowing what each composition does helps you predict the approach — where they will be, how they will engage, which abilities they will use first. Composition is a plan you can read before the fight begins.',
+    },
+    {
+      type: 'text',
+      heading: 'False Predictions',
+      body: 'You will be wrong sometimes. A predicted flank does not appear; instead the enemy pushes main. Good prediction manages this by not fully committing to the prediction — pre-position to cover the predicted angle, but maintain awareness of alternatives. The goal is not certainty (impossible), but better-than-random anticipation that shifts the probability in your favour.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'After every fight, identify one enemy decision that surprised you. Then ask: "What signals were available that could have predicted this?" Over time, you train yourself to see those signals before the decision happens.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-masterclass-predicting-enemy-decisions',
+    xpReward: 40,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'How is prediction different from reaction in Overwatch?',
+        options: [
+          'Prediction is faster; reaction is more accurate',
+          'Prediction anticipates enemy decisions based on available information before they happen; reaction responds after they happen',
+          'Prediction uses pre-game information; reaction uses mid-game information',
+          'Prediction is only possible in competitive play; reaction works at all levels',
+        ],
+        correct: 1,
+        explanation: 'Prediction is proactive — you act before the enemy acts, based on what their resources, position, and patterns tell you they are likely to do. Reaction is inherently delayed. Prediction gives you time to prepare or preempt rather than respond to a completed action.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'A Reinhardt\'s barrier just broke. What can you predict?',
+        options: [
+          'He will immediately charge forward to make use of Earthshatter',
+          'He must either find cover or commit — he cannot hold ground without his barrier, narrowing his options',
+          'He will use Fire Strike to deal damage while the barrier recharges',
+          'He is no longer a threat and can be ignored until the barrier returns',
+        ],
+        correct: 1,
+        explanation: 'A Reinhardt without a barrier loses his primary defensive tool. This constraint narrows his options: retreat to cover (barrier recharging) or commit to a risky engagement without shield. Knowing he must do one of these two things lets you prepare for both and react immediately when he chooses.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'A brawl composition is likely to flank your backline with dive heroes.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Brawl compositions use short-range heroes with high sustain — they lack the mobility to execute deep dives effectively. A brawl team\'s predicted approach is close-range sustained engagement, not flanking. Compositional prediction rules out options as much as it narrows to likely ones.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'A Genji has flanked your support from the left side in the previous two fights. How should you prepare for fight three?',
+        options: [
+          'Do nothing different — two fights is not a reliable pattern',
+          'Move your support to a completely different position so Genji cannot find them',
+          'Pre-position a hero to cover the left-side flank angle before the fight starts, based on the pattern',
+          'Switch to a hero with anti-flanker abilities to respond when Genji appears',
+        ],
+        correct: 2,
+        explanation: 'Enemies repeat patterns. Two fights of left-side flanking is a strong pattern signal. Pre-positioning to cover that angle costs nothing if the prediction is wrong and denies the flank completely if it is right. Pattern-based prediction turns a third successful flank into a denied opportunity.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'Your prediction turns out to be wrong — the enemy did something different. What is the correct response?',
+        options: [
+          'Stop predicting and only react going forward — prediction is unreliable',
+          'Over-commit to the prediction — it was almost certainly right and the enemy got lucky',
+          'Treat it as new pattern data, adjust the prediction for the next fight, and maintain awareness of alternatives in real time',
+          'Blame the miscommunication — someone on your team should have seen the correct play',
+        ],
+        correct: 2,
+        explanation: 'False predictions are information, not failures. You learn that the enemy has more variation in their approach than the previous pattern suggested. Update your model, adjust expectations, and maintain flexibility to cover alternatives. Perfect prediction is impossible; adaptive prediction learning is the goal.',
+      },
+    ],
+  },
+};

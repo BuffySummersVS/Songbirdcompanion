@@ -1,0 +1,115 @@
+export default {
+  id: 'advanced-creating-pressure',
+  title: 'Creating Pressure',
+  subtitle: 'Forcing enemy reactions without overcommitting',
+  category: 'advanced',
+  pathId: 'advanced',
+  order: 11,
+  prerequisites: ['advanced-target-focus'],
+  xpReward: 65,
+  estimatedMinutes: 6,
+  difficulty: 4,
+  tags: ['pressure', 'aggression', 'threat', 'control', 'advanced'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'Pressure is the threat of damage or death that forces enemies to react to you rather than executing their own plan. A team under pressure cannot focus — they spend resources responding to you. Creating pressure without overcommitting is the art: you want to force reactions, not give away free deaths.',
+    },
+    {
+      type: 'text',
+      heading: 'Pressure vs Commitment',
+      body: 'Commitment means fully engaging — your resources are spent, you must win the fight or retreat. Pressure means threatening engagement — the enemy does not know if you will commit, so they must prepare as if you will. A Reinhardt walking slowly toward an enemy choke creates pressure even if he never charges. The enemy must position to respond, wasting their resources on a fight that may not happen.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Pressure in Practice',
+      body: 'Your Widowmaker takes the high ground flanking route. She does not need to get kills — her presence forces the enemy team to post a flanker to deal with her, divert healer attention to the flanker, and potentially move their main formation away from high ground exposure. One hero creates pressure that warps the entire enemy positioning.',
+    },
+    {
+      type: 'text',
+      heading: 'Types of Pressure',
+      body: 'Positional pressure: occupying a threatening position that the enemy must respond to. Damage pressure: dealing consistent chip damage that forces the enemy to consume healing resources. Ability pressure: forcing enemy cooldown usage with your own abilities or threats. Ultimate pressure: having ultimates charged forces the enemy to either fight defensively or contest before you can use them.',
+    },
+    {
+      type: 'text',
+      heading: 'The Overcommit Trap',
+      body: 'Pressure fails when it becomes overcommitment — when you push too far, expose yourself, and the enemy turns your pressure into a counter-attack. An aggressive Reinhardt who walks past the corner and into the enemy backline stops being threatening and starts dying. Maintaining pressure requires staying at the edge of the enemy\'s comfortable response range, not inside it.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Watch what the enemy does in response to your presence. If they reposition, you are creating positional pressure. If they burn a cooldown, you applied ability pressure. If they commit their entire team to deal with you, you created the opportunity for your team to act elsewhere.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-advanced-creating-pressure',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is the difference between "pressure" and "commitment" in Overwatch?',
+        options: [
+          'Pressure uses ultimate abilities; commitment uses regular cooldowns',
+          'Pressure threatens engagement to force enemy reactions; commitment is fully engaging with resources spent',
+          'Pressure is offensive play; commitment is defensive play',
+          'Pressure works only at range; commitment works only at close range',
+        ],
+        correct: 1,
+        explanation: 'Pressure is the threat of action that forces the enemy to prepare and respond. Commitment is fully engaging with no fallback. You can create pressure without committing — and forcing the enemy to commit resources to respond to a non-committed threat is a major strategic win.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'A Widowmaker takes a flanking high ground position and forces the enemy to post a flanker to deal with her. What type of pressure is this?',
+        options: [
+          'Damage pressure — she is dealing chip damage that depletes enemy health',
+          'Ultimate pressure — her ult is nearly charged and the enemy must react',
+          'Positional pressure — her threatening position forces enemy repositioning without direct engagement',
+          'Ability pressure — her scoped shot forces enemies to use cooldowns to dodge',
+        ],
+        correct: 2,
+        explanation: 'Positional pressure comes from occupying a threatening position that forces the enemy to respond. The Widowmaker does not need to get kills — her presence on the flank warps enemy formation and resource allocation.',
+      },
+      {
+        id: 'q3',
+        type: 'true-false',
+        question: 'Creating pressure means committing your hero as aggressively as possible to deal maximum damage.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Pressure and overcommitment are opposites. Pressure works at the edge of the enemy\'s comfortable response range — threatening without exposing yourself. Pushing too far turns your pressure into an overextension that the enemy can punish.',
+      },
+      {
+        id: 'q4',
+        type: 'multiple-choice',
+        question: 'Your team has ultimate abilities charged. Even without using them, this can be a form of pressure. Why?',
+        options: [
+          'Charged ultimates visually intimidate enemies and reduce their accuracy',
+          'The enemy knows you might use ultimates at any moment, forcing them to fight defensively or contest before you can',
+          'Having ultimates charged increases your movement speed',
+          'Ultimate pressure only works if the enemy knows you have them',
+        ],
+        correct: 1,
+        explanation: 'Ultimate presence is pressure. If the enemy knows (or suspects) you have ultimates charged, they must decide: fight now before you use them, or play defensively and let you control the pace. Either response changes their behaviour — you are creating pressure without spending a single ability.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'You notice the enemy committed their entire flanker AND their off-tank to deal with your aggressive off-angle. What opportunity does this create?',
+        options: [
+          'None — your position is now compromised and you should retreat',
+          'Your team on the main front is now facing fewer defenders — they can push the objective while pressure is drawn away',
+          'The enemy is now vulnerable to your ultimate, which you should use immediately',
+          'You should push even more aggressively since two enemies are focused on you',
+        ],
+        correct: 1,
+        explanation: 'Pressure that draws multiple enemy players to deal with you creates opportunities elsewhere. If two enemies peel to deal with your off-angle, your main group faces 3v5 odds. Recognising when pressure creates space for your team is what turns good pressure into fight wins.',
+      },
+    ],
+  },
+};

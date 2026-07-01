@@ -1,0 +1,115 @@
+export default {
+  id: 'advanced-win-conditions',
+  title: 'Win Conditions',
+  subtitle: 'Identifying and executing how your team wins',
+  category: 'advanced',
+  pathId: 'advanced',
+  order: 6,
+  prerequisites: ['advanced-crossfires'],
+  xpReward: 65,
+  estimatedMinutes: 6,
+  difficulty: 4,
+  tags: ['win-conditions', 'strategy', 'game-plan', 'advanced'],
+
+  content: [
+    {
+      type: 'text',
+      body: 'A win condition is the specific scenario that causes your team to win a fight or the match. Different compositions and situations have different win conditions. Playing without a clear win condition means you are just hoping things work out — advanced players know exactly what has to happen for their team to succeed and actively try to create that scenario.',
+    },
+    {
+      type: 'text',
+      heading: 'Composition-Based Win Conditions',
+      body: 'Your team composition often dictates your win condition. A dive composition (Winston, Tracer, Genji) wins by eliminating supports in the backline before enemies can regroup. A poke composition wins by building a damage lead before the enemy can close range. A brawl composition wins by sustained healing and melee pressure. Recognising your composition\'s win condition tells you how to play every fight.',
+    },
+    {
+      type: 'callout',
+      variant: 'example',
+      title: 'Win Condition vs Wrong Condition',
+      body: 'Your team has a dive composition. Win condition: Winston dives the enemy Lucio with Tracer support, kills the Lucio, and the rest of the team fights 5v4. Wrong approach: Winston walks forward as a brawl tank, gets shredded at close range, and Tracer and Genji have nothing to follow. Playing against your composition\'s win condition is throwing.',
+    },
+    {
+      type: 'text',
+      heading: 'Situational Win Conditions',
+      body: 'Win conditions also arise from the game state. If the enemy team has used three ultimates in the last fight and you have not used yours, your win condition for the next fight is "before the enemy recharges, force a fight and use ultimates." If you have a numbers advantage, your win condition is "push while outnumbering them." Recognising situational windows is as important as knowing your composition.',
+    },
+    {
+      type: 'text',
+      heading: 'Playing Into Your Win Condition',
+      body: 'Once you identify your win condition, every decision should work toward creating it. If your win condition requires the enemy supports to die first, use ult abilities to distract the tanks while burst damage goes to the supports. If your win condition is a specific map control point, funnel pressure there. Active, directed play wins more than unfocused individual plays.',
+    },
+    {
+      type: 'callout',
+      variant: 'tip',
+      body: 'Between fights, ask your team: "What do we need to happen to win this next fight?" This one question focuses the team on a unified plan instead of five individual decisions.',
+    },
+  ],
+
+  quiz: {
+    id: 'quiz-advanced-win-conditions',
+    xpReward: 35,
+    passMark: 75,
+    questionsPerAttempt: 4,
+    questionBank: [
+      {
+        id: 'q1',
+        type: 'multiple-choice',
+        question: 'What is a "win condition" in Overwatch?',
+        options: [
+          'The score that guarantees a match victory regardless of remaining fights',
+          'The specific scenario or sequence of events that causes your team to win a fight or match',
+          'The player on your team with the best individual stats',
+          'A check-list of objectives to complete before engaging in any fight',
+        ],
+        correct: 1,
+        explanation: 'A win condition is the specific scenario that leads to victory. It could be "eliminate the enemy support before they can regroup" or "fight while outnumbering them after the stagger." Advanced players actively create these scenarios rather than hoping for the best.',
+      },
+      {
+        id: 'q2',
+        type: 'multiple-choice',
+        question: 'Your team is running a dive composition (Winston, Tracer, Genji). What is your composition\'s win condition?',
+        options: [
+          'Hold a choke at range and poke down enemies before they close in',
+          'Group in a tight cluster and sustain through incoming damage with healing',
+          'Rapidly eliminate enemy supports in the backline before they can react, then fight 5v4',
+          'Use area denial abilities to control the space around the objective',
+        ],
+        correct: 2,
+        explanation: 'Dive\'s win condition is eliminating the enemy supports quickly — Winston jumps the backline, Tracer follows, and the rest fight 5v4. Playing a dive comp like a brawl team (walking forward to trade damage) ignores the composition\'s strengths entirely.',
+      },
+      {
+        id: 'q3',
+        type: 'multiple-choice',
+        question: 'The enemy team used three ultimates in the last fight and your team used none. What is your situational win condition?',
+        options: [
+          'Save your ultimates for an even later fight when the situation is more favourable',
+          'Force a fight before the enemy can recharge, then use your ultimates for a decisive advantage',
+          'Switch to a defensive play style and avoid fights until it evens out',
+          'The ultimate advantage does not matter — focus only on your composition\'s win condition',
+        ],
+        correct: 1,
+        explanation: 'Ultimate advantage is a situational win condition. If you have ultimates and the enemy does not, the window where they are recharging is your best opportunity to force a fight. Waiting squanders that window — the enemy will catch back up.',
+      },
+      {
+        id: 'q4',
+        type: 'true-false',
+        question: 'Win conditions are fixed — once you know your composition\'s win condition, it never changes during a match.',
+        options: ['True', 'False'],
+        correct: 1,
+        explanation: 'False. Win conditions are both composition-based and situational. Knowing your composition\'s win condition is the foundation, but situational factors — ultimate status, numbers advantage, map control — create additional win conditions that appear and disappear throughout the match.',
+      },
+      {
+        id: 'q5',
+        type: 'multiple-choice',
+        question: 'Your team is about to start a fight. What question should you ask?',
+        options: [
+          '"Who has the most healing this match?"',
+          '"What do we need to happen to win this fight?"',
+          '"How many times have we used each ultimate this match?"',
+          '"Which enemy is the most mechanically skilled?"',
+        ],
+        correct: 1,
+        explanation: '"What do we need to happen to win?" focuses the team on a shared win condition. It prompts players to think about their composition, the current game state, and what actions will lead to victory — turning five individual decisions into one coordinated plan.',
+      },
+    ],
+  },
+};
