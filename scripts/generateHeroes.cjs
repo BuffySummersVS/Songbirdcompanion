@@ -56,7 +56,7 @@ const heroes = [
   ["zenyatta", "Zenyatta", "Support"],
 ];
 
-const heroesDir = path.join(__dirname, "src", "data", "heroes");
+const heroesDir = path.join(__dirname, "..", "src", "data", "heroes");
 
 for (const [id, name, role] of heroes) {
   const fileContent = `export default {
@@ -100,6 +100,6 @@ export const heroes = heroData.map((hero) => ({
 }));
 `;
 
-fs.writeFileSync(path.join(__dirname, "src", "data", "heroes.js"), heroesIndex);
+fs.writeFileSync(path.join(__dirname, "..", "src", "data", "heroes.js"), heroesIndex);
 
 console.log("Hero files created and heroes.js updated.");

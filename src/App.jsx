@@ -21,6 +21,8 @@ import WinLossTracker from "./components/WinLossTracker";
 import HeroStats from "./components/HeroStats";
 import DirectMessages from "./components/DirectMessages";
 import EventsPage from "./components/EventsPage";
+import ComingSoon from "./components/ComingSoon";
+import { SOCIAL_FEATURES_ENABLED } from "./data/featureFlags";
 import logo from "./assets/logo.png";
 import "./index.css";
 
@@ -237,14 +239,14 @@ function AppInner() {
                 <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
                 <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
               </svg>
-              {requests.length > 0 && (
+              {SOCIAL_FEATURES_ENABLED && requests.length > 0 && (
                 <span className="notif-badge">{requests.length}</span>
               )}
             </button>
 
             <button
               type="button"
-              className={`dm-btn${dmUnread > 0 ? ' has-unread' : ''}`}
+              className={`dm-btn${SOCIAL_FEATURES_ENABLED && dmUnread > 0 ? ' has-unread' : ''}`}
               onClick={() => { refreshDmUnread(); setDmOpen(true); }}
               aria-label="Direct Messages"
               title="Direct Messages"
@@ -254,7 +256,7 @@ function AppInner() {
                 <path d="M19 12A7 7 0 1 0 15.5 18" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round"/>
                 <polyline points="19,16.5 15.5,18 16.5,21.5" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              {dmUnread > 0 && (
+              {SOCIAL_FEATURES_ENABLED && dmUnread > 0 && (
                 <span className="notif-badge">{dmUnread}</span>
               )}
             </button>
@@ -483,7 +485,9 @@ function AppInner() {
 
       {/* ── Friends list panel (from header dropdown) ── */}
       {friendsListOpen && (() => {
-        const friendUsers = getFriends(currentUser.id).map(id => getUserById(id)).filter(Boolean);
+        const friendUsers = SOCIAL_FEATURES_ENABLED
+          ? getFriends(currentUser.id).map(id => getUserById(id)).filter(Boolean)
+          : [];
         return (
           <div className="auth-modal-overlay" onClick={() => setFriendsListOpen(false)}>
             <div className="notif-panel" onClick={e => e.stopPropagation()}>
@@ -492,7 +496,12 @@ function AppInner() {
                 <button type="button" className="auth-modal-close" onClick={() => setFriendsListOpen(false)} aria-label="Close">✕</button>
               </div>
 
-              {friendUsers.length === 0 ? (
+              {!SOCIAL_FEATURES_ENABLED ? (
+                <ComingSoon
+                  title="Friends — Coming Soon"
+                  description="Friends will work across devices once SongBird has real account sync. For now this feature is on hold."
+                />
+              ) : friendUsers.length === 0 ? (
                 <div className="notif-empty">
                   <p>Your friends list is empty.</p>
                   <p>Go to My Profile and use the Add Friend button to find other players.</p>
@@ -536,7 +545,12 @@ function AppInner() {
               <button type="button" className="auth-modal-close" onClick={() => setNotifOpen(false)} aria-label="Close">✕</button>
             </div>
 
-            {requests.length === 0 ? (
+            {!SOCIAL_FEATURES_ENABLED ? (
+              <ComingSoon
+                title="Friend Requests — Coming Soon"
+                description="Friend requests will show up here once SongBird has real account sync across devices."
+              />
+            ) : requests.length === 0 ? (
               <div className="notif-empty">
                 <p>No new notifications.</p>
                 <p>When someone sends you a friend request it will appear here.</p>
@@ -579,7 +593,22 @@ function AppInner() {
 
       {/* ── Direct Messages panel ── */}
       {dmOpen && currentUser && (
-        <DirectMessages onClose={() => { setDmOpen(false); refreshDmUnread(); }} />
+        SOCIAL_FEATURES_ENABLED ? (
+          <DirectMessages onClose={() => { setDmOpen(false); refreshDmUnread(); }} />
+        ) : (
+          <div className="auth-modal-overlay" onClick={() => setDmOpen(false)}>
+            <div className="notif-panel" onClick={e => e.stopPropagation()}>
+              <div className="auth-modal-header">
+                <span className="auth-modal-title">Direct Messages</span>
+                <button type="button" className="auth-modal-close" onClick={() => setDmOpen(false)} aria-label="Close">✕</button>
+              </div>
+              <ComingSoon
+                title="Messages — Coming Soon"
+                description="Direct Messages will work across devices once SongBird has real account sync. For now this feature is on hold."
+              />
+            </div>
+          </div>
+        )
       )}
 
       {/* ── Toast ── */}

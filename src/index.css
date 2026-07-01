@@ -3143,6 +3143,30 @@ button.dashboard-card:hover{
   line-height:1.5;
 }
 
+/* ── "Coming Soon" placeholder (Friends / DMs, pending real backend sync) ── */
+.coming-soon{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:8px;
+  padding:36px 20px;
+}
+.coming-soon-icon{
+  font-size:2.2rem;
+  opacity:.85;
+}
+.coming-soon-title{
+  color:var(--white);
+  font-size:1.1rem;
+}
+.coming-soon-desc{
+  color:var(--grey);
+  font-size:.9rem;
+  line-height:1.5;
+  max-width:320px;
+}
+
 .notif-list{
   display:flex;
   flex-direction:column;

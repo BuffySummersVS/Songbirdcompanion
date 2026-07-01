@@ -13,6 +13,8 @@ import { containsProfanity } from '../data/profanity';
 import { heroes } from '../data/heroes';
 import { PasswordInput } from './AuthPage';
 import { getAvatarSrc } from '../data/avatars';
+import ComingSoon from './ComingSoon';
+import { SOCIAL_FEATURES_ENABLED } from '../data/featureFlags';
 import AvatarPicker from './AvatarPicker.jsx';
 import { PATHS } from '../data/academy/paths.js';
 import { BADGES } from '../data/academy/badges.js';
@@ -672,12 +674,19 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
       <div className="profile-section up-friends-section">
         <div className="up-friends-header">
           <h3>Friends</h3>
-          <button type="button" className="up-add-friend-btn" onClick={() => setFriendAddOpen(true)}>
-            + Add Friend
-          </button>
+          {SOCIAL_FEATURES_ENABLED && (
+            <button type="button" className="up-add-friend-btn" onClick={() => setFriendAddOpen(true)}>
+              + Add Friend
+            </button>
+          )}
         </div>
 
-        {friendIds.length === 0 ? (
+        {!SOCIAL_FEATURES_ENABLED ? (
+          <ComingSoon
+            title="Friends — Coming Soon"
+            description="Adding friends will work across devices once SongBird has real account sync. For now this feature is on hold."
+          />
+        ) : friendIds.length === 0 ? (
           <p className="up-empty">No friends added yet. Use the Add Friend button to find other players.</p>
         ) : (
           <div className="up-friends-list">
@@ -715,7 +724,7 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
       )}
 
       {/* ── Add Friend modal ── */}
-      {friendAddOpen && (
+      {SOCIAL_FEATURES_ENABLED && friendAddOpen && (
         <div className="auth-modal-overlay" onClick={closeFriendModal}>
           <div className="auth-modal-panel up-friend-modal" onClick={e => e.stopPropagation()}>
             <div className="auth-modal-header">

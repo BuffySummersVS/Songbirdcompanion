@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const heroesDir = path.join(__dirname, "src", "data", "heroes");
+const heroesDir = path.join(__dirname, "..", "src", "data", "heroes");
 
 const files = fs
   .readdirSync(heroesDir)
