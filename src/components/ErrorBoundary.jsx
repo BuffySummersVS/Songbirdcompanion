@@ -24,7 +24,7 @@ export default class ErrorBoundary extends Component {
           <p className="aca-error-body">This content could not be loaded.</p>
           {this.props.onBack && (
             <button type="button" className="aca-btn-secondary" onClick={this.props.onBack}>
-              ← Back
+              {this.props.actionLabel || "← Back"}
             </button>
           )}
         </div>

@@ -7867,6 +7867,32 @@ button.dashboard-card:hover{
 }
 .aca-btn-secondary:hover{ border-color:var(--orange); color:var(--orange); }
 
+/* ── Error boundary fallback (Academy lessons + top-level app crash guard) ── */
+.aca-error-boundary{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:10px;
+  padding:48px 24px;
+  max-width:480px;
+  margin:60px auto;
+  background:linear-gradient(160deg,#181d27,#101319);
+  border:2px solid var(--orange);
+  border-radius:20px;
+  box-shadow:0 0 22px rgba(255,156,0,.2);
+}
+.aca-error-icon{
+  font-size:2.5rem;
+}
+.aca-error-title{
+  font-size:1.4rem;
+  color:var(--white);
+}
+.aca-error-body{
+  color:var(--grey);
+}
+
 /* ── XP Bar ── */
 .aca-xp-bar{
   width:100%;

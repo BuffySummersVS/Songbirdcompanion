@@ -5,9 +5,10 @@ import { useAuth } from "../contexts/AuthContext";
 import {
   getCustomEvents, addCustomEvent, updateCustomEvent, deleteCustomEvent,
 } from "../data/storage";
-
-const TODAY = (() => { const d = new Date(); d.setHours(0,0,0,0); return d; })();
-const FAR_FUTURE = new Date(9999, 0, 1);
+import {
+  TODAY, getDayGlow, getSeasonalClass, getSpecialDate,
+  parseDate, formatDate, toISO, getStatus, getWeeks, getEventsOnDay,
+} from "../data/calendarHelpers";
 
 const CATEGORY_COLORS = {
   "Season":        "#F59E0B",
@@ -23,48 +24,6 @@ const CUSTOM_PALETTE = [
   "#ec4899","#f97316","#eab308","#22c55e",
   "#06b6d4","#6366f1","#a855f7","#ef4444",
 ];
-
-// Subtle per-tile background glow — a separate palette from CATEGORY_COLORS
-// (which drives the stripes/legend and must stay untouched) since the glow
-// is a new, softer accent layer keyed to the same categories.
-const CATEGORY_GLOW = {
-  "Season":        "245,158,11",
-  "Anniversary":   "239,68,68",
-  "Collection":    "6,182,212",
-  "Holiday":       "56,189,248",
-  "Crossover":     "139,92,246",
-  "Limited Event": "34,197,94",
-  "Personal":      "236,72,153",
-};
-const CATEGORY_PRIORITY = Object.keys(CATEGORY_GLOW);
-
-// Seasonal theming — matched against event titles since the data has no
-// dedicated "theme" field; only applied to the specific days those events
-// are actually active on.
-const SEASONAL_THEMES = [
-  { match: /halloween/i,        className: "evc-day--halloween" },
-  { match: /winter wonderland/i, className: "evc-day--winter" },
-  { match: /anniversary/i,      className: "evc-day--anniversary" },
-  { match: /april fools/i,      className: "evc-day--aprilfools" },
-  { match: /archives/i,         className: "evc-day--archives" },
-  { match: /lunar new year/i,   className: "evc-day--lunar" },
-];
-
-function getDayGlow(dayEvts) {
-  if (!dayEvts.length) return null;
-  const sorted = [...dayEvts].sort((a, b) =>
-    CATEGORY_PRIORITY.indexOf(a.category) - CATEGORY_PRIORITY.indexOf(b.category)
-  );
-  return CATEGORY_GLOW[sorted[0].category] ?? null;
-}
-
-function getSeasonalClass(dayEvts) {
-  for (const ev of dayEvts) {
-    const theme = SEASONAL_THEMES.find(t => t.match.test(ev.title));
-    if (theme) return theme.className;
-  }
-  return null;
-}
 
 // Star positions/colours/delays for the "evc-day--sparkle" tiles (Dec 31 +
 // May 4) — rendered as actual ✦ glyphs (see JSX below) rather than baked
@@ -89,79 +48,10 @@ const VALENTINE_HEARTS = [
   { left: "84%", color: "#f472b6", delay: "3s",  duration: "10.5s"},
 ];
 
-// Fixed calendar-date decorations — these specific dates always get a
-// themed tile regardless of what events (if any) are active that day, so
-// they're keyed off the day's actual month/date rather than event data.
-// Takes precedence over the seasonal/category glow when both would apply.
-function getSpecialDate(day) {
-  const m = day.getMonth(); // 0-indexed
-  const d = day.getDate();
-  if (m === 1  && d === 14) return { className: "evc-day--valentine", label: "Valentines" };     // Feb 14
-  if (m === 3  && d === 1)  return { className: "evc-day--circus", label: "April Fools" };      // Apr 1
-  if (m === 5)              return { className: "evc-day--pride", label: d === 1 ? "Pride Month" : undefined }; // all of June (Pride Month), label only on the 1st
-  if (m === 9  && d === 31) return { className: "evc-day--halloween31", label: "Halloween" };   // Oct 31
-  if (m === 11 && d === 25) return { className: "evc-day--christmas", label: "Christmas Day" };  // Dec 25
-  if (m === 11 && d === 31) return { className: "evc-day--sparkle", label: "New Years Eve" };    // Dec 31
-  if (m === 4  && d === 4)  return { className: "evc-day--sparkle", label: "Overwatch Birthday" }; // May 4
-  return null;
-}
-
 const MONTHS  = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const DOW     = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 const FILTERS = ["All","Active","Upcoming","Ended"];
 const STATUS_ORDER = { Active: 0, Upcoming: 1, Ended: 2 };
-
-/* ── helpers ── */
-
-function parseDate(str) {
-  if (!str || str === "Unknown") return null;
-  const [y, m, d] = str.split("-").map(Number);
-  return new Date(y, m - 1, d);
-}
-
-function formatDate(str) {
-  if (!str || str === "Unknown") return "TBA";
-  return parseDate(str).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
-}
-
-function toISO(date) {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, "0");
-  const d = String(date.getDate()).padStart(2, "0");
-  return `${y}-${m}-${d}`;
-}
-
-function getStatus(event) {
-  const start = parseDate(event.startDate);
-  const end   = parseDate(event.endDate);
-  if (!start || start > TODAY) return "Upcoming";
-  if (!end   || end   >= TODAY) return "Active";
-  return "Ended";
-}
-
-function getWeeks(year, month) {
-  const first = new Date(year, month, 1);
-  const last  = new Date(year, month + 1, 0);
-  const start = new Date(first); start.setDate(start.getDate() - start.getDay());
-  const end   = new Date(last);  end.setDate(end.getDate() + (6 - end.getDay()));
-  const weeks = [];
-  const cur = new Date(start);
-  while (cur <= end) {
-    const week = [];
-    for (let i = 0; i < 7; i++) { week.push(new Date(cur)); cur.setDate(cur.getDate() + 1); }
-    weeks.push(week);
-  }
-  return weeks;
-}
-
-function getEventsOnDay(events, day) {
-  const t = day.getTime();
-  return events.filter(e => {
-    const s  = parseDate(e.startDate);
-    const en = parseDate(e.endDate) ?? FAR_FUTURE;
-    return s && s.getTime() <= t && en.getTime() >= t;
-  });
-}
 
 /* ── notification logic (runs outside React render) ── */
 
