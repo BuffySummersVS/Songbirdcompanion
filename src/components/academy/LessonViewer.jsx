@@ -3,8 +3,8 @@ import ContentBlock from './ContentBlock.jsx';
 import QuizRunner from './QuizRunner.jsx';
 import ErrorBoundary from '../ErrorBoundary.jsx';
 
-export default function LessonViewer({ lesson, progress, onComplete, onBack, onLessonStarted }) {
-  const [view, setView] = useState('lesson'); // lesson | quiz
+export default function LessonViewer({ lesson, progress, onComplete, onBack, onLessonStarted, initialView = 'lesson', nextQuizLesson, onGoToNextQuiz }) {
+  const [view, setView] = useState(initialView); // lesson | quiz
   const isCompleted = progress.lessonsCompleted.includes(lesson.id);
 
   useEffect(() => {
@@ -53,6 +53,8 @@ export default function LessonViewer({ lesson, progress, onComplete, onBack, onL
             quiz={lesson.quiz}
             onComplete={handleQuizComplete}
             onBack={() => setView('lesson')}
+            onNext={nextQuizLesson ? () => onGoToNextQuiz(nextQuizLesson) : null}
+            nextLabel={nextQuizLesson ? `Next Quiz: ${nextQuizLesson.title} →` : null}
           />
         </ErrorBoundary>
       </div>

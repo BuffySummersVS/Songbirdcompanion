@@ -178,7 +178,7 @@ function ActiveQuiz({ questions, passMark, onDone }) {
 
 // ── ReviewScreen ─────────────────────────────────────────────────────────────
 
-function ReviewScreen({ result, passMark, xpReward, onRetryWrong, onRetakeAll, onBack }) {
+function ReviewScreen({ result, passMark, xpReward, onRetryWrong, onRetakeAll, onBack, onNext, nextLabel }) {
   const { score, passed, answers } = result;
   const correct = answers.filter(a => a.isCorrect);
   const wrong = answers.filter(a => !a.isCorrect);
@@ -241,6 +241,11 @@ function ReviewScreen({ result, passMark, xpReward, onRetryWrong, onRetakeAll, o
         )}
         <button type="button" className="aca-btn-secondary" onClick={onRetakeAll}>Retake Full Quiz</button>
         <button type="button" className="aca-quiz-back-btn" onClick={onBack}>← Back to Lesson</button>
+        {onNext && (
+          <button type="button" className="aca-btn-primary" onClick={onNext}>
+            {nextLabel || 'Next Quiz →'}
+          </button>
+        )}
       </div>
     </div>
   );
@@ -248,7 +253,7 @@ function ReviewScreen({ result, passMark, xpReward, onRetryWrong, onRetakeAll, o
 
 // ── QuizRunner (exported) ─────────────────────────────────────────────────────
 
-export default function QuizRunner({ quiz: rawQuiz, onComplete, onBack }) {
+export default function QuizRunner({ quiz: rawQuiz, onComplete, onBack, onNext, nextLabel }) {
   const quiz = normalizeQuiz(rawQuiz);
 
   const [phase, setPhase] = useState('active');
@@ -300,6 +305,8 @@ export default function QuizRunner({ quiz: rawQuiz, onComplete, onBack }) {
         onRetryWrong={handleRetryWrong}
         onRetakeAll={handleRetakeAll}
         onBack={onBack}
+        onNext={onNext}
+        nextLabel={nextLabel}
       />
     );
   }

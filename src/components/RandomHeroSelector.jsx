@@ -5,7 +5,7 @@ const PARTY_SIZES = [
   { label: "Solo", value: 1 },
   { label: "Duo", value: 2 },
   { label: "Trio", value: 3 },
-  { label: "Four Players", value: 4 },
+  { label: "Quad", value: 4 },
   { label: "Full Team", value: 5 },
 ];
 

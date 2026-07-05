@@ -30,6 +30,7 @@ const CompetitiveGuide = lazy(() => import("./components/CompetitiveGuide"));
 const CustomGames = lazy(() => import("./components/CustomGames"));
 const TeamComps = lazy(() => import("./components/TeamComps"));
 const TermsPage = lazy(() => import("./components/TermsPage"));
+const ContactPage = lazy(() => import("./components/ContactPage"));
 const UIGuide = lazy(() => import("./components/UIGuide"));
 const UserProfile = lazy(() => import("./components/UserProfile"));
 const WinLossTracker = lazy(() => import("./components/WinLossTracker"));
@@ -134,6 +135,33 @@ function AppInner() {
     return () => { window.removeEventListener('sb-toast', onToast); clearTimeout(toastTimer.current); };
   }, []);
 
+  // Give the very first history entry a page so the initial popstate (mobile
+  // back button on the landing page) has something to fall back to.
+  useEffect(() => {
+    window.history.replaceState({ page: activePage }, "");
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- intentionally captures only the initial page, not every activePage change
+  }, []);
+
+  // Mirrors navigate()'s guards so the phone/browser back button moves between
+  // in-app pages instead of leaving the site entirely.
+  useEffect(() => {
+    function onPopState(event) {
+      const page = event.state?.page ?? "Home";
+      if (AUTH_PROTECTED.includes(page) && !currentUser) {
+        pendingPage.current = page;
+        setShowAuthModal(true);
+        return;
+      }
+      if (page !== "My Profile") setViewingFriendId(null);
+      setUserMenuOpen(false);
+      setNavOpen(false);
+      setActivePage(page);
+      setSelectedHero(null);
+    }
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, [currentUser]);
+
   function handleAccept(fromId) {
     acceptFriendRequest(currentUser.id, fromId);
     refreshRequests();
@@ -179,18 +207,21 @@ function AppInner() {
     setNavOpen(false);
     setActivePage(page);
     setSelectedHero(null);
+    window.history.pushState({ page }, "");
   }
 
   function openInCounterWatch(hero) {
     setCwHero(hero);
     setActivePage("CounterWatch");
     setSelectedHero(null);
+    window.history.pushState({ page: "CounterWatch" }, "");
   }
 
   function handleAuthSuccess() {
     setShowAuthModal(false);
     if (pendingPage.current) {
       setActivePage(pendingPage.current);
+      window.history.pushState({ page: pendingPage.current }, "");
       pendingPage.current = null;
     }
   }
@@ -257,6 +288,7 @@ function AppInner() {
             setOpen={setUserMenuOpen}
             onMyProfile={() => { setUserMenuOpen(false); setViewingFriendId(null); navigate("My Profile"); }}
             onFriendsList={() => { setUserMenuOpen(false); setFriendsListOpen(true); }}
+            onContactUs={() => { setUserMenuOpen(false); navigate("Contact"); }}
             onLogout={() => { setUserMenuOpen(false); logout(); }}
           />
         ) : (
@@ -379,6 +411,7 @@ function AppInner() {
         {activePage === "Competitive Guide" && <CompetitiveGuide />}
         {activePage === "Custom Games"      && <CustomGames />}
         {activePage === "Terms & Phrases"   && <TermsPage />}
+        {activePage === "Contact"           && <ContactPage />}
         {activePage === "UI Guide"          && <UIGuide />}
         {currentUser && activePage === "Win Tracker"  && (
           <>

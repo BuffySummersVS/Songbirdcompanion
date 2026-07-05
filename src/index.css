@@ -1647,6 +1647,24 @@ button.dashboard-card:hover{
   transform:translateY(-3px);
 }
 
+/* Contact page cards — grey/orange/purple gradient, distinct from the
+   single-brand themes above since this page links to multiple channels. */
+.link-card.link-contact{
+  background:
+    linear-gradient(135deg,rgba(157,166,181,.18),rgba(255,156,0,.16),rgba(167,139,250,.18)) padding-box,
+    linear-gradient(135deg,rgba(157,166,181,.55),rgba(255,156,0,.55),rgba(167,139,250,.55)) border-box;
+  border:2px solid transparent;
+  box-shadow:0 0 16px rgba(167,139,250,.18), 0 0 14px rgba(255,156,0,.12);
+}
+
+.link-card.link-contact:hover{
+  background:
+    linear-gradient(135deg,rgba(157,166,181,.26),rgba(255,156,0,.24),rgba(167,139,250,.26)) padding-box,
+    linear-gradient(135deg,rgba(157,166,181,.8),rgba(255,156,0,.8),rgba(167,139,250,.8)) border-box;
+  box-shadow:0 0 26px rgba(167,139,250,.32), 0 0 22px rgba(255,156,0,.2);
+  transform:translateY(-3px);
+}
+
 /* Technical panel accent — two parallel solid black 45° lines cut into the
    bottom-right corner (a longer outer line plus a shorter one nested
    underneath it, closer to the true corner). Each is drawn as a black
@@ -1690,7 +1708,8 @@ button.dashboard-card:hover{
   .link-card.link-x:hover,
   .link-card.link-youtube:hover,
   .link-card.link-media:hover,
-  .link-card.link-downdetector:hover{
+  .link-card.link-downdetector:hover,
+  .link-card.link-contact:hover{
     transform:none;
   }
 }
@@ -1714,7 +1733,8 @@ button.dashboard-card:hover{
 .link-card.link-x p,
 .link-card.link-youtube p,
 .link-card.link-media p,
-.link-card.link-downdetector p{
+.link-card.link-downdetector p,
+.link-card.link-contact p{
   color:#dbe4ee;
   text-shadow:0 1px 3px rgba(0,0,0,.45);
 }
@@ -1723,7 +1743,8 @@ button.dashboard-card:hover{
 .link-card.link-x h3,
 .link-card.link-youtube h3,
 .link-card.link-media h3,
-.link-card.link-downdetector h3{
+.link-card.link-downdetector h3,
+.link-card.link-contact h3{
   text-shadow:0 1px 3px rgba(0,0,0,.5);
 }
 
@@ -1755,7 +1776,8 @@ button.dashboard-card:hover{
 .link-card.link-x .link-card-btn,
 .link-card.link-youtube .link-card-btn,
 .link-card.link-media .link-card-btn,
-.link-card.link-downdetector .link-card-btn{
+.link-card.link-downdetector .link-card-btn,
+.link-card.link-contact .link-card-btn{
   background:rgba(6,8,12,.45);
 }
 
@@ -1763,8 +1785,53 @@ button.dashboard-card:hover{
 .link-card.link-x .link-card-btn:hover,
 .link-card.link-youtube .link-card-btn:hover,
 .link-card.link-media .link-card-btn:hover,
-.link-card.link-downdetector .link-card-btn:hover{
+.link-card.link-downdetector .link-card-btn:hover,
+.link-card.link-contact .link-card-btn:hover{
   background:rgba(6,8,12,.6);
+}
+
+.link-card-btn.copied{
+  border-color:var(--support);
+  color:var(--support);
+  background:rgba(38,208,124,.12);
+  box-shadow:0 0 12px rgba(38,208,124,.4);
+}
+
+/* ── Contact page — rainbow feather hover effect ── */
+
+.sb-feather-layer{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:2000;
+}
+
+.sb-feather{
+  position:absolute;
+  top:-12vh;
+  line-height:1;
+  filter:sepia(1) saturate(2.4) hue-rotate(-15deg) brightness(var(--feather-shade, 1)) drop-shadow(0 0 8px rgba(0,0,0,.35));
+  animation-name:sb-feather-fall;
+  animation-timing-function:linear;
+  animation-fill-mode:forwards;
+  will-change:transform, opacity;
+}
+
+@keyframes sb-feather-fall{
+  0%{ transform:translate(0,0) rotate(0deg); opacity:0; }
+  8%{ opacity:1; }
+  25%{ transform:translate(calc(-34px * var(--feather-sway, 1)),25vh) rotate(55deg); }
+  50%{ transform:translate(calc(30px * var(--feather-sway, 1)),50vh) rotate(-45deg); }
+  75%{ transform:translate(calc(-24px * var(--feather-sway, 1)),80vh) rotate(70deg); }
+  92%{ opacity:1; }
+  100%{ transform:translate(calc(14px * var(--feather-sway, 1)),118vh) rotate(15deg); opacity:0; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .sb-feather-layer{
+    display:none;
+  }
 }
 
 /* ── Hero Profile — lore text ── */

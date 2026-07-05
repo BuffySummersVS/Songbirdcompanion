@@ -13,7 +13,7 @@ import {
 } from '../../data/academy/index.js';
 import {
   emptyProgress, calculateLevel, getLevelTitle,
-  categoryCompletionPercent, pathCompletionPercent, isPathUnlocked,
+  categoryCompletionPercent, pathCompletionPercent, isPathUnlocked, isLessonUnlocked,
   getNewlyEarnedBadges, updateStreak, todayStr,
   getDailyGoalStatus,
 } from '../../academy/engine.js';
@@ -92,6 +92,7 @@ export default function AcademyHub({ onBack, initialHeroId = null, onClearInitia
   const [view, setView] = useState('hub'); // hub | path | lesson
   const [selectedPath, setSelectedPath] = useState(null);
   const [selectedLesson, setSelectedLesson] = useState(null);
+  const [lessonInitialView, setLessonInitialView] = useState('lesson'); // lesson | quiz
   const [xpFlash, setXpFlash] = useState(null);
   const [newBadgeFlash, setNewBadgeFlash] = useState([]);
   const [activeTab, setActiveTab] = useState('learn'); // learn | stats | calendar | badges | heroes
@@ -122,7 +123,26 @@ export default function AcademyHub({ onBack, initialHeroId = null, onClearInitia
 
   function handleSelectLesson(lesson) {
     setSelectedLesson(lesson);
+    setLessonInitialView('lesson');
     setView('lesson');
+  }
+
+  // Finds the next unlocked lesson with a quiz further along the current path,
+  // so "Next Quiz" only appears when there's somewhere valid to send the user.
+  function getNextQuizLesson(path, currentLessonId, currentProgress) {
+    if (!path) return null;
+    const idx = path.lessons.indexOf(currentLessonId);
+    if (idx === -1) return null;
+    for (let i = idx + 1; i < path.lessons.length; i++) {
+      const lesson = ALL_LESSONS.find(l => l.id === path.lessons[i]);
+      if (lesson?.quiz && isLessonUnlocked(lesson, currentProgress)) return lesson;
+    }
+    return null;
+  }
+
+  function handleGoToNextQuiz(lesson) {
+    setSelectedLesson(lesson);
+    setLessonInitialView('quiz');
   }
 
   function handleLessonStarted(lessonId) {
@@ -354,11 +374,15 @@ export default function AcademyHub({ onBack, initialHeroId = null, onClearInitia
           </div>
         )}
         <LessonViewer
+          key={selectedLesson.id}
           lesson={selectedLesson}
           progress={progress}
           onComplete={handleLessonComplete}
           onBack={() => setView('path')}
           onLessonStarted={handleLessonStarted}
+          initialView={lessonInitialView}
+          nextQuizLesson={getNextQuizLesson(selectedPath, selectedLesson.id, progress)}
+          onGoToNextQuiz={handleGoToNextQuiz}
         />
       </div>
     );
@@ -529,6 +553,7 @@ export default function AcademyHub({ onBack, initialHeroId = null, onClearInitia
                       const path = PATHS.find(p => p.id === lesson.pathId);
                       setSelectedPath(path);
                       setSelectedLesson(lesson);
+                      setLessonInitialView('lesson');
                       setView('lesson');
                     }}
                     onSelectPath={(path) => {

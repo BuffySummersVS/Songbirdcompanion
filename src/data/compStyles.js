@@ -49,7 +49,7 @@ export const COMP_STYLES = [
       "Mix frontline stability with a dive threat or poke option. The team reads enemy positioning, fights at the best range given the situation, and switches tactics mid-fight if the first approach fails. A Hybrid team might brawl in choke then dive the backline once supports are out of position.",
     bestMaps:
       "Multi-area maps that support multiple playstyles — Blizzard World, Midtown, New Queen Street, Hollywood, Paraíso.",
-    exampleHeroes: ["D.Va", "Junker Queen", "Soldier: 76", "Baptiste", "Kiriko"],
+    exampleHeroes: ["D.Va", "Echo", "Soldier: 76", "Baptiste", "Kiriko"],
   },
 ];
 

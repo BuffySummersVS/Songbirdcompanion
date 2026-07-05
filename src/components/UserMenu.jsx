@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useEscapeKey } from "../hooks/useEscapeKey";
 
-export default function UserMenu({ currentUser, avatarSrc, open, setOpen, onMyProfile, onFriendsList, onLogout }) {
+export default function UserMenu({ currentUser, avatarSrc, open, setOpen, onMyProfile, onFriendsList, onContactUs, onLogout }) {
   const menuRef = useRef(null);
 
   useEscapeKey(() => setOpen(false), open);
@@ -39,6 +39,10 @@ export default function UserMenu({ currentUser, avatarSrc, open, setOpen, onMyPr
           <button type="button" className="user-menu-item" onClick={onFriendsList}>
             <span className="user-menu-icon">👥</span>
             Friends List
+          </button>
+          <button type="button" className="user-menu-item" onClick={onContactUs}>
+            <span className="user-menu-icon">✉️</span>
+            Contact SongBird
           </button>
           <div className="user-menu-divider" />
           <button type="button" className="user-menu-item user-menu-item--danger" onClick={onLogout}>
