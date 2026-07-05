@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { getCompetitiveRanks, saveCompetitiveRanks, getCompetitiveRanksPrefs, setCompetitiveRanksPrefs } from '../data/storage.js';
+import { useEscapeKey } from '../hooks/useEscapeKey';
+import { useFocusTrap } from '../hooks/useFocusTrap';
 import {
   RANK_ROLES, RANK_TIERS, RANK_DIVISIONS, RANK_BADGES, RANK_PANEL_COLORS,
   rankSupportsDivision, rankLabel, emptyCompetitiveRanks, hexToRgba,
@@ -27,6 +29,9 @@ function RankDisplayRow({ role, entry, color }) {
 }
 
 function CompetitiveRankEditModal({ ranks, prefs, onSave, onClose }) {
+  useEscapeKey(onClose);
+  const panelRef = useFocusTrap();
+
   const [draft, setDraft] = useState(ranks);
   const [color, setColor] = useState(prefs.color || '#ff9c00');
 
@@ -48,7 +53,7 @@ function CompetitiveRankEditModal({ ranks, prefs, onSave, onClose }) {
 
   return (
     <div className="bcm-overlay" onClick={onClose}>
-      <div className="bcm-panel cr-edit-panel" onClick={e => e.stopPropagation()}>
+      <div ref={panelRef} className="bcm-panel cr-edit-panel" role="dialog" aria-modal="true" tabIndex={-1} onClick={e => e.stopPropagation()}>
         <div className="bcm-header">
           <h3 className="bcm-title">Edit Competitive Ranks</h3>
           <button type="button" className="bcm-close" onClick={onClose}>✕</button>

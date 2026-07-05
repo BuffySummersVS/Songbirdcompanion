@@ -1,6 +1,10 @@
-import { useEffect, useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense } from "react";
 import { heroes } from "../data/heroes";
 import { getSubrole } from "../data/heroSubroles";
+import { useEscapeKey } from "../hooks/useEscapeKey";
+import { useFocusTrap } from "../hooks/useFocusTrap";
+import { useClickTrigger } from "../hooks/useClickTrigger";
+import { useEasterEggs } from "../contexts/EasterEggContext";
 
 const HeroAcademyCard = lazy(() => import("./academy/HeroAcademyCard.jsx"));
 
@@ -15,17 +19,12 @@ function CWChip({ name, variant }) {
 }
 
 function CounterWatchPopup({ hero, onClose }) {
-  useEffect(() => {
-    function handleKey(e) {
-      if (e.key === "Escape") onClose();
-    }
-    document.addEventListener("keydown", handleKey);
-    return () => document.removeEventListener("keydown", handleKey);
-  }, [onClose]);
+  useEscapeKey(onClose);
+  const panelRef = useFocusTrap();
 
   return (
     <div className="cw-popup-overlay" onClick={onClose}>
-      <div className="cw-popup-panel" onClick={e => e.stopPropagation()}>
+      <div ref={panelRef} className="cw-popup-panel" role="dialog" aria-modal="true" tabIndex={-1} onClick={e => e.stopPropagation()}>
         <div className="cw-popup-header">
           <img src={hero.image} alt={hero.name} className="cw-popup-img" />
           <div>
@@ -80,17 +79,15 @@ export default function HeroProfile({ hero, onClose, onOpenCounterWatch, onOpenH
     setCwOpen(false);
   }
 
-  useEffect(() => {
-    if (!hero) return;
-    function handleKey(e) {
-      if (e.key === "Escape") {
-        if (cwOpen) setCwOpen(false);
-        else onClose();
-      }
-    }
-    document.addEventListener("keydown", handleKey);
-    return () => document.removeEventListener("keydown", handleKey);
-  }, [hero, onClose, cwOpen]);
+  useEscapeKey(() => { if (cwOpen) setCwOpen(false); else onClose(); }, !!hero);
+  const panelRef = useFocusTrap(!!hero);
+
+  const eggs = useEasterEggs();
+  const triggerEgg = eggs?.trigger || (() => {});
+  const handleHanzoPortraitClick = useClickTrigger({ times: 10, onComplete: () => triggerEgg("hanzo") });
+  const handleReinhardtPortraitClick = useClickTrigger({ times: 10, onComplete: () => triggerEgg("reinhardt") });
+  const handleJunkratUltClick = useClickTrigger({ times: 10, onComplete: () => triggerEgg("junkrat") });
+  const handleLucioNameClick = useClickTrigger({ times: 3, windowMs: 700, onComplete: () => triggerEgg("lucio") });
 
   if (!hero) return null;
 
@@ -98,18 +95,33 @@ export default function HeroProfile({ hero, onClose, onOpenCounterWatch, onOpenH
 
   return (
     <div className="profile-overlay" onClick={onClose}>
-      <section className="hero-profile modal" onClick={e => e.stopPropagation()}>
+      <section ref={panelRef} className="hero-profile modal" role="dialog" aria-modal="true" tabIndex={-1} onClick={e => e.stopPropagation()}>
         <button type="button" className="close-profile" onClick={onClose}>
           Close
         </button>
 
         <div className="hero-profile-top">
-          <div className={`hero-profile-portrait ${hero.role.toLowerCase()}`}>
+          <div
+            className={`hero-profile-portrait ${hero.role.toLowerCase()}`}
+            onClick={
+              hero.id === "hanzo" ? handleHanzoPortraitClick :
+              hero.id === "reinhardt" ? handleReinhardtPortraitClick :
+              undefined
+            }
+          >
             <img src={hero.image} alt={hero.name} className="hero-profile-image" />
           </div>
           <div>
             <p className="eyebrow">{hero.role}</p>
-            <h2>{hero.name}</h2>
+            <h2
+              onClick={
+                hero.id === "kiriko" ? () => triggerEgg("kiriko") :
+                hero.id === "lucio" ? handleLucioNameClick :
+                undefined
+              }
+            >
+              {hero.name}
+            </h2>
             {hero.lore && (
               <>
                 <p className="hero-lore-label">Backstory</p>
@@ -120,7 +132,7 @@ export default function HeroProfile({ hero, onClose, onOpenCounterWatch, onOpenH
         </div>
 
         <div className="profile-stats-grid">
-          <div className="stat-box">
+          <div className="stat-box" onClick={hero.id === "genji" ? () => triggerEgg("genji") : undefined}>
             <span>Health</span>
             <strong>{hero.health ?? "—"}</strong>
           </div>
@@ -185,7 +197,11 @@ export default function HeroProfile({ hero, onClose, onOpenCounterWatch, onOpenH
           {hero.abilities?.length ? (
             <div className="ability-list">
               {hero.abilities.map(ability => (
-                <div className="ability-detail" key={ability.name}>
+                <div
+                  className="ability-detail"
+                  key={ability.name}
+                  onDoubleClick={ability.name === "Sleep Dart" ? () => triggerEgg("ana") : undefined}
+                >
                   <h4>{ability.name}</h4>
                   <p>{ability.description}</p>
                   <p><strong>Damage:</strong> {ability.damage}</p>
@@ -201,7 +217,14 @@ export default function HeroProfile({ hero, onClose, onOpenCounterWatch, onOpenH
         <div className="profile-section">
           <h3>Ultimate</h3>
           {hero.ultimate ? (
-            <div className="ability-detail">
+            <div
+              className="ability-detail"
+              onClick={
+                hero.ultimate.name === "Molten Core" ? () => triggerEgg("torbjorn") :
+                hero.ultimate.name === "RIP-Tire" ? handleJunkratUltClick :
+                undefined
+              }
+            >
               <h4>{hero.ultimate.name}</h4>
               <p>{hero.ultimate.description}</p>
               <p><strong>Damage:</strong> {hero.ultimate.damage}</p>

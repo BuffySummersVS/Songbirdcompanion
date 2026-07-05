@@ -1,5 +1,7 @@
 import { useState, useMemo } from "react";
 import { TERMS } from "../data/terms";
+import { useEscapeKey } from "../hooks/useEscapeKey";
+import Modal, { ModalHeader } from "./Modal";
 
 const CATEGORIES = ["All", ...Array.from(new Set(TERMS.map(t => t.category))).sort()];
 
@@ -7,6 +9,9 @@ export default function TermsPage() {
   const [search, setSearch]     = useState("");
   const [category, setCategory] = useState("All");
   const [expanded, setExpanded] = useState(null);
+  const [linesModalTerm, setLinesModalTerm] = useState(null);
+
+  useEscapeKey(() => setLinesModalTerm(null), !!linesModalTerm);
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
@@ -67,7 +72,16 @@ export default function TermsPage() {
               <div
                 key={t.term}
                 className={`term-card${expanded === t.term ? " open" : ""}`}
+                role="button"
+                tabIndex={0}
                 onClick={() => setExpanded(expanded === t.term ? null : t.term)}
+                onKeyDown={e => {
+                  if (e.target !== e.currentTarget) return;
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setExpanded(expanded === t.term ? null : t.term);
+                  }
+                }}
               >
                 <div className="term-header">
                   <div className="term-name-row">
@@ -83,6 +97,15 @@ export default function TermsPage() {
                   <div className="term-example">
                     <span className="term-example-label">In game:</span>
                     <span className="term-example-text">"{t.example}"</span>
+                    {t.chatFilterLines && (
+                      <button
+                        type="button"
+                        className="term-lines-btn"
+                        onClick={e => { e.stopPropagation(); setLinesModalTerm(t); }}
+                      >
+                        View Replacement Lines
+                      </button>
+                    )}
                   </div>
                 )}
               </div>
@@ -90,6 +113,17 @@ export default function TermsPage() {
           </div>
         ))}
       </div>
+
+      {linesModalTerm && (
+        <Modal onClose={() => setLinesModalTerm(null)}>
+          <ModalHeader title={`${linesModalTerm.term} — Replacement Lines`} onClose={() => setLinesModalTerm(null)} />
+          <ul className="terms-lines-list">
+            {linesModalTerm.chatFilterLines.map((line, i) => (
+              <li key={i}>{line}</li>
+            ))}
+          </ul>
+        </Modal>
+      )}
     </>
   );
 }

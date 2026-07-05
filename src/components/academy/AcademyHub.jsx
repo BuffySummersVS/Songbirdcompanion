@@ -32,10 +32,7 @@ import CertificateCard from './CertificateCard.jsx';
 import HeroAcademySection from './HeroAcademySection.jsx';
 import HeroMasteryHub from './HeroMasteryHub.jsx';
 import RecommendationCard from './RecommendationCard.jsx';
-
-function toast(msg) {
-  window.dispatchEvent(new CustomEvent('sb-toast', { detail: { message: msg } }));
-}
+import { toast } from '../../utils/toast.js';
 
 function usePersistentProgress(userId) {
   const [progress, setProgressState] = useState(() => {

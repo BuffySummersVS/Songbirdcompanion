@@ -1,3 +1,5 @@
+import { toast } from '../utils/toast.js';
+
 const K = {
   USERS:            'sb_users',
   SESSION:          'sb_session',
@@ -18,7 +20,47 @@ const K = {
   competitiveRanksPrefs: (uid) => `sb_competitive_ranks_prefs_${uid}`,
   mainHeroes:       (uid) => `sb_main_heroes_${uid}`,
   mainHeroesPrefs:  (uid) => `sb_main_heroes_prefs_${uid}`,
+  notifSent:        (uid) => `sb_notif_${uid}`,
 };
+
+function safeSetItem(key, value) {
+  try {
+    localStorage.setItem(key, value);
+    return true;
+  } catch {
+    toast("Couldn't save — storage is full.");
+    return false;
+  }
+}
+
+function isPlainObject(v) {
+  return v !== null && typeof v === "object" && !Array.isArray(v);
+}
+
+// Guards against not just malformed JSON but the wrong *shape* coming back
+// (e.g. localStorage was hand-edited, or corrupted) — falls back instead of
+// letting a later `.someField` access on a stray string/number/null throw.
+function safeParse(raw, fallback, isValid) {
+  try {
+    const parsed = JSON.parse(raw);
+    return isValid(parsed) ? parsed : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function safeParseArray(raw, itemIsValid = () => true) {
+  return safeParse(raw, [], Array.isArray).filter(itemIsValid);
+}
+
+function safeParseObject(raw, fallback = {}) {
+  return safeParse(raw, fallback, isPlainObject);
+}
+
+function safeParseObjectOrDefault(raw, fallback) {
+  const parsed = safeParse(raw, null, v => v === null || isPlainObject(v));
+  return parsed || fallback;
+}
 
 function uid() {
   return crypto.randomUUID
@@ -26,22 +68,46 @@ function uid() {
     : Math.random().toString(36).slice(2) + Date.now().toString(36);
 }
 
-async function hashPassword(password) {
-  const buf = await crypto.subtle.digest(
-    'SHA-256',
-    new TextEncoder().encode(password)
+const PBKDF2_ITERATIONS = 100000;
+
+function bytesToHex(bytes) {
+  return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function generateSalt() {
+  return bytesToHex(crypto.getRandomValues(new Uint8Array(16)));
+}
+
+// Salted + key-stretched (PBKDF2-SHA256, 100k iterations) — the current scheme.
+async function hashPassword(password, salt) {
+  const enc = new TextEncoder();
+  const keyMaterial = await crypto.subtle.importKey(
+    'raw', enc.encode(password), { name: 'PBKDF2' }, false, ['deriveBits']
   );
-  return Array.from(new Uint8Array(buf))
-    .map(b => b.toString(16).padStart(2, '0'))
-    .join('');
+  const derived = await crypto.subtle.deriveBits(
+    { name: 'PBKDF2', salt: enc.encode(salt), iterations: PBKDF2_ITERATIONS, hash: 'SHA-256' },
+    keyMaterial,
+    256
+  );
+  return bytesToHex(new Uint8Array(derived));
+}
+
+// Unsalted single-round SHA-256 — the original scheme, kept only so accounts
+// created before salting was added can still log in. verifyLogin transparently
+// upgrades a legacy record to the current scheme on successful login.
+async function hashPasswordLegacy(password) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(password));
+  return bytesToHex(new Uint8Array(buf));
 }
 
 function readUsers() {
-  try { return JSON.parse(localStorage.getItem(K.USERS) || '[]'); }
-  catch { return []; }
+  return safeParseArray(
+    localStorage.getItem(K.USERS) || '[]',
+    u => isPlainObject(u) && typeof u.username === 'string' && typeof u.id === 'string'
+  );
 }
 function writeUsers(users) {
-  localStorage.setItem(K.USERS, JSON.stringify(users));
+  safeSetItem(K.USERS, JSON.stringify(users));
 }
 
 export function getUserByUsername(username) {
@@ -56,10 +122,12 @@ export async function createUser({ username, password, avatar }) {
   if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
     throw new Error('Username already taken.');
   }
+  const passwordSalt = generateSalt();
   const user = {
     id: uid(),
     username,
-    passwordHash: await hashPassword(password),
+    passwordSalt,
+    passwordHash: await hashPassword(password, passwordSalt),
     avatar,
     createdAt: new Date().toISOString(),
   };
@@ -81,7 +149,8 @@ export async function updateUser(id, updates) {
 
   const merged = { ...users[idx], ...updates };
   if (updates.password) {
-    merged.passwordHash = await hashPassword(updates.password);
+    merged.passwordSalt = generateSalt();
+    merged.passwordHash = await hashPassword(updates.password, merged.passwordSalt);
     delete merged.password;
   }
   delete updates.password;
@@ -93,39 +162,53 @@ export async function updateUser(id, updates) {
 export async function verifyLogin(username, password) {
   const user = getUserByUsername(username);
   if (!user) throw new Error('Username not found.');
-  const hash = await hashPassword(password);
-  if (hash !== user.passwordHash) throw new Error('Incorrect password.');
-  return user;
+
+  if (user.passwordSalt) {
+    const hash = await hashPassword(password, user.passwordSalt);
+    if (hash !== user.passwordHash) throw new Error('Incorrect password.');
+    return user;
+  }
+
+  // Legacy account predating salted hashes — verify with the old scheme,
+  // then silently upgrade the stored record so this only ever happens once.
+  const legacyHash = await hashPasswordLegacy(password);
+  if (legacyHash !== user.passwordHash) throw new Error('Incorrect password.');
+
+  const passwordSalt = generateSalt();
+  const upgraded = { ...user, passwordSalt, passwordHash: await hashPassword(password, passwordSalt) };
+  const users = readUsers();
+  const idx = users.findIndex(u => u.id === user.id);
+  users[idx] = upgraded;
+  writeUsers(users);
+  return upgraded;
 }
 
 export function getSession() {
-  try { return JSON.parse(localStorage.getItem(K.SESSION) || 'null'); }
-  catch { return null; }
+  return safeParse(localStorage.getItem(K.SESSION) || 'null', null, v => v === null || isPlainObject(v));
 }
 export function saveSession(userId) {
-  localStorage.setItem(K.SESSION, JSON.stringify({ userId }));
+  safeSetItem(K.SESSION, JSON.stringify({ userId }));
 }
 export function clearSession() {
   localStorage.removeItem(K.SESSION);
 }
 
 export function getMatches(userId) {
-  try { return JSON.parse(localStorage.getItem(K.matches(userId)) || '[]'); }
-  catch { return []; }
+  return safeParseArray(localStorage.getItem(K.matches(userId)) || '[]', isPlainObject);
 }
 
 export function deleteMatch(userId, matchId) {
-  localStorage.setItem(K.matches(userId), JSON.stringify(getMatches(userId).filter(m => m.id !== matchId)));
+  safeSetItem(K.matches(userId), JSON.stringify(getMatches(userId).filter(m => m.id !== matchId)));
 }
 
 export function clearMatches(userId) {
-  localStorage.setItem(K.matches(userId), JSON.stringify([]));
+  safeSetItem(K.matches(userId), JSON.stringify([]));
 }
 
 export function addMatch(userId, data) {
   const matches = getMatches(userId);
   const m = { ...data, id: uid(), timestamp: new Date().toISOString() };
-  localStorage.setItem(K.matches(userId), JSON.stringify([m, ...matches]));
+  safeSetItem(K.matches(userId), JSON.stringify([m, ...matches]));
   return m;
 }
 
@@ -134,7 +217,7 @@ export function updateMatch(userId, matchId, data) {
   const idx = matches.findIndex(m => m.id === matchId);
   if (idx === -1) return null;
   matches[idx] = { ...matches[idx], ...data, editedAt: new Date().toISOString() };
-  localStorage.setItem(K.matches(userId), JSON.stringify(matches));
+  safeSetItem(K.matches(userId), JSON.stringify(matches));
   return matches[idx];
 }
 
@@ -143,17 +226,15 @@ export function searchUsers(query) {
   if (!q) return [];
   return readUsers()
     .filter(u => u.username.toLowerCase().includes(q))
-    .map(({ passwordHash, ...safe }) => safe);
+    .map(({ passwordHash, passwordSalt, ...safe }) => safe);
 }
 
 export function getFriendRequests(userId) {
-  try { return JSON.parse(localStorage.getItem(K.friendReqsIn(userId)) || '[]'); }
-  catch { return []; }
+  return safeParseArray(localStorage.getItem(K.friendReqsIn(userId)) || '[]', isPlainObject);
 }
 
 export function getOutboundRequests(userId) {
-  try { return JSON.parse(localStorage.getItem(K.friendReqsOut(userId)) || '[]'); }
-  catch { return []; }
+  return safeParseArray(localStorage.getItem(K.friendReqsOut(userId)) || '[]', id => typeof id === 'string');
 }
 
 export function sendFriendRequest(fromUserId, toUserId) {
@@ -163,55 +244,53 @@ export function sendFriendRequest(fromUserId, toUserId) {
   if (inbound.some(r => r.fromId === fromUserId)) return;
   const fromUser = getUserById(fromUserId);
   if (!fromUser) return;
-  localStorage.setItem(
+  safeSetItem(
     K.friendReqsIn(toUserId),
     JSON.stringify([...inbound, { fromId: fromUserId, fromUsername: fromUser.username, fromAvatar: fromUser.avatar, sentAt: new Date().toISOString() }])
   );
   const outbound = getOutboundRequests(fromUserId);
   if (!outbound.includes(toUserId)) {
-    localStorage.setItem(K.friendReqsOut(fromUserId), JSON.stringify([...outbound, toUserId]));
+    safeSetItem(K.friendReqsOut(fromUserId), JSON.stringify([...outbound, toUserId]));
   }
 }
 
 export function acceptFriendRequest(userId, fromUserId) {
   addFriend(userId, fromUserId);
   addFriend(fromUserId, userId);
-  localStorage.setItem(K.friendReqsIn(userId),  JSON.stringify(getFriendRequests(userId).filter(r => r.fromId !== fromUserId)));
-  localStorage.setItem(K.friendReqsOut(fromUserId), JSON.stringify(getOutboundRequests(fromUserId).filter(id => id !== userId)));
+  safeSetItem(K.friendReqsIn(userId),  JSON.stringify(getFriendRequests(userId).filter(r => r.fromId !== fromUserId)));
+  safeSetItem(K.friendReqsOut(fromUserId), JSON.stringify(getOutboundRequests(fromUserId).filter(id => id !== userId)));
 }
 
 export function cancelFriendRequest(fromUserId, toUserId) {
-  localStorage.setItem(K.friendReqsIn(toUserId),   JSON.stringify(getFriendRequests(toUserId).filter(r => r.fromId !== fromUserId)));
-  localStorage.setItem(K.friendReqsOut(fromUserId), JSON.stringify(getOutboundRequests(fromUserId).filter(id => id !== toUserId)));
+  safeSetItem(K.friendReqsIn(toUserId),   JSON.stringify(getFriendRequests(toUserId).filter(r => r.fromId !== fromUserId)));
+  safeSetItem(K.friendReqsOut(fromUserId), JSON.stringify(getOutboundRequests(fromUserId).filter(id => id !== toUserId)));
 }
 
 export function declineFriendRequest(userId, fromUserId) {
-  localStorage.setItem(K.friendReqsIn(userId),  JSON.stringify(getFriendRequests(userId).filter(r => r.fromId !== fromUserId)));
-  localStorage.setItem(K.friendReqsOut(fromUserId), JSON.stringify(getOutboundRequests(fromUserId).filter(id => id !== userId)));
+  safeSetItem(K.friendReqsIn(userId),  JSON.stringify(getFriendRequests(userId).filter(r => r.fromId !== fromUserId)));
+  safeSetItem(K.friendReqsOut(fromUserId), JSON.stringify(getOutboundRequests(fromUserId).filter(id => id !== userId)));
 }
 
 export function getFriends(userId) {
-  try { return JSON.parse(localStorage.getItem(K.friends(userId)) || '[]'); }
-  catch { return []; }
+  return safeParseArray(localStorage.getItem(K.friends(userId)) || '[]', id => typeof id === 'string');
 }
 
 export function addFriend(userId, friendId) {
   const list = getFriends(userId);
   if (!list.includes(friendId)) {
-    localStorage.setItem(K.friends(userId), JSON.stringify([...list, friendId]));
+    safeSetItem(K.friends(userId), JSON.stringify([...list, friendId]));
   }
 }
 
 export function removeFriend(userId, friendId) {
   const list = getFriends(userId).filter(id => id !== friendId);
-  localStorage.setItem(K.friends(userId), JSON.stringify(list));
+  safeSetItem(K.friends(userId), JSON.stringify(list));
 }
 
 // ── Direct Messaging ─────────────────────────────────────────────────────────
 
 export function getDMMessages(userId, friendId) {
-  try { return JSON.parse(localStorage.getItem(K.dm(userId, friendId)) || '[]'); }
-  catch { return []; }
+  return safeParseArray(localStorage.getItem(K.dm(userId, friendId)) || '[]', isPlainObject);
 }
 
 export function sendDM(fromId, toId, text) {
@@ -227,11 +306,11 @@ export function sendDM(fromId, toId, text) {
     readAt: null,
     reactions: {},
   };
-  localStorage.setItem(key, JSON.stringify([...msgs, msg]));
+  safeSetItem(key, JSON.stringify([...msgs, msg]));
   const unread = getDMUnread(toId);
   const ck = K.dm(fromId, toId);
   unread[ck] = (unread[ck] || 0) + 1;
-  localStorage.setItem(K.dmUnread(toId), JSON.stringify(unread));
+  safeSetItem(K.dmUnread(toId), JSON.stringify(unread));
   return msg;
 }
 
@@ -250,7 +329,7 @@ export function deleteDM(userId, friendId, messageId) {
   } else {
     msgs[idx] = { ...msg, deletedByReceiver: true };
   }
-  localStorage.setItem(key, JSON.stringify(msgs));
+  safeSetItem(key, JSON.stringify(msgs));
 }
 
 export function reactToDM(userId, friendId, messageId, emoji) {
@@ -264,24 +343,23 @@ export function reactToDM(userId, friendId, messageId, emoji) {
   if (pos === -1) users.push(userId); else users.splice(pos, 1);
   if (users.length === 0) delete msgs[idx].reactions[emoji];
   else msgs[idx].reactions[emoji] = users;
-  localStorage.setItem(key, JSON.stringify(msgs));
+  safeSetItem(key, JSON.stringify(msgs));
 }
 
 export function markDMRead(userId, friendId) {
   const ck = K.dm(userId, friendId);
   const unread = getDMUnread(userId);
   delete unread[ck];
-  localStorage.setItem(K.dmUnread(userId), JSON.stringify(unread));
+  safeSetItem(K.dmUnread(userId), JSON.stringify(unread));
   const msgs = getDMMessages(userId, friendId);
   const now = new Date().toISOString();
   let changed = false;
   msgs.forEach(m => { if (m.fromId !== userId && !m.readAt) { m.readAt = now; changed = true; } });
-  if (changed) localStorage.setItem(ck, JSON.stringify(msgs));
+  if (changed) safeSetItem(ck, JSON.stringify(msgs));
 }
 
 export function getDMUnread(userId) {
-  try { return JSON.parse(localStorage.getItem(K.dmUnread(userId)) || '{}'); }
-  catch { return {}; }
+  return safeParseObject(localStorage.getItem(K.dmUnread(userId)) || '{}');
 }
 
 export function getTotalDMUnread(userId) {
@@ -294,14 +372,13 @@ export function getTotalDMUnread(userId) {
 // ── Custom Calendar Events ────────────────────────────────────────────────────
 
 export function getCustomEvents(userId) {
-  try { return JSON.parse(localStorage.getItem(K.customEvents(userId)) || '[]'); }
-  catch { return []; }
+  return safeParseArray(localStorage.getItem(K.customEvents(userId)) || '[]', isPlainObject);
 }
 
 export function addCustomEvent(userId, data) {
   const events = getCustomEvents(userId);
   const event = { ...data, id: uid(), createdAt: new Date().toISOString() };
-  localStorage.setItem(K.customEvents(userId), JSON.stringify([...events, event]));
+  safeSetItem(K.customEvents(userId), JSON.stringify([...events, event]));
   return event;
 }
 
@@ -310,13 +387,25 @@ export function updateCustomEvent(userId, eventId, data) {
   const idx = events.findIndex(e => e.id === eventId);
   if (idx === -1) return null;
   events[idx] = { ...events[idx], ...data, updatedAt: new Date().toISOString() };
-  localStorage.setItem(K.customEvents(userId), JSON.stringify(events));
+  safeSetItem(K.customEvents(userId), JSON.stringify(events));
   return events[idx];
 }
 
 export function deleteCustomEvent(userId, eventId) {
   const events = getCustomEvents(userId).filter(e => e.id !== eventId);
-  localStorage.setItem(K.customEvents(userId), JSON.stringify(events));
+  safeSetItem(K.customEvents(userId), JSON.stringify(events));
+}
+
+// ── End Custom Calendar Events ────────────────────────────────────────────────
+
+// ── Event Notifications ───────────────────────────────────────────────────────
+
+export function getSentNotifications(userId) {
+  return safeParseObject(localStorage.getItem(K.notifSent(userId)) || '{}');
+}
+
+export function saveSentNotifications(userId, sent) {
+  safeSetItem(K.notifSent(userId), JSON.stringify(sent));
 }
 
 // ── End Custom Calendar Events ────────────────────────────────────────────────
@@ -324,33 +413,30 @@ export function deleteCustomEvent(userId, eventId) {
 // ── SongBird Academy ──────────────────────────────────────────────────────────
 
 export function getAcademyProgress(userId) {
-  try { return JSON.parse(localStorage.getItem(K.academyProgress(userId)) || 'null'); }
-  catch { return null; }
+  return safeParse(localStorage.getItem(K.academyProgress(userId)) || 'null', null, v => v === null || isPlainObject(v));
 }
 
 export function saveAcademyProgress(userId, progress) {
-  localStorage.setItem(K.academyProgress(userId), JSON.stringify(progress));
+  safeSetItem(K.academyProgress(userId), JSON.stringify(progress));
 }
 
 export function getAcademyStreak(userId) {
-  try {
-    return JSON.parse(localStorage.getItem(K.academyStreak(userId)) || 'null') ||
-      { currentStreak: 0, longestStreak: 0, lastActiveDate: null };
-  }
-  catch { return { currentStreak: 0, longestStreak: 0, lastActiveDate: null }; }
+  return safeParseObjectOrDefault(
+    localStorage.getItem(K.academyStreak(userId)) || 'null',
+    { currentStreak: 0, longestStreak: 0, lastActiveDate: null }
+  );
 }
 
 export function saveAcademyStreak(userId, streak) {
-  localStorage.setItem(K.academyStreak(userId), JSON.stringify(streak));
+  safeSetItem(K.academyStreak(userId), JSON.stringify(streak));
 }
 
 export function getAcademyBadges(userId) {
-  try { return JSON.parse(localStorage.getItem(K.academyBadges(userId)) || '{}'); }
-  catch { return {}; }
+  return safeParseObject(localStorage.getItem(K.academyBadges(userId)) || '{}');
 }
 
 export function saveAcademyBadges(userId, badges) {
-  localStorage.setItem(K.academyBadges(userId), JSON.stringify(badges));
+  safeSetItem(K.academyBadges(userId), JSON.stringify(badges));
 }
 
 function emptyCompetitiveRanks() {
@@ -359,65 +445,58 @@ function emptyCompetitiveRanks() {
 }
 
 export function getCompetitiveRanks(userId) {
-  try {
-    const saved = JSON.parse(localStorage.getItem(K.competitiveRanks(userId)) || 'null');
-    return { ...emptyCompetitiveRanks(), ...saved };
-  } catch {
-    return emptyCompetitiveRanks();
-  }
+  const saved = safeParseObjectOrDefault(localStorage.getItem(K.competitiveRanks(userId)) || 'null', {});
+  return { ...emptyCompetitiveRanks(), ...saved };
 }
 
 export function saveCompetitiveRanks(userId, ranks) {
-  localStorage.setItem(K.competitiveRanks(userId), JSON.stringify(ranks));
+  safeSetItem(K.competitiveRanks(userId), JSON.stringify(ranks));
 }
 
 export function getCompetitiveRanksPrefs(userId) {
-  try { return JSON.parse(localStorage.getItem(K.competitiveRanksPrefs(userId)) || 'null') || { color: '#ff9c00' }; }
-  catch { return { color: '#ff9c00' }; }
+  return safeParseObjectOrDefault(localStorage.getItem(K.competitiveRanksPrefs(userId)) || 'null', { color: '#ff9c00' });
 }
 
 export function setCompetitiveRanksPrefs(userId, prefs) {
-  localStorage.setItem(K.competitiveRanksPrefs(userId), JSON.stringify(prefs));
+  safeSetItem(K.competitiveRanksPrefs(userId), JSON.stringify(prefs));
 }
 
 export function getMainHeroes(userId) {
-  try { return JSON.parse(localStorage.getItem(K.mainHeroes(userId)) || '[]'); }
-  catch { return []; }
+  return safeParseArray(localStorage.getItem(K.mainHeroes(userId)) || '[]', isPlainObject);
 }
 
 export function saveMainHeroes(userId, mainHeroes) {
-  localStorage.setItem(K.mainHeroes(userId), JSON.stringify(mainHeroes));
+  safeSetItem(K.mainHeroes(userId), JSON.stringify(mainHeroes));
 }
 
 export function getMainHeroesPrefs(userId) {
-  try { return JSON.parse(localStorage.getItem(K.mainHeroesPrefs(userId)) || 'null') || { color: '#ff9c00' }; }
-  catch { return { color: '#ff9c00' }; }
+  return safeParseObjectOrDefault(localStorage.getItem(K.mainHeroesPrefs(userId)) || 'null', { color: '#ff9c00' });
 }
 
 export function setMainHeroesPrefs(userId, prefs) {
-  localStorage.setItem(K.mainHeroesPrefs(userId), JSON.stringify(prefs));
+  safeSetItem(K.mainHeroesPrefs(userId), JSON.stringify(prefs));
 }
 
 export function getBadgePanelPrefs(userId) {
-  try { return JSON.parse(localStorage.getItem(K.badgePanelPrefs(userId)) || 'null') || { color: '#ff9c00', selectedBadgeIds: [] }; }
-  catch { return { color: '#ff9c00', selectedBadgeIds: [] }; }
+  return safeParseObjectOrDefault(
+    localStorage.getItem(K.badgePanelPrefs(userId)) || 'null',
+    { color: '#ff9c00', selectedBadgeIds: [] }
+  );
 }
 export function setBadgePanelPrefs(userId, prefs) {
-  localStorage.setItem(K.badgePanelPrefs(userId), JSON.stringify(prefs));
+  safeSetItem(K.badgePanelPrefs(userId), JSON.stringify(prefs));
 }
 
 export function getAcademyCerts(userId) {
-  try { return JSON.parse(localStorage.getItem(K.academyCerts(userId)) || '{}'); }
-  catch { return {}; }
+  return safeParseObject(localStorage.getItem(K.academyCerts(userId)) || '{}');
 }
 
 export function saveAcademyCerts(userId, certs) {
-  localStorage.setItem(K.academyCerts(userId), JSON.stringify(certs));
+  safeSetItem(K.academyCerts(userId), JSON.stringify(certs));
 }
 
 export function getQuizResults(userId) {
-  try { return JSON.parse(localStorage.getItem(K.academyQuizzes(userId)) || '{}'); }
-  catch { return {}; }
+  return safeParseObject(localStorage.getItem(K.academyQuizzes(userId)) || '{}');
 }
 
 export function saveQuizResult(userId, quizId, result) {
@@ -432,7 +511,7 @@ export function saveQuizResult(userId, quizId, result) {
     lastAttemptAt: new Date().toISOString(),
   };
   all[quizId] = updated;
-  localStorage.setItem(K.academyQuizzes(userId), JSON.stringify(all));
+  safeSetItem(K.academyQuizzes(userId), JSON.stringify(all));
   return updated;
 }
 

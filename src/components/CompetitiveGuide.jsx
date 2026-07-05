@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useEscapeKey } from "../hooks/useEscapeKey";
+import { useFocusTrap } from "../hooks/useFocusTrap";
 import overviewImg  from "../assets/competitive/competitive-overview.png";
 import heroSrImg    from "../assets/competitive/competitive-hero-skill-rating.png";
 import modifiersImg from "../assets/competitive/competitive-modifiers.png";
@@ -83,14 +85,8 @@ const SECTIONS = [
 export default function CompetitiveGuide() {
   const [lightbox, setLightbox] = useState(null);
 
-  useEffect(() => {
-    if (!lightbox) return;
-    function onKey(e) {
-      if (e.key === "Escape") setLightbox(null);
-    }
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [lightbox]);
+  useEscapeKey(() => setLightbox(null), !!lightbox);
+  const panelRef = useFocusTrap(!!lightbox);
 
   const activeSection = lightbox ? SECTIONS.find(s => s.id === lightbox) : null;
 
@@ -143,7 +139,11 @@ export default function CompetitiveGuide() {
           onClick={() => setLightbox(null)}
         >
           <div
+            ref={panelRef}
             className="uig-lightbox-panel"
+            role="dialog"
+            aria-modal="true"
+            tabIndex={-1}
             onClick={e => e.stopPropagation()}
           >
             <div className="uig-lightbox-header">

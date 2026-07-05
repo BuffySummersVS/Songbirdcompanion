@@ -1,0 +1,953 @@
+/* ══════════════════════════════════════════════════════════════════════
+   SongBird Easter Eggs — desktop-only visual system.
+   All overlays are pointer-events:none so the app stays fully usable
+   while an effect plays.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.egg-fx{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+/* ── Screen shake (applied to <body>, shared by Reinhardt + D.Va) ── */
+@keyframes egg-shake-heavy-kf{
+  0%  { transform:translate(0,0) rotate(0); }
+  15% { transform:translate(-10px,6px) rotate(-.4deg); }
+  30% { transform:translate(9px,-7px) rotate(.3deg); }
+  45% { transform:translate(-7px,5px) rotate(-.3deg); }
+  60% { transform:translate(6px,-4px) rotate(.2deg); }
+  80% { transform:translate(-3px,2px) rotate(0); }
+  100%{ transform:translate(0,0) rotate(0); }
+}
+.egg-shake-heavy{ animation:egg-shake-heavy-kf .25s linear; }
+
+@keyframes egg-shake-soft-kf{
+  0%  { transform:translate(0,0); }
+  20% { transform:translate(-5px,3px); }
+  40% { transform:translate(5px,-3px); }
+  60% { transform:translate(-3px,2px); }
+  80% { transform:translate(2px,-1px); }
+  100%{ transform:translate(0,0); }
+}
+.egg-shake-soft{ animation:egg-shake-soft-kf .4s ease-out; }
+
+/* ── Continuous slight shake — held for an effect's whole duration (Genji) ── */
+@keyframes egg-shake-slight-kf{
+  0%   { transform:translate(0,0) rotate(0); }
+  25%  { transform:translate(-2px,1px) rotate(-.12deg); }
+  50%  { transform:translate(2px,-1px) rotate(.1deg); }
+  75%  { transform:translate(-1px,2px) rotate(-.08deg); }
+  100% { transform:translate(0,0) rotate(0); }
+}
+.egg-shake-slight{ animation:egg-shake-slight-kf .18s linear infinite; }
+
+@media (prefers-reduced-motion: reduce){
+  .egg-shake-heavy, .egg-shake-soft, .egg-shake-slight{ animation:none !important; }
+}
+
+/* ══ Achievement toast ══ */
+.egg-toast-stack{
+  position:fixed;
+  top:24px;
+  right:24px;
+  z-index:10050;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  pointer-events:none;
+}
+
+.egg-toast{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-width:280px;
+  max-width:340px;
+  padding:14px 20px 14px 16px;
+  border-radius:16px;
+  border:1px solid rgba(255,183,51,.45);
+  background:linear-gradient(150deg,rgba(20,24,33,.96),rgba(15,17,23,.98));
+  box-shadow:0 14px 34px rgba(0,0,0,.5), 0 0 0 1px rgba(255,156,0,.08) inset;
+  overflow:hidden;
+}
+
+.egg-toast-glow{
+  position:absolute;
+  inset:-40% -20%;
+  background:radial-gradient(circle at 15% 20%,rgba(255,183,51,.28),transparent 60%);
+  pointer-events:none;
+}
+
+.egg-toast-icon{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:40px;
+  height:40px;
+  flex:none;
+  border-radius:12px;
+  color:var(--orange2,#ffb733);
+  background:rgba(255,156,0,.12);
+  box-shadow:0 0 14px rgba(255,156,0,.35) inset;
+}
+
+.egg-toast-body{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  min-width:0;
+}
+
+.egg-toast-eyebrow{
+  font-size:.68rem;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--grey);
+  font-weight:600;
+}
+
+.egg-toast-name{
+  font-size:1.02rem;
+  font-weight:700;
+  color:var(--white);
+  overflow-wrap:anywhere;
+}
+
+.egg-toast-hero{
+  font-size:.82rem;
+  color:var(--orange2,#ffb733);
+  font-weight:600;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Hanzo — Ryū ga waga teki wo kurau!
+   ══════════════════════════════════════════════════════════════════════ */
+.hanzo-fx-dim{
+  position:absolute;
+  inset:0;
+  background:#000;
+}
+.hanzo-fx-dragon{
+  position:absolute;
+  top:32%;
+  left:0;
+  width:min(68vw,880px);
+  height:auto;
+  filter:drop-shadow(0 0 22px rgba(70,160,255,.85)) drop-shadow(0 0 46px rgba(70,160,255,.5));
+}
+.hanzo-fx-dragon-static{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:min(64vw,760px);
+  transform:translate(-50%,-50%);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Ana — Nap Time
+   ══════════════════════════════════════════════════════════════════════ */
+.ana-fx-fade{
+  position:absolute;
+  inset:0;
+  background:#03050a;
+}
+.ana-fx-lid{
+  position:absolute;
+  left:0;
+  width:100%;
+  height:60%;
+  background:linear-gradient(180deg,#05060b,#0b0f18);
+}
+/* Leading edge is a shallow "valley" (higher/receded at screen-centre,
+   deeper/full-reach at the screen edges) — the inverse of a simple dome.
+   That's what makes the closing gap widest in the middle and narrowest at
+   the sides, so the two lids meet at the centre last, in a lens/eye
+   silhouette, instead of pinching shut in the middle first. */
+.ana-fx-lid-top{
+  top:0;
+  transform-origin:top;
+  clip-path:polygon(0% 0%, 100% 0%, 100% 100%, 87.5% 95.6%, 75% 92.5%, 62.5% 90.6%, 50% 90%, 37.5% 90.6%, 25% 92.5%, 12.5% 95.6%, 0% 100%);
+}
+.ana-fx-lid-bottom{
+  bottom:0;
+  transform-origin:bottom;
+  clip-path:polygon(0% 100%, 100% 100%, 100% 0%, 87.5% 4.4%, 75% 7.5%, 62.5% 9.4%, 50% 10%, 37.5% 9.4%, 25% 7.5%, 12.5% 4.4%, 0% 0%);
+}
+.ana-fx-seam{
+  position:absolute;
+  top:50%;
+  left:10%;
+  width:80%;
+  height:2px;
+  transform:translateY(-1px);
+  background:linear-gradient(90deg,transparent,rgba(120,190,255,.6),transparent);
+  box-shadow:0 0 12px rgba(120,190,255,.5);
+  border-radius:50%;
+}
+.ana-fx-z{
+  position:absolute;
+  bottom:0;
+  font-family:"Black Ops One", sans-serif;
+  font-weight:700;
+  line-height:1;
+  background:linear-gradient(160deg,#ffffff,#bfe0ff 45%,#5a9dff 90%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 16px rgba(120,180,255,.6));
+  pointer-events:none;
+  user-select:none;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Torbjörn — Is it hot in here?
+   ══════════════════════════════════════════════════════════════════════ */
+.torb-fx-glow{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:46vh;
+  background:radial-gradient(ellipse at top,rgba(255,110,30,.35),transparent 70%);
+}
+.torb-fx-wrap{
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+}
+.torb-fx-wrap{
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+}
+.torb-fx-lava{
+  display:block;
+  width:auto;
+  max-height:60vh;
+  filter:drop-shadow(0 12px 26px rgba(255,90,20,.55));
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Kiriko — Healing Shower
+   ══════════════════════════════════════════════════════════════════════ */
+.kiriko-fx-ofuda{
+  position:absolute;
+  top:0;
+  width:150px;
+  height:auto;
+  filter:drop-shadow(0 0 10px rgba(255,210,235,.55)) drop-shadow(0 0 4px rgba(255,255,255,.4));
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Reinhardt — Shield and Shatter
+   ══════════════════════════════════════════════════════════════════════ */
+.rein-fx-barrier{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 50% 45%,rgba(20,80,255,.95),rgba(10,60,240,.75) 55%,rgba(0,40,210,.42) 78%);
+  box-shadow:inset 0 0 200px rgba(20,100,255,.95);
+}
+.rein-fx-hexgrid{
+  position:absolute;
+  inset:0;
+  opacity:.5;
+  background-image:
+    linear-gradient(30deg,transparent 46%,rgba(90,170,255,.45) 49%,rgba(90,170,255,.45) 51%,transparent 54%),
+    linear-gradient(150deg,transparent 46%,rgba(90,170,255,.45) 49%,rgba(90,170,255,.45) 51%,transparent 54%),
+    linear-gradient(90deg,transparent 46%,rgba(60,140,255,.35) 49%,rgba(60,140,255,.35) 51%,transparent 54%);
+  background-size:74px 128px;
+  animation:rein-hex-drift 6s linear infinite;
+}
+@keyframes rein-hex-drift{
+  to{ background-position:74px 128px, 74px 128px, 74px 128px; }
+}
+.rein-fx-ripple{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:220px;
+  height:220px;
+  margin:-110px 0 0 -110px;
+  border-radius:50%;
+  border:3px solid rgba(200,230,255,.85);
+  box-shadow:0 0 30px rgba(150,205,255,.6);
+}
+.rein-fx-dissolve-particle{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:7px;
+  height:7px;
+  margin:-3.5px 0 0 -3.5px;
+  border-radius:2px;
+  background:rgba(150,205,255,.9);
+  box-shadow:0 0 8px rgba(150,205,255,.8);
+}
+.rein-fx-crack{
+  position:fixed;
+  left:50%;
+  bottom:0;
+  width:min(56vw,480px);
+  aspect-ratio:200 / 140;
+  transform:translateX(-50%);
+  overflow:visible;
+}
+.rein-fx-fragment{
+  position:absolute;
+  bottom:0;
+  width:20px;
+  height:15px;
+  background:linear-gradient(160deg,#9a6f4f,#4a3223);
+  box-shadow:0 4px 10px rgba(0,0,0,.4);
+  clip-path:polygon(10% 0,90% 8%,100% 80%,20% 100%,0 60%);
+}
+.rein-fx-ember{
+  position:absolute;
+  bottom:4vh;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#ffb04a;
+  box-shadow:0 0 8px rgba(255,150,50,.9);
+}
+.rein-fx-dust{
+  position:absolute;
+  bottom:0;
+  left:30%;
+  width:40%;
+  height:26vh;
+  background:radial-gradient(ellipse at bottom,rgba(190,170,150,.4),transparent 75%);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Junkrat — Fire in the Hole!
+   ══════════════════════════════════════════════════════════════════════ */
+.junk-fx-tire{
+  position:absolute;
+  bottom:4vh;
+  left:0;
+  width:min(18vw,210px);
+  height:auto;
+  filter:drop-shadow(0 8px 10px rgba(0,0,0,.55));
+  will-change:transform;
+}
+.junk-fx-tire-static{
+  bottom:8vh;
+  left:auto;
+  right:8vw;
+}
+.junk-fx-dust{
+  position:absolute;
+  bottom:5vh;
+  width:16px;
+  height:8px;
+  border-radius:50%;
+  background:radial-gradient(ellipse,rgba(170,140,100,.55),transparent 75%);
+}
+.junk-fx-spark{
+  position:absolute;
+  bottom:6.5vh;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:#fff2b0;
+  box-shadow:0 0 8px rgba(255,220,120,.9);
+}
+.junk-fx-blast{
+  position:absolute;
+  bottom:5vh;
+  width:0;
+  height:0;
+}
+.junk-fx-blast-core{
+  position:absolute;
+  left:-60px;
+  top:-60px;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,240,200,.95),rgba(255,150,40,.85) 35%,rgba(255,90,20,.5) 60%,transparent 78%);
+}
+.junk-fx-smoke{
+  position:absolute;
+  left:-24px;
+  top:-24px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(120,110,100,.55),transparent 72%);
+  filter:blur(2px);
+}
+.junk-fx-ember{
+  position:absolute;
+  left:-3px;
+  top:-3px;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#ffb347;
+  box-shadow:0 0 10px rgba(255,150,50,.9);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   D.Va — Pressing Q
+   ══════════════════════════════════════════════════════════════════════ */
+.dva-fx-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(163,230,53,.42);
+}
+.dva-fx-flash{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle,rgba(255,255,255,.9),rgba(200,255,140,.75) 40%,transparent 72%);
+}
+.dva-fx-bloom{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:150vmax;
+  height:150vmax;
+  margin:-75vmax 0 0 -75vmax;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(190,255,90,.8),rgba(140,230,60,.4) 55%,transparent 75%);
+}
+.dva-fx-shock{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:100vmax;
+  height:100vmax;
+  margin:-50vmax 0 0 -50vmax;
+  border-radius:50%;
+  border:6px solid rgba(190,255,90,.9);
+  box-shadow:0 0 50px rgba(163,230,53,.8);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Genji — I Need Healing
+   ══════════════════════════════════════════════════════════════════════ */
+.genji-fx-vignette{
+  position:fixed;
+  inset:0;
+  box-shadow:inset 0 0 60px 18px rgba(255,20,20,.75), inset 0 0 140px 50px rgba(200,0,0,.4);
+}
+.genji-fx-cross{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:32vmin;
+  height:32vmin;
+}
+.genji-fx-cross-bar{
+  position:absolute;
+  top:50%;
+  left:50%;
+  background:#ff2222;
+  border:2px solid #fff;
+  box-shadow:0 0 24px 6px rgba(255,20,20,.85);
+  border-radius:4px;
+}
+.genji-fx-cross-bar--v{
+  width:32%;
+  height:100%;
+  transform:translate(-50%,-50%);
+}
+.genji-fx-cross-bar--h{
+  width:100%;
+  height:32%;
+  transform:translate(-50%,-50%);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Sombra — Access Granted
+   ══════════════════════════════════════════════════════════════════════ */
+.sombra-fx-tint{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(160deg,rgba(168,85,247,.6),rgba(90,20,140,.4));
+}
+.sombra-fx-band{
+  position:absolute;
+  left:0;
+  width:100%;
+  height:3px;
+  background:rgba(200,120,255,.8);
+  mix-blend-mode:screen;
+}
+.sombra-fx-glitch{
+  position:absolute;
+  border-radius:1px;
+  mix-blend-mode:screen;
+}
+.sombra-fx-ping{
+  position:absolute;
+  top:22%;
+  right:12%;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:radial-gradient(circle,#e9b8ff,rgba(168,85,247,.8) 60%,transparent 78%);
+  box-shadow:0 0 26px rgba(190,120,255,1);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Lúcio — Sound Barrier
+   ══════════════════════════════════════════════════════════════════════ */
+.lucio-fx-ring{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:10vmax;
+  height:10vmax;
+  margin:-5vmax 0 0 -5vmax;
+  border-radius:50%;
+  border:3px solid rgba(80,230,200,.7);
+}
+.lucio-fx-flash{
+  position:absolute;
+  inset:0;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Mercy — Heavenly Glow (full-screen)
+   ══════════════════════════════════════════════════════════════════════ */
+.mercy-glow-fx-wash{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 82% 8%,rgba(255,246,214,.95),rgba(255,221,140,.55) 38%,rgba(255,200,110,.22) 62%,transparent 82%);
+}
+.mercy-glow-fx-rays{
+  position:absolute;
+  inset:-20%;
+  background:repeating-conic-gradient(from 200deg at 82% 8%,rgba(255,250,225,.28) 0deg 4deg,transparent 4deg 14deg);
+  mix-blend-mode:screen;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Widowmaker — One Shot, One Kill
+   Cinematic sniper-impact shatter: near-full dim, a single clean bullet
+   hole, then one unified crack system (radial spokes + concentric rings)
+   that grows outward into a glowing purple spider web.
+   ══════════════════════════════════════════════════════════════════════ */
+.widow-fx-dim{
+  position:fixed;
+  inset:0;
+  background:#020103;
+}
+
+/* Soft ambient halo behind the sharp bullet hole rim. */
+.widow-fx-hole-glow{
+  position:fixed;
+  top:50%;
+  left:50%;
+  width:120px;
+  height:120px;
+  margin:-60px 0 0 -60px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(216,180,254,.55),rgba(147,51,234,.28) 40%,transparent 72%);
+}
+
+.widow-fx-crack{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
+/* Bullet hole — dark chipped-glass puncture with a glowing purple rim.
+   Rendered inside the same viewBox as the cracks so it lines up exactly
+   with their shared origin, and stays visible throughout as the focal
+   point per spec. */
+.widow-fx-hole-rim{
+  fill:#0a0710;
+  stroke:#d8b4fe;
+  stroke-width:.5;
+  filter:drop-shadow(0 0 2px rgba(216,180,254,.9)) drop-shadow(0 0 5px rgba(147,51,234,.7));
+}
+
+/* One unified crack system — radial spokes and the concentric rings
+   share the same stroke language (not two competing visual styles) so
+   the shattered glass itself reads as the web, not a web drawn on top. */
+.widow-fx-crack-line,
+.widow-fx-crack-ring{
+  fill:none;
+  stroke:#c084fc;
+  stroke-linecap:round;
+  filter:drop-shadow(0 0 1.4px rgba(192,132,252,.95)) drop-shadow(0 0 3.4px rgba(147,51,234,.65));
+}
+.widow-fx-crack-line{ stroke-width:.32; }
+.widow-fx-crack-ring{ stroke-width:.22; }
+
+.widow-fx-glow-pulse{
+  position:fixed;
+  top:50%;
+  left:50%;
+  width:70vmax;
+  height:70vmax;
+  margin:-35vmax 0 0 -35vmax;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(216,180,254,.4),rgba(147,51,234,.16) 45%,transparent 70%);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Happy Birthday — May 4th secret celebration
+   ══════════════════════════════════════════════════════════════════════ */
+.bday-fx-dim{
+  position:fixed;
+  inset:0;
+  background:#020103;
+}
+.bday-fx-confetti-layer{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+}
+.bday-fx-confetti{
+  position:absolute;
+  top:0;
+  border-radius:1px;
+  box-shadow:0 0 4px rgba(255,255,255,.25);
+}
+.bday-fx-confetti-circle{
+  border-radius:50%;
+}
+.bday-fx-image-wrap{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+.bday-fx-image{
+  display:block;
+  width:min(52vw,640px);
+  height:auto;
+  filter:drop-shadow(0 10px 34px rgba(0,0,0,.55));
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Christmas — December 25th secret celebration
+   ══════════════════════════════════════════════════════════════════════ */
+.xmas-fx-dim{
+  position:fixed;
+  inset:0;
+  background:#01040c;
+}
+.xmas-fx-particle-layer{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+}
+.xmas-fx-snowflake{
+  position:absolute;
+  top:0;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 6px 1px rgba(255,255,255,.6);
+}
+.xmas-fx-light{
+  position:absolute;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+}
+.xmas-fx-star{
+  position:absolute;
+  line-height:1;
+  color:#ffe9a8;
+  text-shadow:0 0 8px rgba(255,233,168,.9), 0 0 2px #fff;
+}
+.xmas-fx-image-wrap{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+.xmas-fx-image{
+  display:block;
+  width:min(52vw,640px);
+  height:auto;
+  filter:drop-shadow(0 10px 34px rgba(0,0,0,.55));
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Halloween — October 31st secret celebration
+   ══════════════════════════════════════════════════════════════════════ */
+.hween-fx-dim{
+  position:fixed;
+  inset:0;
+  background:#04030a;
+}
+.hween-fx-particle-layer{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+}
+.hween-fx-ember{
+  position:absolute;
+  top:0;
+  border-radius:50%;
+  background:#ff9d4d;
+  box-shadow:0 0 6px 1px rgba(255,120,20,.65);
+}
+.hween-fx-light{
+  position:absolute;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+}
+.hween-fx-star{
+  position:absolute;
+  line-height:1;
+  color:#c8ffb0;
+  text-shadow:0 0 8px rgba(139,92,246,.9), 0 0 2px #39ff88;
+}
+.hween-fx-image-wrap{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+.hween-fx-image{
+  display:block;
+  width:min(52vw,640px);
+  height:auto;
+  filter:drop-shadow(0 10px 34px rgba(0,0,0,.55));
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   New Years Eve — December 31st secret celebration
+   ══════════════════════════════════════════════════════════════════════ */
+.nye-fx-dim{
+  position:fixed;
+  inset:0;
+  background:#02040c;
+}
+.nye-fx-particle-layer{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+}
+.nye-fx-spark{
+  position:absolute;
+  top:0;
+  border-radius:50%;
+  background:#ffe9a8;
+  box-shadow:0 0 6px 1px rgba(255,215,0,.6);
+}
+.nye-fx-light{
+  position:absolute;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+}
+.nye-fx-star{
+  position:absolute;
+  line-height:1;
+  color:#ffe9a8;
+  text-shadow:0 0 8px rgba(255,215,0,.9), 0 0 2px #fff;
+}
+.nye-fx-image-wrap{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+.nye-fx-image{
+  display:block;
+  width:min(52vw,640px);
+  height:auto;
+  filter:drop-shadow(0 10px 34px rgba(0,0,0,.55));
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   April Fools — April 1st secret celebration
+   ══════════════════════════════════════════════════════════════════════ */
+.afools-fx-dim{
+  position:fixed;
+  inset:0;
+  background:#0a0410;
+}
+.afools-fx-particle-layer{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+}
+.afools-fx-confetti{
+  position:absolute;
+  top:0;
+  border-radius:1px;
+  box-shadow:0 0 4px rgba(255,255,255,.25);
+}
+.afools-fx-light{
+  position:absolute;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+}
+.afools-fx-star{
+  position:absolute;
+  line-height:1;
+  color:#ffe08a;
+  text-shadow:0 0 8px rgba(244,114,182,.9), 0 0 2px #fff;
+}
+.afools-fx-image-wrap{
+  position:fixed;
+  top:50%;
+  left:50%;
+  /* april-fools.png has a tall blank/blurred band above the artwork, so the
+     image box is centred well above where translate(-50%,-50%) would put it
+     — pulled up further to bring the actual characters to screen-centre. */
+  transform:translate(-50%,-72%);
+}
+.afools-fx-image{
+  display:block;
+  width:min(52vw,640px);
+  height:auto;
+  filter:drop-shadow(0 10px 34px rgba(0,0,0,.55));
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Valentines — February 14th secret celebration
+   ══════════════════════════════════════════════════════════════════════ */
+.val-fx-dim{
+  position:fixed;
+  inset:0;
+  background:#0a0308;
+}
+.val-fx-particle-layer{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+}
+.val-fx-heart{
+  position:absolute;
+  top:0;
+  line-height:1;
+  text-shadow:0 0 8px currentColor;
+}
+.val-fx-light{
+  position:absolute;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+}
+.val-fx-star{
+  position:absolute;
+  line-height:1;
+  color:#ffe9f2;
+  text-shadow:0 0 8px rgba(255,107,157,.9), 0 0 2px #fff;
+}
+.val-fx-image-wrap{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+.val-fx-image{
+  display:block;
+  width:min(52vw,640px);
+  height:auto;
+  filter:drop-shadow(0 10px 34px rgba(0,0,0,.55));
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Secret Archives — profile page section
+   ══════════════════════════════════════════════════════════════════════ */
+.egg-section-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+.egg-section-sub{
+  color:var(--grey);
+  font-size:.92rem;
+  margin-top:4px;
+}
+.egg-section-progress{
+  flex:none;
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:.85rem;
+  font-weight:700;
+  color:var(--orange2,#ffb733);
+  background:rgba(255,156,0,.12);
+  border:1px solid rgba(255,156,0,.3);
+  white-space:nowrap;
+}
+
+.egg-section-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:14px;
+}
+
+.egg-card{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:6px;
+  padding:16px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:linear-gradient(160deg,#181d27,#101319);
+  transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.egg-card-icon{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  margin-bottom:2px;
+}
+
+.egg-card-locked .egg-card-icon{
+  color:var(--grey);
+  background:rgba(255,255,255,.04);
+}
+.egg-card-locked{ opacity:.72; }
+
+.egg-card-unlocked{
+  border-color:rgba(255,156,0,.4);
+  box-shadow:0 0 16px rgba(255,156,0,.14);
+}
+.egg-card-unlocked .egg-card-icon{
+  color:var(--orange2,#ffb733);
+  background:rgba(255,156,0,.14);
+  box-shadow:0 0 12px rgba(255,156,0,.3) inset;
+}
+.egg-card-unlocked:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 22px rgba(0,0,0,.4), 0 0 16px rgba(255,156,0,.22);
+}
+
+.egg-card-name{
+  font-weight:700;
+  color:var(--white);
+  font-size:.95rem;
+  line-height:1.25;
+}
+.egg-card-hero{
+  font-size:.8rem;
+  color:var(--orange2,#ffb733);
+  font-weight:600;
+}
+.egg-card-unknown{
+  color:var(--grey) !important;
+}

@@ -1,5 +1,7 @@
-﻿import { useState, useEffect } from "react";
+﻿import { useState } from "react";
 import { UI_GUIDES } from "../data/uiGuides";
+import { useEscapeKey } from "../hooks/useEscapeKey";
+import { useFocusTrap } from "../hooks/useFocusTrap";
 import scoreboardImg from "../assets/ui-guides/scoreboard-guide.png";
 import hudImg from "../assets/ui-guides/gameplay-hud-guide.png";
 
@@ -11,14 +13,8 @@ const IMAGES = {
 export default function UIGuide() {
   const [lightbox, setLightbox] = useState(null);
 
-  useEffect(() => {
-    if (!lightbox) return;
-    function onKey(e) {
-      if (e.key === "Escape") setLightbox(null);
-    }
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [lightbox]);
+  useEscapeKey(() => setLightbox(null), !!lightbox);
+  const panelRef = useFocusTrap(!!lightbox);
 
   return (
     <>
@@ -65,7 +61,11 @@ export default function UIGuide() {
             onClick={() => setLightbox(null)}
           >
             <div
+              ref={panelRef}
               className="uig-lightbox-panel"
+              role="dialog"
+              aria-modal="true"
+              tabIndex={-1}
               onClick={e => e.stopPropagation()}
             >
               <div className="uig-lightbox-header">

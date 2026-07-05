@@ -2,6 +2,8 @@ import { useState, useMemo, useEffect, useRef } from "react";
 import { heroes } from "../data/heroes";
 import { CW_TIPS } from "../data/tips";
 import HeroPickerGrid from "./HeroPickerGrid";
+import { useEscapeKey } from "../hooks/useEscapeKey";
+import { useFocusTrap } from "../hooks/useFocusTrap";
 
 const TIP_INTERVAL = 11000;
 
@@ -51,14 +53,8 @@ export default function CounterWatch({ initialHero }) {
     setSelected(initialHero);
   }
 
-  useEffect(() => {
-    if (!selected) return;
-    function onKey(e) {
-      if (e.key === "Escape") setSelected(null);
-    }
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [selected]);
+  useEscapeKey(() => setSelected(null), !!selected);
+  const panelRef = useFocusTrap(!!selected);
 
   const filtered = useMemo(
     () => heroes.filter(h => h.name.toLowerCase().includes(search.toLowerCase())),
@@ -88,7 +84,7 @@ export default function CounterWatch({ initialHero }) {
 
       {selected && (
         <div className="cw-popup-overlay" onClick={() => setSelected(null)}>
-          <div className="cw-popup-panel" onClick={e => e.stopPropagation()}>
+          <div ref={panelRef} className="cw-popup-panel" role="dialog" aria-modal="true" tabIndex={-1} onClick={e => e.stopPropagation()}>
             <div className="cw-popup-header">
               <div className={`cw-popup-portrait ${selected.role.toLowerCase()}`}>
                 <img src={selected.image} alt={selected.name} className="cw-popup-img" />

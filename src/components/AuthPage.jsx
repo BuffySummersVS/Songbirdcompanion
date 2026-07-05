@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { containsProfanity } from '../data/profanity';
 import { DEFAULT_AVATAR, getAvatarSrc } from '../data/avatars';
 import { heroes } from '../data/heroes.js';
 import { RANK_TIERS } from '../data/competitiveRanks.js';
 import AvatarPicker from './AvatarPicker.jsx';
+import { useEscapeKey } from '../hooks/useEscapeKey';
+import Modal, { ModalHeader } from './Modal';
 
 function avatarLabel(avatar) {
   if (avatar.type === 'upload') return 'Custom upload';
@@ -62,50 +64,36 @@ export default function AuthModal({ open, onClose, onSuccess }) {
   const { login, register } = useAuth();
   const [tab, setTab] = useState('login');
 
-  useEffect(() => {
-    if (!open) return;
-    function onKey(e) { if (e.key === 'Escape') onClose(); }
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [open, onClose]);
+  useEscapeKey(onClose, open);
 
   if (!open) return null;
 
   return (
-    <div className="auth-modal-overlay" onClick={onClose}>
-      <div className="auth-modal-panel" onClick={e => e.stopPropagation()}>
+    <Modal onClose={onClose} panelClassName="auth-modal-panel">
+      <ModalHeader title={tab === 'login' ? 'Welcome Back' : 'Create Account'} onClose={onClose} />
 
-        <div className="auth-modal-header">
-          <span className="auth-modal-title">
-            {tab === 'login' ? 'Welcome Back' : 'Create Account'}
-          </span>
-          <button type="button" className="auth-modal-close" onClick={onClose} aria-label="Close">✕</button>
-        </div>
-
-        <div className="auth-tabs">
-          <button
-            type="button"
-            className={`auth-tab${tab === 'login' ? ' active' : ''}`}
-            onClick={() => setTab('login')}
-          >
-            Log In
-          </button>
-          <button
-            type="button"
-            className={`auth-tab${tab === 'register' ? ' active' : ''}`}
-            onClick={() => setTab('register')}
-          >
-            Create Account
-          </button>
-        </div>
-
-        {tab === 'login'
-          ? <LoginForm login={login} onSuccess={onSuccess} />
-          : <RegisterForm register={register} onSuccess={onSuccess} />
-        }
-
+      <div className="auth-tabs">
+        <button
+          type="button"
+          className={`auth-tab${tab === 'login' ? ' active' : ''}`}
+          onClick={() => setTab('login')}
+        >
+          Log In
+        </button>
+        <button
+          type="button"
+          className={`auth-tab${tab === 'register' ? ' active' : ''}`}
+          onClick={() => setTab('register')}
+        >
+          Create Account
+        </button>
       </div>
-    </div>
+
+      {tab === 'login'
+        ? <LoginForm login={login} onSuccess={onSuccess} />
+        : <RegisterForm register={register} onSuccess={onSuccess} />
+      }
+    </Modal>
   );
 }
 
@@ -217,6 +205,7 @@ function RegisterForm({ register, onSuccess }) {
             placeholder="Choose a username"
           />
           <span className="auth-hint">{username.trim().length}/20 characters</span>
+          <span className="auth-hint">No email required — this is the name others will see on your account.</span>
         </div>
 
         <div className="auth-field">

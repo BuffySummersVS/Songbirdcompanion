@@ -87,7 +87,16 @@ export default function TeamComps() {
               key={style.id}
               className={`comp-style-card${selectedStyle === style.id ? " selected" : ""}`}
               style={{ "--style-color": style.color }}
+              role="button"
+              tabIndex={0}
               onClick={() => setSelectedStyle(selectedStyle === style.id ? null : style.id)}
+              onKeyDown={e => {
+                if (e.target !== e.currentTarget) return;
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setSelectedStyle(selectedStyle === style.id ? null : style.id);
+                }
+              }}
             >
               <div className="comp-style-card-header">
                 <span className="comp-style-icon">{style.icon}</span>
@@ -136,7 +145,16 @@ export default function TeamComps() {
               {hero ? (
                 <div
                   className={`tc-hero-filled${misfits.some(m => m.id === hero.id) ? " mismatch" : ""}`}
+                  role="button"
+                  tabIndex={0}
                   onClick={() => setPickingSlot(i)}
+                  onKeyDown={e => {
+                    if (e.target !== e.currentTarget) return;
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setPickingSlot(i);
+                    }
+                  }}
                 >
                   <img src={hero.image} alt={hero.name} />
                   <span>{hero.name}</span>

@@ -2,13 +2,14 @@ import { useId, useMemo, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { getMatches, addMatch, updateMatch, deleteMatch, clearMatches } from '../data/storage';
 
-function toast(msg) { window.dispatchEvent(new CustomEvent('sb-toast', { detail: { message: msg } })); }
+import { toast } from '../utils/toast';
 import { heroes } from '../data/heroes';
 import mapsData from '../data/maps.json';
 
 const RESULTS    = ['Win', 'Loss'];
 const ROLE_OPTIONS = ['Open Queue', 'Tank', 'DPS', 'Support'];
 const ROLE_GRAPH_KEYS = ['Tank', 'DPS', 'Support'];
+const ROLE_QUEUE_TO_HERO_ROLE = { Tank: 'Tank', DPS: 'Damage', Support: 'Support' };
 const W = 420, H = 120, PAD = 18;
 
 // Win-rate graph loop timing (all in ms) — dots appear one at a time,
@@ -294,7 +295,7 @@ export default function WinLossTracker() {
             <select
               className="sb-select"
               value={form.roleQueue}
-              onChange={e => setForm(f => ({ ...f, roleQueue: e.target.value }))}
+              onChange={e => setForm(f => ({ ...f, roleQueue: e.target.value, heroId: '' }))}
               style={{ width: '100%' }}
               disabled={!form.queue}
             >
@@ -305,7 +306,7 @@ export default function WinLossTracker() {
             </select>
           </div>
 
-          {/* Hero */}
+          {/* Hero — locked to the selected role's heroes unless Open Queue is picked */}
           <div className="wlt-field-group wlt-full">
             <span className="wlt-field-label">Hero Played</span>
             <select
@@ -313,9 +314,10 @@ export default function WinLossTracker() {
               value={form.heroId}
               onChange={e => setForm(f => ({ ...f, heroId: e.target.value }))}
               style={{ width: '100%' }}
+              disabled={!form.roleQueue}
             >
               <option value="">— Select a hero —</option>
-              {['Tank', 'Damage', 'Support'].map(role => (
+              {(form.roleQueue === 'Open Queue' ? ['Tank', 'Damage', 'Support'] : [ROLE_QUEUE_TO_HERO_ROLE[form.roleQueue]].filter(Boolean)).map(role => (
                 <optgroup key={role} label={role}>
                   {heroes
                     .filter(h => h.role === role)

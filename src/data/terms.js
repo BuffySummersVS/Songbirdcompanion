@@ -364,6 +364,55 @@
       "It was a tank diff — their Ramattra dominated every single fight.",
   },
   {
+    term: "GG",
+    category: "Communication",
+    definition:
+      "Short for 'Good Game.' Usually sent in chat once a match ends. Can be genuine sportsmanship acknowledging a well-played match either way, or said in a sarcastic, derogatory tone to rub in a lopsided win. When meant derogatorily it's usually paired with 'EZ' or a misspelled/spaced-out variant of it (e.g. 'e z', 'ezy'), since typing them together as-is often trips the in-game chat filter and gets the message blocked.",
+    example:
+      "GG everyone, that was close! / (typed sarcastically after a stomp) GG ez.",
+  },
+  {
+    term: "EZ",
+    category: "Communication",
+    definition:
+      "Short for 'Easy.' Typically sent by the winning team to insult the losers, implying the match was won with little effort. Can also be used self-deprecatingly by the losing team for comedic effect after a rough loss.",
+    example:
+      "EZ, next. / (losing team, joking about the stomp) Well... EZ for them, ngl.",
+  },
+  {
+    term: "GG EZ",
+    category: "Communication",
+    definition:
+      "Overwatch has a built-in chat replacement filter that detects this taunt (and close variants) and automatically swaps it out for one of several silly, wholesome lines instead of letting the insult through.",
+    example:
+      "Typing 'gg ez' in chat gets swapped out automatically — tap \"View Replacement Lines\" below to see every possible line it can become.",
+    chatFilterLines: [
+      "Great game, everyone!",
+      "It was an honor to play with you all. Thank you.",
+      "Wishing you all the best.",
+      "Good game! Best of luck to you all!",
+      "Gee whiz! That was fun. Good playing!",
+      "Well played. I salute you all.",
+      "I'm wrestling with some insecurity issues in my life but thank you all for playing with me.",
+      "Ah shucks… you guys are the best!",
+      "It's past my bedtime. Please don't tell my mommy.",
+      "I could really use a hug right now.",
+      "I feel very, very small… please hold me…",
+      "I'm trying to be a nicer person. It's hard, but I am trying, guys.",
+      "C'mon, Mom! One more game before you tuck me in. Oops mistell.",
+      "Mommy says people my age shouldn't suck their thumbs.",
+      "For glory and honor! Huzzah comrades!",
+    ],
+  },
+  {
+    term: "WP",
+    category: "Communication",
+    definition:
+      "Short for 'Well Played.' Typically sent post-game to commend the enemy team's effort or skill — a sincere, respectful counterpart to a taunt like EZ.",
+    example:
+      "WP, that Anti-Nade read at the end was perfect.",
+  },
+  {
     term: "Dive Priority",
     category: "Communication",
     definition:
@@ -420,14 +469,6 @@
       "The starting location where players respawn after being eliminated. Teams switch spawn rooms in Hybrid, Escort, and some other modes based on objective progress.",
     example:
       "Don't fight near their spawn — they'll respawn with full health and you'll be outnumbered immediately.",
-  },
-  {
-    term: "High Ground",
-    category: "Objectives",
-    definition:
-      "An elevated position above the main fight area. High ground provides better angles, more cover, and makes it harder for enemies to hit you.",
-    example:
-      "Take the high ground before engaging — Pharah and Echo can dominate the point from above.",
   },
   {
     term: "Flank",

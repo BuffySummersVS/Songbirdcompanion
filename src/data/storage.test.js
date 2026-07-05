@@ -25,12 +25,20 @@ beforeEach(() => {
 });
 
 describe('users / auth', () => {
-  it('creates a user with a hashed password (not the plaintext)', async () => {
+  it('creates a user with a salted, hashed password (not the plaintext)', async () => {
     const user = await createUser({ username: 'Tracer', password: 'blink123', avatar: 'tracer.png' });
     expect(user.username).toBe('Tracer');
+    expect(user.passwordSalt).toBeTypeOf('string');
     expect(user.passwordHash).toBeTypeOf('string');
     expect(user.passwordHash).not.toBe('blink123');
     expect(user.id).toBeTypeOf('string');
+  });
+
+  it('salts each user independently, so the same password hashes differently', async () => {
+    const a = await createUser({ username: 'Genji', password: 'sameword', avatar: 'g.png' });
+    const b = await createUser({ username: 'Hanzo', password: 'sameword', avatar: 'h.png' });
+    expect(a.passwordSalt).not.toBe(b.passwordSalt);
+    expect(a.passwordHash).not.toBe(b.passwordHash);
   });
 
   it('looks users up by username case-insensitively', async () => {
@@ -70,14 +78,36 @@ describe('users / auth', () => {
     await expect(updateUser(other.id, { username: 'widow' })).rejects.toThrow('Username already taken.');
   });
 
-  it('searchUsers matches by substring and never leaks passwordHash', async () => {
+  it('searchUsers matches by substring and never leaks passwordHash or passwordSalt', async () => {
     await createUser({ username: 'Junkrat', password: 'p1', avatar: 'j.png' });
     await createUser({ username: 'Roadhog', password: 'p2', avatar: 'r.png' });
     const results = searchUsers('junk');
     expect(results).toHaveLength(1);
     expect(results[0].username).toBe('Junkrat');
     expect(results[0].passwordHash).toBeUndefined();
+    expect(results[0].passwordSalt).toBeUndefined();
     expect(searchUsers('')).toEqual([]);
+  });
+
+  it('verifyLogin accepts a legacy unsalted-SHA-256 account and upgrades it to a salted hash', async () => {
+    // Simulate an account created before salting was added: passwordHash is a
+    // bare single-round SHA-256 digest of the password, with no passwordSalt field.
+    const legacyDigest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('oldscheme'));
+    const legacyHash = Array.from(new Uint8Array(legacyDigest)).map(b => b.toString(16).padStart(2, '0')).join('');
+    localStorage.setItem('sb_users', JSON.stringify([
+      { id: 'legacy-1', username: 'Bastion', passwordHash: legacyHash, avatar: 'b.png', createdAt: new Date().toISOString() },
+    ]));
+
+    const user = await verifyLogin('Bastion', 'oldscheme');
+    expect(user.username).toBe('Bastion');
+    expect(user.passwordSalt).toBeTypeOf('string');
+    expect(user.passwordHash).not.toBe(legacyHash);
+
+    // The upgrade was persisted, and subsequent logins go through the new (salted) path.
+    const reloaded = getUserById('legacy-1');
+    expect(reloaded.passwordSalt).toBe(user.passwordSalt);
+    await expect(verifyLogin('Bastion', 'oldscheme')).resolves.toBeTruthy();
+    await expect(verifyLogin('Bastion', 'wrong')).rejects.toThrow('Incorrect password.');
   });
 
   it('getUserById finds the created user', async () => {

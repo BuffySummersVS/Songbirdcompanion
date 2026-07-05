@@ -1,32 +1,51 @@
 ﻿import { useCallback, useEffect, useMemo, useRef, useState, lazy, Suspense } from "react";
 import { heroes } from "./data/heroes";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { EasterEggProvider } from "./contexts/EasterEggContext";
+import EasterEggRoot from "./components/easter-eggs/EasterEggRoot";
 import { getAvatarSrc } from "./data/avatars";
 import { getFriendRequests, acceptFriendRequest, declineFriendRequest, getFriends, getUserById, getTotalDMUnread } from "./data/storage";
 import AuthModal from "./components/AuthPage";
-import HeroGrid from "./components/HeroGrid";
 import HeroSearch from "./components/HeroSearch";
 import RoleFilter from "./components/RoleFilter";
-import HeroProfile from "./components/HeroProfile";
-import RandomHeroSelector from "./components/RandomHeroSelector";
-import CounterWatch from "./components/CounterWatch";
-import MapsPage from "./components/MapsPage";
-import CompetitiveGuide from "./components/CompetitiveGuide";
-import CustomGames from "./components/CustomGames";
-import TeamComps from "./components/TeamComps";
-import TermsPage from "./components/TermsPage";
-import UIGuide from "./components/UIGuide";
-import UserProfile from "./components/UserProfile";
-import WinLossTracker from "./components/WinLossTracker";
-import HeroStats from "./components/HeroStats";
-import DirectMessages from "./components/DirectMessages";
-import EventsPage from "./components/EventsPage";
 import ComingSoon from "./components/ComingSoon";
+import ScrollToTopButton from "./components/ScrollToTopButton";
+import AppNav from "./components/AppNav";
+import UserMenu from "./components/UserMenu";
+import NotificationsPanel from "./components/NotificationsPanel";
+import FriendsListPanel from "./components/FriendsListPanel";
+import Modal, { ModalHeader } from "./components/Modal";
+import { toast } from "./utils/toast";
 import { SOCIAL_FEATURES_ENABLED } from "./data/featureFlags";
 import logo from "./assets/logo.png";
 import "./index.css";
+import "./styles/easter-eggs.css";
 
+const HeroGrid = lazy(() => import("./components/HeroGrid"));
+const HeroProfile = lazy(() => import("./components/HeroProfile"));
+const RandomHeroSelector = lazy(() => import("./components/RandomHeroSelector"));
+const CounterWatch = lazy(() => import("./components/CounterWatch"));
+const MapsPage = lazy(() => import("./components/MapsPage"));
+const CompetitiveGuide = lazy(() => import("./components/CompetitiveGuide"));
+const CustomGames = lazy(() => import("./components/CustomGames"));
+const TeamComps = lazy(() => import("./components/TeamComps"));
+const TermsPage = lazy(() => import("./components/TermsPage"));
+const UIGuide = lazy(() => import("./components/UIGuide"));
+const UserProfile = lazy(() => import("./components/UserProfile"));
+const WinLossTracker = lazy(() => import("./components/WinLossTracker"));
+const HeroStats = lazy(() => import("./components/HeroStats"));
+const DirectMessages = lazy(() => import("./components/DirectMessages"));
+const EventsPage = lazy(() => import("./components/EventsPage"));
 const AcademyHub = lazy(() => import("./components/academy/AcademyHub"));
+const AcademyBanner = lazy(() => import("./components/AcademyBanner"));
+
+function AcademyBannerSlot({ onOpenAcademy }) {
+  return (
+    <Suspense fallback={<div className="academy-banner-skeleton" />}>
+      <AcademyBanner onOpenAcademy={onOpenAcademy} />
+    </Suspense>
+  );
+}
 
 const PATCH_NOTES_URL = "https://overwatch.blizzard.com/en-us/news/patch-notes/";
 
@@ -54,7 +73,10 @@ const AUTH_PROTECTED = ["Win Tracker", "Hero Stats", "My Profile", "Academy"];
 export default function App() {
   return (
     <AuthProvider>
-      <AppInner />
+      <EasterEggProvider>
+        <AppInner />
+        <EasterEggRoot />
+      </EasterEggProvider>
     </AuthProvider>
   );
 }
@@ -76,7 +98,6 @@ function AppInner() {
   const [friendsListOpen, setFriendsListOpen] = useState(false);
   const [navOpen, setNavOpen]               = useState(false);
   const [viewingFriendId, setViewingFriendId] = useState(null);
-  const userMenuRef  = useRef(null);
   const [toastMsg, setToastMsg] = useState(null);
   const toastTimer  = useRef(null);
   const [academyHeroId, setAcademyHeroId] = useState(null);
@@ -104,42 +125,6 @@ function AppInner() {
   }, [refreshDmUnread]);
 
   useEffect(() => {
-    if (!notifOpen) return;
-    function onKey(e) { if (e.key === 'Escape') setNotifOpen(false); }
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [notifOpen]);
-
-  // Close user-menu dropdown on outside click or Escape
-  useEffect(() => {
-    if (!userMenuOpen) return;
-    function onKey(e) { if (e.key === 'Escape') setUserMenuOpen(false); }
-    function onMouse(e) {
-      if (userMenuRef.current && !userMenuRef.current.contains(e.target)) setUserMenuOpen(false);
-    }
-    window.addEventListener('keydown', onKey);
-    document.addEventListener('mousedown', onMouse);
-    return () => {
-      window.removeEventListener('keydown', onKey);
-      document.removeEventListener('mousedown', onMouse);
-    };
-  }, [userMenuOpen]);
-
-  useEffect(() => {
-    if (!friendsListOpen) return;
-    function onKey(e) { if (e.key === 'Escape') setFriendsListOpen(false); }
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [friendsListOpen]);
-
-  useEffect(() => {
-    if (!navOpen) return;
-    function onKey(e) { if (e.key === 'Escape') setNavOpen(false); }
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [navOpen]);
-
-  useEffect(() => {
     function onToast(e) {
       clearTimeout(toastTimer.current);
       setToastMsg(e.detail.message);
@@ -153,13 +138,13 @@ function AppInner() {
     acceptFriendRequest(currentUser.id, fromId);
     refreshRequests();
     window.dispatchEvent(new CustomEvent('sb-friends-updated'));
-    window.dispatchEvent(new CustomEvent('sb-toast', { detail: { message: 'Friend added!' } }));
+    toast('Friend added!');
   }
 
   function handleDecline(fromId) {
     declineFriendRequest(currentUser.id, fromId);
     refreshRequests();
-    window.dispatchEvent(new CustomEvent('sb-toast', { detail: { message: 'Request declined' } }));
+    toast('Request declined');
   }
 
   const filteredHeroes = useMemo(() =>
@@ -265,50 +250,15 @@ function AppInner() {
 
         {/* User widget / Sign In — top-right */}
         {currentUser ? (
-          <div className="user-menu-wrap" ref={userMenuRef}>
-            <button
-              type="button"
-              className={`user-widget${userMenuOpen ? ' active' : ''}`}
-              onClick={() => setUserMenuOpen(o => !o)}
-              title={`Signed in as ${currentUser.username}`}
-              aria-haspopup="true"
-              aria-expanded={userMenuOpen}
-            >
-              <img src={avatarSrc} alt="Your avatar" className="user-widget-avatar" />
-              <span className="user-widget-name">{currentUser.username}</span>
-              <span className="user-menu-caret" aria-hidden="true">{userMenuOpen ? '▲' : '▼'}</span>
-            </button>
-
-            {userMenuOpen && (
-              <div className="user-menu-dropdown">
-                <button
-                  type="button"
-                  className="user-menu-item"
-                  onClick={() => { setUserMenuOpen(false); setViewingFriendId(null); navigate("My Profile"); }}
-                >
-                  <span className="user-menu-icon">👤</span>
-                  My Profile
-                </button>
-                <button
-                  type="button"
-                  className="user-menu-item"
-                  onClick={() => { setUserMenuOpen(false); setFriendsListOpen(true); }}
-                >
-                  <span className="user-menu-icon">👥</span>
-                  Friends List
-                </button>
-                <div className="user-menu-divider" />
-                <button
-                  type="button"
-                  className="user-menu-item user-menu-item--danger"
-                  onClick={() => { setUserMenuOpen(false); logout(); }}
-                >
-                  <span className="user-menu-icon">🚪</span>
-                  Sign Out
-                </button>
-              </div>
-            )}
-          </div>
+          <UserMenu
+            currentUser={currentUser}
+            avatarSrc={avatarSrc}
+            open={userMenuOpen}
+            setOpen={setUserMenuOpen}
+            onMyProfile={() => { setUserMenuOpen(false); setViewingFriendId(null); navigate("My Profile"); }}
+            onFriendsList={() => { setUserMenuOpen(false); setFriendsListOpen(true); }}
+            onLogout={() => { setUserMenuOpen(false); logout(); }}
+          />
         ) : (
           <button
             type="button"
@@ -327,62 +277,21 @@ function AppInner() {
         <p className="tagline">Strategy • Stats • Counters • Team Comps</p>
       </header>
 
-      <nav className="app-nav">
-        {navItems.map(item => (
-          <button
-            key={item}
-            type="button"
-            className={`nav-button${activePage === item ? " active" : ""}${item === "Patch Notes" ? " nav-external" : ""}`}
-            onClick={() => navigate(item)}
-          >
-            {item}{item === "Patch Notes" ? " ↗" : ""}
-          </button>
-        ))}
-
-        {/* Mobile hamburger */}
-        <button
-          type="button"
-          className="nav-hamburger"
-          onClick={() => setNavOpen(o => !o)}
-          aria-label={navOpen ? "Close menu" : "Open menu"}
-          aria-expanded={navOpen}
-        >
-          {navOpen ? (
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
-              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
-          ) : (
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
-              <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
-            </svg>
-          )}
-        </button>
-
-        {/* Mobile nav panel + backdrop */}
-        {navOpen && (
-          <>
-            <div className="mobile-nav-backdrop" onClick={() => setNavOpen(false)} />
-            <div className="mobile-nav-panel">
-              {navItems.map(item => (
-                <button
-                  key={item}
-                  type="button"
-                  className={`mobile-nav-item${activePage === item ? " active" : ""}${item === "Patch Notes" ? " nav-external" : ""}`}
-                  onClick={() => navigate(item)}
-                >
-                  {item}{item === "Patch Notes" ? " ↗" : ""}
-                </button>
-              ))}
-            </div>
-          </>
-        )}
-      </nav>
+      <AppNav
+        navItems={navItems}
+        activePage={activePage}
+        navOpen={navOpen}
+        setNavOpen={setNavOpen}
+        onNavigate={navigate}
+      />
 
       <main className="main-shell">
       <div key={activePage} className="page-fade">
+      <Suspense fallback={<div className="aca-loading">Loading…</div>}>
 
         {activePage === "Home" && (
           <section className="dashboard">
+            <AcademyBannerSlot onOpenAcademy={() => navigate("Academy")} />
             <div className="links-section">
               <h2 className="links-section-title">
                 <span className="links-eyebrow">Blizzard</span>
@@ -435,6 +344,7 @@ function AppInner() {
 
         {activePage === "Heroes" && (
           <>
+            <AcademyBannerSlot onOpenAcademy={() => navigate("Academy")} />
             <section className="control-panel">
               <h2>Hero Search</h2>
               <p>Search instantly or scroll manually through the full roster.</p>
@@ -457,7 +367,12 @@ function AppInner() {
         )}
 
         {activePage === "Randomiser"        && <RandomHeroSelector />}
-        {activePage === "CounterWatch"      && <CounterWatch initialHero={cwHero} />}
+        {activePage === "CounterWatch"      && (
+          <>
+            <AcademyBannerSlot onOpenAcademy={() => navigate("Academy")} />
+            <CounterWatch initialHero={cwHero} />
+          </>
+        )}
         {activePage === "Team Comps"        && <TeamComps />}
         {activePage === "Maps"              && <MapsPage />}
         {activePage === "Events"            && <EventsPage />}
@@ -465,7 +380,12 @@ function AppInner() {
         {activePage === "Custom Games"      && <CustomGames />}
         {activePage === "Terms & Phrases"   && <TermsPage />}
         {activePage === "UI Guide"          && <UIGuide />}
-        {currentUser && activePage === "Win Tracker"  && <WinLossTracker />}
+        {currentUser && activePage === "Win Tracker"  && (
+          <>
+            <AcademyBannerSlot onOpenAcademy={() => navigate("Academy")} />
+            <WinLossTracker />
+          </>
+        )}
         {currentUser && activePage === "Hero Stats"   && <HeroStats onBack={() => navigate("My Profile")} />}
         {currentUser && activePage === "My Profile"   && <UserProfile viewingFriendId={viewingFriendId} setViewingFriendId={setViewingFriendId} onNavigateToStats={() => navigate("Hero Stats")} onOpenAcademy={() => navigate("Academy")} />}
         {currentUser && activePage === "Academy"      && (
@@ -474,6 +394,7 @@ function AppInner() {
           </Suspense>
         )}
 
+      </Suspense>
       </div>
       </main>
 
@@ -484,135 +405,49 @@ function AppInner() {
       />
 
       {/* ── Friends list panel (from header dropdown) ── */}
-      {friendsListOpen && (() => {
-        const friendUsers = SOCIAL_FEATURES_ENABLED
-          ? getFriends(currentUser.id).map(id => getUserById(id)).filter(Boolean)
-          : [];
-        return (
-          <div className="auth-modal-overlay" onClick={() => setFriendsListOpen(false)}>
-            <div className="notif-panel" onClick={e => e.stopPropagation()}>
-              <div className="auth-modal-header">
-                <span className="auth-modal-title">Friends List</span>
-                <button type="button" className="auth-modal-close" onClick={() => setFriendsListOpen(false)} aria-label="Close">✕</button>
-              </div>
-
-              {!SOCIAL_FEATURES_ENABLED ? (
-                <ComingSoon
-                  title="Friends — Coming Soon"
-                  description="Friends will work across devices once SongBird has real account sync. For now this feature is on hold."
-                />
-              ) : friendUsers.length === 0 ? (
-                <div className="notif-empty">
-                  <p>Your friends list is empty.</p>
-                  <p>Go to My Profile and use the Add Friend button to find other players.</p>
-                </div>
-              ) : (
-                <div className="notif-list">
-                  {friendUsers.map(friend => (
-                    <div key={friend.id} className="notif-item">
-                      <img src={getAvatarSrc(friend.avatar)} alt={friend.username} className="notif-avatar" />
-                      <div className="notif-text">
-                        <strong>{friend.username}</strong>
-                      </div>
-                      <div className="notif-actions">
-                        <button
-                          type="button"
-                          className="notif-accept-btn"
-                          onClick={() => {
-                            setFriendsListOpen(false);
-                            setViewingFriendId(friend.id);
-                            navigate("My Profile");
-                          }}
-                        >
-                          View Profile
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        );
-      })()}
+      {friendsListOpen && (
+        <FriendsListPanel
+          onClose={() => setFriendsListOpen(false)}
+          friendUsers={SOCIAL_FEATURES_ENABLED ? getFriends(currentUser.id).map(id => getUserById(id)).filter(Boolean) : []}
+          onViewProfile={(friendId) => {
+            setFriendsListOpen(false);
+            setViewingFriendId(friendId);
+            navigate("My Profile");
+          }}
+        />
+      )}
 
       {/* ── Notification panel ── */}
       {notifOpen && (
-        <div className="auth-modal-overlay" onClick={() => setNotifOpen(false)}>
-          <div className="notif-panel" onClick={e => e.stopPropagation()}>
-            <div className="auth-modal-header">
-              <span className="auth-modal-title">Notifications</span>
-              <button type="button" className="auth-modal-close" onClick={() => setNotifOpen(false)} aria-label="Close">✕</button>
-            </div>
-
-            {!SOCIAL_FEATURES_ENABLED ? (
-              <ComingSoon
-                title="Friend Requests — Coming Soon"
-                description="Friend requests will show up here once SongBird has real account sync across devices."
-              />
-            ) : requests.length === 0 ? (
-              <div className="notif-empty">
-                <p>No new notifications.</p>
-                <p>When someone sends you a friend request it will appear here.</p>
-              </div>
-            ) : (
-              <div className="notif-list">
-                {requests.map(req => (
-                  <div key={req.fromId} className="notif-item">
-                    <img
-                      src={getAvatarSrc(req.fromAvatar)}
-                      alt={req.fromUsername}
-                      className="notif-avatar"
-                    />
-                    <div className="notif-text">
-                      <strong>{req.fromUsername}</strong> wants to be your friend
-                    </div>
-                    <div className="notif-actions">
-                      <button
-                        type="button"
-                        className="notif-accept-btn"
-                        onClick={() => handleAccept(req.fromId)}
-                      >
-                        Accept
-                      </button>
-                      <button
-                        type="button"
-                        className="notif-decline-btn"
-                        onClick={() => handleDecline(req.fromId)}
-                      >
-                        Decline
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
+        <NotificationsPanel
+          onClose={() => setNotifOpen(false)}
+          requests={requests}
+          onAccept={handleAccept}
+          onDecline={handleDecline}
+        />
       )}
 
       {/* ── Direct Messages panel ── */}
       {dmOpen && currentUser && (
         SOCIAL_FEATURES_ENABLED ? (
-          <DirectMessages onClose={() => { setDmOpen(false); refreshDmUnread(); }} />
+          <Suspense fallback={null}>
+            <DirectMessages onClose={() => { setDmOpen(false); refreshDmUnread(); }} />
+          </Suspense>
         ) : (
-          <div className="auth-modal-overlay" onClick={() => setDmOpen(false)}>
-            <div className="notif-panel" onClick={e => e.stopPropagation()}>
-              <div className="auth-modal-header">
-                <span className="auth-modal-title">Direct Messages</span>
-                <button type="button" className="auth-modal-close" onClick={() => setDmOpen(false)} aria-label="Close">✕</button>
-              </div>
-              <ComingSoon
-                title="Messages — Coming Soon"
-                description="Direct Messages will work across devices once SongBird has real account sync. For now this feature is on hold."
-              />
-            </div>
-          </div>
+          <Modal onClose={() => setDmOpen(false)}>
+            <ModalHeader title="Direct Messages" onClose={() => setDmOpen(false)} />
+            <ComingSoon
+              title="Messages — Coming Soon"
+              description="Direct Messages will work across devices once SongBird has real account sync. For now this feature is on hold."
+            />
+          </Modal>
         )
       )}
 
       {/* ── Toast ── */}
       {toastMsg && <div className="sb-toast">{toastMsg}</div>}
+
+      <ScrollToTopButton />
     </div>
   );
 }

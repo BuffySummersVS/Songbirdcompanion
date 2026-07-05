@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { heroes } from '../data/heroes.js';
 import { getMainHeroes, saveMainHeroes, getMainHeroesPrefs, setMainHeroesPrefs } from '../data/storage.js';
+import { useEscapeKey } from '../hooks/useEscapeKey';
+import { useFocusTrap } from '../hooks/useFocusTrap';
 
 const MAIN_HERO_ROLES = ['Tank', 'Damage', 'Support'];
 const MAX_SLOTS = 3;
@@ -35,7 +37,7 @@ function MainHeroRow({ entry, color }) {
   return (
     <div className="mh-row">
       {hero ? (
-        <img src={hero.image} alt={hero.name} className="mh-row-portrait" />
+        <img src={hero.image} alt={hero.name} className="mh-row-portrait" loading="lazy" decoding="async" />
       ) : (
         <div className="mh-row-portrait mh-row-portrait-empty" aria-hidden="true" />
       )}
@@ -48,6 +50,9 @@ function MainHeroRow({ entry, color }) {
 }
 
 function MainHeroesEditModal({ mainHeroes, prefs, onSave, onClose }) {
+  useEscapeKey(onClose);
+  const panelRef = useFocusTrap();
+
   const initialSlots = Array.from({ length: MAX_SLOTS }, (_, i) => ({
     role: mainHeroes[i]?.role || '',
     heroId: mainHeroes[i]?.heroId || '',
@@ -71,7 +76,7 @@ function MainHeroesEditModal({ mainHeroes, prefs, onSave, onClose }) {
 
   return (
     <div className="bcm-overlay" onClick={onClose}>
-      <div className="bcm-panel mh-edit-panel" onClick={e => e.stopPropagation()}>
+      <div ref={panelRef} className="bcm-panel mh-edit-panel" role="dialog" aria-modal="true" tabIndex={-1} onClick={e => e.stopPropagation()}>
         <div className="bcm-header">
           <h3 className="bcm-title">Edit Main Heroes</h3>
           <button type="button" className="bcm-close" onClick={onClose}>✕</button>

@@ -5,6 +5,8 @@ import {
   getDMMessages, sendDM, deleteDM, reactToDM, markDMRead, getDMUnread,
 } from '../data/storage';
 import { getAvatarSrc } from '../data/avatars';
+import { useEscapeKey } from '../hooks/useEscapeKey';
+import Modal from './Modal';
 
 const QUICK_REACTS = ['👍', '❤️', '😂', '😱', '🤮'];
 
@@ -67,11 +69,7 @@ export default function DirectMessages({ onClose }) {
     if (view === 'convo') scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [msgs, view]);
 
-  useEffect(() => {
-    function onKey(e) { if (e.key === 'Escape') { if (reactTarget) { setReactTarget(null); setEmojiMode(null); } else onClose(); } }
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [reactTarget, onClose]);
+  useEscapeKey(() => { if (reactTarget) { setReactTarget(null); setEmojiMode(null); } else onClose(); });
 
   function openConvo(fid) {
     setFriendId(fid);
@@ -143,8 +141,7 @@ export default function DirectMessages({ onClose }) {
   const reactMsg = msgs.find(m => m.id === reactTarget);
 
   return (
-    <div className="auth-modal-overlay" onClick={onClose}>
-      <div className="dm-panel" onClick={e => e.stopPropagation()}>
+    <Modal onClose={onClose} panelClassName="dm-panel">
 
         {/* ── Header ── */}
         <div className="dm-header">
@@ -397,7 +394,6 @@ export default function DirectMessages({ onClose }) {
             </div>
           </div>
         )}
-      </div>
-    </div>
+    </Modal>
   );
 }
