@@ -39,11 +39,20 @@ const DirectMessages = lazy(() => import("./components/DirectMessages"));
 const EventsPage = lazy(() => import("./components/EventsPage"));
 const AcademyHub = lazy(() => import("./components/academy/AcademyHub"));
 const AcademyBanner = lazy(() => import("./components/AcademyBanner"));
+const UpdatesBanner = lazy(() => import("./components/UpdatesBanner"));
 
 function AcademyBannerSlot({ onOpenAcademy }) {
   return (
     <Suspense fallback={<div className="academy-banner-skeleton" />}>
       <AcademyBanner onOpenAcademy={onOpenAcademy} />
+    </Suspense>
+  );
+}
+
+function UpdatesBannerSlot() {
+  return (
+    <Suspense fallback={<div className="academy-banner-skeleton" />}>
+      <UpdatesBanner />
     </Suspense>
   );
 }
@@ -323,7 +332,7 @@ function AppInner() {
 
         {activePage === "Home" && (
           <section className="dashboard">
-            <AcademyBannerSlot onOpenAcademy={() => navigate("Academy")} />
+            <UpdatesBannerSlot />
             <div className="links-section">
               <h2 className="links-section-title">
                 <span className="links-eyebrow">Blizzard</span>

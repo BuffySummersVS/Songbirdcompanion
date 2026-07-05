@@ -10585,3 +10585,56 @@ button.ha-course-card.ha-done .ha-course-action{
   .academy-banner::before{ animation:none; opacity:0; }
   .academy-banner::after{ animation:none; transform:none; }
 }
+
+/* ── Home page — upcoming app updates banner ── */
+
+.updates-banner{
+  position:relative;
+  overflow:hidden;
+  border-radius:16px;
+  border-width:4px;
+  border-style:solid;
+  border-image:linear-gradient(90deg, #ea4335, #fbbc05, #34a853, #4285f4) 1;
+  background:rgba(255,255,255,.35);
+  backdrop-filter:blur(10px) saturate(140%);
+  -webkit-backdrop-filter:blur(10px) saturate(140%);
+  padding:16px 20px;
+  margin-bottom:28px;
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
+}
+
+.updates-banner-ticker-wrap{
+  overflow:hidden;
+  mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.updates-banner-ticker{
+  display:flex;
+  align-items:center;
+  gap:80px;
+  width:max-content;
+  will-change:transform;
+}
+
+.updates-banner-ticker-item{
+  font-family:"Rajdhani",sans-serif;
+  font-size:1.05rem;
+  font-weight:700;
+  color:#14161a;
+  text-shadow:0 0 6px rgba(255,255,255,.85), 0 0 14px rgba(255,255,255,.5);
+  white-space:nowrap;
+}
+
+.updates-banner-ticker-static{
+  font-family:"Rajdhani",sans-serif;
+  font-size:1.05rem;
+  font-weight:700;
+  color:#14161a;
+  text-shadow:0 0 6px rgba(255,255,255,.85), 0 0 14px rgba(255,255,255,.5);
+  text-align:center;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  margin:0;
+}
