@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/heroes/:id", "destination": "/heroes/:id/index.html" },
+    { "source": "/maps/:id", "destination": "/maps/:id/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

@@ -1,6 +1,7 @@
 ﻿import { useCallback, useEffect, useMemo, useRef, useState, lazy, Suspense } from "react";
 import { heroes } from "./data/heroes";
-import { PAGE_ROUTES } from "./routes";
+import mapsData from "./data/maps.json";
+import { PAGE_ROUTES, HEROES_BASE, MAPS_BASE, heroPath, mapPath, heroMeta, mapMeta, homeMeta } from "./routes";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { EasterEggProvider } from "./contexts/EasterEggContext";
 import EasterEggRoot from "./components/easter-eggs/EasterEggRoot";
@@ -87,6 +88,20 @@ const ROUTE_PAGES = Object.fromEntries(
 const pathForPage = (page) => PAGE_ROUTES[page] ?? "/";
 const pageFromPath = (pathname) => ROUTE_PAGES[pathname] ?? "Home";
 
+const HERO_PATH_RE = new RegExp(`^${HEROES_BASE}/([a-z0-9-]+)$`);
+const MAP_PATH_RE = new RegExp(`^${MAPS_BASE}/([a-z0-9-]+)$`);
+
+// Resolves a URL to { page, heroId? | mapId? } for both the initial page
+// load and popstate — mirrors the static pages scripts/generate-detail-pages.js
+// writes at build time.
+function stateFromPath(pathname) {
+  const heroMatch = pathname.match(HERO_PATH_RE);
+  if (heroMatch) return { page: "Heroes", heroId: heroMatch[1] };
+  const mapMatch = pathname.match(MAP_PATH_RE);
+  if (mapMatch) return { page: "Maps", mapId: mapMatch[1] };
+  return { page: pageFromPath(pathname) };
+}
+
 export default function App() {
   return (
     <AuthProvider>
@@ -100,10 +115,17 @@ export default function App() {
 
 function AppInner() {
   const { currentUser, ready, logout } = useAuth();
-  const [activePage, setActivePage]     = useState(() => pageFromPath(window.location.pathname));
+  const [activePage, setActivePage]     = useState(() => stateFromPath(window.location.pathname).page);
   const [search, setSearch]             = useState("");
   const [filter, setFilter]             = useState("All");
-  const [selectedHero, setSelectedHero] = useState(null);
+  const [selectedHero, setSelectedHero] = useState(() => {
+    const { page, heroId } = stateFromPath(window.location.pathname);
+    return page === "Heroes" && heroId ? heroes.find(h => h.id === heroId) ?? null : null;
+  });
+  const [selectedMapId, setSelectedMapId] = useState(() => {
+    const { page, mapId } = stateFromPath(window.location.pathname);
+    return page === "Maps" ? (mapId ?? null) : null;
+  });
   const [cwHero, setCwHero]             = useState(null);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const pendingPage = useRef(null);
@@ -154,15 +176,38 @@ function AppInner() {
   // Give the very first history entry a page so the initial popstate (mobile
   // back button on the landing page) has something to fall back to.
   useEffect(() => {
-    window.history.replaceState({ page: activePage }, "", pathForPage(activePage));
+    const path =
+      activePage === "Heroes" && selectedHero ? heroPath(selectedHero.id) :
+      activePage === "Maps" && selectedMapId ? mapPath(selectedMapId) :
+      pathForPage(activePage);
+    window.history.replaceState({ page: activePage, heroId: selectedHero?.id, mapId: selectedMapId }, "", path);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- intentionally captures only the initial page, not every activePage change
   }, []);
+
+  // Keeps <title>, the meta description, and the canonical link in sync with
+  // client-side navigation so they always agree with the static pages
+  // scripts/generate-detail-pages.js bakes into the equivalent build output.
+  useEffect(() => {
+    let meta;
+    if (activePage === "Heroes" && selectedHero) {
+      meta = heroMeta(selectedHero);
+    } else if (activePage === "Maps" && selectedMapId) {
+      const map = mapsData.find(m => m.id === selectedMapId);
+      meta = map ? mapMeta(map) : homeMeta();
+    } else {
+      meta = homeMeta();
+    }
+    document.title = meta.title;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", meta.description);
+    document.querySelector('link[rel="canonical"]')?.setAttribute("href", meta.canonical);
+  }, [activePage, selectedHero, selectedMapId]);
 
   // Mirrors navigate()'s guards so the phone/browser back button moves between
   // in-app pages instead of leaving the site entirely.
   useEffect(() => {
     function onPopState(event) {
-      const page = event.state?.page ?? pageFromPath(window.location.pathname);
+      const state = event.state ?? stateFromPath(window.location.pathname);
+      const page = state.page ?? "Home";
       if (AUTH_PROTECTED.includes(page) && !currentUser) {
         pendingPage.current = page;
         setShowAuthModal(true);
@@ -172,7 +217,8 @@ function AppInner() {
       setUserMenuOpen(false);
       setNavOpen(false);
       setActivePage(page);
-      setSelectedHero(null);
+      setSelectedHero(page === "Heroes" && state.heroId ? heroes.find(h => h.id === state.heroId) ?? null : null);
+      setSelectedMapId(page === "Maps" ? (state.mapId ?? null) : null);
     }
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
@@ -223,6 +269,7 @@ function AppInner() {
     setNavOpen(false);
     setActivePage(page);
     setSelectedHero(null);
+    setSelectedMapId(null);
     window.history.pushState({ page }, "", pathForPage(page));
   }
 
@@ -231,6 +278,26 @@ function AppInner() {
     setActivePage("CounterWatch");
     setSelectedHero(null);
     window.history.pushState({ page: "CounterWatch" }, "", pathForPage("CounterWatch"));
+  }
+
+  function selectHero(hero) {
+    setSelectedHero(hero);
+    window.history.pushState({ page: "Heroes", heroId: hero.id }, "", heroPath(hero.id));
+  }
+
+  function closeHeroProfile() {
+    setSelectedHero(null);
+    window.history.pushState({ page: "Heroes" }, "", pathForPage("Heroes"));
+  }
+
+  function selectMap(mapId) {
+    setSelectedMapId(mapId);
+    window.history.pushState({ page: "Maps", mapId }, "", mapPath(mapId));
+  }
+
+  function clearMapFocus() {
+    setSelectedMapId(null);
+    window.history.pushState({ page: "Maps" }, "", pathForPage("Maps"));
   }
 
   function handleAuthSuccess() {
@@ -401,7 +468,7 @@ function AppInner() {
             </section>
             <HeroProfile
               hero={selectedHero}
-              onClose={() => setSelectedHero(null)}
+              onClose={closeHeroProfile}
               onOpenCounterWatch={openInCounterWatch}
               userId={currentUser?.id}
               onOpenHeroAcademy={currentUser ? (heroId) => {
@@ -410,7 +477,7 @@ function AppInner() {
                 navigate("Academy");
               } : null}
             />
-            <HeroGrid heroes={filteredHeroes} onSelectHero={setSelectedHero} />
+            <HeroGrid heroes={filteredHeroes} onSelectHero={selectHero} />
           </>
         )}
 
@@ -422,7 +489,9 @@ function AppInner() {
           </>
         )}
         {activePage === "Team Comps"        && <TeamComps />}
-        {activePage === "Maps"              && <MapsPage />}
+        {activePage === "Maps"              && (
+          <MapsPage focusMapId={selectedMapId} onSelectMap={selectMap} onClearFocus={clearMapFocus} />
+        )}
         {activePage === "Events"            && <EventsPage />}
         {activePage === "Competitive Guide" && <CompetitiveGuide />}
         {activePage === "Custom Games"      && <CustomGames />}

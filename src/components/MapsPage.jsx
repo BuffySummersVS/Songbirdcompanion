@@ -13,7 +13,7 @@ const NORMALIZE = {
   "Nepal Sanctum":           "Nepal",
 };
 
-export default function MapsPage() {
+export default function MapsPage({ focusMapId = null, onSelectMap, onClearFocus }) {
   const [search, setSearch]     = useState("");
   const [modeFilter, setModeFilter] = useState("All");
 
@@ -48,6 +48,88 @@ export default function MapsPage() {
     });
   }, [search, modeFilter, heroPicks]);
 
+  function renderMapCard(map, { clickable = false } = {}) {
+    const picks = heroPicks[map.name] ?? { strong: [], weak: [] };
+    const interactiveProps = clickable
+      ? {
+          role: "button",
+          tabIndex: 0,
+          onClick: () => onSelectMap(map.id),
+          onKeyDown: (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              onSelectMap(map.id);
+            }
+          },
+        }
+      : {};
+
+    return (
+      <div
+        className={`map-card${clickable ? " map-card-clickable" : ""}`}
+        key={map.id}
+        {...interactiveProps}
+      >
+        <div className="map-card-header">
+          <h3 className="map-name">{map.name}</h3>
+          <span className={`map-mode-badge mode-${map.gameMode.toLowerCase()}`}>
+            {map.gameMode}
+          </span>
+        </div>
+        <p className="map-description">{map.description}</p>
+
+        {picks.strong.length > 0 && (
+          <div className="map-section">
+            <span className="map-tag strong-tag">Strong Picks</span>
+            <div className="map-chips">
+              {picks.strong.map(h => (
+                <div key={h.id} className={`map-chip ${h.role.toLowerCase()}`}>
+                  <img src={h.image} alt={h.name} />
+                  <span>{h.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {picks.weak.length > 0 && (
+          <div className="map-section">
+            <span className="map-tag weak-tag">Weak Picks</span>
+            <div className="map-chips">
+              {picks.weak.map(h => (
+                <div key={h.id} className={`map-chip ${h.role.toLowerCase()}`}>
+                  <img src={h.image} alt={h.name} />
+                  <span>{h.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {picks.strong.length === 0 && picks.weak.length === 0 && (
+          <p className="map-no-data">No hero pick data available yet.</p>
+        )}
+      </div>
+    );
+  }
+
+  const focusedMap = focusMapId ? mapsData.find(m => m.id === focusMapId) : null;
+
+  if (focusedMap) {
+    return (
+      <>
+        <div className="control-panel">
+          <button type="button" className="map-back-btn" onClick={onClearFocus}>← All Maps</button>
+          <h2>{focusedMap.name}</h2>
+          <p>{focusedMap.gameMode} map — {focusedMap.location}.</p>
+        </div>
+        <div className="maps-grid">
+          {renderMapCard(focusedMap)}
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <div className="control-panel">
@@ -77,52 +159,7 @@ export default function MapsPage() {
       </div>
 
       <div className="maps-grid">
-        {filtered.map(map => {
-          const picks = heroPicks[map.name] ?? { strong: [], weak: [] };
-          return (
-            <div className="map-card" key={map.id}>
-              <div className="map-card-header">
-                <h3 className="map-name">{map.name}</h3>
-                <span className={`map-mode-badge mode-${map.gameMode.toLowerCase()}`}>
-                  {map.gameMode}
-                </span>
-              </div>
-              <p className="map-description">{map.description}</p>
-
-              {picks.strong.length > 0 && (
-                <div className="map-section">
-                  <span className="map-tag strong-tag">Strong Picks</span>
-                  <div className="map-chips">
-                    {picks.strong.map(h => (
-                      <div key={h.id} className={`map-chip ${h.role.toLowerCase()}`}>
-                        <img src={h.image} alt={h.name} />
-                        <span>{h.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {picks.weak.length > 0 && (
-                <div className="map-section">
-                  <span className="map-tag weak-tag">Weak Picks</span>
-                  <div className="map-chips">
-                    {picks.weak.map(h => (
-                      <div key={h.id} className={`map-chip ${h.role.toLowerCase()}`}>
-                        <img src={h.image} alt={h.name} />
-                        <span>{h.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {picks.strong.length === 0 && picks.weak.length === 0 && (
-                <p className="map-no-data">No hero pick data available yet.</p>
-              )}
-            </div>
-          );
-        })}
+        {filtered.map(map => renderMapCard(map, { clickable: !!onSelectMap }))}
       </div>
     </>
   );

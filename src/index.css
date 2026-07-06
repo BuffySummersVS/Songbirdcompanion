@@ -1294,6 +1294,30 @@ button.dashboard-card:hover{
   box-shadow:0 0 18px rgba(255,156,0,.18);
 }
 
+.map-card-clickable{
+  cursor:pointer;
+}
+
+.map-card-clickable:focus-visible{
+  outline:2px solid var(--orange);
+  outline-offset:2px;
+}
+
+.map-back-btn{
+  background:none;
+  border:none;
+  color:var(--orange);
+  font-family:"Rajdhani",sans-serif;
+  font-size:.95rem;
+  font-weight:700;
+  cursor:pointer;
+  padding:0;
+  margin-bottom:16px;
+  display:inline-block;
+}
+
+.map-back-btn:hover{ opacity:.75; }
+
 .map-name{
   font-size:1.4rem;
   color:var(--white);
