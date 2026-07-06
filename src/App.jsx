@@ -1,5 +1,6 @@
 ﻿import { useCallback, useEffect, useMemo, useRef, useState, lazy, Suspense } from "react";
 import { heroes } from "./data/heroes";
+import { PAGE_ROUTES } from "./routes";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { EasterEggProvider } from "./contexts/EasterEggContext";
 import EasterEggRoot from "./components/easter-eggs/EasterEggRoot";
@@ -80,6 +81,12 @@ const BASE_NAV = [
 
 const AUTH_PROTECTED = ["Win Tracker", "Hero Stats", "My Profile", "Academy"];
 
+const ROUTE_PAGES = Object.fromEntries(
+  Object.entries(PAGE_ROUTES).map(([page, path]) => [path, page])
+);
+const pathForPage = (page) => PAGE_ROUTES[page] ?? "/";
+const pageFromPath = (pathname) => ROUTE_PAGES[pathname] ?? "Home";
+
 export default function App() {
   return (
     <AuthProvider>
@@ -93,7 +100,7 @@ export default function App() {
 
 function AppInner() {
   const { currentUser, ready, logout } = useAuth();
-  const [activePage, setActivePage]     = useState("Home");
+  const [activePage, setActivePage]     = useState(() => pageFromPath(window.location.pathname));
   const [search, setSearch]             = useState("");
   const [filter, setFilter]             = useState("All");
   const [selectedHero, setSelectedHero] = useState(null);
@@ -147,7 +154,7 @@ function AppInner() {
   // Give the very first history entry a page so the initial popstate (mobile
   // back button on the landing page) has something to fall back to.
   useEffect(() => {
-    window.history.replaceState({ page: activePage }, "");
+    window.history.replaceState({ page: activePage }, "", pathForPage(activePage));
     // eslint-disable-next-line react-hooks/exhaustive-deps -- intentionally captures only the initial page, not every activePage change
   }, []);
 
@@ -155,7 +162,7 @@ function AppInner() {
   // in-app pages instead of leaving the site entirely.
   useEffect(() => {
     function onPopState(event) {
-      const page = event.state?.page ?? "Home";
+      const page = event.state?.page ?? pageFromPath(window.location.pathname);
       if (AUTH_PROTECTED.includes(page) && !currentUser) {
         pendingPage.current = page;
         setShowAuthModal(true);
@@ -216,21 +223,21 @@ function AppInner() {
     setNavOpen(false);
     setActivePage(page);
     setSelectedHero(null);
-    window.history.pushState({ page }, "");
+    window.history.pushState({ page }, "", pathForPage(page));
   }
 
   function openInCounterWatch(hero) {
     setCwHero(hero);
     setActivePage("CounterWatch");
     setSelectedHero(null);
-    window.history.pushState({ page: "CounterWatch" }, "");
+    window.history.pushState({ page: "CounterWatch" }, "", pathForPage("CounterWatch"));
   }
 
   function handleAuthSuccess() {
     setShowAuthModal(false);
     if (pendingPage.current) {
       setActivePage(pendingPage.current);
-      window.history.pushState({ page: pendingPage.current }, "");
+      window.history.pushState({ page: pendingPage.current }, "", pathForPage(pendingPage.current));
       pendingPage.current = null;
     }
   }
