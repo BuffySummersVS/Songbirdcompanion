@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect, useRef } from "react";
 import { heroes } from "../data/heroes";
 import { CW_TIPS } from "../data/tips";
 import HeroPickerGrid from "./HeroPickerGrid";
+import MatchupPanels from "./MatchupPanels";
 import { useEscapeKey } from "../hooks/useEscapeKey";
 import { useFocusTrap } from "../hooks/useFocusTrap";
 
@@ -47,21 +48,20 @@ export default function CounterWatch({ initialHero }) {
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState(initialHero ?? null);
   const [syncedHeroId, setSyncedHeroId] = useState(initialHero?.id);
+  const [reasonOpen, setReasonOpen] = useState(false);
 
   if (initialHero?.id && initialHero.id !== syncedHeroId) {
     setSyncedHeroId(initialHero.id);
     setSelected(initialHero);
   }
 
-  useEscapeKey(() => setSelected(null), !!selected);
+  useEscapeKey(() => { if (!reasonOpen) setSelected(null); }, !!selected);
   const panelRef = useFocusTrap(!!selected);
 
   const filtered = useMemo(
     () => heroes.filter(h => h.name.toLowerCase().includes(search.toLowerCase())),
     [search]
   );
-
-  const resolve = (name) => heroes.find(h => h.name === name);
 
   return (
     <>
@@ -102,67 +102,7 @@ export default function CounterWatch({ initialHero }) {
               </button>
             </div>
 
-            <div className="cw-panels">
-              <div className="cw-panel cw-strong">
-                <h3>Strong Against</h3>
-                <p className="cw-panel-sub">{selected.name} counters these heroes</p>
-                <div className="cw-chip-list">
-                  {selected.counters?.length ? selected.counters.map(name => {
-                    const h = resolve(name);
-                    return (
-                      <div key={name} className="cw-chip strong">
-                        {h && (
-                          <div className={`cw-chip-portrait ${h.role.toLowerCase()}`}>
-                            <img src={h.image} alt={name} />
-                          </div>
-                        )}
-                        <span>{name}</span>
-                      </div>
-                    );
-                  }) : <p className="cw-empty">No data yet</p>}
-                </div>
-              </div>
-
-              <div className="cw-panel cw-weak">
-                <h3>Weak Against</h3>
-                <p className="cw-panel-sub">These heroes counter {selected.name}</p>
-                <div className="cw-chip-list">
-                  {selected.counteredBy?.length ? selected.counteredBy.map(name => {
-                    const h = resolve(name);
-                    return (
-                      <div key={name} className="cw-chip weak">
-                        {h && (
-                          <div className={`cw-chip-portrait ${h.role.toLowerCase()}`}>
-                            <img src={h.image} alt={name} />
-                          </div>
-                        )}
-                        <span>{name}</span>
-                      </div>
-                    );
-                  }) : <p className="cw-empty">No data yet</p>}
-                </div>
-              </div>
-
-              <div className="cw-panel cw-synergy">
-                <h3>Best Teammates</h3>
-                <p className="cw-panel-sub">Heroes that synergize with {selected.name}</p>
-                <div className="cw-chip-list">
-                  {selected.synergies?.length ? selected.synergies.map(name => {
-                    const h = resolve(name);
-                    return (
-                      <div key={name} className="cw-chip synergy">
-                        {h && (
-                          <div className={`cw-chip-portrait ${h.role.toLowerCase()}`}>
-                            <img src={h.image} alt={name} />
-                          </div>
-                        )}
-                        <span>{name}</span>
-                      </div>
-                    );
-                  }) : <p className="cw-empty">No data yet</p>}
-                </div>
-              </div>
-            </div>
+            <MatchupPanels hero={selected} key={selected.id} onReasonModalChange={setReasonOpen} />
           </div>
         </div>
       )}

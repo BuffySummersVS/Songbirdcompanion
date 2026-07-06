@@ -1,26 +1,22 @@
 import { useState, lazy, Suspense } from "react";
-import { heroes } from "../data/heroes";
 import { getSubrole } from "../data/heroSubroles";
 import { useEscapeKey } from "../hooks/useEscapeKey";
 import { useFocusTrap } from "../hooks/useFocusTrap";
 import { useClickTrigger } from "../hooks/useClickTrigger";
 import { useEasterEggs } from "../contexts/EasterEggContext";
+import MatchupPanels from "./MatchupPanels";
 
 const HeroAcademyCard = lazy(() => import("./academy/HeroAcademyCard.jsx"));
 
-function CWChip({ name, variant }) {
-  const h = heroes.find(x => x.name === name);
-  return (
-    <div className={`cw-chip ${variant}`}>
-      {h && <img src={h.image} alt={name} />}
-      <span>{name}</span>
-    </div>
-  );
-}
-
-function CounterWatchPopup({ hero, onClose }) {
-  useEscapeKey(onClose);
+function CounterWatchPopup({ hero, onClose, onReasonModalChange }) {
+  const [reasonOpen, setReasonOpen] = useState(false);
+  useEscapeKey(() => { if (!reasonOpen) onClose(); });
   const panelRef = useFocusTrap();
+
+  function handleReasonModalChange(isOpen) {
+    setReasonOpen(isOpen);
+    onReasonModalChange?.(isOpen);
+  }
 
   return (
     <div className="cw-popup-overlay" onClick={onClose}>
@@ -34,37 +30,7 @@ function CounterWatchPopup({ hero, onClose }) {
           <button type="button" className="cw-popup-close" onClick={onClose}>✕</button>
         </div>
 
-        <div className="cw-panels">
-          <div className="cw-panel cw-strong">
-            <h3>Strong Against</h3>
-            <p className="cw-panel-sub">{hero.name} counters these heroes</p>
-            <div className="cw-chip-list">
-              {hero.counters?.length
-                ? hero.counters.map(n => <CWChip key={n} name={n} variant="strong" />)
-                : <p className="cw-empty">No data yet</p>}
-            </div>
-          </div>
-
-          <div className="cw-panel cw-weak">
-            <h3>Weak Against</h3>
-            <p className="cw-panel-sub">These heroes counter {hero.name}</p>
-            <div className="cw-chip-list">
-              {hero.counteredBy?.length
-                ? hero.counteredBy.map(n => <CWChip key={n} name={n} variant="weak" />)
-                : <p className="cw-empty">No data yet</p>}
-            </div>
-          </div>
-
-          <div className="cw-panel cw-synergy">
-            <h3>Best Teammates</h3>
-            <p className="cw-panel-sub">Heroes that synergize with {hero.name}</p>
-            <div className="cw-chip-list">
-              {hero.synergies?.length
-                ? hero.synergies.map(n => <CWChip key={n} name={n} variant="synergy" />)
-                : <p className="cw-empty">No data yet</p>}
-            </div>
-          </div>
-        </div>
+        <MatchupPanels hero={hero} onReasonModalChange={handleReasonModalChange} />
       </div>
     </div>
   );
@@ -72,6 +38,7 @@ function CounterWatchPopup({ hero, onClose }) {
 
 export default function HeroProfile({ hero, onClose, onOpenCounterWatch, onOpenHeroAcademy, userId }) {
   const [cwOpen, setCwOpen] = useState(false);
+  const [cwReasonOpen, setCwReasonOpen] = useState(false);
   const [prevHero, setPrevHero] = useState(hero);
 
   if (hero !== prevHero) {
@@ -79,7 +46,11 @@ export default function HeroProfile({ hero, onClose, onOpenCounterWatch, onOpenH
     setCwOpen(false);
   }
 
-  useEscapeKey(() => { if (cwOpen) setCwOpen(false); else onClose(); }, !!hero);
+  useEscapeKey(() => {
+    if (cwReasonOpen) return;
+    if (cwOpen) setCwOpen(false);
+    else onClose();
+  }, !!hero);
   const panelRef = useFocusTrap(!!hero);
 
   const eggs = useEasterEggs();
@@ -287,7 +258,7 @@ export default function HeroProfile({ hero, onClose, onOpenCounterWatch, onOpenH
         </div>
 
         {cwOpen && (
-          <CounterWatchPopup hero={hero} onClose={() => setCwOpen(false)} />
+          <CounterWatchPopup hero={hero} onClose={() => setCwOpen(false)} onReasonModalChange={setCwReasonOpen} />
         )}
 
         <Suspense fallback={<div className="profile-section hero-academy-section aca-loading">Loading Hero Academy…</div>}>
