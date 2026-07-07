@@ -51,7 +51,7 @@ function MatchupReasonModal({ hero, otherName, variant, onClose }) {
 
   return (
     <div className="mr-modal-overlay" onClick={onClose}>
-      <div ref={panelRef} className="mr-modal-panel" role="dialog" aria-modal="true" tabIndex={-1} onClick={e => e.stopPropagation()}>
+      <div ref={panelRef} className={`mr-modal-panel ${variant}`} role="dialog" aria-modal="true" tabIndex={-1} onClick={e => e.stopPropagation()}>
         <button type="button" className="mr-modal-close" onClick={onClose} aria-label="Close">✕</button>
 
         <div className="mr-modal-pair">
