@@ -63,16 +63,6 @@ function userFromRow(row) {
   return { ...rest, createdAt: created_at };
 }
 
-export async function getUserByUsername(username) {
-  const { data, error } = await supabase
-    .from('public_users')
-    .select('*')
-    .eq('username', username)
-    .maybeSingle();
-  if (error) throw new Error(error.message);
-  return userFromRow(data);
-}
-
 export async function getUserById(id) {
   if (!id) return null;
   const { data, error } = await supabase
@@ -385,7 +375,7 @@ export async function saveSentNotifications(userId, sent) {
   await saveUserPrefField(userId, 'sentNotifications', sent);
 }
 
-// ── End Custom Calendar Events ────────────────────────────────────────────────
+// ── End Event Notifications ───────────────────────────────────────────────────
 
 // ── SongBird Academy ──────────────────────────────────────────────────────────
 
@@ -435,11 +425,6 @@ export async function getAcademyProgress(userId) {
 
 export async function saveAcademyProgress(userId, progress) {
   await saveAcademyField(userId, 'progress', progress);
-}
-
-export async function getAcademyStreak(userId) {
-  const row = await fetchAcademyData(userId);
-  return row.streak ?? { currentStreak: 0, longestStreak: 0, lastActiveDate: null };
 }
 
 export async function saveAcademyStreak(userId, streak) {
@@ -525,18 +510,8 @@ export async function setBadgePanelPrefs(userId, prefs) {
   await saveUserPrefField(userId, 'badgePanelPrefs', prefs);
 }
 
-export async function getAcademyCerts(userId) {
-  const row = await fetchAcademyData(userId);
-  return row.certs ?? {};
-}
-
 export async function saveAcademyCerts(userId, certs) {
   await saveAcademyField(userId, 'certs', certs);
-}
-
-export async function getQuizResults(userId) {
-  const row = await fetchAcademyData(userId);
-  return row.quizzes ?? {};
 }
 
 export async function saveQuizResult(userId, quizId, result) {

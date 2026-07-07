@@ -350,12 +350,12 @@ vi.mock('../lib/supabaseClient.js', () => ({
 }));
 
 import {
-  createUser, getUserByUsername, getUserById, updateUser, verifyLogin, searchUsers, signOut,
+  createUser, getUserById, updateUser, verifyLogin, searchUsers, signOut,
   getSession, saveSession, clearSession,
   getMatches, addMatch, updateMatch, deleteMatch, clearMatches,
-  getAcademyProgress, saveAcademyProgress, getAcademyStreak, saveAcademyStreak,
-  getAcademyBadges, saveAcademyBadges, getAcademyCerts, saveAcademyCerts,
-  getQuizResults, saveQuizResult, getAllAcademyData,
+  getAcademyProgress, saveAcademyProgress, saveAcademyStreak,
+  getAcademyBadges, saveAcademyBadges, saveAcademyCerts,
+  saveQuizResult, getAllAcademyData,
   getCompetitiveRanks, saveCompetitiveRanks, getCompetitiveRanksPrefs, setCompetitiveRanksPrefs,
   getMainHeroes, saveMainHeroes, getMainHeroesPrefs, setMainHeroesPrefs,
   getBadgePanelPrefs, setBadgePanelPrefs, getSentNotifications, saveSentNotifications,
@@ -411,13 +411,6 @@ describe('users / auth', () => {
   it('rejects a username shorter than 3 characters', async () => {
     await expect(createUser({ username: 'ab', password: 'blink123', avatar: 'a.png' }))
       .rejects.toThrow('Username must be at least 3 characters.');
-  });
-
-  it('looks users up by username case-insensitively', async () => {
-    await createUser({ username: 'Tracer', password: 'blink123', avatar: 'a.png' });
-    expect((await getUserByUsername('tracer'))?.username).toBe('Tracer');
-    expect((await getUserByUsername('TRACER'))?.username).toBe('Tracer');
-    expect(await getUserByUsername('nobody')).toBeNull();
   });
 
   it('rejects creating a duplicate username regardless of case', async () => {
@@ -556,34 +549,31 @@ describe('academy data', () => {
   it('defaults to empty/blank academy data for a brand-new user', async () => {
     const user = await registerAndSignIn('AcaUser1');
     expect(await getAcademyProgress(user.id)).toBeNull();
-    expect(await getAcademyStreak(user.id)).toEqual({ currentStreak: 0, longestStreak: 0, lastActiveDate: null });
     expect(await getAcademyBadges(user.id)).toEqual({});
-    expect(await getAcademyCerts(user.id)).toEqual({});
-    expect(await getQuizResults(user.id)).toEqual({});
   });
 
   it('saves and reads back each academy field independently', async () => {
     const user = await registerAndSignIn('AcaUser2');
     await saveAcademyProgress(user.id, { xp: 120, lessonsCompleted: ['b01'] });
-    await saveAcademyStreak(user.id, { currentStreak: 3, longestStreak: 5, lastActiveDate: '2026-07-07' });
     await saveAcademyBadges(user.id, { 'first-lesson': { earnedAt: '2026-07-01' } });
-    await saveAcademyCerts(user.id, { beginner: { issuedAt: '2026-07-05' } });
 
     expect(await getAcademyProgress(user.id)).toEqual({ xp: 120, lessonsCompleted: ['b01'] });
-    expect(await getAcademyStreak(user.id)).toEqual({ currentStreak: 3, longestStreak: 5, lastActiveDate: '2026-07-07' });
     expect(await getAcademyBadges(user.id)).toEqual({ 'first-lesson': { earnedAt: '2026-07-01' } });
-    expect(await getAcademyCerts(user.id)).toEqual({ beginner: { issuedAt: '2026-07-05' } });
   });
 
-  it('getAllAcademyData fetches every field in one call', async () => {
+  it('getAllAcademyData fetches every field in one call, defaulting streak/certs/quizzes', async () => {
     const user = await registerAndSignIn('AcaUser3');
     await saveAcademyProgress(user.id, { xp: 50 });
     await saveAcademyBadges(user.id, { badge1: { earnedAt: 'x' } });
+    await saveAcademyStreak(user.id, { currentStreak: 3, longestStreak: 5, lastActiveDate: '2026-07-07' });
+    await saveAcademyCerts(user.id, { beginner: { issuedAt: '2026-07-05' } });
 
     const all = await getAllAcademyData(user.id);
     expect(all.progress).toEqual({ xp: 50 });
     expect(all.badges).toEqual({ badge1: { earnedAt: 'x' } });
-    expect(all.streak).toEqual({ currentStreak: 0, longestStreak: 0, lastActiveDate: null });
+    expect(all.streak).toEqual({ currentStreak: 3, longestStreak: 5, lastActiveDate: '2026-07-07' });
+    expect(all.certs).toEqual({ beginner: { issuedAt: '2026-07-05' } });
+    expect(all.quizzes).toEqual({});
   });
 
   it('saveQuizResult tracks attempts, first-attempt-pass, and pass-ever server-side', async () => {
@@ -595,7 +585,7 @@ describe('academy data', () => {
     const second = await saveQuizResult(user.id, 'quiz-1', { score: 100, passed: true });
     expect(second).toMatchObject({ attempts: 2, passed: true, firstAttemptPassed: false });
 
-    expect((await getQuizResults(user.id))['quiz-1']).toMatchObject({ attempts: 2, passed: true });
+    expect((await getAllAcademyData(user.id)).quizzes['quiz-1']).toMatchObject({ attempts: 2, passed: true });
   });
 
   it('saveQuizResult marks firstAttemptPassed true only on an actual first attempt', async () => {
