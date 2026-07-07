@@ -106,6 +106,7 @@ export async function updateUser(id, updates) {
   const { data, error } = await supabase
     .rpc('update_user_profile', {
       p_user_id: id,
+      p_session_token: currentSessionToken(),
       p_username: updates.username ?? null,
       p_avatar: updates.avatar ?? null,
       p_new_password: updates.password ?? null,
@@ -123,42 +124,64 @@ export async function verifyLogin(username, password) {
   return data;
 }
 
+export async function signOut(userId, sessionToken) {
+  if (!userId || !sessionToken) return;
+  await supabase.rpc('sign_out', { p_user_id: userId, p_session_token: sessionToken }).catch(() => {});
+}
+
 export function getSession() {
   return safeParse(localStorage.getItem(K.SESSION) || 'null', null, v => v === null || isPlainObject(v));
 }
-export function saveSession(userId) {
-  safeSetItem(K.SESSION, JSON.stringify({ userId }));
+export function saveSession(userId, sessionToken) {
+  safeSetItem(K.SESSION, JSON.stringify({ userId, sessionToken }));
 }
 export function clearSession() {
   localStorage.removeItem(K.SESSION);
 }
-
-export function getMatches(userId) {
-  return safeParseArray(localStorage.getItem(K.matches(userId)) || '[]', isPlainObject);
+function currentSessionToken() {
+  return getSession()?.sessionToken ?? null;
 }
 
-export function deleteMatch(userId, matchId) {
-  safeSetItem(K.matches(userId), JSON.stringify(getMatches(userId).filter(m => m.id !== matchId)));
+function matchFromRow(row) {
+  return { ...row.data, id: row.id, timestamp: row.created_at, editedAt: row.edited_at ?? undefined };
 }
 
-export function clearMatches(userId) {
-  safeSetItem(K.matches(userId), JSON.stringify([]));
+export async function getMatches(userId) {
+  const { data, error } = await supabase
+    .rpc('get_matches', { p_user_id: userId, p_session_token: currentSessionToken() });
+  if (error) throw new Error(error.message);
+  return data.map(matchFromRow);
 }
 
-export function addMatch(userId, data) {
-  const matches = getMatches(userId);
-  const m = { ...data, id: uid(), timestamp: new Date().toISOString() };
-  safeSetItem(K.matches(userId), JSON.stringify([m, ...matches]));
-  return m;
+export async function deleteMatch(userId, matchId) {
+  const { error } = await supabase
+    .rpc('delete_match', { p_user_id: userId, p_session_token: currentSessionToken(), p_match_id: matchId });
+  if (error) throw new Error(error.message);
 }
 
-export function updateMatch(userId, matchId, data) {
-  const matches = getMatches(userId);
-  const idx = matches.findIndex(m => m.id === matchId);
-  if (idx === -1) return null;
-  matches[idx] = { ...matches[idx], ...data, editedAt: new Date().toISOString() };
-  safeSetItem(K.matches(userId), JSON.stringify(matches));
-  return matches[idx];
+export async function clearMatches(userId) {
+  const { error } = await supabase
+    .rpc('clear_matches', { p_user_id: userId, p_session_token: currentSessionToken() });
+  if (error) throw new Error(error.message);
+}
+
+export async function addMatch(userId, data) {
+  const { data: row, error } = await supabase
+    .rpc('add_match', { p_user_id: userId, p_session_token: currentSessionToken(), p_data: data })
+    .single();
+  if (error) throw new Error(error.message);
+  return matchFromRow(row);
+}
+
+export async function updateMatch(userId, matchId, data) {
+  const { data: row, error } = await supabase
+    .rpc('update_match', { p_user_id: userId, p_session_token: currentSessionToken(), p_match_id: matchId, p_data: data })
+    .single();
+  if (error) throw new Error(error.message);
+  // A PL/pgSQL function declared to return a composite type still returns a
+  // single (all-NULL-field) row when its RETURNING clause matched nothing —
+  // never a bare null — so check a required field, not row truthiness.
+  return row?.id ? matchFromRow(row) : null;
 }
 
 export async function searchUsers(query) {
@@ -357,31 +380,59 @@ export function saveSentNotifications(userId, sent) {
 
 // ── SongBird Academy ──────────────────────────────────────────────────────────
 
-export function getAcademyProgress(userId) {
-  return safeParse(localStorage.getItem(K.academyProgress(userId)) || 'null', null, v => v === null || isPlainObject(v));
+async function fetchAcademyData(userId) {
+  const { data, error } = await supabase
+    .rpc('get_academy_data', { p_user_id: userId, p_session_token: currentSessionToken() })
+    .single();
+  if (error) throw new Error(error.message);
+  return data;
 }
 
-export function saveAcademyProgress(userId, progress) {
-  safeSetItem(K.academyProgress(userId), JSON.stringify(progress));
+async function saveAcademyField(userId, field, value) {
+  const { error } = await supabase
+    .rpc('save_academy_field', { p_user_id: userId, p_session_token: currentSessionToken(), p_field: field, p_value: value });
+  if (error) throw new Error(error.message);
 }
 
-export function getAcademyStreak(userId) {
-  return safeParseObjectOrDefault(
-    localStorage.getItem(K.academyStreak(userId)) || 'null',
-    { currentStreak: 0, longestStreak: 0, lastActiveDate: null }
-  );
+// Fetches progress/streak/badges/certs/quizzes in one round trip — for
+// consumers (like AcademyHub) that need all five up front, instead of each
+// calling its own getAcademyX() and re-fetching the same underlying row.
+export async function getAllAcademyData(userId) {
+  const row = await fetchAcademyData(userId);
+  return {
+    progress: row.progress ?? null,
+    streak: row.streak ?? { currentStreak: 0, longestStreak: 0, lastActiveDate: null },
+    badges: row.badges ?? {},
+    certs: row.certs ?? {},
+    quizzes: row.quizzes ?? {},
+  };
 }
 
-export function saveAcademyStreak(userId, streak) {
-  safeSetItem(K.academyStreak(userId), JSON.stringify(streak));
+export async function getAcademyProgress(userId) {
+  const row = await fetchAcademyData(userId);
+  return row.progress ?? null;
 }
 
-export function getAcademyBadges(userId) {
-  return safeParseObject(localStorage.getItem(K.academyBadges(userId)) || '{}');
+export async function saveAcademyProgress(userId, progress) {
+  await saveAcademyField(userId, 'progress', progress);
 }
 
-export function saveAcademyBadges(userId, badges) {
-  safeSetItem(K.academyBadges(userId), JSON.stringify(badges));
+export async function getAcademyStreak(userId) {
+  const row = await fetchAcademyData(userId);
+  return row.streak ?? { currentStreak: 0, longestStreak: 0, lastActiveDate: null };
+}
+
+export async function saveAcademyStreak(userId, streak) {
+  await saveAcademyField(userId, 'streak', streak);
+}
+
+export async function getAcademyBadges(userId) {
+  const row = await fetchAcademyData(userId);
+  return row.badges ?? {};
+}
+
+export async function saveAcademyBadges(userId, badges) {
+  await saveAcademyField(userId, 'badges', badges);
 }
 
 function emptyCompetitiveRanks() {
@@ -432,32 +483,25 @@ export function setBadgePanelPrefs(userId, prefs) {
   safeSetItem(K.badgePanelPrefs(userId), JSON.stringify(prefs));
 }
 
-export function getAcademyCerts(userId) {
-  return safeParseObject(localStorage.getItem(K.academyCerts(userId)) || '{}');
+export async function getAcademyCerts(userId) {
+  const row = await fetchAcademyData(userId);
+  return row.certs ?? {};
 }
 
-export function saveAcademyCerts(userId, certs) {
-  safeSetItem(K.academyCerts(userId), JSON.stringify(certs));
+export async function saveAcademyCerts(userId, certs) {
+  await saveAcademyField(userId, 'certs', certs);
 }
 
-export function getQuizResults(userId) {
-  return safeParseObject(localStorage.getItem(K.academyQuizzes(userId)) || '{}');
+export async function getQuizResults(userId) {
+  const row = await fetchAcademyData(userId);
+  return row.quizzes ?? {};
 }
 
-export function saveQuizResult(userId, quizId, result) {
-  const all = getQuizResults(userId);
-  const existing = all[quizId] || { attempts: 0, passed: false, firstAttemptPassed: false };
-  const updated = {
-    ...existing,
-    attempts: existing.attempts + 1,
-    score: result.score,
-    passed: existing.passed || result.passed,
-    firstAttemptPassed: existing.attempts === 0 && result.passed,
-    lastAttemptAt: new Date().toISOString(),
-  };
-  all[quizId] = updated;
-  safeSetItem(K.academyQuizzes(userId), JSON.stringify(all));
-  return updated;
+export async function saveQuizResult(userId, quizId, result) {
+  const { data, error } = await supabase
+    .rpc('save_quiz_result', { p_user_id: userId, p_session_token: currentSessionToken(), p_quiz_id: quizId, p_result: result });
+  if (error) throw new Error(error.message);
+  return data;
 }
 
 // Update the daily tracking block within progress (call after saving progress)

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BADGES } from '../../data/academy/badges.js';
 import { getAcademyBadges, getBadgePanelPrefs, setBadgePanelPrefs } from '../../data/storage';
 import { useEscapeKey } from '../../hooks/useEscapeKey';
@@ -113,8 +113,14 @@ function BadgeCustomizeModal({ prefs, allEarned, onSave, onClose }) {
 export default function AcademyBadgePanel({ userId, readOnly = false }) {
   const [prefs, setPrefs] = useState(() => getBadgePanelPrefs(userId));
   const [customizeOpen, setCustomizeOpen] = useState(false);
+  const [earnedBadges, setEarnedBadges] = useState({});
 
-  const earnedBadges = getAcademyBadges(userId) || {};
+  useEffect(() => {
+    let cancelled = false;
+    getAcademyBadges(userId).then(b => { if (!cancelled) setEarnedBadges(b || {}); });
+    return () => { cancelled = true; };
+  }, [userId]);
+
   const allEarned = BADGES.filter(b => earnedBadges[b.id]);
   const totalCount = allEarned.length;
 

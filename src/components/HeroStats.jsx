@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { getMatches } from '../data/storage';
 import { heroes } from '../data/heroes';
@@ -12,10 +12,19 @@ const SORTS = [
 
 export default function HeroStats({ onBack }) {
   const { currentUser } = useAuth();
-  const matches = useMemo(() => getMatches(currentUser.id), [currentUser.id]);
+  const [matches, setMatches] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [sort, setSort]     = useState('total');
   const [filter, setFilter] = useState('All');
+
+  useEffect(() => {
+    let cancelled = false;
+    getMatches(currentUser.id).then(m => {
+      if (!cancelled) { setMatches(m); setLoading(false); }
+    });
+    return () => { cancelled = true; };
+  }, [currentUser.id]);
 
   const stats = useMemo(() => {
     const map = {};
@@ -41,6 +50,8 @@ export default function HeroStats({ onBack }) {
       })
       .sort((a, b) => b[sort] - a[sort]);
   }, [stats, search, filter, sort]);
+
+  if (loading) return <div className="aca-loading">Loading hero stats…</div>;
 
   return (
     <div className="hs-page">

@@ -1,10 +1,18 @@
+import { useEffect, useState } from 'react';
 import { CATEGORIES, PATHS, ALL_LESSONS } from '../../data/academy/index.js';
 import { emptyProgress } from '../../academy/engine.js';
 import { getLearningInsights } from '../../academy/recommendations.js';
 import { getAcademyProgress } from '../../data/storage.js';
 
 export default function LearningInsights({ userId }) {
-  const rawProgress = getAcademyProgress(userId);
+  const [rawProgress, setRawProgress] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    getAcademyProgress(userId).then(p => { if (!cancelled) setRawProgress(p); });
+    return () => { cancelled = true; };
+  }, [userId]);
+
   if (!rawProgress) return null;
   const progress = { ...emptyProgress(), ...rawProgress };
   const insights = getLearningInsights(progress, ALL_LESSONS, PATHS, CATEGORIES);

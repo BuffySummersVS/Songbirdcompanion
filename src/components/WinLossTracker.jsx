@@ -1,4 +1,4 @@
-import { useId, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { getMatches, addMatch, updateMatch, deleteMatch, clearMatches } from '../data/storage';
 
@@ -122,7 +122,8 @@ function WinRateChart({ chartData }) {
 
 export default function WinLossTracker() {
   const { currentUser } = useAuth();
-  const [matches, setMatches]         = useState(() => getMatches(currentUser.id));
+  const [matches, setMatches]         = useState([]);
+  const [loading, setLoading]         = useState(true);
   const [form, setForm]               = useState(blankForm());
   const [editId, setEditId]           = useState(null);
   const [showConfirm, setShowConfirm]     = useState(false);
@@ -132,7 +133,13 @@ export default function WinLossTracker() {
   const [historyHero, setHistoryHero]     = useState('');
   const [historyQueue, setHistoryQueue]   = useState('');
 
-  function reload() { setMatches(getMatches(currentUser.id)); }
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- reload is redefined each render; only currentUser.id should retrigger the fetch
+  useEffect(() => { reload(); }, [currentUser.id]);
+
+  async function reload() {
+    setMatches(await getMatches(currentUser.id));
+    setLoading(false);
+  }
 
   function validate() {
     if (!form.result)    return 'Please select Win or Loss.';
@@ -150,7 +157,7 @@ export default function WinLossTracker() {
     setShowConfirm(true);
   }
 
-  function handleConfirm() {
+  async function handleConfirm() {
     const hero = heroes.find(h => h.id === form.heroId);
     const map  = mapsData.find(m => m.id === form.mapId) ?? null;
     const data = {
@@ -163,21 +170,21 @@ export default function WinLossTracker() {
       mapName:   map?.name ?? null,
     };
     if (editId) {
-      updateMatch(currentUser.id, editId, data);
+      await updateMatch(currentUser.id, editId, data);
       toast('Match updated!');
     } else {
-      addMatch(currentUser.id, data);
+      await addMatch(currentUser.id, data);
       toast('Match logged!');
     }
-    reload();
+    await reload();
     setForm(blankForm());
     setEditId(null);
     setShowConfirm(false);
   }
 
-  function handleDeleteMatch(matchId) {
-    deleteMatch(currentUser.id, matchId);
-    reload();
+  async function handleDeleteMatch(matchId) {
+    await deleteMatch(currentUser.id, matchId);
+    await reload();
     toast('Match removed');
   }
 
@@ -225,9 +232,9 @@ export default function WinLossTracker() {
     return true;
   }), [matches, historyResult, historyHero, historyQueue]);
 
-  function handleClearAll() {
-    clearMatches(currentUser.id);
-    reload();
+  async function handleClearAll() {
+    await clearMatches(currentUser.id);
+    await reload();
     setConfirmClear(false);
     setHistoryResult('All');
     setHistoryHero('');
@@ -246,6 +253,8 @@ export default function WinLossTracker() {
     });
     return out;
   }, [matches]);
+
+  if (loading) return <div className="aca-loading">Loading match history…</div>;
 
   return (
     <div className="wlt-page">

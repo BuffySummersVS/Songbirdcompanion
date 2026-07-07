@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, lazy, Suspense } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import {
   getMatches,
@@ -28,7 +28,13 @@ const LearningInsights = lazy(() => import('../academy/LearningInsights.jsx'));
 
 export default function UserProfile({ viewingFriendId, setViewingFriendId, onNavigateToStats, onOpenAcademy }) {
   const { currentUser, logout, updateProfile } = useAuth();
-  const matches = useMemo(() => getMatches(currentUser.id), [currentUser.id]);
+  const [matches, setMatches] = useState([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    getMatches(currentUser.id).then(m => { if (!cancelled) setMatches(m); });
+    return () => { cancelled = true; };
+  }, [currentUser.id]);
 
   const [editMode, setEditMode]         = useState(false);
   const [editUsername, setEditUsername] = useState(currentUser.username);

@@ -1,15 +1,27 @@
+import { useEffect, useState } from 'react';
 import { heroes } from '../../data/heroes';
 import { PATHS } from '../../data/academy/paths.js';
 import { BADGES } from '../../data/academy/badges.js';
 import { emptyProgress, pathCompletionPercent } from '../../academy/engine.js';
 import { getHeroMasteryRank } from '../../academy/masteryEngine.js';
-import { getAcademyProgress, getAcademyBadges } from '../../data/storage';
+import { getAllAcademyData } from '../../data/storage';
 
 export default function HeroMasteryInsights({ userId }) {
-  const rawProgress = getAcademyProgress(userId);
+  const [rawProgress, setRawProgress] = useState(null);
+  const [earnedBadges, setEarnedBadges] = useState({});
+
+  useEffect(() => {
+    let cancelled = false;
+    getAllAcademyData(userId).then(data => {
+      if (cancelled) return;
+      setRawProgress(data.progress);
+      setEarnedBadges(data.badges);
+    });
+    return () => { cancelled = true; };
+  }, [userId]);
+
   if (!rawProgress) return null;
   const progress = { ...emptyProgress(), ...rawProgress };
-  const earnedBadges = getAcademyBadges(userId) || {};
 
   const heroPaths = PATHS.filter(p => p.category === 'hero-academy' && !p.comingSoon && p.lessons.length > 0);
   if (heroPaths.length === 0) return null;

@@ -1,11 +1,12 @@
 ﻿import { useState, useCallback, useMemo, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext.jsx';
 import {
-  getAcademyProgress, saveAcademyProgress,
-  getAcademyStreak, saveAcademyStreak,
-  getAcademyBadges, saveAcademyBadges,
-  getAcademyCerts, saveAcademyCerts,
-  getQuizResults, saveQuizResult,
+  getAllAcademyData,
+  saveAcademyProgress,
+  saveAcademyStreak,
+  saveAcademyBadges,
+  saveAcademyCerts,
+  saveQuizResult,
   updateDailyTracking,
 } from '../../data/storage.js';
 import {
@@ -35,53 +36,65 @@ import RecommendationCard from './RecommendationCard.jsx';
 import { toast } from '../../utils/toast.js';
 
 function usePersistentProgress(userId) {
-  const [progress, setProgressState] = useState(() => {
-    const saved = getAcademyProgress(userId);
-    if (!saved) return emptyProgress();
-    // Backfill any new fields from emptyProgress
-    const empty = emptyProgress();
-    return { ...empty, ...saved };
-  });
-  const [streak, setStreakState] = useState(() => getAcademyStreak(userId));
-  const [earnedBadges, setEarnedBadgesState] = useState(() => getAcademyBadges(userId));
-  const [certs, setCertsState] = useState(() => getAcademyCerts(userId));
-  const [quizResults, setQuizResultsState] = useState(() => getQuizResults(userId));
+  const [loading, setLoading] = useState(true);
+  const [progress, setProgressState] = useState(emptyProgress);
+  const [streak, setStreakState] = useState({ currentStreak: 0, longestStreak: 0, lastActiveDate: null });
+  const [earnedBadges, setEarnedBadgesState] = useState({});
+  const [certs, setCertsState] = useState({});
+  const [quizResults, setQuizResultsState] = useState({});
+
+  useEffect(() => {
+    let cancelled = false;
+    getAllAcademyData(userId).then(data => {
+      if (cancelled) return;
+      // Backfill any new fields from emptyProgress onto a possibly-older saved shape
+      const empty = emptyProgress();
+      setProgressState(data.progress ? { ...empty, ...data.progress } : empty);
+      setStreakState(data.streak);
+      setEarnedBadgesState(data.badges);
+      setCertsState(data.certs);
+      setQuizResultsState(data.quizzes);
+      setLoading(false);
+    });
+    return () => { cancelled = true; };
+  }, [userId]);
 
   const updateProgress = useCallback((updater) => {
     setProgressState(prev => {
       const next = typeof updater === 'function' ? updater(prev) : updater;
-      saveAcademyProgress(userId, next);
+      saveAcademyProgress(userId, next).catch(() => toast("Couldn't save progress — check your connection."));
       return next;
     });
   }, [userId]);
 
   const updateStreak_ = useCallback((newStreak) => {
     setStreakState(newStreak);
-    saveAcademyStreak(userId, newStreak);
+    saveAcademyStreak(userId, newStreak).catch(() => toast("Couldn't save streak — check your connection."));
   }, [userId]);
 
   const updateBadges = useCallback((newBadges) => {
     setEarnedBadgesState(newBadges);
-    saveAcademyBadges(userId, newBadges);
+    saveAcademyBadges(userId, newBadges).catch(() => toast("Couldn't save badges — check your connection."));
   }, [userId]);
 
   const updateCerts = useCallback((newCerts) => {
     setCertsState(newCerts);
-    saveAcademyCerts(userId, newCerts);
+    saveAcademyCerts(userId, newCerts).catch(() => toast("Couldn't save certificates — check your connection."));
   }, [userId]);
 
-  const recordQuiz = useCallback((quizId, result) => {
-    saveQuizResult(userId, quizId, result);
-    setQuizResultsState(getQuizResults(userId));
+  const recordQuiz = useCallback(async (quizId, result) => {
+    const updated = await saveQuizResult(userId, quizId, result);
+    setQuizResultsState(prev => ({ ...prev, [quizId]: updated }));
   }, [userId]);
 
-  return { progress, updateProgress, streak, updateStreak_, earnedBadges, updateBadges, certs, updateCerts, quizResults, recordQuiz };
+  return { loading, progress, updateProgress, streak, updateStreak_, earnedBadges, updateBadges, certs, updateCerts, quizResults, recordQuiz };
 }
 
 // ── Main component ──────────────────────────────────────────────────────────
 export default function AcademyHub({ onBack, initialHeroId = null, onClearInitialHeroId }) {
   const { currentUser } = useAuth();
   const {
+    loading: progressLoading,
     progress, updateProgress,
     streak, updateStreak_,
     earnedBadges, updateBadges,
@@ -314,12 +327,17 @@ export default function AcademyHub({ onBack, initialHeroId = null, onClearInitia
   const level = calculateLevel(progress.xp || 0);
   const levelTitle = getLevelTitle(level);
 
-  // Match stats for recommendation engine
-  const matchStats = useMemo(
-    () => computeMatchStats(getMatches(currentUser.id)),
+  // Match stats for recommendation engine — fetched once on mount; matches
+  // don't change while Academy is open, so no need to refetch on updates.
+  const [matchStats, setMatchStats] = useState(() => computeMatchStats([]));
+  useEffect(() => {
+    let cancelled = false;
+    getMatches(currentUser.id).then(m => {
+      if (!cancelled) setMatchStats(computeMatchStats(m));
+    });
+    return () => { cancelled = true; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [] // computed once on mount; matches don't change while Academy is open
-  );
+  }, []);
 
   const recommendations = useMemo(
     () => getRecommendations(progress, ALL_LESSONS, PATHS, CATEGORIES, { matchStats, allBadges: BADGES }),
@@ -352,6 +370,8 @@ export default function AcademyHub({ onBack, initialHeroId = null, onClearInitia
     }
     return groups;
   }, [searchQuery]);
+
+  if (progressLoading) return <div className="aca-loading">Loading Academy…</div>;
 
   const earnedBadgeIds = Object.keys(earnedBadges);
   const recentlyEarnedBadges = BADGES

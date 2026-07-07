@@ -1,13 +1,27 @@
+import { useEffect, useState } from "react";
 import { PATHS, BADGES, ALL_LESSONS } from "../../data/academy/index.js";
 import { pathCompletionPercent } from "../../academy/engine.js";
-import { getAcademyProgress, getAcademyBadges } from "../../data/storage.js";
+import { getAllAcademyData } from "../../data/storage.js";
 import { getHeroMasteryRank, getNextHeroLesson } from "../../academy/masteryEngine.js";
+
+const EMPTY_PROGRESS = { lessonsCompleted: [], pathsCompleted: [] };
 
 export default function HeroAcademyCard({ hero, userId, onOpenHeroAcademy }) {
   const heroPath = PATHS.find(p => p.heroId === hero.id && p.category === 'hero-academy');
-  const empty = { lessonsCompleted: [], pathsCompleted: [] };
-  const academyProgress = userId ? (getAcademyProgress(userId) || empty) : null;
-  const earnedBadges = userId ? (getAcademyBadges(userId) || {}) : {};
+  const [academyProgress, setAcademyProgress] = useState(userId ? null : EMPTY_PROGRESS);
+  const [earnedBadges, setEarnedBadges] = useState({});
+
+  useEffect(() => {
+    if (!userId) return;
+    let cancelled = false;
+    getAllAcademyData(userId).then(data => {
+      if (cancelled) return;
+      setAcademyProgress(data.progress || EMPTY_PROGRESS);
+      setEarnedBadges(data.badges);
+    });
+    return () => { cancelled = true; };
+  }, [userId]);
+
   const pct = heroPath && academyProgress ? pathCompletionPercent(heroPath, academyProgress) : 0;
   const done = heroPath && academyProgress?.pathsCompleted?.includes(heroPath.id);
   const started = heroPath && academyProgress ? heroPath.lessons.some(id => academyProgress.lessonsCompleted?.includes(id)) : false;
