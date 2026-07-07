@@ -18,7 +18,7 @@ function getReason(hero, name, variant) {
   return getSynergyReason(hero.name, name);
 }
 
-function MatchupChip({ hero, name, variant, onOpen }) {
+function MatchupChip({ name, variant, onOpen }) {
   const h = resolve(name);
   return (
     <div
