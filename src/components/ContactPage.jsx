@@ -4,6 +4,7 @@ const CONTACT_EMAIL = "songbirdcompanion@gmail.com";
 const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61591916001131";
 const INSTAGRAM_URL = "https://www.instagram.com/songbirdcompanion";
 const DISCORD_URL = "https://discord.gg/V6sK7mU9k";
+const BLOG_URL = "https://songbirdcompanion.blogspot.com/";
 
 const FEATHER_HOVER_DELAY = 1500;
 const FEATHER_COUNT = 8;
@@ -111,6 +112,20 @@ export default function ContactPage() {
             onMouseLeave={handleFeatherHoverEnd}
           >
             Visit Page ↗
+          </a>
+        </div>
+        <div className="link-card link-contact">
+          <h3>Blog</h3>
+          <p>Read patch breakdowns, meta updates, and behind-the-scenes posts on the SongBird blog.</p>
+          <a
+            href={BLOG_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-card-btn"
+            onMouseEnter={handleFeatherHoverStart}
+            onMouseLeave={handleFeatherHoverEnd}
+          >
+            Visit Blog ↗
           </a>
         </div>
       </div>
