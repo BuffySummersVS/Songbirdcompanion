@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import {
   getSession, saveSession, clearSession,
   getUserById, createUser, verifyLogin, updateUser,
@@ -6,17 +6,23 @@ import {
 
 const AuthContext = createContext(null);
 
-function initialUser() {
-  const session = getSession();
-  if (session?.userId) {
-    return getUserById(session.userId) ?? null;
-  }
-  return null;
-}
-
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState(initialUser);
-  const ready = true;
+  const [currentUser, setCurrentUser] = useState(null);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function loadSession() {
+      const session = getSession();
+      if (session?.userId) {
+        const user = await getUserById(session.userId).catch(() => null);
+        if (!cancelled) setCurrentUser(user ?? null);
+      }
+      if (!cancelled) setReady(true);
+    }
+    loadSession();
+    return () => { cancelled = true; };
+  }, []);
 
   async function login(username, password) {
     const user = await verifyLogin(username, password);
@@ -39,7 +45,7 @@ export function AuthProvider({ children }) {
 
   async function refreshUser() {
     if (!currentUser) return;
-    const fresh = getUserById(currentUser.id);
+    const fresh = await getUserById(currentUser.id);
     setCurrentUser(fresh ?? null);
   }
 

@@ -1,7 +1,7 @@
 import { toast } from '../utils/toast.js';
+import { supabase } from '../lib/supabaseClient.js';
 
 const K = {
-  USERS:            'sb_users',
   SESSION:          'sb_session',
   matches:          (uid) => `sb_matches_${uid}`,
   friends:          (uid) => `sb_friends_${uid}`,
@@ -68,119 +68,59 @@ function uid() {
     : Math.random().toString(36).slice(2) + Date.now().toString(36);
 }
 
-const PBKDF2_ITERATIONS = 100000;
+// Accounts live in Supabase now (see src/lib/supabaseClient.js), not
+// localStorage — passwords are hashed server-side (see the register_user /
+// verify_login / update_user_profile Postgres functions) and never touch
+// this file.
 
-function bytesToHex(bytes) {
-  return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
-}
-
-function generateSalt() {
-  return bytesToHex(crypto.getRandomValues(new Uint8Array(16)));
-}
-
-// Salted + key-stretched (PBKDF2-SHA256, 100k iterations) — the current scheme.
-async function hashPassword(password, salt) {
-  const enc = new TextEncoder();
-  const keyMaterial = await crypto.subtle.importKey(
-    'raw', enc.encode(password), { name: 'PBKDF2' }, false, ['deriveBits']
-  );
-  const derived = await crypto.subtle.deriveBits(
-    { name: 'PBKDF2', salt: enc.encode(salt), iterations: PBKDF2_ITERATIONS, hash: 'SHA-256' },
-    keyMaterial,
-    256
-  );
-  return bytesToHex(new Uint8Array(derived));
+export async function getUserByUsername(username) {
+  const { data, error } = await supabase
+    .from('public_users')
+    .select('*')
+    .eq('username', username)
+    .maybeSingle();
+  if (error) throw new Error(error.message);
+  return data;
 }
 
-// Unsalted single-round SHA-256 — the original scheme, kept only so accounts
-// created before salting was added can still log in. verifyLogin transparently
-// upgrades a legacy record to the current scheme on successful login.
-async function hashPasswordLegacy(password) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(password));
-  return bytesToHex(new Uint8Array(buf));
-}
-
-function readUsers() {
-  return safeParseArray(
-    localStorage.getItem(K.USERS) || '[]',
-    u => isPlainObject(u) && typeof u.username === 'string' && typeof u.id === 'string'
-  );
-}
-function writeUsers(users) {
-  safeSetItem(K.USERS, JSON.stringify(users));
-}
-
-export function getUserByUsername(username) {
-  return readUsers().find(u => u.username.toLowerCase() === username.toLowerCase()) ?? null;
-}
-export function getUserById(id) {
-  return readUsers().find(u => u.id === id) ?? null;
+export async function getUserById(id) {
+  if (!id) return null;
+  const { data, error } = await supabase
+    .from('public_users')
+    .select('*')
+    .eq('id', id)
+    .maybeSingle();
+  if (error) throw new Error(error.message);
+  return data;
 }
 
 export async function createUser({ username, password, avatar }) {
-  const users = readUsers();
-  if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
-    throw new Error('Username already taken.');
-  }
-  const passwordSalt = generateSalt();
-  const user = {
-    id: uid(),
-    username,
-    passwordSalt,
-    passwordHash: await hashPassword(password, passwordSalt),
-    avatar,
-    createdAt: new Date().toISOString(),
-  };
-  writeUsers([...users, user]);
-  return user;
+  const { data, error } = await supabase
+    .rpc('register_user', { p_username: username, p_password: password, p_avatar: avatar })
+    .single();
+  if (error) throw new Error(error.message);
+  return data;
 }
 
 export async function updateUser(id, updates) {
-  const users = readUsers();
-  const idx = users.findIndex(u => u.id === id);
-  if (idx === -1) throw new Error('User not found.');
-
-  if (updates.username) {
-    const clash = users.find(
-      u => u.username.toLowerCase() === updates.username.toLowerCase() && u.id !== id
-    );
-    if (clash) throw new Error('Username already taken.');
-  }
-
-  const merged = { ...users[idx], ...updates };
-  if (updates.password) {
-    merged.passwordSalt = generateSalt();
-    merged.passwordHash = await hashPassword(updates.password, merged.passwordSalt);
-    delete merged.password;
-  }
-  delete updates.password;
-  users[idx] = merged;
-  writeUsers(users);
-  return merged;
+  const { data, error } = await supabase
+    .rpc('update_user_profile', {
+      p_user_id: id,
+      p_username: updates.username ?? null,
+      p_avatar: updates.avatar ?? null,
+      p_new_password: updates.password ?? null,
+    })
+    .single();
+  if (error) throw new Error(error.message);
+  return data;
 }
 
 export async function verifyLogin(username, password) {
-  const user = getUserByUsername(username);
-  if (!user) throw new Error('Username not found.');
-
-  if (user.passwordSalt) {
-    const hash = await hashPassword(password, user.passwordSalt);
-    if (hash !== user.passwordHash) throw new Error('Incorrect password.');
-    return user;
-  }
-
-  // Legacy account predating salted hashes — verify with the old scheme,
-  // then silently upgrade the stored record so this only ever happens once.
-  const legacyHash = await hashPasswordLegacy(password);
-  if (legacyHash !== user.passwordHash) throw new Error('Incorrect password.');
-
-  const passwordSalt = generateSalt();
-  const upgraded = { ...user, passwordSalt, passwordHash: await hashPassword(password, passwordSalt) };
-  const users = readUsers();
-  const idx = users.findIndex(u => u.id === user.id);
-  users[idx] = upgraded;
-  writeUsers(users);
-  return upgraded;
+  const { data, error } = await supabase
+    .rpc('verify_login', { p_username: username, p_password: password })
+    .single();
+  if (error) throw new Error(error.message);
+  return data;
 }
 
 export function getSession() {
@@ -221,12 +161,17 @@ export function updateMatch(userId, matchId, data) {
   return matches[idx];
 }
 
-export function searchUsers(query) {
-  const q = query.trim().toLowerCase();
+export async function searchUsers(query) {
+  const q = query.trim();
   if (!q) return [];
-  return readUsers()
-    .filter(u => u.username.toLowerCase().includes(q))
-    .map(({ passwordHash, passwordSalt, ...safe }) => safe);
+  const escaped = q.replace(/[%_]/g, m => `\\${m}`);
+  const { data, error } = await supabase
+    .from('public_users')
+    .select('*')
+    .ilike('username', `%${escaped}%`)
+    .limit(20);
+  if (error) throw new Error(error.message);
+  return data;
 }
 
 export function getFriendRequests(userId) {
@@ -237,12 +182,12 @@ export function getOutboundRequests(userId) {
   return safeParseArray(localStorage.getItem(K.friendReqsOut(userId)) || '[]', id => typeof id === 'string');
 }
 
-export function sendFriendRequest(fromUserId, toUserId) {
+export async function sendFriendRequest(fromUserId, toUserId) {
   if (fromUserId === toUserId) return;
   if (getFriends(fromUserId).includes(toUserId)) return;
   const inbound = getFriendRequests(toUserId);
   if (inbound.some(r => r.fromId === fromUserId)) return;
-  const fromUser = getUserById(fromUserId);
+  const fromUser = await getUserById(fromUserId);
   if (!fromUser) return;
   safeSetItem(
     K.friendReqsIn(toUserId),

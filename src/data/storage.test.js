@@ -1,4 +1,92 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+
+// storage.js talks to Supabase for accounts now, not localStorage — this is
+// a tiny in-memory stand-in for the `users` table + the three Postgres
+// functions (register_user / verify_login / update_user_profile), mirroring
+// their real behavior (case-insensitive username, error messages) closely
+// enough for the tests below without hitting the real network/database.
+let fakeUsers = [];
+function fakeToSafe(u) { return { id: u.id, username: u.username, avatar: u.avatar, created_at: u.created_at }; }
+function fakeHash(pw) { return `hash:${pw}`; }
+function fakeGenId() { return `id-${Math.random().toString(36).slice(2)}`; }
+
+class FakeQueryBuilder {
+  constructor() { this.eqFilters = []; this.ilikeFilter = null; this.limitN = null; this.singleMode = null; }
+  select() { return this; }
+  eq(col, val) { this.eqFilters.push([col, val]); return this; }
+  ilike(col, pattern) { this.ilikeFilter = [col, pattern]; return this; }
+  limit(n) { this.limitN = n; return this; }
+  maybeSingle() { this.singleMode = 'maybeSingle'; return this; }
+  single() { this.singleMode = 'single'; return this; }
+  _run() {
+    let rows = fakeUsers.slice();
+    for (const [col, val] of this.eqFilters) {
+      rows = rows.filter(u => col === 'username' ? u.username.toLowerCase() === String(val).toLowerCase() : u[col] === val);
+    }
+    if (this.ilikeFilter) {
+      const [col, pattern] = this.ilikeFilter;
+      const re = new RegExp(`^${pattern.replace(/%/g, '.*')}$`, 'i');
+      rows = rows.filter(u => re.test(u[col]));
+    }
+    if (this.limitN != null) rows = rows.slice(0, this.limitN);
+    const safeRows = rows.map(fakeToSafe);
+    if (this.singleMode === 'maybeSingle') return { data: safeRows[0] ?? null, error: null };
+    if (this.singleMode === 'single') return safeRows[0] ? { data: safeRows[0], error: null } : { data: null, error: { message: 'Not found' } };
+    return { data: safeRows, error: null };
+  }
+  then(resolve, reject) { return Promise.resolve(this._run()).then(resolve, reject); }
+}
+
+class FakeRpcBuilder {
+  constructor(fn, args) { this.fn = fn; this.args = args; }
+  single() { return this; }
+  _run() {
+    try {
+      if (this.fn === 'register_user') {
+        const { p_username, p_password, p_avatar } = this.args;
+        if (p_username.trim().length < 3) throw new Error('Username must be at least 3 characters.');
+        if (fakeUsers.some(u => u.username.toLowerCase() === p_username.toLowerCase())) {
+          throw new Error('Username already taken.');
+        }
+        const row = { id: fakeGenId(), username: p_username, password_hash: fakeHash(p_password), avatar: p_avatar, created_at: new Date().toISOString() };
+        fakeUsers.push(row);
+        return { data: fakeToSafe(row), error: null };
+      }
+      if (this.fn === 'verify_login') {
+        const { p_username, p_password } = this.args;
+        const row = fakeUsers.find(u => u.username.toLowerCase() === p_username.toLowerCase());
+        if (!row) throw new Error('Username not found.');
+        if (row.password_hash !== fakeHash(p_password)) throw new Error('Incorrect password.');
+        return { data: fakeToSafe(row), error: null };
+      }
+      if (this.fn === 'update_user_profile') {
+        const { p_user_id, p_username, p_avatar, p_new_password } = this.args;
+        const row = fakeUsers.find(u => u.id === p_user_id);
+        if (!row) throw new Error('User not found.');
+        if (p_username != null && p_username.toLowerCase() !== row.username.toLowerCase()
+            && fakeUsers.some(u => u.username.toLowerCase() === p_username.toLowerCase() && u.id !== p_user_id)) {
+          throw new Error('Username already taken.');
+        }
+        if (p_username != null) row.username = p_username;
+        if (p_avatar != null) row.avatar = p_avatar;
+        if (p_new_password != null) row.password_hash = fakeHash(p_new_password);
+        return { data: fakeToSafe(row), error: null };
+      }
+      throw new Error(`Unknown rpc: ${this.fn}`);
+    } catch (e) {
+      return { data: null, error: { message: e.message } };
+    }
+  }
+  then(resolve, reject) { return Promise.resolve(this._run()).then(resolve, reject); }
+}
+
+vi.mock('../lib/supabaseClient.js', () => ({
+  supabase: {
+    from() { return new FakeQueryBuilder(); },
+    rpc(fn, args) { return new FakeRpcBuilder(fn, args); },
+  },
+}));
+
 import {
   createUser, getUserByUsername, getUserById, updateUser, verifyLogin, searchUsers,
   getSession, saveSession, clearSession,
@@ -22,30 +110,28 @@ class MemoryStorage {
 
 beforeEach(() => {
   globalThis.localStorage = new MemoryStorage();
+  fakeUsers = [];
 });
 
 describe('users / auth', () => {
-  it('creates a user with a salted, hashed password (not the plaintext)', async () => {
+  it('creates a user and never returns a password field', async () => {
     const user = await createUser({ username: 'Tracer', password: 'blink123', avatar: 'tracer.png' });
     expect(user.username).toBe('Tracer');
-    expect(user.passwordSalt).toBeTypeOf('string');
-    expect(user.passwordHash).toBeTypeOf('string');
-    expect(user.passwordHash).not.toBe('blink123');
     expect(user.id).toBeTypeOf('string');
+    expect(user.password).toBeUndefined();
+    expect(user.password_hash).toBeUndefined();
   });
 
-  it('salts each user independently, so the same password hashes differently', async () => {
-    const a = await createUser({ username: 'Genji', password: 'sameword', avatar: 'g.png' });
-    const b = await createUser({ username: 'Hanzo', password: 'sameword', avatar: 'h.png' });
-    expect(a.passwordSalt).not.toBe(b.passwordSalt);
-    expect(a.passwordHash).not.toBe(b.passwordHash);
+  it('rejects a username shorter than 3 characters', async () => {
+    await expect(createUser({ username: 'ab', password: 'blink123', avatar: 'a.png' }))
+      .rejects.toThrow('Username must be at least 3 characters.');
   });
 
   it('looks users up by username case-insensitively', async () => {
     await createUser({ username: 'Tracer', password: 'blink123', avatar: 'a.png' });
-    expect(getUserByUsername('tracer')?.username).toBe('Tracer');
-    expect(getUserByUsername('TRACER')?.username).toBe('Tracer');
-    expect(getUserByUsername('nobody')).toBeNull();
+    expect((await getUserByUsername('tracer'))?.username).toBe('Tracer');
+    expect((await getUserByUsername('TRACER'))?.username).toBe('Tracer');
+    expect(await getUserByUsername('nobody')).toBeNull();
   });
 
   it('rejects creating a duplicate username regardless of case', async () => {
@@ -63,11 +149,10 @@ describe('users / auth', () => {
     await expect(verifyLogin('Nobody', 'wraith')).rejects.toThrow('Username not found.');
   });
 
-  it('updateUser re-hashes a new password and never stores the plaintext field', async () => {
+  it('updateUser changes the password without exposing it, and the new password works on next login', async () => {
     const created = await createUser({ username: 'Ana', password: 'nano123', avatar: 'a.png' });
     const updated = await updateUser(created.id, { password: 'nano456' });
     expect(updated.password).toBeUndefined();
-    expect(updated.passwordHash).not.toBe(created.passwordHash);
     await expect(verifyLogin('Ana', 'nano456')).resolves.toBeTruthy();
     await expect(verifyLogin('Ana', 'nano123')).rejects.toThrow();
   });
@@ -78,42 +163,20 @@ describe('users / auth', () => {
     await expect(updateUser(other.id, { username: 'widow' })).rejects.toThrow('Username already taken.');
   });
 
-  it('searchUsers matches by substring and never leaks passwordHash or passwordSalt', async () => {
+  it('searchUsers matches by substring and never leaks the password hash', async () => {
     await createUser({ username: 'Junkrat', password: 'p1', avatar: 'j.png' });
     await createUser({ username: 'Roadhog', password: 'p2', avatar: 'r.png' });
-    const results = searchUsers('junk');
+    const results = await searchUsers('junk');
     expect(results).toHaveLength(1);
     expect(results[0].username).toBe('Junkrat');
-    expect(results[0].passwordHash).toBeUndefined();
-    expect(results[0].passwordSalt).toBeUndefined();
-    expect(searchUsers('')).toEqual([]);
-  });
-
-  it('verifyLogin accepts a legacy unsalted-SHA-256 account and upgrades it to a salted hash', async () => {
-    // Simulate an account created before salting was added: passwordHash is a
-    // bare single-round SHA-256 digest of the password, with no passwordSalt field.
-    const legacyDigest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('oldscheme'));
-    const legacyHash = Array.from(new Uint8Array(legacyDigest)).map(b => b.toString(16).padStart(2, '0')).join('');
-    localStorage.setItem('sb_users', JSON.stringify([
-      { id: 'legacy-1', username: 'Bastion', passwordHash: legacyHash, avatar: 'b.png', createdAt: new Date().toISOString() },
-    ]));
-
-    const user = await verifyLogin('Bastion', 'oldscheme');
-    expect(user.username).toBe('Bastion');
-    expect(user.passwordSalt).toBeTypeOf('string');
-    expect(user.passwordHash).not.toBe(legacyHash);
-
-    // The upgrade was persisted, and subsequent logins go through the new (salted) path.
-    const reloaded = getUserById('legacy-1');
-    expect(reloaded.passwordSalt).toBe(user.passwordSalt);
-    await expect(verifyLogin('Bastion', 'oldscheme')).resolves.toBeTruthy();
-    await expect(verifyLogin('Bastion', 'wrong')).rejects.toThrow('Incorrect password.');
+    expect(results[0].password_hash).toBeUndefined();
+    await expect(searchUsers('')).resolves.toEqual([]);
   });
 
   it('getUserById finds the created user', async () => {
     const created = await createUser({ username: 'Mercy', password: 'p1', avatar: 'm.png' });
-    expect(getUserById(created.id)?.username).toBe('Mercy');
-    expect(getUserById('missing-id')).toBeNull();
+    expect((await getUserById(created.id))?.username).toBe('Mercy');
+    expect(await getUserById('missing-id')).toBeNull();
   });
 });
 
@@ -171,8 +234,8 @@ describe('matches', () => {
 });
 
 describe('friends and friend requests', () => {
-  it('silently no-ops if the sender is not a real, stored user', () => {
-    sendFriendRequest('u1', 'u2'); // neither id corresponds to a createUser() record
+  it('silently no-ops if the sender is not a real, stored user', async () => {
+    await sendFriendRequest('u1', 'u2'); // neither id corresponds to a createUser() record
     expect(getFriendRequests('u2')).toHaveLength(0);
   });
 
@@ -180,7 +243,7 @@ describe('friends and friend requests', () => {
     const alice = await createUser({ username: 'Alice', password: 'p', avatar: 'a.png' });
     const bob = await createUser({ username: 'Bob', password: 'p', avatar: 'b.png' });
 
-    sendFriendRequest(alice.id, bob.id);
+    await sendFriendRequest(alice.id, bob.id);
     expect(getFriendRequests(bob.id)).toHaveLength(1);
     expect(getFriendRequests(bob.id)[0].fromUsername).toBe('Alice');
     expect(getOutboundRequests(alice.id)).toEqual([bob.id]);
@@ -192,33 +255,33 @@ describe('friends and friend requests', () => {
     expect(getOutboundRequests(alice.id)).toHaveLength(0);
   });
 
-  it('does not let a user send a request to themself', () => {
-    sendFriendRequest('u1', 'u1');
+  it('does not let a user send a request to themself', async () => {
+    await sendFriendRequest('u1', 'u1');
     expect(getFriendRequests('u1')).toHaveLength(0);
   });
 
   it('does not duplicate a request that is already pending', async () => {
     const alice = await createUser({ username: 'Alice2', password: 'p', avatar: 'a.png' });
-    sendFriendRequest(alice.id, 'u2');
-    sendFriendRequest(alice.id, 'u2');
+    await sendFriendRequest(alice.id, 'u2');
+    await sendFriendRequest(alice.id, 'u2');
     expect(getFriendRequests('u2')).toHaveLength(1);
   });
 
   it('does not send a request to an existing friend', async () => {
     const alice = await createUser({ username: 'Alice3', password: 'p', avatar: 'a.png' });
     addFriend(alice.id, 'u2');
-    sendFriendRequest(alice.id, 'u2');
+    await sendFriendRequest(alice.id, 'u2');
     expect(getFriendRequests('u2')).toHaveLength(0);
   });
 
   it('declineFriendRequest and cancelFriendRequest both clear the pending pair', async () => {
     const alice = await createUser({ username: 'Alice4', password: 'p', avatar: 'a.png' });
-    sendFriendRequest(alice.id, 'u2');
+    await sendFriendRequest(alice.id, 'u2');
     declineFriendRequest('u2', alice.id);
     expect(getFriendRequests('u2')).toHaveLength(0);
     expect(getOutboundRequests(alice.id)).toHaveLength(0);
 
-    sendFriendRequest(alice.id, 'u3');
+    await sendFriendRequest(alice.id, 'u3');
     cancelFriendRequest(alice.id, 'u3');
     expect(getFriendRequests('u3')).toHaveLength(0);
     expect(getOutboundRequests(alice.id)).toHaveLength(0);
