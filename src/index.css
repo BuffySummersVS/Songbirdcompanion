@@ -1718,6 +1718,13 @@ button.dashboard-card:hover{
   gap:18px;
 }
 
+/* Home's link sections already get spacing from .links-section-title/-sub's
+   own margin-bottom — only ContactPage's grid (which follows .control-panel
+   directly, with no heading in between) needs its own top margin. */
+.control-panel + .links-grid{
+  margin-top:28px;
+}
+
 .link-card{
   position:relative;
   background:linear-gradient(160deg,#181d27,#101319);
