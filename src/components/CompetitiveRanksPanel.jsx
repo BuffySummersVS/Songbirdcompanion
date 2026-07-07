@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getCompetitiveRanks, saveCompetitiveRanks, getCompetitiveRanksPrefs, setCompetitiveRanksPrefs } from '../data/storage.js';
 import { useEscapeKey } from '../hooks/useEscapeKey';
 import { useFocusTrap } from '../hooks/useFocusTrap';
@@ -120,9 +120,17 @@ function CompetitiveRankEditModal({ ranks, prefs, onSave, onClose }) {
 }
 
 export default function CompetitiveRanksPanel({ userId, readOnly = false }) {
-  const [ranks, setRanks] = useState(() => getCompetitiveRanks(userId));
-  const [prefs, setPrefs] = useState(() => getCompetitiveRanksPrefs(userId));
+  const [ranks, setRanks] = useState({});
+  const [prefs, setPrefs] = useState({});
   const [editOpen, setEditOpen] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all([getCompetitiveRanks(userId), getCompetitiveRanksPrefs(userId)]).then(([r, p]) => {
+      if (!cancelled) { setRanks(r); setPrefs(p); }
+    });
+    return () => { cancelled = true; };
+  }, [userId]);
 
   const hasAnyRank = RANK_ROLES.some(role => !!ranks[role.id]?.rank);
   const color = prefs.color || '#ff9c00';

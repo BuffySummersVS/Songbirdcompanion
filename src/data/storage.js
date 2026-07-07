@@ -1,26 +1,13 @@
 import { toast } from '../utils/toast.js';
 import { supabase } from '../lib/supabaseClient.js';
 
+// Direct Messages are the only domain still backed by localStorage — they
+// stay dead code behind SOCIAL_FEATURES_ENABLED (see Phase 1/2/3 notes),
+// so there was never a reason to migrate them.
 const K = {
-  SESSION:          'sb_session',
-  matches:          (uid) => `sb_matches_${uid}`,
-  friends:          (uid) => `sb_friends_${uid}`,
-  friendReqsIn:     (uid) => `sb_friendreqs_in_${uid}`,
-  friendReqsOut:    (uid) => `sb_friendreqs_out_${uid}`,
-  dm:               (a, b) => { const s = [a,b].sort(); return `sb_dm_${s[0]}__${s[1]}`; },
-  dmUnread:         (uid) => `sb_dm_unread_${uid}`,
-  customEvents:     (uid) => `sb_custom_events_${uid}`,
-  academyProgress:  (uid) => `sb_academy_${uid}`,
-  academyStreak:    (uid) => `sb_academy_streak_${uid}`,
-  academyBadges:    (uid) => `sb_academy_badges_${uid}`,
-  academyCerts:     (uid) => `sb_academy_certs_${uid}`,
-  academyQuizzes:   (uid) => `sb_academy_quiz_${uid}`,
-  badgePanelPrefs:  (uid) => `sb_badge_prefs_${uid}`,
-  competitiveRanks: (uid) => `sb_competitive_ranks_${uid}`,
-  competitiveRanksPrefs: (uid) => `sb_competitive_ranks_prefs_${uid}`,
-  mainHeroes:       (uid) => `sb_main_heroes_${uid}`,
-  mainHeroesPrefs:  (uid) => `sb_main_heroes_prefs_${uid}`,
-  notifSent:        (uid) => `sb_notif_${uid}`,
+  SESSION:  'sb_session',
+  dm:       (a, b) => { const s = [a,b].sort(); return `sb_dm_${s[0]}__${s[1]}`; },
+  dmUnread: (uid) => `sb_dm_unread_${uid}`,
 };
 
 function safeSetItem(key, value) {
@@ -57,11 +44,6 @@ function safeParseObject(raw, fallback = {}) {
   return safeParse(raw, fallback, isPlainObject);
 }
 
-function safeParseObjectOrDefault(raw, fallback) {
-  const parsed = safeParse(raw, null, v => v === null || isPlainObject(v));
-  return parsed || fallback;
-}
-
 function uid() {
   return crypto.randomUUID
     ? crypto.randomUUID()
@@ -73,6 +55,14 @@ function uid() {
 // verify_login / update_user_profile Postgres functions) and never touch
 // this file.
 
+// Postgres/supabase-js return snake_case column names (created_at); the rest
+// of the app uses camelCase (createdAt), same convention as matchFromRow.
+function userFromRow(row) {
+  if (!row) return row;
+  const { created_at, ...rest } = row;
+  return { ...rest, createdAt: created_at };
+}
+
 export async function getUserByUsername(username) {
   const { data, error } = await supabase
     .from('public_users')
@@ -80,7 +70,7 @@ export async function getUserByUsername(username) {
     .eq('username', username)
     .maybeSingle();
   if (error) throw new Error(error.message);
-  return data;
+  return userFromRow(data);
 }
 
 export async function getUserById(id) {
@@ -91,7 +81,7 @@ export async function getUserById(id) {
     .eq('id', id)
     .maybeSingle();
   if (error) throw new Error(error.message);
-  return data;
+  return userFromRow(data);
 }
 
 export async function createUser({ username, password, avatar }) {
@@ -99,7 +89,7 @@ export async function createUser({ username, password, avatar }) {
     .rpc('register_user', { p_username: username, p_password: password, p_avatar: avatar })
     .single();
   if (error) throw new Error(error.message);
-  return data;
+  return userFromRow(data);
 }
 
 export async function updateUser(id, updates) {
@@ -113,7 +103,7 @@ export async function updateUser(id, updates) {
     })
     .single();
   if (error) throw new Error(error.message);
-  return data;
+  return userFromRow(data);
 }
 
 export async function verifyLogin(username, password) {
@@ -121,12 +111,16 @@ export async function verifyLogin(username, password) {
     .rpc('verify_login', { p_username: username, p_password: password })
     .single();
   if (error) throw new Error(error.message);
-  return data;
+  return userFromRow(data);
 }
 
 export async function signOut(userId, sessionToken) {
   if (!userId || !sessionToken) return;
-  await supabase.rpc('sign_out', { p_user_id: userId, p_session_token: sessionToken }).catch(() => {});
+  try {
+    await supabase.rpc('sign_out', { p_user_id: userId, p_session_token: sessionToken });
+  } catch {
+    // best-effort server-side session cleanup; local session is cleared regardless
+  }
 }
 
 export function getSession() {
@@ -146,9 +140,18 @@ function matchFromRow(row) {
   return { ...row.data, id: row.id, timestamp: row.created_at, editedAt: row.edited_at ?? undefined };
 }
 
+// Routes to the friend-gated variant when viewing someone other than the
+// current session's own user, same reasoning as fetchAcademyData above.
 export async function getMatches(userId) {
+  const session = getSession();
+  if (session?.userId === userId) {
+    const { data, error } = await supabase
+      .rpc('get_matches', { p_user_id: userId, p_session_token: session.sessionToken });
+    if (error) throw new Error(error.message);
+    return data.map(matchFromRow);
+  }
   const { data, error } = await supabase
-    .rpc('get_matches', { p_user_id: userId, p_session_token: currentSessionToken() });
+    .rpc('get_matches_for', { p_viewer_id: session?.userId, p_viewer_token: session?.sessionToken, p_target_id: userId });
   if (error) throw new Error(error.message);
   return data.map(matchFromRow);
 }
@@ -194,65 +197,62 @@ export async function searchUsers(query) {
     .ilike('username', `%${escaped}%`)
     .limit(20);
   if (error) throw new Error(error.message);
+  return data.map(userFromRow);
+}
+
+function friendRequestFromRow(row) {
+  return { fromId: row.from_id, fromUsername: row.from_username, fromAvatar: row.from_avatar, sentAt: row.sent_at };
+}
+
+export async function getFriendRequests(userId) {
+  const { data, error } = await supabase
+    .rpc('get_friend_requests', { p_user_id: userId, p_session_token: currentSessionToken() });
+  if (error) throw new Error(error.message);
+  return data.map(friendRequestFromRow);
+}
+
+export async function getOutboundRequests(userId) {
+  const { data, error } = await supabase
+    .rpc('get_outbound_requests', { p_user_id: userId, p_session_token: currentSessionToken() });
+  if (error) throw new Error(error.message);
   return data;
 }
 
-export function getFriendRequests(userId) {
-  return safeParseArray(localStorage.getItem(K.friendReqsIn(userId)) || '[]', isPlainObject);
-}
-
-export function getOutboundRequests(userId) {
-  return safeParseArray(localStorage.getItem(K.friendReqsOut(userId)) || '[]', id => typeof id === 'string');
-}
-
 export async function sendFriendRequest(fromUserId, toUserId) {
-  if (fromUserId === toUserId) return;
-  if (getFriends(fromUserId).includes(toUserId)) return;
-  const inbound = getFriendRequests(toUserId);
-  if (inbound.some(r => r.fromId === fromUserId)) return;
-  const fromUser = await getUserById(fromUserId);
-  if (!fromUser) return;
-  safeSetItem(
-    K.friendReqsIn(toUserId),
-    JSON.stringify([...inbound, { fromId: fromUserId, fromUsername: fromUser.username, fromAvatar: fromUser.avatar, sentAt: new Date().toISOString() }])
-  );
-  const outbound = getOutboundRequests(fromUserId);
-  if (!outbound.includes(toUserId)) {
-    safeSetItem(K.friendReqsOut(fromUserId), JSON.stringify([...outbound, toUserId]));
-  }
+  const { error } = await supabase
+    .rpc('send_friend_request', { p_from_id: fromUserId, p_session_token: currentSessionToken(), p_to_id: toUserId });
+  if (error) throw new Error(error.message);
 }
 
-export function acceptFriendRequest(userId, fromUserId) {
-  addFriend(userId, fromUserId);
-  addFriend(fromUserId, userId);
-  safeSetItem(K.friendReqsIn(userId),  JSON.stringify(getFriendRequests(userId).filter(r => r.fromId !== fromUserId)));
-  safeSetItem(K.friendReqsOut(fromUserId), JSON.stringify(getOutboundRequests(fromUserId).filter(id => id !== userId)));
+export async function acceptFriendRequest(userId, fromUserId) {
+  const { error } = await supabase
+    .rpc('accept_friend_request', { p_user_id: userId, p_session_token: currentSessionToken(), p_from_id: fromUserId });
+  if (error) throw new Error(error.message);
 }
 
-export function cancelFriendRequest(fromUserId, toUserId) {
-  safeSetItem(K.friendReqsIn(toUserId),   JSON.stringify(getFriendRequests(toUserId).filter(r => r.fromId !== fromUserId)));
-  safeSetItem(K.friendReqsOut(fromUserId), JSON.stringify(getOutboundRequests(fromUserId).filter(id => id !== toUserId)));
+export async function cancelFriendRequest(fromUserId, toUserId) {
+  const { error } = await supabase
+    .rpc('cancel_friend_request', { p_from_id: fromUserId, p_session_token: currentSessionToken(), p_to_id: toUserId });
+  if (error) throw new Error(error.message);
 }
 
-export function declineFriendRequest(userId, fromUserId) {
-  safeSetItem(K.friendReqsIn(userId),  JSON.stringify(getFriendRequests(userId).filter(r => r.fromId !== fromUserId)));
-  safeSetItem(K.friendReqsOut(fromUserId), JSON.stringify(getOutboundRequests(fromUserId).filter(id => id !== userId)));
+export async function declineFriendRequest(userId, fromUserId) {
+  const { error } = await supabase
+    .rpc('decline_friend_request', { p_user_id: userId, p_session_token: currentSessionToken(), p_from_id: fromUserId });
+  if (error) throw new Error(error.message);
 }
 
-export function getFriends(userId) {
-  return safeParseArray(localStorage.getItem(K.friends(userId)) || '[]', id => typeof id === 'string');
+export async function getFriends(userId) {
+  const { data, error } = await supabase
+    .rpc('get_friends', { p_user_id: userId, p_session_token: currentSessionToken() });
+  if (error) throw new Error(error.message);
+  return data;
 }
 
-export function addFriend(userId, friendId) {
-  const list = getFriends(userId);
-  if (!list.includes(friendId)) {
-    safeSetItem(K.friends(userId), JSON.stringify([...list, friendId]));
-  }
-}
-
-export function removeFriend(userId, friendId) {
-  const list = getFriends(userId).filter(id => id !== friendId);
-  safeSetItem(K.friends(userId), JSON.stringify(list));
+export async function removeFriend(userId, friendId) {
+  const { error } = await supabase
+    .rpc('remove_friend', { p_user_id: userId, p_session_token: currentSessionToken(), p_friend_id: friendId });
+  if (error) throw new Error(error.message);
 }
 
 // ── Direct Messaging ─────────────────────────────────────────────────────────
@@ -339,50 +339,70 @@ export function getTotalDMUnread(userId) {
 
 // ── Custom Calendar Events ────────────────────────────────────────────────────
 
-export function getCustomEvents(userId) {
-  return safeParseArray(localStorage.getItem(K.customEvents(userId)) || '[]', isPlainObject);
+function customEventFromRow(row) {
+  return { ...row.data, id: row.id, createdAt: row.created_at, updatedAt: row.updated_at ?? undefined };
 }
 
-export function addCustomEvent(userId, data) {
-  const events = getCustomEvents(userId);
-  const event = { ...data, id: uid(), createdAt: new Date().toISOString() };
-  safeSetItem(K.customEvents(userId), JSON.stringify([...events, event]));
-  return event;
+export async function getCustomEvents(userId) {
+  const { data, error } = await supabase
+    .rpc('get_custom_events', { p_user_id: userId, p_session_token: currentSessionToken() });
+  if (error) throw new Error(error.message);
+  return data.map(customEventFromRow);
 }
 
-export function updateCustomEvent(userId, eventId, data) {
-  const events = getCustomEvents(userId);
-  const idx = events.findIndex(e => e.id === eventId);
-  if (idx === -1) return null;
-  events[idx] = { ...events[idx], ...data, updatedAt: new Date().toISOString() };
-  safeSetItem(K.customEvents(userId), JSON.stringify(events));
-  return events[idx];
+export async function addCustomEvent(userId, data) {
+  const { data: row, error } = await supabase
+    .rpc('add_custom_event', { p_user_id: userId, p_session_token: currentSessionToken(), p_data: data })
+    .single();
+  if (error) throw new Error(error.message);
+  return customEventFromRow(row);
 }
 
-export function deleteCustomEvent(userId, eventId) {
-  const events = getCustomEvents(userId).filter(e => e.id !== eventId);
-  safeSetItem(K.customEvents(userId), JSON.stringify(events));
+export async function updateCustomEvent(userId, eventId, data) {
+  const { data: row, error } = await supabase
+    .rpc('update_custom_event', { p_user_id: userId, p_session_token: currentSessionToken(), p_event_id: eventId, p_data: data })
+    .single();
+  if (error) throw new Error(error.message);
+  return row?.id ? customEventFromRow(row) : null;
+}
+
+export async function deleteCustomEvent(userId, eventId) {
+  const { error } = await supabase
+    .rpc('delete_custom_event', { p_user_id: userId, p_session_token: currentSessionToken(), p_event_id: eventId });
+  if (error) throw new Error(error.message);
 }
 
 // ── End Custom Calendar Events ────────────────────────────────────────────────
 
 // ── Event Notifications ───────────────────────────────────────────────────────
 
-export function getSentNotifications(userId) {
-  return safeParseObject(localStorage.getItem(K.notifSent(userId)) || '{}');
+export async function getSentNotifications(userId) {
+  const row = await fetchUserPrefs(userId);
+  return row.sent_notifications ?? {};
 }
 
-export function saveSentNotifications(userId, sent) {
-  safeSetItem(K.notifSent(userId), JSON.stringify(sent));
+export async function saveSentNotifications(userId, sent) {
+  await saveUserPrefField(userId, 'sentNotifications', sent);
 }
 
 // ── End Custom Calendar Events ────────────────────────────────────────────────
 
 // ── SongBird Academy ──────────────────────────────────────────────────────────
 
+// Routes to the friend-gated variant when viewing someone other than the
+// current session's own user — the plain get_academy_data function only
+// ever allows reading your own row.
 async function fetchAcademyData(userId) {
+  const session = getSession();
+  if (session?.userId === userId) {
+    const { data, error } = await supabase
+      .rpc('get_academy_data', { p_user_id: userId, p_session_token: session.sessionToken })
+      .single();
+    if (error) throw new Error(error.message);
+    return data;
+  }
   const { data, error } = await supabase
-    .rpc('get_academy_data', { p_user_id: userId, p_session_token: currentSessionToken() })
+    .rpc('get_academy_data_for', { p_viewer_id: session?.userId, p_viewer_token: session?.sessionToken, p_target_id: userId })
     .single();
   if (error) throw new Error(error.message);
   return data;
@@ -435,52 +455,74 @@ export async function saveAcademyBadges(userId, badges) {
   await saveAcademyField(userId, 'badges', badges);
 }
 
-function emptyCompetitiveRanks() {
-  const empty = { rank: '', division: '', badge: '' };
-  return { tank: { ...empty }, damage: { ...empty }, support: { ...empty }, openQueue: { ...empty } };
+// Same friend-or-self routing as fetchAcademyData/getMatches — main heroes,
+// competitive ranks, and the badge panel prefs are all shown on a friend's
+// read-only profile too (see FriendProfile.jsx).
+async function fetchUserPrefs(userId) {
+  const session = getSession();
+  if (session?.userId === userId) {
+    const { data, error } = await supabase
+      .rpc('get_user_prefs', { p_user_id: userId, p_session_token: session.sessionToken })
+      .single();
+    if (error) throw new Error(error.message);
+    return data;
+  }
+  const { data, error } = await supabase
+    .rpc('get_user_prefs_for', { p_viewer_id: session?.userId, p_viewer_token: session?.sessionToken, p_target_id: userId })
+    .single();
+  if (error) throw new Error(error.message);
+  return data;
 }
 
-export function getCompetitiveRanks(userId) {
-  const saved = safeParseObjectOrDefault(localStorage.getItem(K.competitiveRanks(userId)) || 'null', {});
-  return { ...emptyCompetitiveRanks(), ...saved };
+async function saveUserPrefField(userId, field, value) {
+  const { error } = await supabase
+    .rpc('save_user_pref_field', { p_user_id: userId, p_session_token: currentSessionToken(), p_field: field, p_value: value });
+  if (error) throw new Error(error.message);
 }
 
-export function saveCompetitiveRanks(userId, ranks) {
-  safeSetItem(K.competitiveRanks(userId), JSON.stringify(ranks));
+export async function getCompetitiveRanks(userId) {
+  const row = await fetchUserPrefs(userId);
+  return row.competitive_ranks;
 }
 
-export function getCompetitiveRanksPrefs(userId) {
-  return safeParseObjectOrDefault(localStorage.getItem(K.competitiveRanksPrefs(userId)) || 'null', { color: '#ff9c00' });
+export async function saveCompetitiveRanks(userId, ranks) {
+  await saveUserPrefField(userId, 'competitiveRanks', ranks);
 }
 
-export function setCompetitiveRanksPrefs(userId, prefs) {
-  safeSetItem(K.competitiveRanksPrefs(userId), JSON.stringify(prefs));
+export async function getCompetitiveRanksPrefs(userId) {
+  const row = await fetchUserPrefs(userId);
+  return row.competitive_ranks_prefs;
 }
 
-export function getMainHeroes(userId) {
-  return safeParseArray(localStorage.getItem(K.mainHeroes(userId)) || '[]', isPlainObject);
+export async function setCompetitiveRanksPrefs(userId, prefs) {
+  await saveUserPrefField(userId, 'competitiveRanksPrefs', prefs);
 }
 
-export function saveMainHeroes(userId, mainHeroes) {
-  safeSetItem(K.mainHeroes(userId), JSON.stringify(mainHeroes));
+export async function getMainHeroes(userId) {
+  const row = await fetchUserPrefs(userId);
+  return row.main_heroes;
 }
 
-export function getMainHeroesPrefs(userId) {
-  return safeParseObjectOrDefault(localStorage.getItem(K.mainHeroesPrefs(userId)) || 'null', { color: '#ff9c00' });
+export async function saveMainHeroes(userId, mainHeroes) {
+  await saveUserPrefField(userId, 'mainHeroes', mainHeroes);
 }
 
-export function setMainHeroesPrefs(userId, prefs) {
-  safeSetItem(K.mainHeroesPrefs(userId), JSON.stringify(prefs));
+export async function getMainHeroesPrefs(userId) {
+  const row = await fetchUserPrefs(userId);
+  return row.main_heroes_prefs;
 }
 
-export function getBadgePanelPrefs(userId) {
-  return safeParseObjectOrDefault(
-    localStorage.getItem(K.badgePanelPrefs(userId)) || 'null',
-    { color: '#ff9c00', selectedBadgeIds: [] }
-  );
+export async function setMainHeroesPrefs(userId, prefs) {
+  await saveUserPrefField(userId, 'mainHeroesPrefs', prefs);
 }
-export function setBadgePanelPrefs(userId, prefs) {
-  safeSetItem(K.badgePanelPrefs(userId), JSON.stringify(prefs));
+
+export async function getBadgePanelPrefs(userId) {
+  const row = await fetchUserPrefs(userId);
+  return row.badge_panel_prefs;
+}
+
+export async function setBadgePanelPrefs(userId, prefs) {
+  await saveUserPrefField(userId, 'badgePanelPrefs', prefs);
 }
 
 export async function getAcademyCerts(userId) {

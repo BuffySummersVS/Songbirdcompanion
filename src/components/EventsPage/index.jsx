@@ -140,9 +140,14 @@ export default function EventsPage() {
     "Notification" in window ? Notification.permission : "denied"
   );
 
-  const [customRaw, setCustomRaw] = useState(() =>
-    currentUser ? getCustomEvents(currentUser.id) : []
-  );
+  const [customRaw, setCustomRaw] = useState([]);
+
+  useEffect(() => {
+    if (!currentUser) return;
+    let cancelled = false;
+    getCustomEvents(currentUser.id).then(events => { if (!cancelled) setCustomRaw(events); });
+    return () => { cancelled = true; };
+  }, [currentUser]);
 
   const officialEvents = useMemo(() =>
     eventsData.map(e => ({ ...e, _status: getStatus(e), isCustom: false })),
@@ -199,27 +204,27 @@ export default function EventsPage() {
   }
 
   /* ── save / delete ── */
-  const refreshCustom = useCallback(() => {
-    if (currentUser) setCustomRaw(getCustomEvents(currentUser.id));
+  const refreshCustom = useCallback(async () => {
+    if (currentUser) setCustomRaw(await getCustomEvents(currentUser.id));
   }, [currentUser]);
 
-  const handleSave = useCallback((formData) => {
+  const handleSave = useCallback(async (formData) => {
     if (!currentUser) return;
     if (editTarget?.id) {
-      updateCustomEvent(currentUser.id, editTarget.id, formData);
+      await updateCustomEvent(currentUser.id, editTarget.id, formData);
     } else {
-      addCustomEvent(currentUser.id, formData);
+      await addCustomEvent(currentUser.id, formData);
     }
-    refreshCustom();
+    await refreshCustom();
     setShowForm(false);
     setEditTarget(null);
     setFormDefaults(null);
   }, [currentUser, editTarget, refreshCustom]);
 
-  const handleDelete = useCallback((eventId) => {
+  const handleDelete = useCallback(async (eventId) => {
     if (!currentUser) return;
-    deleteCustomEvent(currentUser.id, eventId);
-    refreshCustom();
+    await deleteCustomEvent(currentUser.id, eventId);
+    await refreshCustom();
     setPopupEvent(null);
   }, [currentUser, refreshCustom]);
 

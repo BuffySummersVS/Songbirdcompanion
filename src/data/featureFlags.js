@@ -1,6 +1,5 @@
-// Friends and Direct Messages currently only work if two accounts happen to
-// share the same browser's localStorage — there's no real backend, so a
-// friend request or DM sent from one real device can never reach another.
-// Flip this to true once storage.js's friend/DM functions are backed by an
-// actual server (e.g. Supabase) with real cross-device sync.
+// Friends are now backed by Supabase (Phase 3) and work cross-device, but
+// the UI hasn't been launched publicly yet. Direct Messages are still
+// localStorage-only and stay dead code regardless of this flag.
+// Flip this to true to launch the Friends UI.
 export const SOCIAL_FEATURES_ENABLED = false;

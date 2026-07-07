@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { heroes } from '../data/heroes.js';
 import { getMainHeroes, saveMainHeroes, getMainHeroesPrefs, setMainHeroesPrefs } from '../data/storage.js';
 import { useEscapeKey } from '../hooks/useEscapeKey';
@@ -143,9 +143,17 @@ function MainHeroesEditModal({ mainHeroes, prefs, onSave, onClose }) {
 }
 
 export default function MainHeroesPanel({ userId, readOnly = false }) {
-  const [mainHeroes, setMainHeroes] = useState(() => getMainHeroes(userId));
-  const [prefs, setPrefs] = useState(() => getMainHeroesPrefs(userId));
+  const [mainHeroes, setMainHeroes] = useState([]);
+  const [prefs, setPrefs] = useState({});
   const [editOpen, setEditOpen] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all([getMainHeroes(userId), getMainHeroesPrefs(userId)]).then(([mh, p]) => {
+      if (!cancelled) { setMainHeroes(mh); setPrefs(p); }
+    });
+    return () => { cancelled = true; };
+  }, [userId]);
 
   const color = prefs.color || '#ff9c00';
 

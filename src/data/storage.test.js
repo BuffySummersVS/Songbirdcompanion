@@ -11,6 +11,11 @@ let fakeSessions = []; // { token, user_id }
 let fakeAcademyData = {}; // user_id -> { progress, streak, badges, certs, quizzes }
 let fakeMatches = []; // { id, user_id, data, created_at, edited_at, seq }
 let fakeMatchSeq = 0;
+let fakeUserPrefs = {}; // user_id -> { main_heroes, main_heroes_prefs, competitive_ranks, competitive_ranks_prefs, badge_panel_prefs, sent_notifications }
+let fakeCustomEvents = []; // { id, user_id, data, created_at, updated_at, seq }
+let fakeCustomEventSeq = 0;
+let fakeFriends = []; // { user_id, friend_id }
+let fakeFriendRequests = []; // { from_id, to_id, sent_at }
 
 function fakeToSafe(u) { return { id: u.id, username: u.username, avatar: u.avatar, created_at: u.created_at }; }
 function fakeHash(pw) { return `hash:${pw}`; }
@@ -20,6 +25,14 @@ function fakeGenToken() { return `tok-${Math.random().toString(36).slice(2)}`; }
 function fakeCheckSession(userId, token) {
   if (!token || !fakeSessions.some(s => s.token === token && s.user_id === userId)) {
     throw new Error('Invalid session.');
+  }
+}
+
+function fakeCheckFriendOrSelf(viewerId, viewerToken, targetId) {
+  fakeCheckSession(viewerId, viewerToken);
+  if (viewerId === targetId) return;
+  if (!fakeFriends.some(f => f.user_id === viewerId && f.friend_id === targetId)) {
+    throw new Error('Not authorized to view this profile.');
   }
 }
 
@@ -34,6 +47,25 @@ function fakeAcademyRow(userId) {
     };
   }
   return fakeAcademyData[userId];
+}
+
+function fakeUserPrefsRow(userId) {
+  if (!fakeUserPrefs[userId]) {
+    fakeUserPrefs[userId] = {
+      main_heroes: [],
+      main_heroes_prefs: { color: '#ff9c00' },
+      competitive_ranks: {
+        tank: { rank: '', division: '', badge: '' },
+        damage: { rank: '', division: '', badge: '' },
+        support: { rank: '', division: '', badge: '' },
+        openQueue: { rank: '', division: '', badge: '' },
+      },
+      competitive_ranks_prefs: { color: '#ff9c00' },
+      badge_panel_prefs: { color: '#ff9c00', selectedBadgeIds: [] },
+      sent_notifications: {},
+    };
+  }
+  return fakeUserPrefs[userId];
 }
 
 class FakeQueryBuilder {
@@ -175,6 +207,133 @@ class FakeRpcBuilder {
         fakeMatches = fakeMatches.filter(m => m.user_id !== p_user_id);
         return { data: null, error: null };
       }
+      if (this.fn === 'get_academy_data_for') {
+        const { p_viewer_id, p_viewer_token, p_target_id } = this.args;
+        fakeCheckFriendOrSelf(p_viewer_id, p_viewer_token, p_target_id);
+        return { data: fakeAcademyRow(p_target_id), error: null };
+      }
+      if (this.fn === 'get_matches_for') {
+        const { p_viewer_id, p_viewer_token, p_target_id } = this.args;
+        fakeCheckFriendOrSelf(p_viewer_id, p_viewer_token, p_target_id);
+        const rows = fakeMatches.filter(m => m.user_id === p_target_id).sort((a, b) => b.seq - a.seq);
+        return { data: rows, error: null };
+      }
+      if (this.fn === 'get_user_prefs') {
+        const { p_user_id, p_session_token } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        return { data: fakeUserPrefsRow(p_user_id), error: null };
+      }
+      if (this.fn === 'get_user_prefs_for') {
+        const { p_viewer_id, p_viewer_token, p_target_id } = this.args;
+        fakeCheckFriendOrSelf(p_viewer_id, p_viewer_token, p_target_id);
+        return { data: fakeUserPrefsRow(p_target_id), error: null };
+      }
+      if (this.fn === 'save_user_pref_field') {
+        const { p_user_id, p_session_token, p_field, p_value } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        const fieldMap = {
+          mainHeroes: 'main_heroes',
+          mainHeroesPrefs: 'main_heroes_prefs',
+          competitiveRanks: 'competitive_ranks',
+          competitiveRanksPrefs: 'competitive_ranks_prefs',
+          badgePanelPrefs: 'badge_panel_prefs',
+          sentNotifications: 'sent_notifications',
+        };
+        const column = fieldMap[p_field];
+        if (!column) throw new Error(`Unknown user_prefs field: ${p_field}`);
+        fakeUserPrefsRow(p_user_id)[column] = p_value;
+        return { data: null, error: null };
+      }
+      if (this.fn === 'get_custom_events') {
+        const { p_user_id, p_session_token } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        const rows = fakeCustomEvents.filter(e => e.user_id === p_user_id).sort((a, b) => a.seq - b.seq);
+        return { data: rows, error: null };
+      }
+      if (this.fn === 'add_custom_event') {
+        const { p_user_id, p_session_token, p_data } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        const row = { id: fakeGenId(), user_id: p_user_id, data: p_data, created_at: new Date().toISOString(), updated_at: null, seq: ++fakeCustomEventSeq };
+        fakeCustomEvents.push(row);
+        return { data: row, error: null };
+      }
+      if (this.fn === 'update_custom_event') {
+        const { p_user_id, p_session_token, p_event_id, p_data } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        const row = fakeCustomEvents.find(e => e.id === p_event_id && e.user_id === p_user_id);
+        if (!row) return { data: { id: null }, error: null };
+        row.data = { ...row.data, ...p_data };
+        row.updated_at = new Date().toISOString();
+        return { data: row, error: null };
+      }
+      if (this.fn === 'delete_custom_event') {
+        const { p_user_id, p_session_token, p_event_id } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        fakeCustomEvents = fakeCustomEvents.filter(e => !(e.id === p_event_id && e.user_id === p_user_id));
+        return { data: null, error: null };
+      }
+      if (this.fn === 'get_friends') {
+        const { p_user_id, p_session_token } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        return { data: fakeFriends.filter(f => f.user_id === p_user_id).map(f => f.friend_id), error: null };
+      }
+      if (this.fn === 'remove_friend') {
+        const { p_user_id, p_session_token, p_friend_id } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        fakeFriends = fakeFriends.filter(f =>
+          !((f.user_id === p_user_id && f.friend_id === p_friend_id) || (f.user_id === p_friend_id && f.friend_id === p_user_id))
+        );
+        return { data: null, error: null };
+      }
+      if (this.fn === 'get_friend_requests') {
+        const { p_user_id, p_session_token } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        const rows = fakeFriendRequests
+          .filter(r => r.to_id === p_user_id)
+          .map(r => {
+            const u = fakeUsers.find(x => x.id === r.from_id);
+            return { from_id: r.from_id, from_username: u?.username, from_avatar: u?.avatar, sent_at: r.sent_at };
+          });
+        return { data: rows, error: null };
+      }
+      if (this.fn === 'get_outbound_requests') {
+        const { p_user_id, p_session_token } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        return { data: fakeFriendRequests.filter(r => r.from_id === p_user_id).map(r => r.to_id), error: null };
+      }
+      if (this.fn === 'send_friend_request') {
+        const { p_from_id, p_session_token, p_to_id } = this.args;
+        fakeCheckSession(p_from_id, p_session_token);
+        if (p_from_id === p_to_id) return { data: null, error: null };
+        if (fakeFriends.some(f => f.user_id === p_from_id && f.friend_id === p_to_id)) return { data: null, error: null };
+        if (fakeFriendRequests.some(r => r.from_id === p_from_id && r.to_id === p_to_id)) return { data: null, error: null };
+        fakeFriendRequests.push({ from_id: p_from_id, to_id: p_to_id, sent_at: new Date().toISOString() });
+        return { data: null, error: null };
+      }
+      if (this.fn === 'accept_friend_request') {
+        const { p_user_id, p_session_token, p_from_id } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        if (!fakeFriends.some(f => f.user_id === p_user_id && f.friend_id === p_from_id)) {
+          fakeFriends.push({ user_id: p_user_id, friend_id: p_from_id });
+        }
+        if (!fakeFriends.some(f => f.user_id === p_from_id && f.friend_id === p_user_id)) {
+          fakeFriends.push({ user_id: p_from_id, friend_id: p_user_id });
+        }
+        fakeFriendRequests = fakeFriendRequests.filter(r => !(r.from_id === p_from_id && r.to_id === p_user_id));
+        return { data: null, error: null };
+      }
+      if (this.fn === 'cancel_friend_request') {
+        const { p_from_id, p_session_token, p_to_id } = this.args;
+        fakeCheckSession(p_from_id, p_session_token);
+        fakeFriendRequests = fakeFriendRequests.filter(r => !(r.from_id === p_from_id && r.to_id === p_to_id));
+        return { data: null, error: null };
+      }
+      if (this.fn === 'decline_friend_request') {
+        const { p_user_id, p_session_token, p_from_id } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        fakeFriendRequests = fakeFriendRequests.filter(r => !(r.from_id === p_from_id && r.to_id === p_user_id));
+        return { data: null, error: null };
+      }
       throw new Error(`Unknown rpc: ${this.fn}`);
     } catch (e) {
       return { data: null, error: { message: e.message } };
@@ -197,7 +356,10 @@ import {
   getAcademyProgress, saveAcademyProgress, getAcademyStreak, saveAcademyStreak,
   getAcademyBadges, saveAcademyBadges, getAcademyCerts, saveAcademyCerts,
   getQuizResults, saveQuizResult, getAllAcademyData,
-  getFriends, addFriend, removeFriend,
+  getCompetitiveRanks, saveCompetitiveRanks, getCompetitiveRanksPrefs, setCompetitiveRanksPrefs,
+  getMainHeroes, saveMainHeroes, getMainHeroesPrefs, setMainHeroesPrefs,
+  getBadgePanelPrefs, setBadgePanelPrefs, getSentNotifications, saveSentNotifications,
+  getFriends, removeFriend,
   getFriendRequests, getOutboundRequests, sendFriendRequest, acceptFriendRequest, cancelFriendRequest, declineFriendRequest,
   getDMMessages, sendDM, deleteDM, markDMRead, getTotalDMUnread, reactToDM,
   getCustomEvents, addCustomEvent, updateCustomEvent, deleteCustomEvent,
@@ -221,6 +383,11 @@ beforeEach(() => {
   fakeAcademyData = {};
   fakeMatches = [];
   fakeMatchSeq = 0;
+  fakeUserPrefs = {};
+  fakeCustomEvents = [];
+  fakeCustomEventSeq = 0;
+  fakeFriends = [];
+  fakeFriendRequests = [];
 });
 
 // Registers a fresh fake user and establishes a local session for them —
@@ -454,64 +621,114 @@ describe('academy data', () => {
 });
 
 describe('friends and friend requests', () => {
-  it('silently no-ops if the sender is not a real, stored user', async () => {
-    await sendFriendRequest('u1', 'u2'); // neither id corresponds to a createUser() record
-    expect(getFriendRequests('u2')).toHaveLength(0);
-  });
-
   it('full request → accept flow adds each user to the other\'s friend list', async () => {
-    const alice = await createUser({ username: 'Alice', password: 'p', avatar: 'a.png' });
+    const alice = await registerAndSignIn('Alice');
     const bob = await createUser({ username: 'Bob', password: 'p', avatar: 'b.png' });
 
     await sendFriendRequest(alice.id, bob.id);
-    expect(getFriendRequests(bob.id)).toHaveLength(1);
-    expect(getFriendRequests(bob.id)[0].fromUsername).toBe('Alice');
-    expect(getOutboundRequests(alice.id)).toEqual([bob.id]);
 
-    acceptFriendRequest(bob.id, alice.id);
-    expect(getFriends(bob.id)).toContain(alice.id);
-    expect(getFriends(alice.id)).toContain(bob.id);
-    expect(getFriendRequests(bob.id)).toHaveLength(0);
-    expect(getOutboundRequests(alice.id)).toHaveLength(0);
+    saveSession(bob.id, bob.session_token);
+    expect(await getFriendRequests(bob.id)).toHaveLength(1);
+    expect((await getFriendRequests(bob.id))[0].fromUsername).toBe('Alice');
+
+    saveSession(alice.id, alice.session_token);
+    expect(await getOutboundRequests(alice.id)).toEqual([bob.id]);
+
+    saveSession(bob.id, bob.session_token);
+    await acceptFriendRequest(bob.id, alice.id);
+    expect(await getFriends(bob.id)).toContain(alice.id);
+    expect(await getFriendRequests(bob.id)).toHaveLength(0);
+
+    saveSession(alice.id, alice.session_token);
+    expect(await getFriends(alice.id)).toContain(bob.id);
+    expect(await getOutboundRequests(alice.id)).toHaveLength(0);
   });
 
   it('does not let a user send a request to themself', async () => {
-    await sendFriendRequest('u1', 'u1');
-    expect(getFriendRequests('u1')).toHaveLength(0);
+    const alice = await registerAndSignIn('AliceSelf');
+    await sendFriendRequest(alice.id, alice.id);
+    expect(await getFriendRequests(alice.id)).toHaveLength(0);
   });
 
   it('does not duplicate a request that is already pending', async () => {
-    const alice = await createUser({ username: 'Alice2', password: 'p', avatar: 'a.png' });
-    await sendFriendRequest(alice.id, 'u2');
-    await sendFriendRequest(alice.id, 'u2');
-    expect(getFriendRequests('u2')).toHaveLength(1);
+    const alice = await registerAndSignIn('Alice2');
+    const bob = await createUser({ username: 'Bob2', password: 'p', avatar: 'b.png' });
+    await sendFriendRequest(alice.id, bob.id);
+    await sendFriendRequest(alice.id, bob.id);
+
+    saveSession(bob.id, bob.session_token);
+    expect(await getFriendRequests(bob.id)).toHaveLength(1);
   });
 
   it('does not send a request to an existing friend', async () => {
-    const alice = await createUser({ username: 'Alice3', password: 'p', avatar: 'a.png' });
-    addFriend(alice.id, 'u2');
-    await sendFriendRequest(alice.id, 'u2');
-    expect(getFriendRequests('u2')).toHaveLength(0);
+    const alice = await registerAndSignIn('Alice3');
+    const bob = await createUser({ username: 'Bob3', password: 'p', avatar: 'b.png' });
+
+    await sendFriendRequest(alice.id, bob.id);
+    saveSession(bob.id, bob.session_token);
+    await acceptFriendRequest(bob.id, alice.id); // now friends
+
+    saveSession(alice.id, alice.session_token);
+    await sendFriendRequest(alice.id, bob.id); // already friends — should no-op
+
+    saveSession(bob.id, bob.session_token);
+    expect(await getFriendRequests(bob.id)).toHaveLength(0);
   });
 
   it('declineFriendRequest and cancelFriendRequest both clear the pending pair', async () => {
-    const alice = await createUser({ username: 'Alice4', password: 'p', avatar: 'a.png' });
-    await sendFriendRequest(alice.id, 'u2');
-    declineFriendRequest('u2', alice.id);
-    expect(getFriendRequests('u2')).toHaveLength(0);
-    expect(getOutboundRequests(alice.id)).toHaveLength(0);
+    const alice = await registerAndSignIn('Alice4');
+    const bob = await createUser({ username: 'Bob4', password: 'p', avatar: 'b.png' });
+    const carol = await createUser({ username: 'Carol4', password: 'p', avatar: 'c.png' });
 
-    await sendFriendRequest(alice.id, 'u3');
-    cancelFriendRequest(alice.id, 'u3');
-    expect(getFriendRequests('u3')).toHaveLength(0);
-    expect(getOutboundRequests(alice.id)).toHaveLength(0);
+    await sendFriendRequest(alice.id, bob.id);
+    saveSession(bob.id, bob.session_token);
+    await declineFriendRequest(bob.id, alice.id);
+    expect(await getFriendRequests(bob.id)).toHaveLength(0);
+
+    saveSession(alice.id, alice.session_token);
+    expect(await getOutboundRequests(alice.id)).toHaveLength(0);
+
+    await sendFriendRequest(alice.id, carol.id);
+    await cancelFriendRequest(alice.id, carol.id);
+    expect(await getOutboundRequests(alice.id)).toHaveLength(0);
+
+    saveSession(carol.id, carol.session_token);
+    expect(await getFriendRequests(carol.id)).toHaveLength(0);
   });
 
-  it('removeFriend removes only that friendship', () => {
-    addFriend('u1', 'u2');
-    addFriend('u1', 'u3');
-    removeFriend('u1', 'u2');
-    expect(getFriends('u1')).toEqual(['u3']);
+  it('removeFriend removes the friendship symmetrically, leaving other friendships intact', async () => {
+    const alice = await registerAndSignIn('Alice5');
+    const bob = await createUser({ username: 'Bob5', password: 'p', avatar: 'b.png' });
+    const carol = await createUser({ username: 'Carol5', password: 'p', avatar: 'c.png' });
+
+    await sendFriendRequest(alice.id, bob.id);
+    saveSession(bob.id, bob.session_token);
+    await acceptFriendRequest(bob.id, alice.id);
+
+    saveSession(alice.id, alice.session_token);
+    await sendFriendRequest(alice.id, carol.id);
+    saveSession(carol.id, carol.session_token);
+    await acceptFriendRequest(carol.id, alice.id);
+
+    saveSession(alice.id, alice.session_token);
+    await removeFriend(alice.id, bob.id);
+    expect(await getFriends(alice.id)).toEqual([carol.id]);
+
+    // The old localStorage version only removed the relationship on the
+    // caller's side — this confirms the real relational model removes it
+    // symmetrically instead of leaving a dangling one-sided friendship.
+    saveSession(bob.id, bob.session_token);
+    expect(await getFriends(bob.id)).toEqual([]);
+
+    saveSession(carol.id, carol.session_token);
+    expect(await getFriends(carol.id)).toContain(alice.id);
+  });
+
+  it('rejects friend operations without a valid session', async () => {
+    const alice = await registerAndSignIn('Alice6');
+    clearSession();
+    await expect(sendFriendRequest(alice.id, 'whatever')).rejects.toThrow('Invalid session.');
+    await expect(getFriends(alice.id)).rejects.toThrow('Invalid session.');
   });
 });
 
@@ -567,25 +784,112 @@ describe('direct messages', () => {
 });
 
 describe('custom calendar events', () => {
-  it('adds, updates, and deletes a personal event', () => {
-    expect(getCustomEvents('u1')).toEqual([]);
-    const ev = addCustomEvent('u1', { title: 'Scrim night', startDate: '2026-08-01', endDate: '2026-08-01' });
-    expect(getCustomEvents('u1')).toHaveLength(1);
+  it('adds, updates, and deletes a personal event', async () => {
+    const user = await registerAndSignIn('EventUser1');
+    expect(await getCustomEvents(user.id)).toEqual([]);
+    const ev = await addCustomEvent(user.id, { title: 'Scrim night', startDate: '2026-08-01', endDate: '2026-08-01' });
+    expect(await getCustomEvents(user.id)).toHaveLength(1);
 
-    const updated = updateCustomEvent('u1', ev.id, { title: 'Scrim night (rescheduled)' });
+    const updated = await updateCustomEvent(user.id, ev.id, { title: 'Scrim night (rescheduled)' });
     expect(updated.title).toBe('Scrim night (rescheduled)');
     expect(updated.updatedAt).toBeTypeOf('string');
 
-    deleteCustomEvent('u1', ev.id);
-    expect(getCustomEvents('u1')).toEqual([]);
+    await deleteCustomEvent(user.id, ev.id);
+    expect(await getCustomEvents(user.id)).toEqual([]);
   });
 
-  it('updateCustomEvent on a missing id is a no-op that returns null', () => {
-    expect(updateCustomEvent('u1', 'missing', { title: 'x' })).toBeNull();
+  it('updateCustomEvent on a missing id is a no-op that returns null', async () => {
+    const user = await registerAndSignIn('EventUser2');
+    expect(await updateCustomEvent(user.id, 'missing', { title: 'x' })).toBeNull();
   });
 
-  it('scopes custom events per user', () => {
-    addCustomEvent('u1', { title: 'Only u1' });
-    expect(getCustomEvents('u2')).toEqual([]);
+  it('scopes custom events per user', async () => {
+    const u1 = await registerAndSignIn('EventUser3');
+    await addCustomEvent(u1.id, { title: 'Only u1' });
+
+    const u2 = await registerAndSignIn('EventUser4'); // session now belongs to u2
+    expect(await getCustomEvents(u2.id)).toEqual([]);
+  });
+
+  it('rejects custom event access without a valid session', async () => {
+    const user = await registerAndSignIn('EventUser5');
+    clearSession();
+    await expect(getCustomEvents(user.id)).rejects.toThrow('Invalid session.');
+    await expect(addCustomEvent(user.id, { title: 'x' })).rejects.toThrow('Invalid session.');
+  });
+});
+
+describe('user preferences (main heroes, competitive ranks, badge panel, notifications)', () => {
+  it('defaults to the correct blank shape for a brand-new user', async () => {
+    const user = await registerAndSignIn('PrefsUser1');
+    expect(await getMainHeroes(user.id)).toEqual([]);
+    expect(await getMainHeroesPrefs(user.id)).toEqual({ color: '#ff9c00' });
+    expect(await getCompetitiveRanks(user.id)).toEqual({
+      tank: { rank: '', division: '', badge: '' },
+      damage: { rank: '', division: '', badge: '' },
+      support: { rank: '', division: '', badge: '' },
+      openQueue: { rank: '', division: '', badge: '' },
+    });
+    expect(await getCompetitiveRanksPrefs(user.id)).toEqual({ color: '#ff9c00' });
+    expect(await getBadgePanelPrefs(user.id)).toEqual({ color: '#ff9c00', selectedBadgeIds: [] });
+    expect(await getSentNotifications(user.id)).toEqual({});
+  });
+
+  it('saves and reads back each preference field independently', async () => {
+    const user = await registerAndSignIn('PrefsUser2');
+    await saveMainHeroes(user.id, [{ heroId: 'ana' }]);
+    await setMainHeroesPrefs(user.id, { color: '#60a5fa' });
+    await saveCompetitiveRanks(user.id, { tank: { rank: 'Diamond', division: '3', badge: '' } });
+    await setCompetitiveRanksPrefs(user.id, { color: '#a78bfa' });
+    await setBadgePanelPrefs(user.id, { color: '#4ade80', selectedBadgeIds: ['b1'] });
+    await saveSentNotifications(user.id, { 'ev1_dayof_2026-08-01': true });
+
+    expect(await getMainHeroes(user.id)).toEqual([{ heroId: 'ana' }]);
+    expect(await getMainHeroesPrefs(user.id)).toEqual({ color: '#60a5fa' });
+    expect(await getCompetitiveRanks(user.id)).toEqual({ tank: { rank: 'Diamond', division: '3', badge: '' } });
+    expect(await getCompetitiveRanksPrefs(user.id)).toEqual({ color: '#a78bfa' });
+    expect(await getBadgePanelPrefs(user.id)).toEqual({ color: '#4ade80', selectedBadgeIds: ['b1'] });
+    expect(await getSentNotifications(user.id)).toEqual({ 'ev1_dayof_2026-08-01': true });
+  });
+
+  it('rejects preference access without a valid session', async () => {
+    const user = await registerAndSignIn('PrefsUser3');
+    clearSession();
+    await expect(getMainHeroes(user.id)).rejects.toThrow('Invalid session.');
+    await expect(saveMainHeroes(user.id, [])).rejects.toThrow('Invalid session.');
+  });
+});
+
+describe('viewing a friend\'s profile data', () => {
+  it('lets a friend read your academy data, matches, and prefs', async () => {
+    const alice = await registerAndSignIn('ViewAlice');
+    await saveMainHeroes(alice.id, [{ heroId: 'ana' }]);
+    await addMatch(alice.id, { result: 'Win' });
+
+    const bob = await createUser({ username: 'ViewBob', password: 'p', avatar: 'b.png' });
+    saveSession(bob.id, bob.session_token);
+
+    // Not friends yet — should be rejected.
+    await expect(getMainHeroes(alice.id)).rejects.toThrow('Not authorized to view this profile.');
+
+    // Become friends.
+    saveSession(alice.id, alice.session_token);
+    await sendFriendRequest(alice.id, bob.id);
+    saveSession(bob.id, bob.session_token);
+    await acceptFriendRequest(bob.id, alice.id);
+
+    // Now Bob can view Alice's data.
+    expect(await getMainHeroes(alice.id)).toEqual([{ heroId: 'ana' }]);
+    const aliceMatches = await getMatches(alice.id);
+    expect(aliceMatches).toHaveLength(1);
+    expect(aliceMatches[0].result).toBe('Win');
+  });
+
+  it('still rejects a stranger even with a valid session of their own', async () => {
+    const alice = await registerAndSignIn('ViewAlice2');
+    const stranger = await createUser({ username: 'ViewStranger', password: 'p', avatar: 's.png' });
+    saveSession(stranger.id, stranger.session_token);
+    await expect(getMainHeroes(alice.id)).rejects.toThrow('Not authorized to view this profile.');
+    await expect(getMatches(alice.id)).rejects.toThrow('Not authorized to view this profile.');
   });
 });

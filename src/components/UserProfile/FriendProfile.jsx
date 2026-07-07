@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { getMatches, getUserById } from '../../data/storage';
 import { getAvatarSrc } from '../../data/avatars';
 import ProfileStats from './ProfileStats';
@@ -7,8 +7,22 @@ import CompetitiveRanksPanel from '../CompetitiveRanksPanel.jsx';
 import MainHeroesPanel from '../MainHeroesPanel.jsx';
 
 export default function FriendProfile({ friendId, onBack }) {
-  const friend  = getUserById(friendId);
-  const matches = useMemo(() => getMatches(friendId), [friendId]);
+  const [friend, setFriend] = useState(null);
+  const [matches, setMatches] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all([getUserById(friendId), getMatches(friendId)]).then(([f, m]) => {
+      if (cancelled) return;
+      setFriend(f);
+      setMatches(m);
+      setLoading(false);
+    });
+    return () => { cancelled = true; };
+  }, [friendId]);
+
+  if (loading) return <div className="aca-loading">Loading profile…</div>;
 
   if (!friend) {
     return (

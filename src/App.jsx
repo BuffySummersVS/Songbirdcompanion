@@ -132,7 +132,8 @@ function AppInner() {
   const [notifOpen, setNotifOpen]         = useState(false);
   const [dmOpen, setDmOpen]               = useState(false);
   const [dmUnread, setDmUnread]           = useState(() => currentUser ? getTotalDMUnread(currentUser.id) : 0);
-  const [requests, setRequests]           = useState(() => currentUser ? getFriendRequests(currentUser.id) : []);
+  const [requests, setRequests]           = useState([]);
+  const [friendUsers, setFriendUsers]     = useState([]);
   const [userMenuOpen, setUserMenuOpen]     = useState(false);
   const [friendsListOpen, setFriendsListOpen] = useState(false);
   const [navOpen, setNavOpen]               = useState(false);
@@ -141,8 +142,15 @@ function AppInner() {
   const toastTimer  = useRef(null);
   const [academyHeroId, setAcademyHeroId] = useState(null);
 
-  const refreshRequests = useCallback(() => {
-    if (currentUser) setRequests(getFriendRequests(currentUser.id));
+  const refreshRequests = useCallback(async () => {
+    if (currentUser) setRequests(await getFriendRequests(currentUser.id));
+  }, [currentUser]);
+
+  const refreshFriendUsers = useCallback(async () => {
+    if (!currentUser) return;
+    const ids = await getFriends(currentUser.id);
+    const users = await Promise.all(ids.map(id => getUserById(id)));
+    setFriendUsers(users.filter(Boolean));
   }, [currentUser]);
 
   const refreshDmUnread = useCallback(() => {
@@ -150,13 +158,21 @@ function AppInner() {
   }, [currentUser]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- both refreshers set state asynchronously after their await, not synchronously in the effect body
+    refreshRequests();
+    refreshFriendUsers();
+  }, [refreshRequests, refreshFriendUsers]);
+
+  useEffect(() => {
     window.addEventListener('focus', refreshRequests);
     window.addEventListener('sb-friends-updated', refreshRequests);
+    window.addEventListener('sb-friends-updated', refreshFriendUsers);
     return () => {
       window.removeEventListener('focus', refreshRequests);
       window.removeEventListener('sb-friends-updated', refreshRequests);
+      window.removeEventListener('sb-friends-updated', refreshFriendUsers);
     };
-  }, [refreshRequests]);
+  }, [refreshRequests, refreshFriendUsers]);
 
   useEffect(() => {
     window.addEventListener('sb-dm-updated', refreshDmUnread);
@@ -224,16 +240,16 @@ function AppInner() {
     return () => window.removeEventListener("popstate", onPopState);
   }, [currentUser]);
 
-  function handleAccept(fromId) {
-    acceptFriendRequest(currentUser.id, fromId);
-    refreshRequests();
+  async function handleAccept(fromId) {
+    await acceptFriendRequest(currentUser.id, fromId);
+    await refreshRequests();
     window.dispatchEvent(new CustomEvent('sb-friends-updated'));
     toast('Friend added!');
   }
 
-  function handleDecline(fromId) {
-    declineFriendRequest(currentUser.id, fromId);
-    refreshRequests();
+  async function handleDecline(fromId) {
+    await declineFriendRequest(currentUser.id, fromId);
+    await refreshRequests();
     toast('Request declined');
   }
 
@@ -526,7 +542,7 @@ function AppInner() {
       {friendsListOpen && (
         <FriendsListPanel
           onClose={() => setFriendsListOpen(false)}
-          friendUsers={SOCIAL_FEATURES_ENABLED ? getFriends(currentUser.id).map(id => getUserById(id)).filter(Boolean) : []}
+          friendUsers={SOCIAL_FEATURES_ENABLED ? friendUsers : []}
           onViewProfile={(friendId) => {
             setFriendsListOpen(false);
             setViewingFriendId(friendId);

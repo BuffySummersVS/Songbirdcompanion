@@ -111,13 +111,15 @@ function BadgeCustomizeModal({ prefs, allEarned, onSave, onClose }) {
 }
 
 export default function AcademyBadgePanel({ userId, readOnly = false }) {
-  const [prefs, setPrefs] = useState(() => getBadgePanelPrefs(userId));
+  const [prefs, setPrefs] = useState({});
   const [customizeOpen, setCustomizeOpen] = useState(false);
   const [earnedBadges, setEarnedBadges] = useState({});
 
   useEffect(() => {
     let cancelled = false;
-    getAcademyBadges(userId).then(b => { if (!cancelled) setEarnedBadges(b || {}); });
+    Promise.all([getAcademyBadges(userId), getBadgePanelPrefs(userId)]).then(([b, p]) => {
+      if (!cancelled) { setEarnedBadges(b || {}); setPrefs(p); }
+    });
     return () => { cancelled = true; };
   }, [userId]);
 

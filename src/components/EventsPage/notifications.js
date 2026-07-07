@@ -1,7 +1,7 @@
 import { getSentNotifications, saveSentNotifications } from "../../data/storage";
 import { parseDate } from "../../data/calendarHelpers";
 
-export function fireNotifications(userId, customRaw) {
+export async function fireNotifications(userId, customRaw) {
   if (!("Notification" in window) || Notification.permission !== "granted") return;
 
   const now   = new Date(); now.setHours(0, 0, 0, 0);
@@ -9,7 +9,7 @@ export function fireNotifications(userId, customRaw) {
   const nowMs  = now.getTime();
   const tmrwMs = tmrw.getTime();
 
-  let sent = getSentNotifications(userId);
+  let sent = await getSentNotifications(userId);
   let changed = false;
 
   customRaw.forEach(ev => {
@@ -42,5 +42,5 @@ export function fireNotifications(userId, customRaw) {
     }
   });
 
-  if (changed) saveSentNotifications(userId, sent);
+  if (changed) await saveSentNotifications(userId, sent);
 }

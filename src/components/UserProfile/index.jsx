@@ -7,6 +7,12 @@ import {
   searchUsers, getUserById,
 } from '../../data/storage';
 
+async function resolveFriendUsers(userId) {
+  const ids = await getFriends(userId);
+  const users = await Promise.all(ids.map(id => getUserById(id)));
+  return users.filter(Boolean);
+}
+
 import { toast } from '../../utils/toast';
 import { useEscapeKey } from '../../hooks/useEscapeKey';
 import { containsProfanity } from '../../data/profanity';
@@ -45,8 +51,8 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
   const [editAvatar, setEditAvatar]     = useState(currentUser.avatar);
   const [avatarPickerOpen, setAvatarPickerOpen] = useState(false);
 
-  const [friendIds, setFriendIds]           = useState(() => getFriends(currentUser.id));
-  const [sentReqs, setSentReqs]             = useState(() => new Set(getOutboundRequests(currentUser.id)));
+  const [friendUsers, setFriendUsers]       = useState([]);
+  const [sentReqs, setSentReqs]             = useState(new Set());
   const [friendAddOpen, setFriendAddOpen]   = useState(false);
   const [friendQuery, setFriendQuery]       = useState('');
   const [searchResults, setSearchResults]   = useState([]);
@@ -55,14 +61,22 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
 
   useEscapeKey(() => closeFriendModal(), friendAddOpen);
 
-  // Refresh friend list when a request is accepted from the notification panel
+  // Initial load, and refresh whenever a request is accepted/friend list changes
+  // (from this component or from the notification panel elsewhere in the app).
   useEffect(() => {
-    function onUpdate() {
-      setFriendIds(getFriends(currentUser.id));
-      setSentReqs(new Set(getOutboundRequests(currentUser.id)));
+    let cancelled = false;
+    async function refresh() {
+      const [users, outbound] = await Promise.all([
+        resolveFriendUsers(currentUser.id),
+        getOutboundRequests(currentUser.id),
+      ]);
+      if (cancelled) return;
+      setFriendUsers(users);
+      setSentReqs(new Set(outbound));
     }
-    window.addEventListener('sb-friends-updated', onUpdate);
-    return () => window.removeEventListener('sb-friends-updated', onUpdate);
+    refresh();
+    window.addEventListener('sb-friends-updated', refresh);
+    return () => { cancelled = true; window.removeEventListener('sb-friends-updated', refresh); };
   }, [currentUser.id]);
 
   function closeFriendModal() {
@@ -71,20 +85,20 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
     setSearchResults([]);
   }
 
-  function handleFriendSearch(e) {
+  async function handleFriendSearch(e) {
     const q = e.target.value;
     setFriendQuery(q);
-    setSearchResults(searchUsers(q));
+    setSearchResults(await searchUsers(q));
   }
 
-  function handleSendRequest(userId) {
-    sendFriendRequest(currentUser.id, userId);
+  async function handleSendRequest(userId) {
+    await sendFriendRequest(currentUser.id, userId);
     setSentReqs(s => new Set([...s, userId]));
     toast('Friend request sent!');
   }
 
-  function handleCancelRequest(userId) {
-    cancelFriendRequest(currentUser.id, userId);
+  async function handleCancelRequest(userId) {
+    await cancelFriendRequest(currentUser.id, userId);
     setSentReqs(s => { const n = new Set(s); n.delete(userId); return n; });
     toast('Request cancelled');
   }
@@ -93,9 +107,9 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
     setConfirmRemoveId(userId);
   }
 
-  function doRemoveFriend(userId) {
-    removeFriend(currentUser.id, userId);
-    setFriendIds(getFriends(currentUser.id));
+  async function doRemoveFriend(userId) {
+    await removeFriend(currentUser.id, userId);
+    setFriendUsers(await resolveFriendUsers(currentUser.id));
     setConfirmRemoveId(null);
     window.dispatchEvent(new CustomEvent('sb-friends-updated'));
     toast('Friend removed');
@@ -248,28 +262,24 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
             title="Friends — Coming Soon"
             description="Adding friends will work across devices once SongBird has real account sync. For now this feature is on hold."
           />
-        ) : friendIds.length === 0 ? (
+        ) : friendUsers.length === 0 ? (
           <p className="up-empty">No friends added yet. Use the Add Friend button to find other players.</p>
         ) : (
           <div className="up-friends-list">
-            {friendIds.map(fid => {
-              const friend = getUserById(fid);
-              if (!friend) return null;
-              return (
-                <div key={fid} className="up-friend-row">
-                  <img src={getAvatarSrc(friend.avatar)} alt={friend.username} className="up-friend-avatar" />
-                  <span className="up-friend-name">{friend.username}</span>
-                  <div className="up-friend-row-actions">
-                    <button type="button" className="up-view-friend-btn" onClick={() => setViewingFriendId(fid)}>
-                      View Profile
-                    </button>
-                    <button type="button" className="up-remove-friend-btn" onClick={() => handleRemoveFriend(fid)}>
-                      Remove
-                    </button>
-                  </div>
+            {friendUsers.map(friend => (
+              <div key={friend.id} className="up-friend-row">
+                <img src={getAvatarSrc(friend.avatar)} alt={friend.username} className="up-friend-avatar" />
+                <span className="up-friend-name">{friend.username}</span>
+                <div className="up-friend-row-actions">
+                  <button type="button" className="up-view-friend-btn" onClick={() => setViewingFriendId(friend.id)}>
+                    View Profile
+                  </button>
+                  <button type="button" className="up-remove-friend-btn" onClick={() => handleRemoveFriend(friend.id)}>
+                    Remove
+                  </button>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         )}
       </div>
@@ -303,7 +313,7 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
             )}
             {searchResults.map(user => {
               const isMe     = user.id === currentUser.id;
-              const isFriend = friendIds.includes(user.id);
+              const isFriend = friendUsers.some(f => f.id === user.id);
               const isSent   = sentReqs.has(user.id);
               return (
                 <div key={user.id} className="up-friend-result-row">
@@ -349,7 +359,7 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
 
       {/* ── Confirm remove friend ── */}
       {confirmRemoveId && (() => {
-        const target = getUserById(confirmRemoveId);
+        const target = friendUsers.find(f => f.id === confirmRemoveId);
         return (
           <div className="confirm-overlay" onClick={() => setConfirmRemoveId(null)}>
             <div className="confirm-panel" onClick={e => e.stopPropagation()}>
