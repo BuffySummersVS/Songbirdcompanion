@@ -20,7 +20,7 @@ import { PasswordInput } from '../AuthPage';
 import { getAvatarSrc } from '../../data/avatars';
 import ComingSoon from '../ComingSoon';
 import Modal, { ModalHeader } from '../Modal';
-import { SOCIAL_FEATURES_ENABLED } from '../../data/featureFlags';
+import { FRIENDS_ENABLED } from '../../data/featureFlags';
 import AvatarPicker from '../AvatarPicker.jsx';
 import CompetitiveRanksPanel from '../CompetitiveRanksPanel.jsx';
 import MainHeroesPanel from '../MainHeroesPanel.jsx';
@@ -250,14 +250,14 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
       <div className="profile-section up-friends-section">
         <div className="up-friends-header">
           <h3>Friends</h3>
-          {SOCIAL_FEATURES_ENABLED && (
+          {FRIENDS_ENABLED && (
             <button type="button" className="up-add-friend-btn" onClick={() => setFriendAddOpen(true)}>
               + Add Friend
             </button>
           )}
         </div>
 
-        {!SOCIAL_FEATURES_ENABLED ? (
+        {!FRIENDS_ENABLED ? (
           <ComingSoon
             title="Friends — Coming Soon"
             description="Adding friends will work across devices once SongBird has real account sync. For now this feature is on hold."
@@ -296,7 +296,7 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
       )}
 
       {/* ── Add Friend modal ── */}
-      {SOCIAL_FEATURES_ENABLED && friendAddOpen && (
+      {FRIENDS_ENABLED && friendAddOpen && (
         <Modal onClose={closeFriendModal} panelClassName="auth-modal-panel up-friend-modal">
           <ModalHeader title="Add Friend" onClose={closeFriendModal} />
           <p className="up-friend-search-hint">Search for players by their username to add them to your friends list.</p>

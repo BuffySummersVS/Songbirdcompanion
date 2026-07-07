@@ -2,8 +2,8 @@ import { toast } from '../utils/toast.js';
 import { supabase } from '../lib/supabaseClient.js';
 
 // Direct Messages are the only domain still backed by localStorage — they
-// stay dead code behind SOCIAL_FEATURES_ENABLED (see Phase 1/2/3 notes),
-// so there was never a reason to migrate them.
+// stay dead code behind DM_ENABLED (see src/data/featureFlags.js), so there
+// was never a reason to migrate them.
 const K = {
   SESSION:  'sb_session',
   dm:       (a, b) => { const s = [a,b].sort(); return `sb_dm_${s[0]}__${s[1]}`; },

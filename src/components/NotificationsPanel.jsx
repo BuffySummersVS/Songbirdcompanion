@@ -2,7 +2,7 @@ import { useEscapeKey } from "../hooks/useEscapeKey";
 import Modal, { ModalHeader } from "./Modal";
 import ComingSoon from "./ComingSoon";
 import { getAvatarSrc } from "../data/avatars";
-import { SOCIAL_FEATURES_ENABLED } from "../data/featureFlags";
+import { FRIENDS_ENABLED } from "../data/featureFlags";
 
 export default function NotificationsPanel({ onClose, requests, onAccept, onDecline }) {
   useEscapeKey(onClose);
@@ -11,7 +11,7 @@ export default function NotificationsPanel({ onClose, requests, onAccept, onDecl
     <Modal onClose={onClose}>
       <ModalHeader title="Notifications" onClose={onClose} />
 
-      {!SOCIAL_FEATURES_ENABLED ? (
+      {!FRIENDS_ENABLED ? (
         <ComingSoon
           title="Friend Requests — Coming Soon"
           description="Friend requests will show up here once SongBird has real account sync across devices."

@@ -2,7 +2,7 @@ import { useEscapeKey } from "../hooks/useEscapeKey";
 import Modal, { ModalHeader } from "./Modal";
 import ComingSoon from "./ComingSoon";
 import { getAvatarSrc } from "../data/avatars";
-import { SOCIAL_FEATURES_ENABLED } from "../data/featureFlags";
+import { FRIENDS_ENABLED } from "../data/featureFlags";
 
 export default function FriendsListPanel({ onClose, friendUsers, onViewProfile }) {
   useEscapeKey(onClose);
@@ -11,7 +11,7 @@ export default function FriendsListPanel({ onClose, friendUsers, onViewProfile }
     <Modal onClose={onClose}>
       <ModalHeader title="Friends List" onClose={onClose} />
 
-      {!SOCIAL_FEATURES_ENABLED ? (
+      {!FRIENDS_ENABLED ? (
         <ComingSoon
           title="Friends — Coming Soon"
           description="Friends will work across devices once SongBird has real account sync. For now this feature is on hold."

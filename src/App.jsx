@@ -18,7 +18,7 @@ import NotificationsPanel from "./components/NotificationsPanel";
 import FriendsListPanel from "./components/FriendsListPanel";
 import Modal, { ModalHeader } from "./components/Modal";
 import { toast } from "./utils/toast";
-import { SOCIAL_FEATURES_ENABLED } from "./data/featureFlags";
+import { FRIENDS_ENABLED, DM_ENABLED } from "./data/featureFlags";
 import logo from "./assets/logo.png";
 import "./index.css";
 import "./styles/easter-eggs.css";
@@ -354,14 +354,14 @@ function AppInner() {
                 <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
                 <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
               </svg>
-              {SOCIAL_FEATURES_ENABLED && requests.length > 0 && (
+              {FRIENDS_ENABLED && requests.length > 0 && (
                 <span className="notif-badge">{requests.length}</span>
               )}
             </button>
 
             <button
               type="button"
-              className={`dm-btn${SOCIAL_FEATURES_ENABLED && dmUnread > 0 ? ' has-unread' : ''}`}
+              className={`dm-btn${DM_ENABLED && dmUnread > 0 ? ' has-unread' : ''}`}
               onClick={() => { refreshDmUnread(); setDmOpen(true); }}
               aria-label="Direct Messages"
               title="Direct Messages"
@@ -371,7 +371,7 @@ function AppInner() {
                 <path d="M19 12A7 7 0 1 0 15.5 18" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round"/>
                 <polyline points="19,16.5 15.5,18 16.5,21.5" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              {SOCIAL_FEATURES_ENABLED && dmUnread > 0 && (
+              {DM_ENABLED && dmUnread > 0 && (
                 <span className="notif-badge">{dmUnread}</span>
               )}
             </button>
@@ -542,7 +542,7 @@ function AppInner() {
       {friendsListOpen && (
         <FriendsListPanel
           onClose={() => setFriendsListOpen(false)}
-          friendUsers={SOCIAL_FEATURES_ENABLED ? friendUsers : []}
+          friendUsers={FRIENDS_ENABLED ? friendUsers : []}
           onViewProfile={(friendId) => {
             setFriendsListOpen(false);
             setViewingFriendId(friendId);
@@ -563,7 +563,7 @@ function AppInner() {
 
       {/* ── Direct Messages panel ── */}
       {dmOpen && currentUser && (
-        SOCIAL_FEATURES_ENABLED ? (
+        DM_ENABLED ? (
           <Suspense fallback={null}>
             <DirectMessages onClose={() => { setDmOpen(false); refreshDmUnread(); }} />
           </Suspense>
