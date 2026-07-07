@@ -408,6 +408,17 @@ describe('users / auth', () => {
     expect(user.password_hash).toBeUndefined();
   });
 
+  it('round-trips an object-shaped avatar ({type,value}) through create, update, and read', async () => {
+    const created = await createUser({ username: 'Sombra', password: 'ghost123', avatar: { type: 'hero', value: 'sombra' } });
+    expect(created.avatar).toEqual({ type: 'hero', value: 'sombra' });
+    expect(await getUserById(created.id)).toMatchObject({ avatar: { type: 'hero', value: 'sombra' } });
+
+    saveSession(created.id, created.session_token);
+    const updated = await updateUser(created.id, { avatar: { type: 'hero', value: 'hanzo' } });
+    expect(updated.avatar).toEqual({ type: 'hero', value: 'hanzo' });
+    expect(await getUserById(created.id)).toMatchObject({ avatar: { type: 'hero', value: 'hanzo' } });
+  });
+
   it('rejects a username shorter than 3 characters', async () => {
     await expect(createUser({ username: 'ab', password: 'blink123', avatar: 'a.png' }))
       .rejects.toThrow('Username must be at least 3 characters.');

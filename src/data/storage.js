@@ -57,10 +57,17 @@ function uid() {
 
 // Postgres/supabase-js return snake_case column names (created_at); the rest
 // of the app uses camelCase (createdAt), same convention as matchFromRow.
+// `avatar` is stored as a JSON string in the `text` column (see
+// createUser/updateUser) since getAvatarSrc() expects a real {type,value}
+// object, not a plain string — parse it back out here on every read path.
 function userFromRow(row) {
   if (!row) return row;
-  const { created_at, ...rest } = row;
-  return { ...rest, createdAt: created_at };
+  const { created_at, avatar, ...rest } = row;
+  let parsedAvatar = avatar;
+  if (typeof avatar === 'string') {
+    try { parsedAvatar = JSON.parse(avatar); } catch { parsedAvatar = avatar; }
+  }
+  return { ...rest, avatar: parsedAvatar, createdAt: created_at };
 }
 
 export async function getUserById(id) {
@@ -76,7 +83,7 @@ export async function getUserById(id) {
 
 export async function createUser({ username, password, avatar }) {
   const { data, error } = await supabase
-    .rpc('register_user', { p_username: username, p_password: password, p_avatar: avatar })
+    .rpc('register_user', { p_username: username, p_password: password, p_avatar: JSON.stringify(avatar) })
     .single();
   if (error) throw new Error(error.message);
   return userFromRow(data);
@@ -88,7 +95,7 @@ export async function updateUser(id, updates) {
       p_user_id: id,
       p_session_token: currentSessionToken(),
       p_username: updates.username ?? null,
-      p_avatar: updates.avatar ?? null,
+      p_avatar: updates.avatar ? JSON.stringify(updates.avatar) : null,
       p_new_password: updates.password ?? null,
     })
     .single();
