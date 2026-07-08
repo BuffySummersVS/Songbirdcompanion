@@ -84,7 +84,8 @@
       "King's Row",
       "Lijiang Control Center",
       "Blizzard World",
-      "Samoa"
+      "Samoa",
+      "Rialto"
     ],
     "perks": {
       "minor": [
@@ -708,7 +709,6 @@
     ],
     "strongMaps": [
       "King's Row",
-      "Esperança",
       "Midtown"
     ],
     "weakMaps": [
@@ -717,11 +717,12 @@
       "Antarctic Peninsula",
       "Blizzard World",
       "Colosseo",
-      "Esperança",
       "Hollywood",
       "Runasapi",
       "Samoa",
-      "Shambali Monastery"
+      "Shambali Monastery",
+      "Ilios",
+      "New Queen Street"
     ],
     "perks": {
       "minor": [
@@ -933,7 +934,9 @@
     "weakMaps": [
       "Dorado",
       "Watchpoint: Gibraltar",
-      "Junkertown"
+      "Junkertown",
+      "Ilios",
+      "Route 66"
     ],
     "perks": {
       "minor": [
@@ -1034,7 +1037,8 @@
       "Hollywood",
       "Paraíso",
       "Throne of Anubis",
-      "Colosseo"
+      "Colosseo",
+      "Midtown"
     ],
     "perks": {
       "minor": [
@@ -1137,7 +1141,9 @@
     ],
     "weakMaps": [
       "Lijiang Control Center",
-      "Nepal Village"
+      "Nepal Village",
+      "Ilios",
+      "New Queen Street"
     ],
     "perks": {
       "minor": [
@@ -1235,7 +1241,8 @@
     ],
     "weakMaps": [
       "King's Row",
-      "Lijiang Control Center"
+      "Lijiang Control Center",
+      "Route 66"
     ],
     "perks": {
       "minor": [
@@ -1744,11 +1751,13 @@
     "strongMaps": [
       "King's Row",
       "Rialto",
-      "Circuit Royal"
+      "Circuit Royal",
+      "Route 66"
     ],
     "weakMaps": [
       "Watchpoint: Gibraltar",
-      "Dorado"
+      "Dorado",
+      "Numbani"
     ],
     "perks": {
       "minor": [
@@ -2454,7 +2463,8 @@
     "strongMaps": [
       "King's Row",
       "Eichenwalde",
-      "Lijiang Control Center"
+      "Lijiang Control Center",
+      "Route 66"
     ],
     "weakMaps": [
       "Circuit Royal",
@@ -2554,7 +2564,8 @@
     ],
     "weakMaps": [
       "Circuit Royal",
-      "Havana"
+      "Havana",
+      "Midtown"
     ],
     "perks": {
       "minor": [
@@ -2652,7 +2663,8 @@
     ],
     "weakMaps": [
       "Circuit Royal",
-      "Havana"
+      "Havana",
+      "Rialto"
     ],
     "perks": {
       "minor": [
@@ -2754,7 +2766,8 @@
     ],
     "weakMaps": [
       "Havana",
-      "Circuit Royal"
+      "Circuit Royal",
+      "Midtown"
     ],
     "perks": {
       "minor": [
@@ -3076,7 +3089,8 @@
       "Throne of Anubis",
       "Esperança",
       "Shambali Monastery",
-      "New Junk City"
+      "New Junk City",
+      "Rialto"
     ],
     "perks": {
       "minor": [
@@ -3293,7 +3307,8 @@
     ],
     "weakMaps": [
       "King's Row",
-      "Lijiang Control Center"
+      "Lijiang Control Center",
+      "Route 66"
     ],
     "perks": {
       "minor": [
@@ -3397,7 +3412,8 @@
     ],
     "weakMaps": [
       "Circuit Royal",
-      "Havana"
+      "Havana",
+      "Numbani"
     ],
     "perks": {
       "minor": [
@@ -3502,7 +3518,8 @@
     ],
     "weakMaps": [
       "Watchpoint: Gibraltar",
-      "Dorado"
+      "Dorado",
+      "Numbani"
     ],
     "perks": {
       "minor": [
@@ -4025,7 +4042,8 @@
     "weakMaps": [
       "Lijiang Control Center",
       "Oasis",
-      "New Junk City"
+      "New Junk City",
+      "New Queen Street"
     ],
     "perks": {
       "minor": [
