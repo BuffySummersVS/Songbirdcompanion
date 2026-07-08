@@ -2,11 +2,14 @@ import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import {
   getFriends, getUserById,
-  getDMMessages, sendDM, deleteDM, reactToDM, markDMRead, getDMUnread,
+  getDMMessages, getDMConversations, sendDM, deleteDM, reactToDM, markDMRead,
 } from '../data/storage';
 import { getAvatarSrc } from '../data/avatars';
 import { useEscapeKey } from '../hooks/useEscapeKey';
+import { toast } from '../utils/toast';
 import Modal from './Modal';
+
+const POLL_MS = 4000;
 
 const QUICK_REACTS = ['👍', '❤️', '😂', '😱', '🤮'];
 
@@ -36,7 +39,11 @@ export default function DirectMessages({ onClose }) {
   const { currentUser } = useAuth();
   const [view, setView] = useState('list');
   const [friendId, setFriendId] = useState(null);
+  const [friendUsers, setFriendUsers] = useState([]);
+  const [conversations, setConversations] = useState([]);
+  const [listLoading, setListLoading] = useState(true);
   const [msgs, setMsgs] = useState([]);
+  const [convoLoading, setConvoLoading] = useState(false);
   const [draft, setDraft] = useState('');
   const [reactTarget, setReactTarget] = useState(null);
   const [emojiMode, setEmojiMode] = useState(null); // 'input' | 'react-full' | null
@@ -45,25 +52,43 @@ export default function DirectMessages({ onClose }) {
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
 
-  const friends = useMemo(
-    () => getFriends(currentUser.id).map(id => getUserById(id)).filter(Boolean),
-    [currentUser.id]
-  );
-  const [unreadMap, setUnreadMap] = useState(() => getDMUnread(currentUser.id));
-
-  const loadMsgs = useCallback((fid) => {
-    setMsgs(getDMMessages(currentUser.id, fid));
+  const loadList = useCallback(async () => {
+    try {
+      const ids = await getFriends(currentUser.id);
+      const users = await Promise.all(ids.map(id => getUserById(id)));
+      setFriendUsers(users.filter(Boolean));
+      setConversations(await getDMConversations(currentUser.id));
+    } catch (e) {
+      toast(e.message || "Couldn't load messages.");
+    } finally {
+      setListLoading(false);
+    }
   }, [currentUser.id]);
 
-  const refreshUnread = useCallback(() => {
-    setUnreadMap(getDMUnread(currentUser.id));
+  const loadMsgs = useCallback(async (fid) => {
+    try {
+      setMsgs(await getDMMessages(currentUser.id, fid));
+    } catch (e) {
+      toast(e.message || "Couldn't load messages.");
+    } finally {
+      setConvoLoading(false);
+    }
   }, [currentUser.id]);
 
   useEffect(() => {
-    function handler() { if (friendId) loadMsgs(friendId); refreshUnread(); }
-    window.addEventListener('sb-dm-updated', handler);
-    return () => window.removeEventListener('sb-dm-updated', handler);
-  }, [loadMsgs, friendId, refreshUnread]);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- loadList sets state asynchronously after its awaits, not synchronously in the effect body (same false-positive pattern as App.jsx's refreshFriendUsers)
+    loadList();
+  }, [loadList]);
+
+  // Polls while the panel is open instead of a live subscription — refreshes
+  // whichever view is on screen (list previews/unread, or the open thread).
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (view === 'list') loadList();
+      else if (view === 'convo' && friendId) loadMsgs(friendId);
+    }, POLL_MS);
+    return () => clearInterval(id);
+  }, [view, friendId, loadList, loadMsgs]);
 
   useEffect(() => {
     if (view === 'convo') scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -71,12 +96,18 @@ export default function DirectMessages({ onClose }) {
 
   useEscapeKey(() => { if (reactTarget) { setReactTarget(null); setEmojiMode(null); } else onClose(); });
 
-  function openConvo(fid) {
+  async function openConvo(fid) {
     setFriendId(fid);
     setView('convo');
-    loadMsgs(fid);
-    markDMRead(currentUser.id, fid);
-    refreshUnread();
+    setConvoLoading(true);
+    setMsgs([]);
+    await loadMsgs(fid);
+    try {
+      await markDMRead(currentUser.id, fid);
+    } catch (e) {
+      toast(e.message || "Couldn't mark messages as read.");
+    }
+    loadList();
     window.dispatchEvent(new CustomEvent('sb-dm-updated'));
   }
 
@@ -87,17 +118,21 @@ export default function DirectMessages({ onClose }) {
     setDraft('');
     setReactTarget(null);
     setEmojiMode(null);
-    refreshUnread();
+    loadList();
   }
 
-  function send() {
+  async function send() {
     const t = draft.trim();
     if (!t || !friendId) return;
-    sendDM(currentUser.id, friendId, t);
     setDraft('');
     inputRef.current.style.height = 'auto';
-    loadMsgs(friendId);
-    window.dispatchEvent(new CustomEvent('sb-dm-updated'));
+    try {
+      await sendDM(currentUser.id, friendId, t);
+      await loadMsgs(friendId);
+      window.dispatchEvent(new CustomEvent('sb-dm-updated'));
+    } catch (e) {
+      toast(e.message || "Couldn't send message.");
+    }
     setTimeout(() => inputRef.current?.focus(), 0);
   }
 
@@ -105,18 +140,26 @@ export default function DirectMessages({ onClose }) {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
   }
 
-  function handleDelete(msgId) {
-    deleteDM(currentUser.id, friendId, msgId);
-    loadMsgs(friendId);
+  async function handleDelete(msgId) {
     setReactTarget(null);
     setEmojiMode(null);
+    try {
+      await deleteDM(currentUser.id, friendId, msgId);
+      await loadMsgs(friendId);
+    } catch (e) {
+      toast(e.message || "Couldn't delete message.");
+    }
   }
 
-  function handleReact(msgId, emoji) {
-    reactToDM(currentUser.id, friendId, msgId, emoji);
-    loadMsgs(friendId);
+  async function handleReact(msgId, emoji) {
     setReactTarget(null);
     setEmojiMode(null);
+    try {
+      await reactToDM(currentUser.id, friendId, msgId, emoji);
+      await loadMsgs(friendId);
+    } catch (e) {
+      toast(e.message || "Couldn't react to message.");
+    }
   }
 
   function insertEmoji(emoji) {
@@ -137,7 +180,7 @@ export default function DirectMessages({ onClose }) {
     return EMOJI_LIB[emojiCat] || [];
   }, [emojiCat, emojiSearch]);
 
-  const activeFriend = friendId ? getUserById(friendId) : null;
+  const activeFriend = friendId ? friendUsers.find(f => f.id === friendId) : null;
   const reactMsg = msgs.find(m => m.id === reactTarget);
 
   return (
@@ -164,21 +207,21 @@ export default function DirectMessages({ onClose }) {
         {/* ── Conversation List ── */}
         {view === 'list' && (
           <div className="dm-list">
-            {friends.length === 0 ? (
+            {listLoading ? (
+              <div className="aca-loading">Loading messages…</div>
+            ) : friendUsers.length === 0 ? (
               <div className="dm-empty">
                 <p>No friends yet.</p>
                 <p>Add friends from My Profile to start messaging.</p>
               </div>
             ) : (
-              friends.map(f => {
-                const fMsgs = getDMMessages(currentUser.id, f.id);
-                const last = fMsgs[fMsgs.length - 1];
-                const ck = [currentUser.id, f.id].sort().join('__');
-                const ub = unreadMap[`sb_dm_${ck}`] || unreadMap[ck] || 0;
+              friendUsers.map(f => {
+                const convo = conversations.find(c => c.friendId === f.id);
+                const ub = convo?.unreadCount || 0;
                 let preview = '';
-                if (last) {
-                  if (last.deletedBySender) preview = 'Message deleted';
-                  else preview = (last.fromId === currentUser.id ? 'You: ' : '') + last.text.slice(0, 38);
+                if (convo && convo.lastText != null) {
+                  if (convo.lastDeletedBySender) preview = 'Message deleted';
+                  else preview = (convo.lastFromId === currentUser.id ? 'You: ' : '') + convo.lastText.slice(0, 38);
                 }
                 return (
                   <button key={f.id} className="dm-list-item" onClick={() => openConvo(f.id)}>
@@ -190,7 +233,7 @@ export default function DirectMessages({ onClose }) {
                       <strong className="dm-list-name">{f.username}</strong>
                       {preview && <span className="dm-list-preview">{preview}</span>}
                     </div>
-                    {last && <span className="dm-list-time">{fmtTime(last.sentAt)}</span>}
+                    {convo && <span className="dm-list-time">{fmtTime(convo.lastSentAt)}</span>}
                   </button>
                 );
               })
@@ -202,7 +245,9 @@ export default function DirectMessages({ onClose }) {
         {view === 'convo' && (
           <div className="dm-convo">
             <div className="dm-messages">
-              {msgs.length === 0 && (
+              {convoLoading ? (
+                <div className="aca-loading">Loading messages…</div>
+              ) : msgs.length === 0 && (
                 <div className="dm-empty">
                   <p>No messages yet.</p>
                   <p>Send the first message!</p>

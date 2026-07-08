@@ -16,6 +16,8 @@ let fakeCustomEvents = []; // { id, user_id, data, created_at, updated_at, seq }
 let fakeCustomEventSeq = 0;
 let fakeFriends = []; // { user_id, friend_id }
 let fakeFriendRequests = []; // { from_id, to_id, sent_at }
+let fakeDMMessages = []; // { id, from_id, to_id, text, sent_at, read_at, deleted_by_sender, deleted_by_receiver, reactions, seq }
+let fakeDMMessageSeq = 0;
 
 function fakeToSafe(u) { return { id: u.id, username: u.username, avatar: u.avatar, created_at: u.created_at }; }
 function fakeHash(pw) { return `hash:${pw}`; }
@@ -33,6 +35,13 @@ function fakeCheckFriendOrSelf(viewerId, viewerToken, targetId) {
   if (viewerId === targetId) return;
   if (!fakeFriends.some(f => f.user_id === viewerId && f.friend_id === targetId)) {
     throw new Error('Not authorized to view this profile.');
+  }
+}
+
+function fakeCheckAreFriends(userId, token, friendId) {
+  fakeCheckSession(userId, token);
+  if (!fakeFriends.some(f => f.user_id === userId && f.friend_id === friendId)) {
+    throw new Error('Not friends with this user.');
   }
 }
 
@@ -334,6 +343,96 @@ class FakeRpcBuilder {
         fakeFriendRequests = fakeFriendRequests.filter(r => !(r.from_id === p_from_id && r.to_id === p_user_id));
         return { data: null, error: null };
       }
+      if (this.fn === 'get_dm_messages') {
+        const { p_user_id, p_session_token, p_friend_id } = this.args;
+        fakeCheckAreFriends(p_user_id, p_session_token, p_friend_id);
+        const rows = fakeDMMessages
+          .filter(m => (m.from_id === p_user_id && m.to_id === p_friend_id) || (m.from_id === p_friend_id && m.to_id === p_user_id))
+          .sort((a, b) => a.seq - b.seq);
+        return { data: rows, error: null };
+      }
+      if (this.fn === 'get_dm_conversations') {
+        const { p_user_id, p_session_token } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        const friendIds = fakeFriends.filter(f => f.user_id === p_user_id).map(f => f.friend_id);
+        const rows = friendIds.map(friendId => {
+          const thread = fakeDMMessages
+            .filter(m => (m.from_id === p_user_id && m.to_id === friendId) || (m.from_id === friendId && m.to_id === p_user_id))
+            .sort((a, b) => b.seq - a.seq);
+          const last = thread[0];
+          const unread = fakeDMMessages.filter(m =>
+            m.from_id === friendId && m.to_id === p_user_id && m.read_at == null && !m.deleted_by_receiver
+          ).length;
+          return {
+            friend_id: friendId,
+            last_text: last ? last.text : null,
+            last_sent_at: last ? last.sent_at : null,
+            last_from_id: last ? last.from_id : null,
+            last_deleted_by_sender: last ? last.deleted_by_sender : null,
+            unread_count: unread,
+          };
+        });
+        return { data: rows, error: null };
+      }
+      if (this.fn === 'get_total_dm_unread') {
+        const { p_user_id, p_session_token } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        const count = fakeDMMessages.filter(m => m.to_id === p_user_id && m.read_at == null && !m.deleted_by_receiver).length;
+        return { data: count, error: null };
+      }
+      if (this.fn === 'send_dm') {
+        const { p_user_id, p_session_token, p_friend_id, p_text } = this.args;
+        fakeCheckAreFriends(p_user_id, p_session_token, p_friend_id);
+        const trimmed = p_text.trim();
+        if (!trimmed) throw new Error('Message cannot be empty.');
+        const row = {
+          id: fakeGenId(), from_id: p_user_id, to_id: p_friend_id, text: trimmed,
+          sent_at: new Date().toISOString(), read_at: null,
+          deleted_by_sender: false, deleted_by_receiver: false, reactions: {}, seq: ++fakeDMMessageSeq,
+        };
+        fakeDMMessages.push(row);
+        return { data: row, error: null };
+      }
+      if (this.fn === 'delete_dm') {
+        const { p_user_id, p_session_token, p_message_id } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        const row = fakeDMMessages.find(m => m.id === p_message_id);
+        if (!row) return { data: null, error: null };
+        if (row.from_id !== p_user_id && row.to_id !== p_user_id) throw new Error('Not authorized to delete this message.');
+        if (row.from_id === p_user_id) {
+          if (row.read_at == null) {
+            fakeDMMessages = fakeDMMessages.filter(m => m.id !== p_message_id);
+          } else {
+            row.deleted_by_sender = true;
+            row.text = '';
+          }
+        } else {
+          row.deleted_by_receiver = true;
+        }
+        return { data: null, error: null };
+      }
+      if (this.fn === 'react_to_dm') {
+        const { p_user_id, p_session_token, p_message_id, p_emoji } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        const row = fakeDMMessages.find(m => m.id === p_message_id);
+        if (!row) throw new Error('Message not found.');
+        if (row.from_id !== p_user_id && row.to_id !== p_user_id) throw new Error('Not authorized to react to this message.');
+        const users = row.reactions[p_emoji] || [];
+        const pos = users.indexOf(p_user_id);
+        if (pos === -1) users.push(p_user_id); else users.splice(pos, 1);
+        if (users.length === 0) delete row.reactions[p_emoji];
+        else row.reactions[p_emoji] = users;
+        return { data: null, error: null };
+      }
+      if (this.fn === 'mark_dm_read') {
+        const { p_user_id, p_session_token, p_friend_id } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        const now = new Date().toISOString();
+        fakeDMMessages.forEach(m => {
+          if (m.from_id === p_friend_id && m.to_id === p_user_id && m.read_at == null) m.read_at = now;
+        });
+        return { data: null, error: null };
+      }
       throw new Error(`Unknown rpc: ${this.fn}`);
     } catch (e) {
       return { data: null, error: { message: e.message } };
@@ -361,7 +460,7 @@ import {
   getBadgePanelPrefs, setBadgePanelPrefs, getSentNotifications, saveSentNotifications,
   getFriends, removeFriend,
   getFriendRequests, getOutboundRequests, sendFriendRequest, acceptFriendRequest, cancelFriendRequest, declineFriendRequest,
-  getDMMessages, sendDM, deleteDM, markDMRead, getTotalDMUnread, reactToDM,
+  getDMMessages, getDMConversations, sendDM, deleteDM, markDMRead, getTotalDMUnread, reactToDM,
   getCustomEvents, addCustomEvent, updateCustomEvent, deleteCustomEvent,
 } from './storage.js';
 
@@ -388,6 +487,8 @@ beforeEach(() => {
   fakeCustomEventSeq = 0;
   fakeFriends = [];
   fakeFriendRequests = [];
+  fakeDMMessages = [];
+  fakeDMMessageSeq = 0;
 });
 
 // Registers a fresh fake user and establishes a local session for them —
@@ -734,53 +835,102 @@ describe('friends and friend requests', () => {
 });
 
 describe('direct messages', () => {
-  it('sends a message and increments the recipient\'s unread count', () => {
-    const msg = sendDM('u1', 'u2', 'hello');
-    expect(getDMMessages('u1', 'u2')).toHaveLength(1);
+  // Friends both ways, mirroring the accept_friend_request flow tested above
+  // — DM sending/reading is friend-gated server-side (check_are_friends).
+  async function makeFriends(nameA, nameB) {
+    const a = await registerAndSignIn(nameA);
+    const b = await createUser({ username: nameB, password: 'p', avatar: 'b.png' });
+    await sendFriendRequest(a.id, b.id);
+    saveSession(b.id, b.session_token);
+    await acceptFriendRequest(b.id, a.id);
+    return [a, b];
+  }
+
+  it('sends a message and increments the recipient\'s unread count, appearing in both the thread and the conversation list', async () => {
+    const [alice, bob] = await makeFriends('DMAlice1', 'DMBob1');
+    saveSession(alice.id, alice.session_token);
+    const msg = await sendDM(alice.id, bob.id, 'hello');
     expect(msg.text).toBe('hello');
-    expect(getTotalDMUnread('u2')).toBe(1);
-    expect(getTotalDMUnread('u1')).toBe(0);
+    expect(await getDMMessages(alice.id, bob.id)).toHaveLength(1);
+    expect(await getTotalDMUnread(alice.id)).toBe(0);
+
+    saveSession(bob.id, bob.session_token);
+    expect(await getTotalDMUnread(bob.id)).toBe(1);
+    const convos = await getDMConversations(bob.id);
+    expect(convos).toEqual([expect.objectContaining({ friendId: alice.id, lastText: 'hello', unreadCount: 1 })]);
   });
 
-  it('markDMRead clears unread and stamps readAt on the other user\'s messages', () => {
-    sendDM('u1', 'u2', 'hi');
-    markDMRead('u2', 'u1');
-    expect(getTotalDMUnread('u2')).toBe(0);
-    const msgs = getDMMessages('u2', 'u1');
+  it('markDMRead clears unread and stamps readAt on the other user\'s messages', async () => {
+    const [alice, bob] = await makeFriends('DMAlice2', 'DMBob2');
+    saveSession(alice.id, alice.session_token);
+    await sendDM(alice.id, bob.id, 'hi');
+
+    saveSession(bob.id, bob.session_token);
+    await markDMRead(bob.id, alice.id);
+    expect(await getTotalDMUnread(bob.id)).toBe(0);
+    const msgs = await getDMMessages(bob.id, alice.id);
     expect(msgs[0].readAt).not.toBeNull();
   });
 
-  it('deleting your own unread message removes it outright', () => {
-    const msg = sendDM('u1', 'u2', 'oops');
-    deleteDM('u1', 'u2', msg.id);
-    expect(getDMMessages('u1', 'u2')).toHaveLength(0);
+  it('deleting your own unread message removes it outright', async () => {
+    const [alice, bob] = await makeFriends('DMAlice3', 'DMBob3');
+    saveSession(alice.id, alice.session_token);
+    const msg = await sendDM(alice.id, bob.id, 'oops');
+    await deleteDM(alice.id, bob.id, msg.id);
+    expect(await getDMMessages(alice.id, bob.id)).toHaveLength(0);
   });
 
-  it('deleting your own already-read message soft-deletes it (keeps the row, blanks the text)', () => {
-    const msg = sendDM('u1', 'u2', 'seen this');
-    markDMRead('u2', 'u1');
-    deleteDM('u1', 'u2', msg.id);
-    const msgs = getDMMessages('u1', 'u2');
+  it('deleting your own already-read message soft-deletes it (keeps the row, blanks the text)', async () => {
+    const [alice, bob] = await makeFriends('DMAlice4', 'DMBob4');
+    saveSession(alice.id, alice.session_token);
+    const msg = await sendDM(alice.id, bob.id, 'seen this');
+
+    saveSession(bob.id, bob.session_token);
+    await markDMRead(bob.id, alice.id);
+
+    saveSession(alice.id, alice.session_token);
+    await deleteDM(alice.id, bob.id, msg.id);
+    const msgs = await getDMMessages(alice.id, bob.id);
     expect(msgs).toHaveLength(1);
     expect(msgs[0].deletedBySender).toBe(true);
     expect(msgs[0].text).toBe('');
   });
 
-  it('deleting a message you received only flags it as deleted for you', () => {
-    const msg = sendDM('u1', 'u2', 'from u1');
-    deleteDM('u2', 'u1', msg.id);
-    const msgs = getDMMessages('u2', 'u1');
+  it('deleting a message you received only flags it as deleted for you', async () => {
+    const [alice, bob] = await makeFriends('DMAlice5', 'DMBob5');
+    saveSession(alice.id, alice.session_token);
+    const msg = await sendDM(alice.id, bob.id, 'from alice');
+
+    saveSession(bob.id, bob.session_token);
+    await deleteDM(bob.id, alice.id, msg.id);
+    const msgs = await getDMMessages(bob.id, alice.id);
     expect(msgs[0].deletedByReceiver).toBe(true);
-    expect(msgs[0].text).toBe('from u1'); // untouched for the sender's copy
+    expect(msgs[0].text).toBe('from alice'); // untouched for the sender's copy
   });
 
-  it('reacting toggles a user in/out of that emoji\'s reaction list', () => {
-    const msg = sendDM('u1', 'u2', 'gg');
-    reactToDM('u1', 'u2', msg.id, '🔥');
-    expect(getDMMessages('u1', 'u2')[0].reactions['🔥']).toEqual(['u1']);
+  it('reacting toggles a user in/out of that emoji\'s reaction list', async () => {
+    const [alice, bob] = await makeFriends('DMAlice6', 'DMBob6');
+    saveSession(alice.id, alice.session_token);
+    const msg = await sendDM(alice.id, bob.id, 'gg');
 
-    reactToDM('u1', 'u2', msg.id, '🔥');
-    expect(getDMMessages('u1', 'u2')[0].reactions['🔥']).toBeUndefined();
+    await reactToDM(alice.id, bob.id, msg.id, '🔥');
+    expect((await getDMMessages(alice.id, bob.id))[0].reactions['🔥']).toEqual([alice.id]);
+
+    await reactToDM(alice.id, bob.id, msg.id, '🔥');
+    expect((await getDMMessages(alice.id, bob.id))[0].reactions['🔥']).toBeUndefined();
+  });
+
+  it('rejects sending or reading messages between users who are not friends', async () => {
+    const alice = await registerAndSignIn('DMAlice7');
+    const bob = await createUser({ username: 'DMBob7', password: 'p', avatar: 'b.png' });
+    await expect(sendDM(alice.id, bob.id, 'hi')).rejects.toThrow('Not friends with this user.');
+    await expect(getDMMessages(alice.id, bob.id)).rejects.toThrow('Not friends with this user.');
+  });
+
+  it('rejects DM operations without a valid session', async () => {
+    const [alice, bob] = await makeFriends('DMAlice8', 'DMBob8');
+    clearSession();
+    await expect(sendDM(alice.id, bob.id, 'hi')).rejects.toThrow('Invalid session.');
   });
 });
 

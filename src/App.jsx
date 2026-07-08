@@ -131,7 +131,7 @@ function AppInner() {
   const pendingPage = useRef(null);
   const [notifOpen, setNotifOpen]         = useState(false);
   const [dmOpen, setDmOpen]               = useState(false);
-  const [dmUnread, setDmUnread]           = useState(() => currentUser ? getTotalDMUnread(currentUser.id) : 0);
+  const [dmUnread, setDmUnread]           = useState(0);
   const [requests, setRequests]           = useState([]);
   const [friendUsers, setFriendUsers]     = useState([]);
   const [userMenuOpen, setUserMenuOpen]     = useState(false);
@@ -153,15 +153,16 @@ function AppInner() {
     setFriendUsers(users.filter(Boolean));
   }, [currentUser]);
 
-  const refreshDmUnread = useCallback(() => {
-    if (currentUser) setDmUnread(getTotalDMUnread(currentUser.id));
+  const refreshDmUnread = useCallback(async () => {
+    if (currentUser) setDmUnread(await getTotalDMUnread(currentUser.id));
   }, [currentUser]);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- both refreshers set state asynchronously after their await, not synchronously in the effect body
     refreshRequests();
     refreshFriendUsers();
-  }, [refreshRequests, refreshFriendUsers]);
+    refreshDmUnread();
+  }, [refreshRequests, refreshFriendUsers, refreshDmUnread]);
 
   useEffect(() => {
     window.addEventListener('focus', refreshRequests);
@@ -176,7 +177,14 @@ function AppInner() {
 
   useEffect(() => {
     window.addEventListener('sb-dm-updated', refreshDmUnread);
-    return () => window.removeEventListener('sb-dm-updated', refreshDmUnread);
+    // Also polled on an interval so the header badge picks up messages sent
+    // while the DM panel itself is closed (DirectMessages.jsx polls its own
+    // conversation/thread views separately while it's open).
+    const id = setInterval(refreshDmUnread, 20000);
+    return () => {
+      window.removeEventListener('sb-dm-updated', refreshDmUnread);
+      clearInterval(id);
+    };
   }, [refreshDmUnread]);
 
   useEffect(() => {

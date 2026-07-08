@@ -1,13 +1,8 @@
 import { toast } from '../utils/toast.js';
 import { supabase } from '../lib/supabaseClient.js';
 
-// Direct Messages are the only domain still backed by localStorage — they
-// stay dead code behind DM_ENABLED (see src/data/featureFlags.js), so there
-// was never a reason to migrate them.
 const K = {
   SESSION:  'sb_session',
-  dm:       (a, b) => { const s = [a,b].sort(); return `sb_dm_${s[0]}__${s[1]}`; },
-  dmUnread: (uid) => `sb_dm_unread_${uid}`,
 };
 
 function safeSetItem(key, value) {
@@ -34,20 +29,6 @@ function safeParse(raw, fallback, isValid) {
   } catch {
     return fallback;
   }
-}
-
-function safeParseArray(raw, itemIsValid = () => true) {
-  return safeParse(raw, [], Array.isArray).filter(itemIsValid);
-}
-
-function safeParseObject(raw, fallback = {}) {
-  return safeParse(raw, fallback, isPlainObject);
-}
-
-function uid() {
-  return crypto.randomUUID
-    ? crypto.randomUUID()
-    : Math.random().toString(36).slice(2) + Date.now().toString(36);
 }
 
 // Accounts live in Supabase now (see src/lib/supabaseClient.js), not
@@ -253,83 +234,76 @@ export async function removeFriend(userId, friendId) {
 }
 
 // ── Direct Messaging ─────────────────────────────────────────────────────────
+// Backed by Supabase (dm_messages table + RPCs) — same SECURITY DEFINER /
+// check_session pattern as Friends above. Messaging is friend-gated
+// server-side (see check_are_friends in the dm_messages_schema.sql migration).
 
-export function getDMMessages(userId, friendId) {
-  return safeParseArray(localStorage.getItem(K.dm(userId, friendId)) || '[]', isPlainObject);
-}
-
-export function sendDM(fromId, toId, text) {
-  const key = K.dm(fromId, toId);
-  const msgs = getDMMessages(fromId, toId);
-  const msg = {
-    id: uid(),
-    fromId,
-    text,
-    sentAt: new Date().toISOString(),
-    deletedBySender: false,
-    deletedByReceiver: false,
-    readAt: null,
-    reactions: {},
+function dmMessageFromRow(row) {
+  return {
+    id: row.id,
+    fromId: row.from_id,
+    toId: row.to_id,
+    text: row.text,
+    sentAt: row.sent_at,
+    readAt: row.read_at,
+    deletedBySender: row.deleted_by_sender,
+    deletedByReceiver: row.deleted_by_receiver,
+    reactions: row.reactions || {},
   };
-  safeSetItem(key, JSON.stringify([...msgs, msg]));
-  const unread = getDMUnread(toId);
-  const ck = K.dm(fromId, toId);
-  unread[ck] = (unread[ck] || 0) + 1;
-  safeSetItem(K.dmUnread(toId), JSON.stringify(unread));
-  return msg;
 }
 
-export function deleteDM(userId, friendId, messageId) {
-  const key = K.dm(userId, friendId);
-  const msgs = getDMMessages(userId, friendId);
-  const idx = msgs.findIndex(m => m.id === messageId);
-  if (idx === -1) return;
-  const msg = msgs[idx];
-  if (msg.fromId === userId) {
-    if (!msg.readAt) {
-      msgs.splice(idx, 1);
-    } else {
-      msgs[idx] = { ...msg, deletedBySender: true, text: '' };
-    }
-  } else {
-    msgs[idx] = { ...msg, deletedByReceiver: true };
-  }
-  safeSetItem(key, JSON.stringify(msgs));
+export async function getDMMessages(userId, friendId) {
+  const { data, error } = await supabase
+    .rpc('get_dm_messages', { p_user_id: userId, p_session_token: currentSessionToken(), p_friend_id: friendId });
+  if (error) throw new Error(error.message);
+  return data.map(dmMessageFromRow);
 }
 
-export function reactToDM(userId, friendId, messageId, emoji) {
-  const key = K.dm(userId, friendId);
-  const msgs = getDMMessages(userId, friendId);
-  const idx = msgs.findIndex(m => m.id === messageId);
-  if (idx === -1) return;
-  if (!msgs[idx].reactions) msgs[idx].reactions = {};
-  const users = msgs[idx].reactions[emoji] || [];
-  const pos = users.indexOf(userId);
-  if (pos === -1) users.push(userId); else users.splice(pos, 1);
-  if (users.length === 0) delete msgs[idx].reactions[emoji];
-  else msgs[idx].reactions[emoji] = users;
-  safeSetItem(key, JSON.stringify(msgs));
+export async function getDMConversations(userId) {
+  const { data, error } = await supabase
+    .rpc('get_dm_conversations', { p_user_id: userId, p_session_token: currentSessionToken() });
+  if (error) throw new Error(error.message);
+  return data.map(row => ({
+    friendId: row.friend_id,
+    lastText: row.last_text,
+    lastSentAt: row.last_sent_at,
+    lastFromId: row.last_from_id,
+    lastDeletedBySender: row.last_deleted_by_sender,
+    unreadCount: row.unread_count,
+  }));
 }
 
-export function markDMRead(userId, friendId) {
-  const ck = K.dm(userId, friendId);
-  const unread = getDMUnread(userId);
-  delete unread[ck];
-  safeSetItem(K.dmUnread(userId), JSON.stringify(unread));
-  const msgs = getDMMessages(userId, friendId);
-  const now = new Date().toISOString();
-  let changed = false;
-  msgs.forEach(m => { if (m.fromId !== userId && !m.readAt) { m.readAt = now; changed = true; } });
-  if (changed) safeSetItem(ck, JSON.stringify(msgs));
+export async function sendDM(fromId, toId, text) {
+  const { data, error } = await supabase
+    .rpc('send_dm', { p_user_id: fromId, p_session_token: currentSessionToken(), p_friend_id: toId, p_text: text });
+  if (error) throw new Error(error.message);
+  return dmMessageFromRow(data);
 }
 
-export function getDMUnread(userId) {
-  return safeParseObject(localStorage.getItem(K.dmUnread(userId)) || '{}');
+export async function deleteDM(userId, friendId, messageId) {
+  const { error } = await supabase
+    .rpc('delete_dm', { p_user_id: userId, p_session_token: currentSessionToken(), p_message_id: messageId });
+  if (error) throw new Error(error.message);
 }
 
-export function getTotalDMUnread(userId) {
+export async function reactToDM(userId, friendId, messageId, emoji) {
+  const { error } = await supabase
+    .rpc('react_to_dm', { p_user_id: userId, p_session_token: currentSessionToken(), p_message_id: messageId, p_emoji: emoji });
+  if (error) throw new Error(error.message);
+}
+
+export async function markDMRead(userId, friendId) {
+  const { error } = await supabase
+    .rpc('mark_dm_read', { p_user_id: userId, p_session_token: currentSessionToken(), p_friend_id: friendId });
+  if (error) throw new Error(error.message);
+}
+
+export async function getTotalDMUnread(userId) {
   if (!userId) return 0;
-  return Object.values(getDMUnread(userId)).reduce((a, b) => a + b, 0);
+  const { data, error } = await supabase
+    .rpc('get_total_dm_unread', { p_user_id: userId, p_session_token: currentSessionToken() });
+  if (error) throw new Error(error.message);
+  return data;
 }
 
 // ── End Direct Messaging ─────────────────────────────────────────────────────
