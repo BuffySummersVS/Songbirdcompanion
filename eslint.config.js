@@ -21,4 +21,12 @@ export default defineConfig([
       'no-unused-vars': ['error', { ignoreRestSiblings: true }],
     },
   },
+  {
+    // Test files run under Vitest/Node, not the browser — they need Node
+    // globals (e.g. `process`) in addition to the browser ones.
+    files: ['**/*.test.js'],
+    languageOptions: {
+      globals: { ...globals.browser, ...globals.node },
+    },
+  },
 ])

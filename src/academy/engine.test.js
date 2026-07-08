@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import {
   xpForLevel,
   calculateLevel,
@@ -302,6 +302,34 @@ describe('getWeeklyStats', () => {
     const stats = getWeeklyStats(progress);
     expect(stats.lessonsThisWeek).toBe(2);
     expect(stats.xpThisWeek).toBe(50);
+  });
+
+  // Regression test for the local/UTC mismatch bug fixed in prevDay()/updateStreak() (Session 11).
+  // getWeeklyStats() used to build its 7-day window with local Date.setDate()/getDate() then
+  // read the key back via toISOString() (UTC). For a constant UTC offset this actually cancels
+  // out (each local-day decrement is still exactly 24h), but a DST *fall-back* transition makes
+  // one local day 25 hours long — decrementing "day of month" by 1 no longer moves the instant
+  // back a full 24h, which silently skips a whole calendar day out of the 7-day window for
+  // about a week after the transition. Reproduced here with Pacific/Auckland's real 2026-04-05
+  // fall-back: at this system time the old code's window was
+  // [04-08, 04-07, 04-06, 04-05, 04-03, 04-02, 04-01] — 2026-04-04 fell out of it entirely.
+  it('does not drop a day from the window across a DST fall-back transition', () => {
+    const originalTZ = process.env.TZ;
+    process.env.TZ = 'Pacific/Auckland';
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-04-08T00:00:00Z'));
+    try {
+      const progress = {
+        ...emptyProgress(),
+        dailyGoals: { '2026-04-04': { lessonsCompleted: 3, xpEarned: 40 } },
+      };
+      const stats = getWeeklyStats(progress);
+      expect(stats.lessonsThisWeek).toBe(3);
+      expect(stats.xpThisWeek).toBe(40);
+    } finally {
+      vi.useRealTimers();
+      process.env.TZ = originalTZ;
+    }
   });
 });
 

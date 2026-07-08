@@ -226,12 +226,12 @@ export function getDailyGoalStatus(progress, today) {
 
 // Compute weekly stats (last 7 days)
 export function getWeeklyStats(progress) {
-  const today = new Date();
+  const today = new Date(todayStr() + 'T00:00:00Z');
   let lessonsThisWeek = 0;
   let xpThisWeek = 0;
   for (let i = 0; i < 7; i++) {
     const d = new Date(today);
-    d.setDate(d.getDate() - i);
+    d.setUTCDate(d.getUTCDate() - i);
     const key = d.toISOString().split('T')[0];
     const day = progress.dailyGoals?.[key] || {};
     lessonsThisWeek += day.lessonsCompleted || 0;
