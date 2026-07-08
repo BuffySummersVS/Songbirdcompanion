@@ -1,0 +1,263 @@
+{
+  "Antarctic Peninsula": {
+    "strong": {
+      "Junker Queen": "Jagged Blade's long-range pull lets her cross the open ice quickly instead of walking in exposed, and Commanding Shout's speed boost helps her whole team close distance safely. Carnage's wide swing punishes groups who bunch up fighting over the capture point, and Adrenaline Rush keeps her topped up even while exposed on the open platforms.",
+      "Mauga": "His 425 health plus 250 armor lets him shrug off the long-range poke this map is built around, and Overrun's unstoppable charge covers the wide-open ground fast instead of leaving him exposed mid-approach. Cardiac Overdrive then lets him and his team out-sustain whatever chip damage does connect.",
+      "Shion": "Her dual Kira Pistols already favor mid-range pressure, and Execution's tightened volley rewards the clean sightlines this map offers. Evade's dash-plus-overhealth gives her a way to reposition across the open platforms without simply eating a sniper's shot, and Joyride's motorbike closes gaps the frozen terrain would otherwise force her to walk.",
+      "Symmetra": "Sentry Turret clusters well in the tighter corridors around the point itself, slowing anyone trying to push through, and Teleporter lets her team skip the long, exposed walk across the open platforms entirely. Photon Barrier is also strong here, blocking the incoming long-range fire this map is designed to reward.",
+      "Torbjörn": "Deploy Turret covers the sightlines other heroes have to cross on foot, punishing anyone caught in the open. Overload's speed and firing-rate boost helps him reposition across the wide platforms when needed, and Molten Core denies the capture point itself to anyone trying to contest it."
+    },
+    "weak": {
+      "Orisa": "Her kit is built to brawl at close range behind Fortify, but this map's wide-open frozen terrain means she has to cross a lot of ground with no cover before she can actually use it. Slow-moving and armored isn't the same as safe against long sightlines, and she's an easy pick before Fortify is even up.",
+      "Freja": "Updraft is meant to create firing angles, but on a map already covered in high ground and clean sightlines, launching herself into the air just makes her an easier target for the long-range heroes this map favors. Quick Dash helps her escape, but she has little cover to actually retreat into.",
+      "Sojourn": "Power Slide is a great way to reposition, but sliding across open, snow-covered platforms with no cover to break sightlines leaves her exposed mid-slide to exactly the kind of long-range fire this map rewards. She needs an angle to disrupt from, and this map doesn't offer many.",
+      "Widowmaker": "The map's sightlines look tailor-made for her, but the actual capture point sits in tighter terrain than the platforms around it, forcing frequent close-range contests. Grappling Hook is a short, cooldown-gated escape rather than a full retreat, so she's stuck defending a point she isn't built to hold."
+    },
+    "risky": {
+      "Genji": {
+        "summary": "Can dash through the open lanes and Deflect incoming poke, but has no reliable cover once he's committed.",
+        "requires": [
+          "Precise Deflect timing against the hitscan and sniper fire this map rewards",
+          "Using Swift Strike to cross open ground rather than walking it",
+          "Double jump and wall climb used to break sightlines, not just to approach"
+        ],
+        "strugglesAgainst": [
+          "Sustained long-range hitscan that punishes him the instant Deflect ends",
+          "Being caught mid-approach with no team dive to follow up on"
+        ]
+      },
+      "Ashe": {
+        "summary": "The long sightlines suit her rifle, but she has no mobility to escape once she's spotted.",
+        "requires": [
+          "Positioning that always leaves a fallback route off the open platforms",
+          "Landing Dynamite on grouped targets before repositioning",
+          "Coach Gun used proactively to reach high ground, not just to escape"
+        ],
+        "strugglesAgainst": [
+          "Flankers who close distance faster than she can reposition",
+          "Getting caught without Coach Gun up when a dive arrives"
+        ]
+      },
+      "Ana": {
+        "summary": "Her Biotic Rifle's range fits the map, but she has almost nothing to peel for herself if she's found.",
+        "requires": [
+          "Staying at max range and pre-aiming likely approach lanes",
+          "Sleep Dart held in reserve for divers rather than used offensively",
+          "Team positioning that discourages flankers from reaching her at all"
+        ],
+        "strugglesAgainst": [
+          "Mobile flankers who close the open ground before she can react",
+          "Being isolated from her team on the wide platforms"
+        ]
+      }
+    }
+  },
+
+  "Hanaoka": {
+    "strong": {
+      "Reinhardt": "Barrier Field is built for exactly the tight indoor points this map's interior favors, and Charge punishes anyone caught out in the open between points. Fire Strike also pierces through the narrow corridors connecting each point, softening whoever's holding the next objective before his team arrives.",
+      "Sigma": "Experimental Barrier can be repositioned to control the sightlines between the outer poke lanes and the interior brawl points, letting him adapt as the fight shifts. Kinetic Grasp absorbs the poke damage this map's outer areas are known for, and Accretion punishes groups pushing through the tighter indoor rooms.",
+      "Reaper": "Wraith Form lets him ignore the poke damage crossing between capture points and walk straight into the interior brawls this map rewards. Shadow Step also skips the exposed bridges entirely, dropping him right into the close-range fights where Death Blossom and his healing passive do the most work.",
+      "Symmetra": "Teleporter shortens the long walk between this map's five spread-out points, and Sentry Turret slows anyone contesting the tight interior rooms. Photon Barrier blocks the outer sightline poke this map is known for, buying her brawl-focused team time to close in.",
+      "Torbjörn": "Deploy Turret holds down the narrow bridges and corridors connecting each of the five points, denying easy rotations. Overload's speed boost helps him keep pace with a push-and-pull map, and Molten Core punishes groups fighting over the tighter interior objectives.",
+      "Zenyatta": "Orb of Discord turns the brawl comps this map favors into fast picks, and Orb of Harmony's sustained healing supports a team holding an interior point under pressure. Transcendence is also strong here, letting his team push through a contested indoor room without losing the fight to poke damage along the way."
+    },
+    "weak": {
+      "Roadhog": "Chain Hook wants an isolated target, but this map's tight indoor points are full of allies ready to peel the instant he pulls someone in. His single-target sustain from Take a Breather doesn't match the constant multi-point pressure of a push-and-pull map with five separate objectives to hold.",
+      "Freja": "This map splits into brawl-heavy interiors and poke-heavy outer sightlines, and Freja's Updraft repositioning works best in the open lanes she's weakest overall on — the tight indoor points give her little room to use Quick Dash for an angle before she's swarmed.",
+      "Sojourn": "Her railgun charge wants sustained sightlines, but Hanaoka's tight indoor capture points don't give her time to charge before a brawl comp is already on top of her. Power Slide helps her reposition, but there's rarely a clean angle to slide into on the interior points this map rewards.",
+      "Widowmaker": "The outer sightlines suit her, but this map's push-and-pull format constantly drags the fight back into brawl-heavy interior rooms she has no answer for. Grappling Hook can reach a sightline, but it can't get her out of a fight that's already moved indoors around her."
+    },
+    "risky": {
+      "Tracer": {
+        "summary": "Thrives in the chaotic interior brawls, but the outer poke lanes punish her low health before she can even blink into range.",
+        "requires": [
+          "Blink charges saved for escaping poke lanes, not just for engaging",
+          "Pulse Bomb saved for grouped enemies on a contested point",
+          "Recall timed to bail before overcommitting indoors"
+        ],
+        "strugglesAgainst": [
+          "Sustained poke damage from the outer sightlines catching her mid-rotation",
+          "Getting focused before she can close the gap to a brawl"
+        ]
+      },
+      "Genji": {
+        "summary": "Deflect punishes the outer poke heroes, but the tight interior rooms leave him nowhere to escape a bad engage.",
+        "requires": [
+          "Deflect angled correctly against ranged poke rather than melee brawlers",
+          "Swift Strike used to bail from a losing interior fight, not just to engage",
+          "Wall climbing used to skip between the map's tight corridors"
+        ],
+        "strugglesAgainst": [
+          "Close-range brawl comps that punish him the moment Deflect ends",
+          "Being cornered in an interior room with no reset available"
+        ]
+      },
+      "Baptiste": {
+        "summary": "Regenerative Burst keeps a brawling team alive on a contested point, but he has little personal escape if the fight turns.",
+        "requires": [
+          "Exo Boots jump used proactively to reach safer positioning",
+          "Immortality Field placed before committing to a contested interior point",
+          "Positioning that isn't caught between the outer poke lane and the point"
+        ],
+        "strugglesAgainst": [
+          "Flanking dive that catches him before he can jump away",
+          "Sustained poke damage he can't out-heal from range"
+        ]
+      }
+    }
+  },
+
+  "New Junk City": {
+    "strong": {
+      "Hazard": "Violent Leap lets him rotate between objectives fast in a mode built entirely around rotation, and Jagged Wall can block off a street or tunnel entrance while his team resets on the next Flashpoint point. Spike Guard also holds a chokepoint between the open streets and interior tunnels well.",
+      "Junker Queen": "Jagged Blade's pull works in both the open streets and tighter tunnels, and Commanding Shout's speed boost is exactly what a rotation-heavy mode like Flashpoint rewards. Carnage punishes groups contesting a freshly-opened objective, and Adrenaline Rush keeps her sustained through the constant back-to-back fights.",
+      "Pharah": "The wide open scrap-metal streets give her plenty of room for Jump Jet's aerial angles without the tight ceilings some maps impose, and Barrage can clear an objective from above before the enemy team even finishes rotating in. Concussive Blast also punishes anyone bunched up in the open.",
+      "Reaper": "Shadow Step lets him rotate to the next Flashpoint objective ahead of his team, and Wraith Form covers the open streets between objectives without taking chip damage along the way. The interior tunnels also suit Death Blossom's close-range burst once he's in position.",
+      "Symmetra": "Teleporter is especially strong on a map with five spread-out rotating objectives, letting her team skip the open streets entirely between fights. Sentry Turret also holds a tunnel entrance well, and Photon Barrier can block incoming fire while contesting a freshly-opened point.",
+      "Venture": "Burrow lets them skip the open streets entirely and come up inside or behind an objective, and Drill Dash covers ground fast during the constant rotations Flashpoint demands. Clobber also punishes anyone caught off guard in the tighter tunnel sections."
+    },
+    "weak": {
+      "Freja": "The wide open streets look like they'd suit Updraft's high ground angles, but Flashpoint's constant rotation means she rarely has time to set up before the fight has already moved to the next objective. Quick Dash helps her keep pace, but she's often playing catch-up rather than holding an angle.",
+      "Sojourn": "Her railgun wants sustained charge time, but the rotation-heavy pace of Flashpoint rarely gives her a stable sightline before the objective shifts again. Power Slide helps her keep pace with the constant movement this mode demands, but she's rarely set up in time to use her charged shot effectively.",
+      "Widowmaker": "The open scrap-metal streets suit her range, but the mode's fast rotations between five objectives mean she's constantly relocating rather than holding a single sightline. Grappling Hook helps her reach new angles quickly, but the interior tunnel sections she has to cross to get there leave her exposed.",
+      "Ana": "Biotic Grenade and Sleep Dart both want a stable position to land value from, but Flashpoint's constant rotation between objectives rarely gives her time to set up before her team has already moved on. She's frequently caught mid-rotation with no line of sight to support from."
+    },
+    "risky": {
+      "Ashe": {
+        "summary": "The open streets suit her rifle, but Flashpoint's constant rotation between objectives leaves her exposed while relocating.",
+        "requires": [
+          "Repositioning ahead of the team before an objective opens, not after",
+          "Dynamite used to soften a contested point before pushing in",
+          "Coach Gun kept ready to reach high ground during a rotation"
+        ],
+        "strugglesAgainst": [
+          "Getting caught mid-rotation between objectives with no cover",
+          "Dive comps that close the open streets faster than she can reposition"
+        ]
+      },
+      "Doomfist": {
+        "summary": "The interior tunnels reward his punch-ins, but the wide open streets between objectives leave him exposed without a follow-up.",
+        "requires": [
+          "Rocket Punch saved for tunnel chokepoints rather than open ground",
+          "Power Block used to cross open streets safely during rotations",
+          "Seismic Slam timed to punish a vulnerable target on a freshly-opened point"
+        ],
+        "strugglesAgainst": [
+          "Being caught alone in the open streets between objectives",
+          "Sustained ranged fire he can't Power Block through indefinitely"
+        ]
+      },
+      "Moira": {
+        "summary": "Biotic Orb offers flexible healing and damage during rotations, but she has little to offer at Flashpoint's longer engagement ranges.",
+        "requires": [
+          "Fade used to keep pace with the team during rotations, not just to escape",
+          "Biotic Orb bounced through tunnels to hit angles direct healing can't reach",
+          "Positioning close enough to contribute before the next objective opens"
+        ],
+        "strugglesAgainst": [
+          "Long sightlines across the open streets that outrange her kit",
+          "Being left behind during a fast rotation to the next objective"
+        ]
+      }
+    }
+  },
+
+  "Eichenwalde": {
+    "strong": {
+      "Reinhardt": "Barrier Field is built for exactly this map's defining chokepoint — the fortified bridge — and Charge punishes anyone caught in the narrow castle corridors leading up to it. Fire Strike also pierces straight down those tight hallways, softening whoever's holding the choke before his team arrives.",
+      "Junkrat": "Concussion Mine and Steel Trap both punish anyone forced to funnel through the map's narrow corridors and the bridge chokepoint, and there's rarely anywhere for the enemy to dodge his spam in such tight spaces. RIP-Tire can also climb the castle walls to reach the high ground above the bridge that this map is built around.",
+      "Brigitte": "Barrier Shield and Shield Bash both shine in a map defined by narrow chokepoints, letting her stun anyone stuck funneling through the bridge or castle corridors. Repair Pack also keeps a brawl-heavy team topped up as they push through the map's extreme chokepoints, and Rally's armor helps them survive the push."
+    },
+    "weak": {
+      "Jetpack Cat": "Permanent flight is a liability in a map defined by narrow castle corridors and a single fortified bridge chokepoint — there's nowhere to fly that isn't directly into enemy sightlines from the high ground above. Frenetic Flight and Lifeline both need open space to be useful, which this tight, chokepoint-heavy map rarely offers."
+    },
+    "risky": {
+      "Widowmaker": {
+        "summary": "The high ground above the bridge offers a strong sightline, but reaching it means crossing narrow castle corridors with no cover.",
+        "requires": [
+          "Grappling Hook used to reach the high ground directly, skipping the exposed approach",
+          "Venom Mine placed to cover the corridor she's most likely to be flanked from",
+          "Repositioning constantly rather than holding one angle above the bridge"
+        ],
+        "strugglesAgainst": [
+          "Being caught in the tight corridors before reaching high ground",
+          "Dive heroes who can reach her sightline just as easily as she can"
+        ]
+      },
+      "Genji": {
+        "summary": "The castle's side routes reward his mobility, but the tight chokepoints leave him nowhere to retreat if a brawl goes wrong.",
+        "requires": [
+          "Wall climbing used to bypass the bridge chokepoint entirely",
+          "Deflect angled against the barrier tanks this map is built around",
+          "Swift Strike saved to escape a corridor rather than just to engage"
+        ],
+        "strugglesAgainst": [
+          "Being cornered in a narrow corridor with no reset available",
+          "Strong barrier tanks who simply out-sustain his burst in a chokepoint fight"
+        ]
+      },
+      "Echo": {
+        "summary": "Flight lets her skip the ground chokepoint entirely, but she's an easy target for anyone holding the high ground above the bridge.",
+        "requires": [
+          "Flight timed to avoid crossing directly through enemy sightlines",
+          "Sticky Bombs used to soften a chokepoint before her team pushes",
+          "Focusing Beam saved for low-health targets rather than opening a fight"
+        ],
+        "strugglesAgainst": [
+          "Hitscan heroes with a clean sightline to the high ground she needs to use",
+          "Being caught mid-flight with no barrier cover to retreat behind"
+        ]
+      }
+    }
+  },
+
+  "Junkertown": {
+    "strong": {
+      "Sigma": "Experimental Barrier can be repositioned constantly to cover both the open ambush points and the tight corridors this map alternates between, and Kinetic Grasp absorbs the burst damage typical of a complex, winding push map. Accretion also punishes groups bunched up defending a corridor chokepoint.",
+      "Widowmaker": "The long, winding streets give her plenty of sightline options to pick from, and the escort format means she can reposition between ambush points as the payload advances. Grappling Hook lets her quickly relocate to a new angle as the map's rotating layout demands, without losing much tempo."
+    },
+    "weak": {
+      "Reinhardt": "Barrier Field is strong in the tight corridors, but the map's complex, winding layout and open ambush points make it easy for the payload's attackers to flank around him entirely rather than push into his shield. Charge is also risky to commit to blindly given how many hidden corners this map has.",
+      "Roadhog": "Chain Hook wants a predictable choke to fish from, but this map's winding streets and rotating ambush points give the enemy team too many angles to approach from, making it hard to commit to a single hook position. Take a Breather's sustain doesn't offset how easily he can be flanked here."
+    },
+    "risky": {
+      "Ashe": {
+        "summary": "The long streets suit her rifle, but the map's rotating ambush points mean a bad angle leaves her exposed with no backup.",
+        "requires": [
+          "Positioning that accounts for the map's multiple flank routes, not just the main street",
+          "Dynamite thrown into ambush points before pushing forward with the payload",
+          "Coach Gun kept ready to escape a flank rather than just to reposition"
+        ],
+        "strugglesAgainst": [
+          "Being flanked through one of the map's many side routes",
+          "Getting caught without cover during an open ambush section"
+        ]
+      },
+      "Doomfist": {
+        "summary": "The tight corridors reward his punch-in combos, but the open ambush stretches leave him exposed crossing between them.",
+        "requires": [
+          "Rocket Punch saved for corridor chokepoints rather than open ground",
+          "Power Block used to cross the map's more open ambush sections safely",
+          "Seismic Slam timed against isolated targets in the tighter side routes"
+        ],
+        "strugglesAgainst": [
+          "Getting caught alone in an open ambush point with no follow-up",
+          "Sustained ranged fire he can't Power Block through indefinitely"
+        ]
+      },
+      "Mei": {
+        "summary": "Ice Wall can lock down one of the map's many corridors, but she's slow crossing the open ambush stretches without team peel.",
+        "requires": [
+          "Ice Wall used to seal off a flank route, not just to block the main push",
+          "Cryo-Freeze saved for surviving a bad ambush rather than pure sustain",
+          "Positioning that keeps her near a corridor she can wall off if needed"
+        ],
+        "strugglesAgainst": [
+          "Being caught in an open ambush point with no wall to retreat behind",
+          "Fast dive heroes who close the distance before Ice Wall goes up"
+        ]
+      }
+    }
+  }
+}

@@ -14,6 +14,7 @@
   --damage:#ff4c4c;
   --support:#26d07c;
   --synergy:#b967ff;
+  --risky:#f0c419;
 }
 
 *{
@@ -1353,6 +1354,15 @@ button.dashboard-card:hover{
   filter:drop-shadow(0 0 8px var(--synergy)) drop-shadow(0 0 3px #fff);
 }
 
+.mr-modal-panel.risky{
+  border-color:var(--risky);
+  box-shadow:0 0 40px rgba(240,196,25,.3);
+}
+.mr-modal-panel.risky::before{
+  background:conic-gradient(from var(--sb-energy-angle), transparent 0%, var(--risky) 18%, #fff 26%, var(--risky) 34%, transparent 50%);
+  filter:drop-shadow(0 0 8px var(--risky)) drop-shadow(0 0 3px #fff);
+}
+
 @media (prefers-reduced-motion: reduce){
   .mr-modal-panel::before{
     animation:none;
@@ -1416,11 +1426,58 @@ button.dashboard-card:hover{
 .mr-modal-label.strong  { color:var(--support); }
 .mr-modal-label.weak    { color:var(--damage);  }
 .mr-modal-label.synergy { color:var(--synergy); }
+.mr-modal-label.risky   { color:var(--risky);   }
 
 .mr-modal-reason{
   color:var(--grey);
   line-height:1.6;
   font-size:1rem;
+}
+
+.mr-modal-map-subtitle{
+  text-align:center;
+  color:var(--grey);
+  font-size:.85rem;
+  text-transform:uppercase;
+  letter-spacing:.08rem;
+  margin-bottom:6px;
+}
+
+.mr-modal-risky-lists{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.mr-modal-risky-group h4{
+  color:var(--white);
+  font-size:.78rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.1rem;
+  margin-bottom:8px;
+}
+
+.mr-modal-risky-group ul{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.mr-modal-risky-group li{
+  color:var(--grey);
+  font-size:.92rem;
+  line-height:1.5;
+  padding-left:16px;
+  position:relative;
+}
+
+.mr-modal-risky-group li::before{
+  content:'•';
+  position:absolute;
+  left:0;
+  color:var(--risky);
 }
 
 /* ── Maps ── */
@@ -1504,6 +1561,12 @@ button.dashboard-card:hover{
   border:1px solid var(--damage);
 }
 
+.risky-tag{
+  background:rgba(240,196,25,.1);
+  color:var(--risky);
+  border:1px solid var(--risky);
+}
+
 .map-chips{
   display:flex;
   flex-wrap:wrap;
@@ -1533,6 +1596,19 @@ button.dashboard-card:hover{
 .map-chip.tank    { border-left:2px solid var(--tank);    }
 .map-chip.damage  { border-left:2px solid var(--damage);  }
 .map-chip.support { border-left:2px solid var(--support); }
+
+.map-chip-clickable{
+  cursor:pointer;
+}
+
+.map-chip-clickable:hover{
+  background:#0d0d0d;
+}
+
+.map-chip-clickable:focus-visible{
+  outline:2px solid var(--orange);
+  outline-offset:2px;
+}
 
 /* ── Team Comps ── */
 
