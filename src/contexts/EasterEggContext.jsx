@@ -1,12 +1,15 @@
 import { createContext, useContext, useCallback, useEffect, useRef, useState } from "react";
 import { EASTER_EGGS } from "../data/easterEggs";
 import { getUnlockedEasterEggs, unlockEasterEgg, EASTER_EGG_EVENT } from "../data/easterEggStorage";
+import { getEasterEggsFor, saveEasterEggsFor } from "../data/storage";
+import { useAuth } from "./AuthContext";
 import { useIsDesktop } from "../hooks/useIsDesktop";
 
 const EasterEggContext = createContext(null);
 
 export function EasterEggProvider({ children }) {
   const isDesktop = useIsDesktop();
+  const { currentUser } = useAuth();
   const [unlocked, setUnlocked] = useState(() => new Set(getUnlockedEasterEggs()));
   const [activeEffect, setActiveEffect] = useState(null); // { id, nonce }
   const [toasts, setToasts] = useState([]);
@@ -20,6 +23,26 @@ export function EasterEggProvider({ children }) {
     return () => window.removeEventListener(EASTER_EGG_EVENT, onUnlock);
   }, []);
 
+  // Merge pre-login anonymous discoveries into the account once per login.
+  useEffect(() => {
+    if (!currentUser) return;
+    let cancelled = false;
+    async function syncFromAccount() {
+      const remoteIds = await getEasterEggsFor(currentUser.id).catch(() => []);
+      if (cancelled) return;
+      setUnlocked(prev => {
+        const merged = new Set(prev);
+        for (const id of remoteIds) merged.add(id);
+        if (merged.size > remoteIds.length) {
+          saveEasterEggsFor(currentUser.id, [...merged]).catch(() => {});
+        }
+        return merged;
+      });
+    }
+    syncFromAccount();
+    return () => { cancelled = true; };
+  }, [currentUser]);
+
   const trigger = useCallback((id) => {
     if (!isDesktop) return;
     const egg = EASTER_EGGS.find(e => e.id === id);
@@ -31,8 +54,11 @@ export function EasterEggProvider({ children }) {
     const isNew = unlockEasterEgg(id);
     if (isNew) {
       setToasts(prev => [...prev, { key: nonceRef.current, hero: egg.hero, name: egg.name }]);
+      if (currentUser) {
+        saveEasterEggsFor(currentUser.id, [...unlocked, id]).catch(() => {});
+      }
     }
-  }, [isDesktop]);
+  }, [isDesktop, currentUser, unlocked]);
 
   const dismissToast = useCallback((key) => {
     setToasts(prev => prev.filter(t => t.key !== key));

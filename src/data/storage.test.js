@@ -11,7 +11,7 @@ let fakeSessions = []; // { token, user_id }
 let fakeAcademyData = {}; // user_id -> { progress, streak, badges, certs, quizzes }
 let fakeMatches = []; // { id, user_id, data, created_at, edited_at, seq }
 let fakeMatchSeq = 0;
-let fakeUserPrefs = {}; // user_id -> { main_heroes, main_heroes_prefs, competitive_ranks, competitive_ranks_prefs, badge_panel_prefs, sent_notifications }
+let fakeUserPrefs = {}; // user_id -> { main_heroes, main_heroes_prefs, competitive_ranks, competitive_ranks_prefs, badge_panel_prefs, sent_notifications, easter_eggs }
 let fakeCustomEvents = []; // { id, user_id, data, created_at, updated_at, seq }
 let fakeCustomEventSeq = 0;
 let fakeFriends = []; // { user_id, friend_id }
@@ -72,6 +72,7 @@ function fakeUserPrefsRow(userId) {
       competitive_ranks_prefs: { color: '#ff9c00' },
       badge_panel_prefs: { color: '#ff9c00', selectedBadgeIds: [] },
       sent_notifications: {},
+      easter_eggs: [],
     };
   }
   return fakeUserPrefs[userId];
@@ -247,6 +248,7 @@ class FakeRpcBuilder {
           competitiveRanksPrefs: 'competitive_ranks_prefs',
           badgePanelPrefs: 'badge_panel_prefs',
           sentNotifications: 'sent_notifications',
+          easterEggs: 'easter_eggs',
         };
         const column = fieldMap[p_field];
         if (!column) throw new Error(`Unknown user_prefs field: ${p_field}`);
@@ -458,6 +460,7 @@ import {
   getCompetitiveRanks, saveCompetitiveRanks, getCompetitiveRanksPrefs, setCompetitiveRanksPrefs,
   getMainHeroes, saveMainHeroes, getMainHeroesPrefs, setMainHeroesPrefs,
   getBadgePanelPrefs, setBadgePanelPrefs, getSentNotifications, saveSentNotifications,
+  getEasterEggsFor, saveEasterEggsFor,
   getFriends, removeFriend,
   getFriendRequests, getOutboundRequests, sendFriendRequest, acceptFriendRequest, cancelFriendRequest, declineFriendRequest,
   getDMMessages, getDMConversations, sendDM, deleteDM, markDMRead, getTotalDMUnread, reactToDM,
@@ -984,6 +987,7 @@ describe('user preferences (main heroes, competitive ranks, badge panel, notific
     expect(await getCompetitiveRanksPrefs(user.id)).toEqual({ color: '#ff9c00' });
     expect(await getBadgePanelPrefs(user.id)).toEqual({ color: '#ff9c00', selectedBadgeIds: [] });
     expect(await getSentNotifications(user.id)).toEqual({});
+    expect(await getEasterEggsFor(user.id)).toEqual([]);
   });
 
   it('saves and reads back each preference field independently', async () => {
@@ -994,6 +998,7 @@ describe('user preferences (main heroes, competitive ranks, badge panel, notific
     await setCompetitiveRanksPrefs(user.id, { color: '#a78bfa' });
     await setBadgePanelPrefs(user.id, { color: '#4ade80', selectedBadgeIds: ['b1'] });
     await saveSentNotifications(user.id, { 'ev1_dayof_2026-08-01': true });
+    await saveEasterEggsFor(user.id, ['dva']);
 
     expect(await getMainHeroes(user.id)).toEqual([{ heroId: 'ana' }]);
     expect(await getMainHeroesPrefs(user.id)).toEqual({ color: '#60a5fa' });
@@ -1001,6 +1006,7 @@ describe('user preferences (main heroes, competitive ranks, badge panel, notific
     expect(await getCompetitiveRanksPrefs(user.id)).toEqual({ color: '#a78bfa' });
     expect(await getBadgePanelPrefs(user.id)).toEqual({ color: '#4ade80', selectedBadgeIds: ['b1'] });
     expect(await getSentNotifications(user.id)).toEqual({ 'ev1_dayof_2026-08-01': true });
+    expect(await getEasterEggsFor(user.id)).toEqual(['dva']);
   });
 
   it('rejects preference access without a valid session', async () => {
@@ -1042,5 +1048,22 @@ describe('viewing a friend\'s profile data', () => {
     saveSession(stranger.id, stranger.session_token);
     await expect(getMainHeroes(alice.id)).rejects.toThrow('Not authorized to view this profile.');
     await expect(getMatches(alice.id)).rejects.toThrow('Not authorized to view this profile.');
+  });
+
+  it('lets a friend read your unlocked easter eggs', async () => {
+    const alice = await registerAndSignIn('ViewAlice3');
+    await saveEasterEggsFor(alice.id, ['dva']);
+
+    const bob = await createUser({ username: 'ViewBob3', password: 'p', avatar: 'b.png' });
+    saveSession(bob.id, bob.session_token);
+
+    await expect(getEasterEggsFor(alice.id)).rejects.toThrow('Not authorized to view this profile.');
+
+    saveSession(alice.id, alice.session_token);
+    await sendFriendRequest(alice.id, bob.id);
+    saveSession(bob.id, bob.session_token);
+    await acceptFriendRequest(bob.id, alice.id);
+
+    expect(await getEasterEggsFor(alice.id)).toEqual(['dva']);
   });
 });

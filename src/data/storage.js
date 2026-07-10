@@ -491,6 +491,15 @@ export async function setBadgePanelPrefs(userId, prefs) {
   await saveUserPrefField(userId, 'badgePanelPrefs', prefs);
 }
 
+export async function getEasterEggsFor(userId) {
+  const row = await fetchUserPrefs(userId);
+  return row.easter_eggs ?? [];
+}
+
+export async function saveEasterEggsFor(userId, unlockedIds) {
+  await saveUserPrefField(userId, 'easterEggs', unlockedIds);
+}
+
 export async function saveAcademyCerts(userId, certs) {
   await saveAcademyField(userId, 'certs', certs);
 }

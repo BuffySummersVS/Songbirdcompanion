@@ -1,5 +1,8 @@
+import { useEffect, useState } from "react";
 import { EASTER_EGGS, EASTER_EGG_COUNT } from "../../data/easterEggs";
 import { useEasterEggs } from "../../contexts/EasterEggContext";
+import { getEasterEggsFor } from "../../data/storage";
+import { useIsDesktop } from "../../hooks/useIsDesktop";
 
 function LockGlyph() {
   return (
@@ -19,11 +22,7 @@ function StarGlyph() {
   );
 }
 
-export default function EasterEggSection() {
-  const eggs = useEasterEggs();
-  if (!eggs?.isDesktop) return null;
-
-  const { unlocked } = eggs;
+function EggGrid({ unlocked }) {
   const discoveredCount = unlocked.size;
 
   return (
@@ -59,4 +58,33 @@ export default function EasterEggSection() {
       </div>
     </div>
   );
+}
+
+function OwnEasterEggSection() {
+  const eggs = useEasterEggs();
+  if (!eggs?.isDesktop) return null;
+  return <EggGrid unlocked={eggs.unlocked} />;
+}
+
+function ReadOnlyEasterEggSection({ userId }) {
+  const isDesktop = useIsDesktop();
+  const [unlockedIds, setUnlockedIds] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    getEasterEggsFor(userId).then(ids => {
+      if (!cancelled) setUnlockedIds(ids);
+    }).catch(() => {
+      if (!cancelled) setUnlockedIds([]);
+    });
+    return () => { cancelled = true; };
+  }, [userId]);
+
+  if (!isDesktop || unlockedIds === null) return null;
+  return <EggGrid unlocked={new Set(unlockedIds)} />;
+}
+
+export default function EasterEggSection({ userId, readOnly = false } = {}) {
+  if (readOnly) return <ReadOnlyEasterEggSection userId={userId} />;
+  return <OwnEasterEggSection />;
 }

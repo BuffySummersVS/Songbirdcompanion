@@ -5,6 +5,7 @@ import ProfileStats from './ProfileStats';
 import AcademyBadgePanel from './AcademyBadgePanel';
 import CompetitiveRanksPanel from '../CompetitiveRanksPanel.jsx';
 import MainHeroesPanel from '../MainHeroesPanel.jsx';
+import EasterEggSection from '../easter-eggs/EasterEggSection.jsx';
 
 export default function FriendProfile({ friendId, onBack }) {
   const [friend, setFriend] = useState(null);
@@ -58,6 +59,8 @@ export default function FriendProfile({ friendId, onBack }) {
       </div>
 
       <ProfileStats matches={matches} />
+
+      <EasterEggSection userId={friend.id} readOnly />
     </div>
   );
 }
