@@ -1,10 +1,12 @@
 ﻿import { useCallback, useEffect, useMemo, useRef, useState, lazy, Suspense } from "react";
 import { heroes } from "./data/heroes";
 import mapsData from "./data/maps.json";
+import { version as APP_VERSION } from "../package.json";
 import { PAGE_ROUTES, HEROES_BASE, MAPS_BASE, heroPath, mapPath, heroMeta, mapMeta, homeMeta } from "./routes";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { EasterEggProvider } from "./contexts/EasterEggContext";
 import EasterEggRoot from "./components/easter-eggs/EasterEggRoot";
+import EggDebugPanel from "./components/easter-eggs/EggDebugPanel";
 import { getAvatarSrc } from "./data/avatars";
 import { getFriendRequests, acceptFriendRequest, declineFriendRequest, getFriends, getUserById, getTotalDMUnread } from "./data/storage";
 import AuthModal from "./components/AuthPage";
@@ -108,6 +110,7 @@ export default function App() {
       <EasterEggProvider>
         <AppInner />
         <EasterEggRoot />
+        {import.meta.env.DEV && <EggDebugPanel />}
       </EasterEggProvider>
     </AuthProvider>
   );
@@ -347,6 +350,7 @@ function AppInner() {
   return (
     <div className="app">
       <header className="hero-header">
+        <span className="version-stamp">v{APP_VERSION}</span>
 
         {/* Top-left button group: Notifications + Direct Messages */}
         {currentUser && (

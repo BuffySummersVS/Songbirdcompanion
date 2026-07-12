@@ -201,6 +201,17 @@ body{
   font-size:1.2rem;
 }
 
+.version-stamp{
+  position:absolute;
+  bottom:10px;
+  left:5%;
+  color:var(--grey);
+  font-size:.68rem;
+  letter-spacing:.05em;
+  opacity:.55;
+  font-family:"Rajdhani",sans-serif;
+}
+
 .main-shell{
   width:min(1500px,92%);
   margin:auto;
@@ -3398,6 +3409,7 @@ button.dashboard-card:hover{
   .hero-header h1{ font-size:clamp(2rem,10vw,4rem); }
   .tagline{ font-size:.8rem; letter-spacing:.08em; }
   .eyebrow{ font-size:.7rem; padding:0 90px; }
+  .version-stamp{ left:12px; bottom:6px; font-size:.62rem; }
   .app-logo{ width:clamp(50px,12vw,90px); height:auto; }
   .app-logo-wrap{ margin-bottom:10px; }
 
