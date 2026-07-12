@@ -60,6 +60,7 @@ export default function HeroProfile({ hero, onClose, onOpenCounterWatch, onOpenH
   const handleJunkratUltClick = useClickTrigger({ times: 10, onComplete: () => triggerEgg("junkrat") });
   const handleLucioNameClick = useClickTrigger({ times: 3, windowMs: 700, onComplete: () => triggerEgg("lucio") });
   const handleLifeweaverTreeClick = useClickTrigger({ times: 3, onComplete: () => triggerEgg("lifeweaver") });
+  const handleMizukiNameClick = useClickTrigger({ times: 5, onComplete: () => triggerEgg("mizuki") });
 
   if (!hero) return null;
 
@@ -89,6 +90,7 @@ export default function HeroProfile({ hero, onClose, onOpenCounterWatch, onOpenH
               onClick={
                 hero.id === "kiriko" ? () => triggerEgg("kiriko") :
                 hero.id === "lucio" ? handleLucioNameClick :
+                hero.id === "mizuki" ? handleMizukiNameClick :
                 undefined
               }
             >

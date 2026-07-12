@@ -911,6 +911,23 @@
 }
 
 /* ══════════════════════════════════════════════════════════════════════
+   Mizuki — Healing Kasa (mobile-exclusive)
+   ══════════════════════════════════════════════════════════════════════ */
+.mzk-fx-dim{
+  position:fixed;
+  inset:0;
+  background:#04120c;
+}
+.mzk-fx-kasa{
+  position:fixed;
+  left:0;
+  top:0;
+  width:min(20vw,220px);
+  height:auto;
+  will-change:transform,opacity;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
    Secret Archives — profile page section
    ══════════════════════════════════════════════════════════════════════ */
 .egg-section-header{

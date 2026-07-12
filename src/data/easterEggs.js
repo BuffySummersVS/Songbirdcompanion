@@ -28,6 +28,7 @@ export const DESKTOP_EASTER_EGG_COUNT = DESKTOP_EASTER_EGGS.length;
 // shown (grid cards, toasts, friend-view boxes).
 export const MOBILE_EASTER_EGGS = [
   { id: "lifeweaver", hero: "Lifeweaver", name: "Tree of Life (Mobile)" },
+  { id: "mizuki",     hero: "Mizuki",     name: "Healing Kasa (Mobile)" },
 ];
 
 export const MOBILE_EASTER_EGG_COUNT = MOBILE_EASTER_EGGS.length;
