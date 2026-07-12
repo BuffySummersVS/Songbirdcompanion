@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 
-const UPDATE_MESSAGE = "🎉 Coming on July 14th: App goes live for Android on Google Play Store! 🎉";
+const UPDATE_MESSAGE = "🎉 Coming soon: App goes live for Android on Google Play Store! 🎉";
 
 export default function UpdatesBanner() {
   const prefersReducedMotion = useReducedMotion();
