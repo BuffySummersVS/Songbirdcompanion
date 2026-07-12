@@ -1,5 +1,5 @@
 import { createContext, useContext, useCallback, useEffect, useRef, useState } from "react";
-import { EASTER_EGGS } from "../data/easterEggs";
+import { DESKTOP_EASTER_EGGS, MOBILE_EASTER_EGGS } from "../data/easterEggs";
 import { getUnlockedEasterEggs, unlockEasterEgg, EASTER_EGG_EVENT } from "../data/easterEggStorage";
 import { getEasterEggsFor, saveEasterEggsFor } from "../data/storage";
 import { useAuth } from "./AuthContext";
@@ -44,8 +44,10 @@ export function EasterEggProvider({ children }) {
   }, [currentUser]);
 
   const trigger = useCallback((id) => {
-    if (!isDesktop) return;
-    const egg = EASTER_EGGS.find(e => e.id === id);
+    const isMobileEgg = MOBILE_EASTER_EGGS.some(e => e.id === id);
+    if (isMobileEgg && isDesktop) return; // mobile-exclusive eggs never fire on desktop
+    if (!isMobileEgg && !isDesktop) return; // desktop-exclusive eggs never fire on mobile
+    const egg = (isMobileEgg ? MOBILE_EASTER_EGGS : DESKTOP_EASTER_EGGS).find(e => e.id === id);
     if (!egg) return;
 
     nonceRef.current += 1;

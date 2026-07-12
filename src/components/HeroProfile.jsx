@@ -59,6 +59,7 @@ export default function HeroProfile({ hero, onClose, onOpenCounterWatch, onOpenH
   const handleReinhardtPortraitClick = useClickTrigger({ times: 10, onComplete: () => triggerEgg("reinhardt") });
   const handleJunkratUltClick = useClickTrigger({ times: 10, onComplete: () => triggerEgg("junkrat") });
   const handleLucioNameClick = useClickTrigger({ times: 3, windowMs: 700, onComplete: () => triggerEgg("lucio") });
+  const handleLifeweaverTreeClick = useClickTrigger({ times: 3, onComplete: () => triggerEgg("lifeweaver") });
 
   if (!hero) return null;
 
@@ -193,6 +194,7 @@ export default function HeroProfile({ hero, onClose, onOpenCounterWatch, onOpenH
               onClick={
                 hero.ultimate.name === "Molten Core" ? () => triggerEgg("torbjorn") :
                 hero.ultimate.name === "RIP-Tire" ? handleJunkratUltClick :
+                hero.ultimate.name === "Tree of Life" ? handleLifeweaverTreeClick :
                 undefined
               }
             >

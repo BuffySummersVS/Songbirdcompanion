@@ -23,6 +23,7 @@ const EFFECTS = {
   newyears:   lazy(() => import("./effects/NewYearsSpark.jsx")),
   aprilfools: lazy(() => import("./effects/AprilFoolsConfetti.jsx")),
   valentines: lazy(() => import("./effects/ValentinesHearts.jsx")),
+  lifeweaver: lazy(() => import("./effects/LifeweaverTree.jsx")),
 };
 
 const SOMBRA_WORD = "sombra";
@@ -63,14 +64,14 @@ export default function EasterEggRoot() {
   const ctx = useEasterEggs();
   const reducedMotion = usePrefersReducedMotion();
 
-  if (!ctx?.isDesktop) return null;
+  if (!ctx) return null;
 
-  const { activeEffect, toasts, trigger, dismissToast, clearEffect } = ctx;
+  const { isDesktop, activeEffect, toasts, trigger, dismissToast, clearEffect } = ctx;
   const EffectComponent = activeEffect ? EFFECTS[activeEffect.id] : null;
 
   return createPortal(
     <div className="egg-root">
-      <GlobalKeyTriggers trigger={trigger} />
+      {isDesktop && <GlobalKeyTriggers trigger={trigger} />}
       <AchievementToastStack toasts={toasts} onDismiss={dismissToast} />
       {EffectComponent && (
         <Suspense fallback={null}>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { EASTER_EGGS, EASTER_EGG_COUNT } from "../../data/easterEggs";
+import { DESKTOP_EASTER_EGGS, DESKTOP_EASTER_EGG_COUNT, MOBILE_EASTER_EGGS, MOBILE_EASTER_EGG_COUNT } from "../../data/easterEggs";
 import { useEasterEggs } from "../../contexts/EasterEggContext";
 import { getEasterEggsFor } from "../../data/storage";
 import { useIsDesktop } from "../../hooks/useIsDesktop";
@@ -24,21 +24,21 @@ function StarGlyph() {
   );
 }
 
-function EggGrid({ unlocked }) {
-  const discoveredCount = unlocked.size;
+function EggGrid({ unlocked, eggs, count, title, subtitle }) {
+  const discoveredCount = eggs.filter(egg => unlocked.has(egg.id)).length;
 
   return (
     <div className="profile-section egg-section">
       <div className="egg-section-header">
         <div>
-          <h3>Secret Archives</h3>
-          <p className="egg-section-sub">Hidden interactions scattered across SongBird, waiting to be found.</p>
+          <h3>{title}</h3>
+          <p className="egg-section-sub">{subtitle}</p>
         </div>
-        <span className="egg-section-progress">{discoveredCount} / {EASTER_EGG_COUNT} Discovered</span>
+        <span className="egg-section-progress">{discoveredCount} / {count} Discovered</span>
       </div>
 
       <div className="egg-section-grid">
-        {EASTER_EGGS.map(egg => {
+        {eggs.map(egg => {
           const isUnlocked = unlocked.has(egg.id);
           return (
             <div key={egg.id} className={`egg-card${isUnlocked ? " egg-card-unlocked" : " egg-card-locked"}`}>
@@ -64,31 +64,37 @@ function EggGrid({ unlocked }) {
 
 function OwnEasterEggSection() {
   const eggs = useEasterEggs();
-  if (!eggs?.isDesktop) return null;
-  return <EggGrid unlocked={eggs.unlocked} />;
+  const unlocked = eggs?.unlocked ?? new Set();
+
+  return (
+    <>
+      {eggs?.isDesktop && (
+        <EggGrid
+          unlocked={unlocked}
+          eggs={DESKTOP_EASTER_EGGS}
+          count={DESKTOP_EASTER_EGG_COUNT}
+          title="Secret Archives (Desktop)"
+          subtitle="Hidden interactions scattered across SongBird, waiting to be found."
+        />
+      )}
+      <EggGrid
+        unlocked={unlocked}
+        eggs={MOBILE_EASTER_EGGS}
+        count={MOBILE_EASTER_EGG_COUNT}
+        title="Secret Archives (Mobile)"
+        subtitle="Hidden interactions exclusive to the mobile app, waiting to be found."
+      />
+    </>
+  );
 }
 
-function ReadOnlyEasterEggSection({ userId }) {
-  const isDesktop = useIsDesktop();
-  const [unlockedIds, setUnlockedIds] = useState(null);
+function ReadOnlyArchivePanel({ unlocked, eggs, count, title }) {
   const [expanded, setExpanded] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    getEasterEggsFor(userId).then(ids => {
-      if (!cancelled) setUnlockedIds(ids);
-    }).catch(() => {
-      if (!cancelled) setUnlockedIds([]);
-    });
-    return () => { cancelled = true; };
-  }, [userId]);
 
   useEscapeKey(() => setExpanded(false), expanded);
   const panelRef = useFocusTrap(expanded);
 
-  if (!isDesktop || unlockedIds === null) return null;
-
-  const unlocked = new Set(unlockedIds);
+  const discoveredCount = eggs.filter(egg => unlocked.has(egg.id)).length;
 
   return (
     <>
@@ -101,7 +107,7 @@ function ReadOnlyEasterEggSection({ userId }) {
       >
         <div className="up-badge-panel-header">
           <span className="up-badge-panel-title">
-            Secret Archives<span className="up-badge-panel-count"> ({unlocked.size}/{EASTER_EGG_COUNT})</span>
+            {title}<span className="up-badge-panel-count"> ({discoveredCount}/{count})</span>
           </span>
         </div>
         <p className="up-badge-panel-empty">Click to view discovered eggs.</p>
@@ -118,10 +124,47 @@ function ReadOnlyEasterEggSection({ userId }) {
             onClick={e => e.stopPropagation()}
           >
             <button type="button" className="up-egg-modal-close" onClick={() => setExpanded(false)}>✕ Close</button>
-            <EggGrid unlocked={unlocked} />
+            <EggGrid unlocked={unlocked} eggs={eggs} count={count} title={title} subtitle="" />
           </div>
         </div>
       )}
+    </>
+  );
+}
+
+function ReadOnlyEasterEggSection({ userId }) {
+  const isDesktop = useIsDesktop();
+  const [unlockedIds, setUnlockedIds] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    getEasterEggsFor(userId).then(ids => {
+      if (!cancelled) setUnlockedIds(ids);
+    }).catch(() => {
+      if (!cancelled) setUnlockedIds([]);
+    });
+    return () => { cancelled = true; };
+  }, [userId]);
+
+  if (unlockedIds === null) return null;
+  const unlocked = new Set(unlockedIds);
+
+  return (
+    <>
+      {isDesktop && (
+        <ReadOnlyArchivePanel
+          unlocked={unlocked}
+          eggs={DESKTOP_EASTER_EGGS}
+          count={DESKTOP_EASTER_EGG_COUNT}
+          title="Secret Archives (Desktop)"
+        />
+      )}
+      <ReadOnlyArchivePanel
+        unlocked={unlocked}
+        eggs={MOBILE_EASTER_EGGS}
+        count={MOBILE_EASTER_EGG_COUNT}
+        title="Secret Archives (Mobile)"
+      />
     </>
   );
 }
