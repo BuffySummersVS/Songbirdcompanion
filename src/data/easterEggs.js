@@ -30,6 +30,9 @@ export const MOBILE_EASTER_EGGS = [
   { id: "lifeweaver", hero: "Lifeweaver", name: "Tree of Life (Mobile)" },
   { id: "mizuki",     hero: "Mizuki",     name: "Healing Kasa (Mobile)" },
   { id: "hazard",     hero: "Hazard",     name: "Jagged Wall (Mobile)" },
+  { id: "moira",      hero: "Moira",      name: "Biotic Barrage (Mobile)" },
+  { id: "mei",        hero: "Mei",        name: "Snowball Surprise (Mobile)" },
+  { id: "reaper",     hero: "Reaper",     name: "Wraith Form (Mobile)" },
 ];
 
 export const MOBILE_EASTER_EGG_COUNT = MOBILE_EASTER_EGGS.length;

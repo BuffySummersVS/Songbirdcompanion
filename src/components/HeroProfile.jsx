@@ -61,6 +61,9 @@ export default function HeroProfile({ hero, onClose, onOpenCounterWatch, onOpenH
   const handleLucioNameClick = useClickTrigger({ times: 3, windowMs: 700, onComplete: () => triggerEgg("lucio") });
   const handleLifeweaverTreeClick = useClickTrigger({ times: 3, onComplete: () => triggerEgg("lifeweaver") });
   const handleMizukiNameClick = useClickTrigger({ times: 5, onComplete: () => triggerEgg("mizuki") });
+  const handleMoiraOrbClick = useClickTrigger({ times: 2, windowMs: 600, onComplete: () => triggerEgg("moira") });
+  const handleMeiNameClick = useClickTrigger({ times: 5, onComplete: () => triggerEgg("mei") });
+  const handleReaperWraithClick = useClickTrigger({ times: 3, onComplete: () => triggerEgg("reaper") });
 
   if (!hero) return null;
 
@@ -91,6 +94,7 @@ export default function HeroProfile({ hero, onClose, onOpenCounterWatch, onOpenH
                 hero.id === "kiriko" ? () => triggerEgg("kiriko") :
                 hero.id === "lucio" ? handleLucioNameClick :
                 hero.id === "mizuki" ? handleMizukiNameClick :
+                hero.id === "mei" ? handleMeiNameClick :
                 undefined
               }
             >
@@ -175,6 +179,11 @@ export default function HeroProfile({ hero, onClose, onOpenCounterWatch, onOpenH
                   className="ability-detail"
                   key={ability.name}
                   onDoubleClick={ability.name === "Sleep Dart" ? () => triggerEgg("ana") : undefined}
+                  onClick={
+                    ability.name === "Biotic Orb" ? handleMoiraOrbClick :
+                    ability.name === "Wraith Form" ? handleReaperWraithClick :
+                    undefined
+                  }
                 >
                   <h4>{ability.name}</h4>
                   <p>{ability.description}</p>

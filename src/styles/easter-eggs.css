@@ -869,44 +869,28 @@
   inset:0;
   background:#0a0710;
 }
-.lw-fx-tree{
+.lw-fx-tree-img{
   position:fixed;
   left:50%;
-  bottom:8vh;
+  bottom:4vh;
+  width:min(112vw,820px);
+  margin-left:calc(min(112vw,820px) / -2);
+  height:auto;
+  transform-origin:bottom center;
+  will-change:transform,opacity,clip-path;
+}
+.lw-fx-petal-origin{
+  position:fixed;
+  left:50%;
+  bottom:24vh;
   width:0;
   height:0;
-  transform:scale(3.2);
-}
-.lw-fx-glow{
-  position:absolute;
-  left:0;
-  bottom:40px;
-  width:260px;
-  height:260px;
-  margin:0 0 0 -130px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(255,182,213,.55),rgba(255,140,200,.25) 45%,transparent 72%);
-  will-change:transform,opacity;
-}
-.lw-fx-trunk{
-  position:absolute;
-  left:-20px;
-  bottom:0;
-  width:40px;
-  height:90px;
-  overflow:visible;
-}
-.lw-fx-bloom{
-  position:absolute;
-  border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#fff3f8,#ffc2de 55%,#ff8fc4 85%);
-  box-shadow:0 0 8px 2px rgba(255,140,200,.45);
-  will-change:transform,opacity;
 }
 .lw-fx-petal{
   position:absolute;
   border-radius:60% 20% 60% 20%;
-  background:linear-gradient(160deg,#ffe1ee,#ff9fcb);
+  background:linear-gradient(160deg,#fff5fa,#ff9fcb 55%,#ff5fa3 100%);
+  box-shadow:0 0 9px 2px rgba(255,255,255,.55);
   will-change:transform,opacity;
 }
 
@@ -965,6 +949,74 @@
   right:0;
   clip-path:polygon(100% 0%,100% 100%,24% 78%,0% 50%,24% 22%);
   transform-origin:right center;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Moira — Biotic Barrage (mobile-exclusive)
+   ══════════════════════════════════════════════════════════════════════ */
+.moira-fx-orb{
+  position:fixed;
+  left:0;
+  top:0;
+  width:84px;
+  height:84px;
+  margin:-42px 0 0 -42px;
+  will-change:transform,opacity;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Mei — Snowball Surprise (mobile-exclusive)
+   ══════════════════════════════════════════════════════════════════════ */
+.mei-fx-frost{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(ellipse at 50% 50%,transparent 42%,rgba(64,160,224,.2) 66%,rgba(20,110,190,.68) 100%);
+  box-shadow:inset 0 0 90px 30px rgba(20,110,190,.65), inset 0 0 22px 7px rgba(200,235,255,.75);
+}
+.mei-fx-snow-layer{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+}
+.mei-fx-snowflake{
+  position:absolute;
+  top:0;
+  border-radius:50%;
+  background:#fff;
+  will-change:transform;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Reaper — Wraith Form (mobile-exclusive)
+   ══════════════════════════════════════════════════════════════════════ */
+@keyframes reaper-fx-distort-kf{
+  0%   { transform:scale(1) skew(0deg,0deg); }
+  20%  { transform:scale(1.015) skew(-1deg,.4deg); }
+  40%  { transform:scale(.99) skew(1.2deg,-.5deg); }
+  60%  { transform:scale(1.01) skew(-.6deg,.3deg); }
+  80%  { transform:scale(.995) skew(.5deg,-.2deg); }
+  100% { transform:scale(1) skew(0deg,0deg); }
+}
+.reaper-fx-distort{ animation:reaper-fx-distort-kf .5s ease-in-out; }
+
+.reaper-fx-dim{
+  position:fixed;
+  inset:0;
+  background:#0a0403;
+}
+.reaper-fx-flicker{
+  position:fixed;
+  inset:0;
+  background:#b31a1a;
+}
+.reaper-fx-smoke{
+  position:fixed;
+  border-radius:50%;
+  /* Off-centre hotspot (not a perfectly symmetric circle) so the rotate
+     animation reads as swirling instead of a static disc spinning in place.
+     A faint reddish cast on otherwise near-black tones, not a visible red. */
+  background:radial-gradient(circle at 37% 33%,rgba(46,30,28,.55),rgba(18,13,12,.42) 52%,transparent 76%);
+  will-change:transform,opacity;
 }
 
 /* ══════════════════════════════════════════════════════════════════════

@@ -26,6 +26,9 @@ const EFFECTS = {
   lifeweaver: lazy(() => import("./effects/LifeweaverTree.jsx")),
   mizuki: lazy(() => import("./effects/MizukiKasa.jsx")),
   hazard: lazy(() => import("./effects/HazardCrystals.jsx")),
+  moira: lazy(() => import("./effects/MoiraBioticBarrage.jsx")),
+  mei: lazy(() => import("./effects/MeiSnowballSurprise.jsx")),
+  reaper: lazy(() => import("./effects/ReaperWraithForm.jsx")),
 };
 
 const SOMBRA_WORD = "sombra";
