@@ -25,6 +25,7 @@ const EFFECTS = {
   valentines: lazy(() => import("./effects/ValentinesHearts.jsx")),
   lifeweaver: lazy(() => import("./effects/LifeweaverTree.jsx")),
   mizuki: lazy(() => import("./effects/MizukiKasa.jsx")),
+  hazard: lazy(() => import("./effects/HazardCrystals.jsx")),
 };
 
 const SOMBRA_WORD = "sombra";

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { getMatches } from '../data/storage';
 import { heroes } from '../data/heroes';
+import { useHazardSearchTrigger } from '../hooks/useHazardSearchTrigger';
 
 const SORTS = [
   { key: 'total',  label: 'Most Played' },
@@ -15,6 +16,7 @@ export default function HeroStats({ onBack }) {
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const checkHazardTrigger = useHazardSearchTrigger();
   const [sort, setSort]     = useState('total');
   const [filter, setFilter] = useState('All');
 
@@ -67,7 +69,7 @@ export default function HeroStats({ onBack }) {
           className="hero-search"
           placeholder="Search heroes…"
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={e => { setSearch(e.target.value); checkHazardTrigger(e.target.value); }}
           style={{ marginBottom: '16px' }}
         />
         <div className="filter-row">

@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { CUSTOM_GAMES } from "../data/customGames";
+import { useHazardSearchTrigger } from "../hooks/useHazardSearchTrigger";
 
 const ALL_CATEGORIES = ["All", ...Array.from(new Set(CUSTOM_GAMES.map(g => g.category))).sort()];
 
@@ -9,6 +10,7 @@ function categoryClass(cat) {
 
 export default function CustomGames() {
   const [search, setSearch]     = useState("");
+  const checkHazardTrigger = useHazardSearchTrigger();
   const [category, setCategory] = useState("All");
   const [copied, setCopied]     = useState(null);
 
@@ -41,7 +43,7 @@ export default function CustomGames() {
           className="hero-search"
           placeholder="Search by name, code, or category…"
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={e => { setSearch(e.target.value); checkHazardTrigger(e.target.value); }}
         />
         <div className="terms-category-bar">
           {ALL_CATEGORIES.map(cat => (

@@ -15,6 +15,7 @@ async function resolveFriendUsers(userId) {
 
 import { toast } from '../../utils/toast';
 import { useEscapeKey } from '../../hooks/useEscapeKey';
+import { useHazardSearchTrigger } from '../../hooks/useHazardSearchTrigger';
 import { containsProfanity } from '../../data/profanity';
 import { PasswordInput } from '../AuthPage';
 import { getAvatarSrc } from '../../data/avatars';
@@ -35,6 +36,7 @@ const LearningInsights = lazy(() => import('../academy/LearningInsights.jsx'));
 export default function UserProfile({ viewingFriendId, setViewingFriendId, onNavigateToStats, onOpenAcademy }) {
   const { currentUser, logout, updateProfile } = useAuth();
   const [matches, setMatches] = useState([]);
+  const checkHazardTrigger = useHazardSearchTrigger();
 
   useEffect(() => {
     let cancelled = false;
@@ -88,6 +90,7 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
   async function handleFriendSearch(e) {
     const q = e.target.value;
     setFriendQuery(q);
+    checkHazardTrigger(q);
     setSearchResults(await searchUsers(q));
   }
 

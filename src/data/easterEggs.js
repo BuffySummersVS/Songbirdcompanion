@@ -29,6 +29,7 @@ export const DESKTOP_EASTER_EGG_COUNT = DESKTOP_EASTER_EGGS.length;
 export const MOBILE_EASTER_EGGS = [
   { id: "lifeweaver", hero: "Lifeweaver", name: "Tree of Life (Mobile)" },
   { id: "mizuki",     hero: "Mizuki",     name: "Healing Kasa (Mobile)" },
+  { id: "hazard",     hero: "Hazard",     name: "Jagged Wall (Mobile)" },
 ];
 
 export const MOBILE_EASTER_EGG_COUNT = MOBILE_EASTER_EGGS.length;

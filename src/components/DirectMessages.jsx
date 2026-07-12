@@ -6,6 +6,7 @@ import {
 } from '../data/storage';
 import { getAvatarSrc } from '../data/avatars';
 import { useEscapeKey } from '../hooks/useEscapeKey';
+import { useHazardSearchTrigger } from '../hooks/useHazardSearchTrigger';
 import { toast } from '../utils/toast';
 import Modal from './Modal';
 
@@ -49,6 +50,7 @@ export default function DirectMessages({ onClose }) {
   const [emojiMode, setEmojiMode] = useState(null); // 'input' | 'react-full' | null
   const [emojiCat, setEmojiCat] = useState('Smileys');
   const [emojiSearch, setEmojiSearch] = useState('');
+  const checkHazardTrigger = useHazardSearchTrigger();
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -315,7 +317,7 @@ export default function DirectMessages({ onClose }) {
                     className="dm-emoji-search"
                     placeholder="Search emoji…"
                     value={emojiSearch}
-                    onChange={e => setEmojiSearch(e.target.value)}
+                    onChange={e => { setEmojiSearch(e.target.value); checkHazardTrigger(e.target.value); }}
                     autoFocus
                   />
                 </div>
@@ -381,7 +383,7 @@ export default function DirectMessages({ onClose }) {
                       className="dm-emoji-search"
                       placeholder="Search emoji…"
                       value={emojiSearch}
-                      onChange={e => setEmojiSearch(e.target.value)}
+                      onChange={e => { setEmojiSearch(e.target.value); checkHazardTrigger(e.target.value); }}
                       autoFocus
                     />
                   </div>

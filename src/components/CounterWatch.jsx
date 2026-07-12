@@ -5,6 +5,7 @@ import HeroPickerGrid from "./HeroPickerGrid";
 import MatchupPanels from "./MatchupPanels";
 import { useEscapeKey } from "../hooks/useEscapeKey";
 import { useFocusTrap } from "../hooks/useFocusTrap";
+import { useHazardSearchTrigger } from "../hooks/useHazardSearchTrigger";
 
 const TIP_INTERVAL = 11000;
 
@@ -46,6 +47,7 @@ function TipBanner() {
 
 export default function CounterWatch({ initialHero }) {
   const [search, setSearch] = useState("");
+  const checkHazardTrigger = useHazardSearchTrigger();
   const [selected, setSelected] = useState(initialHero ?? null);
   const [syncedHeroId, setSyncedHeroId] = useState(initialHero?.id);
   const [reasonOpen, setReasonOpen] = useState(false);
@@ -73,7 +75,7 @@ export default function CounterWatch({ initialHero }) {
           className="hero-search"
           placeholder="Search heroes…"
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={e => { setSearch(e.target.value); checkHazardTrigger(e.target.value); }}
         />
         <HeroPickerGrid
           heroes={filtered}

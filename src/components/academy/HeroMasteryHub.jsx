@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { MASTERY_RANKS, getHeroMasteryRank } from '../../academy/masteryEngine.js';
 import { pathCompletionPercent } from '../../academy/engine.js';
 import HeroMasteryCard from './HeroMasteryCard.jsx';
+import { useHazardSearchTrigger } from '../../hooks/useHazardSearchTrigger.js';
 
 const ROLES = ['All', 'Tank', 'Damage', 'Support'];
 
@@ -12,6 +13,7 @@ function roleFromPath(path) {
 export default function HeroMasteryHub({ heroPaths, progress, earnedBadges, allBadges, onSelectPath }) {
   const [roleFilter, setRoleFilter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const checkHazardTrigger = useHazardSearchTrigger();
   const [rankFilter, setRankFilter] = useState('All');
 
   const filtered = useMemo(() => {
@@ -103,7 +105,7 @@ export default function HeroMasteryHub({ heroPaths, progress, earnedBadges, allB
             className="hm-search-input"
             placeholder="Search heroes…"
             value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
+            onChange={e => { setSearchQuery(e.target.value); checkHazardTrigger(e.target.value); }}
           />
           {searchQuery && (
             <button type="button" className="hm-search-clear" onClick={() => setSearchQuery('')}>✕</button>

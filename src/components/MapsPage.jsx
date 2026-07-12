@@ -4,6 +4,7 @@ import mapsData from "../data/maps.json";
 import mapPickReasons from "../data/mapPickReasons.json";
 import { useEscapeKey } from "../hooks/useEscapeKey";
 import { useFocusTrap } from "../hooks/useFocusTrap";
+import { useHazardSearchTrigger } from "../hooks/useHazardSearchTrigger";
 
 const GAME_MODES = ["All", "Escort", "Hybrid", "Control", "Push", "Flashpoint", "Clash"];
 
@@ -101,6 +102,7 @@ function MapPickReasonModal({ hero, mapName, category, onClose }) {
 
 export default function MapsPage({ focusMapId = null, onSelectMap, onClearFocus }) {
   const [search, setSearch]     = useState("");
+  const checkHazardTrigger = useHazardSearchTrigger();
   const [modeFilter, setModeFilter] = useState("All");
   const [openReasonFor, setOpenReasonFor] = useState(null);
 
@@ -255,7 +257,7 @@ export default function MapsPage({ focusMapId = null, onSelectMap, onClearFocus 
           className="hero-search"
           placeholder="Search by map or hero name…"
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={e => { setSearch(e.target.value); checkHazardTrigger(e.target.value); }}
         />
         <div className="map-mode-filter">
           {GAME_MODES.map(mode => (

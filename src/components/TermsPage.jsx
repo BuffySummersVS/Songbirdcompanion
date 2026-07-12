@@ -1,12 +1,14 @@
 import { useState, useMemo } from "react";
 import { TERMS } from "../data/terms";
 import { useEscapeKey } from "../hooks/useEscapeKey";
+import { useHazardSearchTrigger } from "../hooks/useHazardSearchTrigger";
 import Modal, { ModalHeader } from "./Modal";
 
 const CATEGORIES = ["All", ...Array.from(new Set(TERMS.map(t => t.category))).sort()];
 
 export default function TermsPage() {
   const [search, setSearch]     = useState("");
+  const checkHazardTrigger = useHazardSearchTrigger();
   const [category, setCategory] = useState("All");
   const [expanded, setExpanded] = useState(null);
   const [linesModalTerm, setLinesModalTerm] = useState(null);
@@ -44,7 +46,7 @@ export default function TermsPage() {
           className="hero-search"
           placeholder="Search terms…"
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={e => { setSearch(e.target.value); checkHazardTrigger(e.target.value); }}
         />
         <div className="terms-category-bar">
           {CATEGORIES.map(c => (

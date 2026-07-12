@@ -2,6 +2,7 @@ import { useState } from "react";
 import { heroes } from "../data/heroes";
 import { COMP_STYLES, HERO_COMP_FIT } from "../data/compStyles";
 import HeroPickerGrid from "./HeroPickerGrid";
+import { useHazardSearchTrigger } from "../hooks/useHazardSearchTrigger";
 
 const SLOT_ROLES = ["Tank", "Damage", "Damage", "Support", "Support"];
 
@@ -9,6 +10,7 @@ export default function TeamComps() {
   const [team, setTeam]             = useState([null, null, null, null, null]);
   const [pickingSlot, setPickingSlot] = useState(null);
   const [search, setSearch]         = useState("");
+  const checkHazardTrigger = useHazardSearchTrigger();
   const [selectedStyle, setSelectedStyle] = useState(null);
 
   const teamNames = team.filter(Boolean).map(h => h.name);
@@ -227,7 +229,7 @@ export default function TeamComps() {
               className="hero-search"
               placeholder="Search heroes…"
               value={search}
-              onChange={e => setSearch(e.target.value)}
+              onChange={e => { setSearch(e.target.value); checkHazardTrigger(e.target.value); }}
               autoFocus
             />
             <HeroPickerGrid

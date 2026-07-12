@@ -21,6 +21,7 @@ import {
 import { getRecommendations, getDashboardMessages } from '../../academy/recommendations.js';
 import { computeMatchStats } from '../../academy/matchStats.js';
 import { getMatches } from '../../data/storage.js';
+import { useHazardSearchTrigger } from '../../hooks/useHazardSearchTrigger.js';
 import XPBar from './XPBar.jsx';
 import ProgressRing from './ProgressRing.jsx';
 import BadgeChip from './BadgeChip.jsx';
@@ -110,6 +111,7 @@ export default function AcademyHub({ onBack, initialHeroId = null, onClearInitia
   const [newBadgeFlash, setNewBadgeFlash] = useState([]);
   const [activeTab, setActiveTab] = useState('learn'); // learn | stats | calendar | badges | heroes
   const [searchQuery, setSearchQuery] = useState('');
+  const checkHazardTrigger = useHazardSearchTrigger();
 
   // Auto-navigate to a hero's course when launched from a hero profile.
   // Kept as an effect (not derived render state) because it must also notify
@@ -476,7 +478,7 @@ export default function AcademyHub({ onBack, initialHeroId = null, onClearInitia
           className="aca-search-input"
           placeholder="Search lessons, heroes, topics…"
           value={searchQuery}
-          onChange={e => setSearchQuery(e.target.value)}
+          onChange={e => { setSearchQuery(e.target.value); checkHazardTrigger(e.target.value); }}
         />
         {searchQuery && (
           <button type="button" className="aca-search-clear" onClick={() => setSearchQuery('')}>✕</button>
