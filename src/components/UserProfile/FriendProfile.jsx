@@ -54,13 +54,12 @@ export default function FriendProfile({ friendId, onBack }) {
             <AcademyBadgePanel userId={friend.id} readOnly />
             <CompetitiveRanksPanel userId={friend.id} readOnly />
             <MainHeroesPanel userId={friend.id} readOnly />
+            <EasterEggSection userId={friend.id} readOnly />
           </div>
         </div>
       </div>
 
       <ProfileStats matches={matches} />
-
-      <EasterEggSection userId={friend.id} readOnly />
     </div>
   );
 }

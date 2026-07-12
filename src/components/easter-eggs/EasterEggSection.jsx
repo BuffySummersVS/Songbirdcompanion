@@ -3,6 +3,8 @@ import { EASTER_EGGS, EASTER_EGG_COUNT } from "../../data/easterEggs";
 import { useEasterEggs } from "../../contexts/EasterEggContext";
 import { getEasterEggsFor } from "../../data/storage";
 import { useIsDesktop } from "../../hooks/useIsDesktop";
+import { useEscapeKey } from "../../hooks/useEscapeKey";
+import { useFocusTrap } from "../../hooks/useFocusTrap";
 
 function LockGlyph() {
   return (
@@ -69,6 +71,7 @@ function OwnEasterEggSection() {
 function ReadOnlyEasterEggSection({ userId }) {
   const isDesktop = useIsDesktop();
   const [unlockedIds, setUnlockedIds] = useState(null);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -80,8 +83,47 @@ function ReadOnlyEasterEggSection({ userId }) {
     return () => { cancelled = true; };
   }, [userId]);
 
+  useEscapeKey(() => setExpanded(false), expanded);
+  const panelRef = useFocusTrap(expanded);
+
   if (!isDesktop || unlockedIds === null) return null;
-  return <EggGrid unlocked={new Set(unlockedIds)} />;
+
+  const unlocked = new Set(unlockedIds);
+
+  return (
+    <>
+      <div
+        className="up-badge-panel up-egg-panel"
+        role="button"
+        tabIndex={0}
+        onClick={() => setExpanded(true)}
+        onKeyDown={e => e.key === "Enter" && setExpanded(true)}
+      >
+        <div className="up-badge-panel-header">
+          <span className="up-badge-panel-title">
+            Secret Archives<span className="up-badge-panel-count"> ({unlocked.size}/{EASTER_EGG_COUNT})</span>
+          </span>
+        </div>
+        <p className="up-badge-panel-empty">Click to view discovered eggs.</p>
+      </div>
+
+      {expanded && (
+        <div className="up-egg-modal-overlay" onClick={() => setExpanded(false)}>
+          <div
+            ref={panelRef}
+            className="up-egg-modal-panel"
+            role="dialog"
+            aria-modal="true"
+            tabIndex={-1}
+            onClick={e => e.stopPropagation()}
+          >
+            <button type="button" className="up-egg-modal-close" onClick={() => setExpanded(false)}>✕ Close</button>
+            <EggGrid unlocked={unlocked} />
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
 
 export default function EasterEggSection({ userId, readOnly = false } = {}) {
