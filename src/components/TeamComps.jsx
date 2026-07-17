@@ -3,6 +3,7 @@ import { heroes } from "../data/heroes";
 import { COMP_STYLES, HERO_COMP_FIT } from "../data/compStyles";
 import HeroPickerGrid from "./HeroPickerGrid";
 import { useHazardSearchTrigger } from "../hooks/useHazardSearchTrigger";
+import { useEscapeKey } from "../hooks/useEscapeKey";
 
 const SLOT_ROLES = ["Tank", "Damage", "Damage", "Support", "Support"];
 
@@ -61,6 +62,8 @@ export default function TeamComps() {
     setPickingSlot(null);
     setSearch("");
   }
+
+  useEscapeKey(closeOverlay, pickingSlot !== null);
 
   const activeStyle = selectedStyle
     ? COMP_STYLES.find(s => s.id === selectedStyle)

@@ -22,7 +22,6 @@ import { getRecommendations, getDashboardMessages } from '../../academy/recommen
 import { computeMatchStats } from '../../academy/matchStats.js';
 import { getMatches } from '../../data/storage.js';
 import { useHazardSearchTrigger } from '../../hooks/useHazardSearchTrigger.js';
-import { useEscapeKey } from '../../hooks/useEscapeKey.js';
 import XPBar from './XPBar.jsx';
 import ProgressRing from './ProgressRing.jsx';
 import BadgeChip from './BadgeChip.jsx';
@@ -174,15 +173,6 @@ export default function AcademyHub({ onBack, initialHeroId = null, onClearInitia
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
-
-  // Explicitly drives the Android hardware/gesture back button through the
-  // same history stack as the popstate listener above. Academy's path/lesson/
-  // quiz screens aren't modals, so they never registered Capacitor's
-  // "backButton" listener (only useEscapeKey does that) — without this,
-  // Capacitor's fallback behavior for an unclaimed back press isn't reliable,
-  // so the pushState/popstate wiring above wasn't actually reachable from the
-  // hardware button on-device even though it behaved correctly in a browser.
-  useEscapeKey(() => window.history.back(), true);
 
   // Finds the next unlocked lesson with a quiz further along the current path,
   // so "Next Quiz" only appears when there's somewhere valid to send the user.

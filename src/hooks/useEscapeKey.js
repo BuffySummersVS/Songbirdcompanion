@@ -2,6 +2,36 @@ import { useEffect, useRef } from "react";
 import { Capacitor } from "@capacitor/core";
 import { App } from "@capacitor/app";
 
+// Every currently-active useEscapeKey caller pushes its close callback here
+// while mounted+active, most-recently-opened last. A SINGLE native
+// "backButton" listener is registered once for the app's lifetime (below)
+// and always dismisses whatever is on top of this stack — that's what makes
+// nested modals (e.g. a "why" modal opened on top of a hero-counter modal)
+// close innermost-first without each component needing its own "don't close
+// me while my child is open" guard.
+//
+// When the stack is empty (no modal/overlay currently wants back to close
+// it), the native listener falls through to window.history.back() instead
+// of doing nothing. That fallback is what makes the hardware/gesture back
+// button navigate to the previous screen/tab everywhere in the app, the
+// same way it does in a normal mobile browser tab — Capacitor has no
+// reliable default of its own for this (see the Academy back-button fix),
+// so every screen's navigation needs to actually use browser history
+// (pushState) for that fallback to land somewhere meaningful.
+const stack = [];
+let nativeListenerPromise = null;
+
+function ensureNativeListener() {
+  if (nativeListenerPromise || !Capacitor.isNativePlatform()) return;
+  nativeListenerPromise = App.addListener("backButton", () => {
+    if (stack.length > 0) {
+      stack[stack.length - 1]();
+    } else {
+      window.history.back();
+    }
+  });
+}
+
 export function useEscapeKey(onEscape, active = true) {
   const callbackRef = useRef(onEscape);
 
@@ -18,23 +48,14 @@ export function useEscapeKey(onEscape, active = true) {
     return () => window.removeEventListener("keydown", onKey);
   }, [active]);
 
-  // Mirrors the Escape-key behavior above for the Android hardware/gesture
-  // back button — Capacitor registers no default back handling of its own,
-  // so without this, back exits the app instead of closing whatever modal
-  // is open. Reuses the same callback so nested-modal guards (e.g. "don't
-  // close me while my child modal is open") already written per-component
-  // work identically for both dismiss paths.
   useEffect(() => {
     if (!active || !Capacitor.isNativePlatform()) return;
-    let handle;
-    let cancelled = false;
-    App.addListener("backButton", () => callbackRef.current()).then((h) => {
-      if (cancelled) h.remove();
-      else handle = h;
-    });
+    ensureNativeListener();
+    const entry = () => callbackRef.current();
+    stack.push(entry);
     return () => {
-      cancelled = true;
-      handle?.remove();
+      const idx = stack.lastIndexOf(entry);
+      if (idx !== -1) stack.splice(idx, 1);
     };
   }, [active]);
 }

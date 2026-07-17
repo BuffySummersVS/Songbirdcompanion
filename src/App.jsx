@@ -19,6 +19,7 @@ import UserMenu from "./components/UserMenu";
 import NotificationsPanel from "./components/NotificationsPanel";
 import FriendsListPanel from "./components/FriendsListPanel";
 import Modal, { ModalHeader } from "./components/Modal";
+import { useEscapeKey } from "./hooks/useEscapeKey";
 import { toast } from "./utils/toast";
 import { FRIENDS_ENABLED, DM_ENABLED } from "./data/featureFlags";
 import logo from "./assets/logo.png";
@@ -135,6 +136,9 @@ function AppInner() {
   const [notifOpen, setNotifOpen]         = useState(false);
   const [dmOpen, setDmOpen]               = useState(false);
   const [dmUnread, setDmUnread]           = useState(0);
+  // Only guards the DM_ENABLED===false "coming soon" fallback below — the
+  // real <DirectMessages> panel covers its own back/Escape dismissal.
+  useEscapeKey(() => setDmOpen(false), dmOpen && !DM_ENABLED);
   const [requests, setRequests]           = useState([]);
   const [friendUsers, setFriendUsers]     = useState([]);
   const [userMenuOpen, setUserMenuOpen]     = useState(false);

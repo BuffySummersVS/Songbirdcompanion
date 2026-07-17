@@ -62,6 +62,9 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
   const [confirmLogout, setConfirmLogout]     = useState(false);
 
   useEscapeKey(() => closeFriendModal(), friendAddOpen);
+  useEscapeKey(() => setAvatarPickerOpen(false), avatarPickerOpen);
+  useEscapeKey(() => setConfirmLogout(false), confirmLogout);
+  useEscapeKey(() => setConfirmRemoveId(null), !!confirmRemoveId);
 
   // Initial load, and refresh whenever a request is accepted/friend list changes
   // (from this component or from the notification panel elsewhere in the app).

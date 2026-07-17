@@ -1,5 +1,6 @@
 import { useEffect, useId, useMemo, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { useEscapeKey } from '../hooks/useEscapeKey';
 import { getMatches, addMatch, updateMatch, deleteMatch, clearMatches } from '../data/storage';
 
 import { toast } from '../utils/toast';
@@ -128,6 +129,8 @@ export default function WinLossTracker() {
   const [editId, setEditId]           = useState(null);
   const [showConfirm, setShowConfirm]     = useState(false);
   const [confirmClear, setConfirmClear]   = useState(false);
+  useEscapeKey(() => setShowConfirm(false), showConfirm);
+  useEscapeKey(() => setConfirmClear(false), confirmClear);
   const [formError, setFormError]         = useState('');
   const [historyResult, setHistoryResult] = useState('All');
   const [historyHero, setHistoryHero]     = useState('');
