@@ -157,6 +157,8 @@ function RegisterForm({ register, onSuccess }) {
   const [error, setError]             = useState('');
   const [busy, setBusy]               = useState(false);
 
+  useEscapeKey(() => setShowConfirm(false), showConfirm);
+
   function validateFields() {
     if (!username.trim()) return 'Please enter a username.';
     if (username.trim().length < 3) return 'Username must be at least 3 characters.';

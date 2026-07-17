@@ -6,6 +6,7 @@ import {
 } from '../data/storage';
 import { getAvatarSrc } from '../data/avatars';
 import { useEscapeKey } from '../hooks/useEscapeKey';
+import { useAutoFocus } from '../hooks/useAutoFocus';
 import { useHazardSearchTrigger } from '../hooks/useHazardSearchTrigger';
 import { toast } from '../utils/toast';
 import Modal from './Modal';
@@ -96,7 +97,15 @@ export default function DirectMessages({ onClose }) {
     if (view === 'convo') scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [msgs, view]);
 
-  useEscapeKey(() => { if (reactTarget) { setReactTarget(null); setEmojiMode(null); } else onClose(); });
+  useEscapeKey(() => {
+    if (reactTarget) { setReactTarget(null); setEmojiMode(null); }
+    else if (emojiMode) setEmojiMode(null);
+    else if (view === 'convo') backToList();
+    else onClose();
+  });
+
+  const emojiSearchInputRef = useRef(null);
+  useAutoFocus(emojiSearchInputRef, !!emojiMode);
 
   async function openConvo(fid) {
     setFriendId(fid);
@@ -135,7 +144,7 @@ export default function DirectMessages({ onClose }) {
     } catch (e) {
       toast(e.message || "Couldn't send message.");
     }
-    setTimeout(() => inputRef.current?.focus(), 0);
+    setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 0);
   }
 
   function handleKeyDown(e) {
@@ -167,7 +176,7 @@ export default function DirectMessages({ onClose }) {
   function insertEmoji(emoji) {
     setDraft(prev => prev + emoji);
     setEmojiMode(null);
-    setTimeout(() => inputRef.current?.focus(), 0);
+    setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 0);
   }
 
   function autoResize(el) {
@@ -314,11 +323,11 @@ export default function DirectMessages({ onClose }) {
               <div className="dm-emoji-panel">
                 <div className="dm-emoji-panel-top">
                   <input
+                    ref={emojiSearchInputRef}
                     className="dm-emoji-search"
                     placeholder="Search emoji…"
                     value={emojiSearch}
                     onChange={e => { setEmojiSearch(e.target.value); checkHazardTrigger(e.target.value); }}
-                    autoFocus
                   />
                 </div>
                 {!emojiSearch && (
@@ -380,11 +389,11 @@ export default function DirectMessages({ onClose }) {
                   <div className="dm-emoji-panel-top">
                     <button className="dm-react-back-btn" onClick={() => setEmojiMode(null)}>← Back</button>
                     <input
+                      ref={emojiSearchInputRef}
                       className="dm-emoji-search"
                       placeholder="Search emoji…"
                       value={emojiSearch}
                       onChange={e => { setEmojiSearch(e.target.value); checkHazardTrigger(e.target.value); }}
-                      autoFocus
                     />
                   </div>
                   {!emojiSearch && (

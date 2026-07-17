@@ -48,6 +48,10 @@ body{
 
 .app{
   min-height:100vh;
+  /* Android 15+ forces edge-to-edge (the WebView already draws under the
+     status bar via @capacitor/status-bar's default overlaysWebView:true) —
+     without this, the header/nav row renders partly behind the status bar. */
+  padding-top:env(safe-area-inset-top);
 }
 
 .hero-header{
@@ -1725,8 +1729,11 @@ button.dashboard-card:hover{
   border:1px solid var(--border);
   color:var(--grey);
   border-radius:6px;
-  width:26px;
-  height:26px;
+  min-width:44px;
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   font-size:.82rem;
   cursor:pointer;
   transition:.2s;
@@ -3932,6 +3939,10 @@ button.dashboard-card:hover{
   padding-right:4px;
 }
 
+@media(max-width:480px){
+  .ap-scroll-grid{ grid-template-columns:repeat(3,1fr); }
+}
+
 .ap-rank-option img{
   border-radius:8px;
   object-fit:contain;
@@ -4093,14 +4104,15 @@ button.dashboard-card:hover{
 
 .auth-eye-btn{
   position:absolute;
-  right:12px;
+  right:2px;
   top:50%;
   transform:translateY(-50%);
   background:none;
   border:none;
   color:var(--grey);
   cursor:pointer;
-  padding:4px;
+  min-width:44px;
+  min-height:44px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -4832,6 +4844,7 @@ button.dashboard-card:hover{
   font-size:2.4rem;
   color:var(--white);
   line-height:1.1;
+  overflow-wrap:break-word;
 }
 
 .up-joined{
@@ -5240,6 +5253,10 @@ button.dashboard-card:hover{
 
 .up-friend-name{
   flex:1;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
   font-family:"Rajdhani",sans-serif;
   font-weight:700;
   font-size:1rem;
@@ -6060,7 +6077,7 @@ button.dashboard-card:hover{
 
 .sb-toast{
   position:fixed;
-  bottom:32px;
+  bottom:calc(32px + env(safe-area-inset-bottom));
   left:50%;
   transform:translateX(-50%);
   background:linear-gradient(135deg,#181d27,#101319);
@@ -6083,7 +6100,7 @@ button.dashboard-card:hover{
 .scroll-top-btn{
   position:fixed;
   right:24px;
-  bottom:24px;
+  bottom:calc(24px + env(safe-area-inset-bottom));
   width:46px;
   height:46px;
   display:flex;
@@ -6113,7 +6130,7 @@ button.dashboard-card:hover{
   .scroll-top-btn:hover{ transform:none; }
 }
 @media(max-width:640px){
-  .scroll-top-btn{ right:16px; bottom:16px; width:40px; height:40px; }
+  .scroll-top-btn{ right:16px; bottom:calc(16px + env(safe-area-inset-bottom)); width:40px; height:40px; }
 }
 
 /* ── HeroStats back button ── */
@@ -6276,8 +6293,8 @@ button.dashboard-card:hover{
   border:1px solid var(--border);
   border-radius:8px;
   color:var(--grey);
-  width:32px;
-  height:32px;
+  min-width:44px;
+  min-height:44px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -6653,8 +6670,8 @@ button.dashboard-card:hover{
   border:1px solid var(--border);
   border-radius:10px;
   font-size:1.2rem;
-  width:38px;
-  height:38px;
+  min-width:44px;
+  min-height:44px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -6698,8 +6715,8 @@ button.dashboard-card:hover{
   border:none;
   border-radius:10px;
   color:#000;
-  width:38px;
-  height:38px;
+  min-width:44px;
+  min-height:44px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -7139,8 +7156,8 @@ button.dashboard-card:hover{
   gap:4px;
 }
 .evc-nav-btn{
-  width:34px;
-  height:34px;
+  min-width:44px;
+  min-height:44px;
   background:rgba(27,32,43,.9);
   border:1px solid var(--border);
   border-radius:7px;
@@ -8326,7 +8343,7 @@ button.dashboard-card:hover{
   .evc-nav{ padding:10px 12px; }
   .evc-month-name{ font-size:.98rem; }
   .evc-year{ font-size:.76rem; }
-  .evc-nav-btn{ width:30px; height:30px; font-size:.95rem; }
+  .evc-nav-btn{ font-size:.95rem; }
   .evc-dow{ font-size:.6rem; padding:6px 2px; }
   .evc-day{ padding:3px 4px 6px; min-height:50px; }
   .evc-daynum{ width:20px; height:20px; font-size:.72rem; }
@@ -8407,8 +8424,8 @@ button.dashboard-card:hover{
   border-radius:7px;
   color:var(--grey);
   font-size:1.1rem;
-  width:28px;
-  height:28px;
+  min-width:44px;
+  min-height:44px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -9419,7 +9436,7 @@ button.dashboard-card:hover{
 /* ── XP / Badge flash notifications ── */
 .aca-xp-flash{
   position:fixed;
-  top:80px;
+  top:calc(80px + env(safe-area-inset-top));
   left:50%;
   transform:translateX(-50%);
   background:var(--orange);
@@ -9434,7 +9451,7 @@ button.dashboard-card:hover{
 }
 .aca-badge-flash{
   position:fixed;
-  top:130px;
+  top:calc(130px + env(safe-area-inset-top));
   left:50%;
   transform:translateX(-50%);
   display:flex;
@@ -9519,7 +9536,7 @@ button.dashboard-card:hover{
   .aca-quiz-done-actions{ flex-direction:column; }
   .up-academy-card{ flex-wrap:wrap; }
   .up-academy-btn{ flex:1 1 100%; text-align:center; margin-top:4px; }
-  .aca-xp-flash{ font-size:.9rem; padding:8px 18px; top:60px; }
+  .aca-xp-flash{ font-size:.9rem; padding:8px 18px; top:calc(60px + env(safe-area-inset-top)); }
 }
 
 /* ── XP flash fix: non-centered flash elements ── */

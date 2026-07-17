@@ -1,4 +1,4 @@
-import { useEffect, useState, lazy, Suspense } from 'react';
+import { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import {
   getMatches,
@@ -15,6 +15,7 @@ async function resolveFriendUsers(userId) {
 
 import { toast } from '../../utils/toast';
 import { useEscapeKey } from '../../hooks/useEscapeKey';
+import { useAutoFocus } from '../../hooks/useAutoFocus';
 import { useHazardSearchTrigger } from '../../hooks/useHazardSearchTrigger';
 import { containsProfanity } from '../../data/profanity';
 import { PasswordInput } from '../AuthPage';
@@ -65,6 +66,9 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
   useEscapeKey(() => setAvatarPickerOpen(false), avatarPickerOpen);
   useEscapeKey(() => setConfirmLogout(false), confirmLogout);
   useEscapeKey(() => setConfirmRemoveId(null), !!confirmRemoveId);
+
+  const friendSearchInputRef = useRef(null);
+  useAutoFocus(friendSearchInputRef, friendAddOpen);
 
   // Initial load, and refresh whenever a request is accepted/friend list changes
   // (from this component or from the notification panel elsewhere in the app).
@@ -307,11 +311,11 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
           <ModalHeader title="Add Friend" onClose={closeFriendModal} />
           <p className="up-friend-search-hint">Search for players by their username to add them to your friends list.</p>
           <input
+            ref={friendSearchInputRef}
             className="auth-input"
             placeholder="Search username…"
             value={friendQuery}
             onChange={handleFriendSearch}
-            autoFocus
           />
           <div className="up-friend-results">
             {friendQuery.trim() !== '' && searchResults.length === 0 && (

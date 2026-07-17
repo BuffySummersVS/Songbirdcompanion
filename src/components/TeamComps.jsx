@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { heroes } from "../data/heroes";
 import { COMP_STYLES, HERO_COMP_FIT } from "../data/compStyles";
 import HeroPickerGrid from "./HeroPickerGrid";
 import { useHazardSearchTrigger } from "../hooks/useHazardSearchTrigger";
 import { useEscapeKey } from "../hooks/useEscapeKey";
+import { useAutoFocus } from "../hooks/useAutoFocus";
 
 const SLOT_ROLES = ["Tank", "Damage", "Damage", "Support", "Support"];
 
@@ -64,6 +65,9 @@ export default function TeamComps() {
   }
 
   useEscapeKey(closeOverlay, pickingSlot !== null);
+
+  const searchInputRef = useRef(null);
+  useAutoFocus(searchInputRef, pickingSlot !== null);
 
   const activeStyle = selectedStyle
     ? COMP_STYLES.find(s => s.id === selectedStyle)
@@ -229,11 +233,11 @@ export default function TeamComps() {
               </span>
             </h3>
             <input
+              ref={searchInputRef}
               className="hero-search"
               placeholder="Search heroes…"
               value={search}
               onChange={e => { setSearch(e.target.value); checkHazardTrigger(e.target.value); }}
-              autoFocus
             />
             <HeroPickerGrid
               heroes={filteredHeroes}

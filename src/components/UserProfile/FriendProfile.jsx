@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useEscapeKey } from '../../hooks/useEscapeKey';
 import { getMatches, getUserById } from '../../data/storage';
 import { getAvatarSrc } from '../../data/avatars';
 import ProfileStats from './ProfileStats';
@@ -11,6 +12,8 @@ export default function FriendProfile({ friendId, onBack }) {
   const [friend, setFriend] = useState(null);
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  useEscapeKey(onBack);
 
   useEffect(() => {
     let cancelled = false;

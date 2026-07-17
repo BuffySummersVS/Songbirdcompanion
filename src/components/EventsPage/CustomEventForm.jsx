@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useEscapeKey } from "../../hooks/useEscapeKey";
 import { useFocusTrap } from "../../hooks/useFocusTrap";
+import { useAutoFocus } from "../../hooks/useAutoFocus";
 import { formatDate } from "../../data/calendarHelpers";
 import { CUSTOM_PALETTE } from "./constants";
 
@@ -17,6 +18,8 @@ export default function CustomEventForm({ initial, defaults, onSave, onClose }) 
 
   useEscapeKey(() => { if (confirming) setConfirming(false); else onClose(); });
   const panelRef = useFocusTrap();
+  const titleInputRef = useRef(null);
+  useAutoFocus(titleInputRef, !confirming);
 
   function handleReview(e) {
     e.preventDefault();
@@ -50,13 +53,13 @@ export default function CustomEventForm({ initial, defaults, onSave, onClose }) 
               <label className="ev-field-label">
                 Title <span className="ev-field-required">*</span>
                 <input
+                  ref={titleInputRef}
                   className="ev-field-input"
                   type="text"
                   value={title}
                   onChange={e => setTitle(e.target.value)}
                   placeholder="Event name"
                   maxLength={80}
-                  autoFocus
                 />
               </label>
 

@@ -3,6 +3,6 @@
   "appName": "SongBird-Unofficial Overwatch Companion",
   "webDir": "dist",
   "android": {
-    "zoomEnabled": true
+    "zoomEnabled": false
   }
 }
