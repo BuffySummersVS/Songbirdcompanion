@@ -16,10 +16,15 @@ export default function TermsPage() {
   useEscapeKey(() => setLinesModalTerm(null), !!linesModalTerm);
 
   const filtered = useMemo(() => {
-    const q = search.toLowerCase();
+    const q = search.trim().toLowerCase();
+    // Match on the term name only, like every other search in the app
+    // (hero search, terms search, etc.) — matching definition text too meant
+    // common words like "one" (used as an ordinary word in dozens of
+    // unrelated definitions: "one tank per team", "one of the most...")
+    // could never isolate to just the term that word names.
     return TERMS.filter(t =>
       (category === "All" || t.category === category) &&
-      (t.term.toLowerCase().includes(q) || t.definition.toLowerCase().includes(q))
+      t.term.toLowerCase().includes(q)
     ).sort((a, b) => a.term.localeCompare(b.term));
   }, [search, category]);
 

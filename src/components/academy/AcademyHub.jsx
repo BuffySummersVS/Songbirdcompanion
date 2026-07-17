@@ -22,6 +22,7 @@ import { getRecommendations, getDashboardMessages } from '../../academy/recommen
 import { computeMatchStats } from '../../academy/matchStats.js';
 import { getMatches } from '../../data/storage.js';
 import { useHazardSearchTrigger } from '../../hooks/useHazardSearchTrigger.js';
+import { useEscapeKey } from '../../hooks/useEscapeKey.js';
 import XPBar from './XPBar.jsx';
 import ProgressRing from './ProgressRing.jsx';
 import BadgeChip from './BadgeChip.jsx';
@@ -123,6 +124,7 @@ export default function AcademyHub({ onBack, initialHeroId = null, onClearInitia
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedPath(heroPath);
       setView('path');
+      pushAcademyState({ view: 'path', pathId: heroPath.id });
     } else {
       // Hero exists but course coming soon — show Hero Academy tab
       setActiveTab('learn');
@@ -131,16 +133,56 @@ export default function AcademyHub({ onBack, initialHeroId = null, onClearInitia
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialHeroId]);
 
-  function handleSelectPath(path) {
-    setSelectedPath(path);
-    setView('path');
+  // Pushes a history entry for internal Academy navigation so the phone/browser
+  // back button steps back one screen (path → hub, lesson → path, quiz → lesson)
+  // instead of exiting Academy entirely. The popstate listener below restores
+  // the corresponding view when the user (or the hardware back button) pops it.
+  function pushAcademyState(extra) {
+    window.history.pushState({ page: 'Academy', ...extra }, '', window.location.pathname);
   }
 
-  function handleSelectLesson(lesson) {
+  function handleSelectPath(path) {
+    setSelectedPath(path);
+    setSelectedLesson(null);
+    setView('path');
+    pushAcademyState({ view: 'path', pathId: path.id });
+  }
+
+  function handleSelectLesson(lesson, path = selectedPath) {
+    setSelectedPath(path);
     setSelectedLesson(lesson);
     setLessonInitialView('lesson');
     setView('lesson');
+    pushAcademyState({ view: 'lesson', pathId: path?.id, lessonId: lesson.id });
   }
+
+  // Restores the Academy sub-view when the browser/hardware back or forward
+  // button pops a history entry pushed above. Entries that don't belong to
+  // Academy (page !== 'Academy') are left for App.jsx's own popstate handler,
+  // which navigates away from Academy — this component will simply unmount.
+  useEffect(() => {
+    function onPopState(e) {
+      const state = e.state;
+      if (state?.page !== 'Academy') return;
+      const path = state.pathId ? PATHS.find(p => p.id === state.pathId) ?? null : null;
+      const lesson = state.lessonId ? ALL_LESSONS.find(l => l.id === state.lessonId) ?? null : null;
+      setSelectedPath(path);
+      setSelectedLesson(lesson);
+      setLessonInitialView(state.lessonInitialView ?? 'lesson');
+      setView(state.view ?? 'hub');
+    }
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
+
+  // Explicitly drives the Android hardware/gesture back button through the
+  // same history stack as the popstate listener above. Academy's path/lesson/
+  // quiz screens aren't modals, so they never registered Capacitor's
+  // "backButton" listener (only useEscapeKey does that) — without this,
+  // Capacitor's fallback behavior for an unclaimed back press isn't reliable,
+  // so the pushState/popstate wiring above wasn't actually reachable from the
+  // hardware button on-device even though it behaved correctly in a browser.
+  useEscapeKey(() => window.history.back(), true);
 
   // Finds the next unlocked lesson with a quiz further along the current path,
   // so "Next Quiz" only appears when there's somewhere valid to send the user.
@@ -158,6 +200,7 @@ export default function AcademyHub({ onBack, initialHeroId = null, onClearInitia
   function handleGoToNextQuiz(lesson) {
     setSelectedLesson(lesson);
     setLessonInitialView('quiz');
+    pushAcademyState({ view: 'lesson', pathId: selectedPath?.id, lessonId: lesson.id, lessonInitialView: 'quiz' });
   }
 
   function handleLessonStarted(lessonId) {
@@ -398,9 +441,10 @@ export default function AcademyHub({ onBack, initialHeroId = null, onClearInitia
         <LessonViewer
           key={selectedLesson.id}
           lesson={selectedLesson}
+          pathId={selectedPath?.id}
           progress={progress}
           onComplete={handleLessonComplete}
-          onBack={() => setView('path')}
+          onBack={() => window.history.back()}
           onLessonStarted={handleLessonStarted}
           initialView={lessonInitialView}
           nextQuizLesson={getNextQuizLesson(selectedPath, selectedLesson.id, progress)}
@@ -420,7 +464,7 @@ export default function AcademyHub({ onBack, initialHeroId = null, onClearInitia
           allLessons={ALL_LESSONS}
           progress={progress}
           onSelectLesson={handleSelectLesson}
-          onBack={() => setView('hub')}
+          onBack={() => window.history.back()}
         />
       </div>
     );
@@ -505,9 +549,7 @@ export default function AcademyHub({ onBack, initialHeroId = null, onClearInitia
                         className={`aca-search-result-row ${done ? 'done' : ''}`}
                         onClick={() => {
                           const path = PATHS.find(p => p.id === lesson.pathId);
-                          setSelectedPath(path);
-                          setSelectedLesson(lesson);
-                          setView('lesson');
+                          handleSelectLesson(lesson, path);
                           setSearchQuery('');
                         }}
                       >
@@ -573,15 +615,9 @@ export default function AcademyHub({ onBack, initialHeroId = null, onClearInitia
                     progress={progress}
                     onSelectLesson={(lesson) => {
                       const path = PATHS.find(p => p.id === lesson.pathId);
-                      setSelectedPath(path);
-                      setSelectedLesson(lesson);
-                      setLessonInitialView('lesson');
-                      setView('lesson');
+                      handleSelectLesson(lesson, path);
                     }}
-                    onSelectPath={(path) => {
-                      setSelectedPath(path);
-                      setView('path');
-                    }}
+                    onSelectPath={handleSelectPath}
                   />
                 ))}
               </div>
