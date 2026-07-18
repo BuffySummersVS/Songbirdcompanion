@@ -6,9 +6,9 @@
 //   User-Update-Item: <bullet>
 //   User-Update-Item: <bullet>
 export const LATEST_UPDATE = {
-  "heading": "Mizuki added",
+  "heading": "Callout maps added",
   "items": [
-    "New Hero Data",
-    "Updated Counters"
+    "Zoomable callout maps for 15 maps",
+    "Pinch, scroll, or drag to explore"
   ]
 };
