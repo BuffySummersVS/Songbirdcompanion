@@ -5,8 +5,37 @@ import mapPickReasons from "../data/mapPickReasons.json";
 import { useEscapeKey } from "../hooks/useEscapeKey";
 import { useFocusTrap } from "../hooks/useFocusTrap";
 import { useHazardSearchTrigger } from "../hooks/useHazardSearchTrigger";
+import ZoomableImageModal from "./ZoomableImageModal";
 
 const GAME_MODES = ["All", "Escort", "Hybrid", "Control", "Push", "Flashpoint", "Clash"];
+
+// Pre-supplied annotated callout images (originally 13-37MB PNGs/JPGs at
+// 5000px+ native resolution — resized to a 2000px max side and re-encoded
+// as JPG, ~7MB total down from ~330MB), keyed by their filename stem
+// (before "_anno.jpg"). Most already match a map's id exactly once
+// underscores are gone; the few that don't get an explicit override.
+// "busan" has no entry here on purpose — Busan isn't in maps.json (it's
+// been vaulted from Overwatch's map rotation), so there's no card to
+// attach that one image to.
+const CALLOUT_ID_OVERRIDES = {
+  blizzardworld: "blizzard-world",
+  kingsrow: "kings-row",
+  lijiangtower: "lijiang-tower",
+  route66: "route-66",
+  watchpointgibraltar: "watchpoint-gibraltar",
+};
+
+const CALLOUT_IMAGE_MODULES = import.meta.glob("../assets/maps/*.jpg", { eager: true, import: "default" });
+
+const CALLOUT_IMAGES_BY_MAP_ID = Object.fromEntries(
+  Object.entries(CALLOUT_IMAGE_MODULES)
+    .map(([path, url]) => {
+      const stem = path.match(/([^/]+)_anno\.jpg$/)?.[1];
+      const mapId = CALLOUT_ID_OVERRIDES[stem] ?? stem;
+      return mapId ? [mapId, url] : null;
+    })
+    .filter(Boolean)
+);
 
 // Normalise sub-map names to their parent map's canonical name
 const NORMALIZE = {
@@ -105,6 +134,7 @@ export default function MapsPage({ focusMapId = null, onSelectMap, onClearFocus 
   const checkHazardTrigger = useHazardSearchTrigger();
   const [modeFilter, setModeFilter] = useState("All");
   const [openReasonFor, setOpenReasonFor] = useState(null);
+  const [openCalloutFor, setOpenCalloutFor] = useState(null);
 
   function openReason(hero, mapName, category) {
     setOpenReasonFor({ hero, mapName, category });
@@ -176,6 +206,16 @@ export default function MapsPage({ focusMapId = null, onSelectMap, onClearFocus 
         </div>
         <p className="map-description">{map.description}</p>
 
+        {CALLOUT_IMAGES_BY_MAP_ID[map.id] && (
+          <button
+            type="button"
+            className="map-callout-btn"
+            onClick={(e) => { e.stopPropagation(); setOpenCalloutFor(map); }}
+          >
+            🗺️ View Callout Map
+          </button>
+        )}
+
         {picks.strong.length > 0 && (
           <div className="map-section">
             <span className="map-tag strong-tag">Strong Picks</span>
@@ -241,6 +281,15 @@ export default function MapsPage({ focusMapId = null, onSelectMap, onClearFocus 
             onClose={closeReason}
           />
         )}
+
+        {openCalloutFor && (
+          <ZoomableImageModal
+            src={CALLOUT_IMAGES_BY_MAP_ID[openCalloutFor.id]}
+            alt={`${openCalloutFor.name} callout map`}
+            title={`${openCalloutFor.name} — Callout Map`}
+            onClose={() => setOpenCalloutFor(null)}
+          />
+        )}
       </>
     );
   }
@@ -283,6 +332,15 @@ export default function MapsPage({ focusMapId = null, onSelectMap, onClearFocus 
           mapName={openReasonFor.mapName}
           category={openReasonFor.category}
           onClose={closeReason}
+        />
+      )}
+
+      {openCalloutFor && (
+        <ZoomableImageModal
+          src={CALLOUT_IMAGES_BY_MAP_ID[openCalloutFor.id]}
+          alt={`${openCalloutFor.name} callout map`}
+          title={`${openCalloutFor.name} — Callout Map`}
+          onClose={() => setOpenCalloutFor(null)}
         />
       )}
     </>
