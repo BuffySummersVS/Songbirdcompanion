@@ -615,7 +615,173 @@ button.dashboard-card:hover{
   box-shadow:
     0 0 18px rgba(255,156,0,.35),
     0 12px 30px rgba(0,0,0,.45);
-}.hero-profile{
+}
+
+/* ── Home dashboard ── */
+.home-dashboard{
+  position:relative;
+  display:grid;
+  gap:24px;
+}
+
+.home-welcome{
+  margin:0;
+  font-size:1.05rem;
+  color:var(--grey);
+}
+
+.home-welcome strong{
+  color:var(--orange2);
+}
+
+/* Ombre wash from the app's base background into a burnt-orange dark tone,
+   plus a very faint radial glow — both pulse together in a slow two-beat
+   "heartbeat" rhythm (lub-dub), kept subtle since this sits behind every
+   card on the page. Negative z-index + z-index:-2/-1 keep both layers
+   behind the section's real (unpositioned) children without needing
+   overflow:hidden anywhere, so card hover lifts/shadows never get clipped. */
+.home-dashboard::before{
+  content:'';
+  position:absolute;
+  inset:-24px;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse 800px 420px at 50% 0%, rgba(255,110,30,.07), transparent 70%),
+    linear-gradient(180deg, var(--bg) 0%, #241005 130%);
+  animation:sb-home-heartbeat 3.2s ease-in-out infinite;
+}
+
+/* Faint drifting embers — five soft dots reused from the tab-sparkle
+   palette, very low opacity, slowly rising and looping. */
+.home-dashboard::after{
+  content:'';
+  position:absolute;
+  inset:-24px;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.3;
+  background-image:
+    radial-gradient(circle, rgba(255,140,40,.9) 0%, rgba(255,140,40,.9) 12%, transparent 70%),
+    radial-gradient(circle, rgba(255,160,60,.85) 0%, rgba(255,160,60,.85) 10%, transparent 70%),
+    radial-gradient(circle, rgba(255,120,20,.9) 0%, rgba(255,120,20,.9) 14%, transparent 70%),
+    radial-gradient(circle, rgba(255,150,50,.8) 0%, rgba(255,150,50,.8) 10%, transparent 70%),
+    radial-gradient(circle, rgba(255,130,30,.85) 0%, rgba(255,130,30,.85) 12%, transparent 70%);
+  background-size:11px 11px, 7px 7px, 9px 9px, 7px 7px, 14px 14px;
+  background-position:12% 90%, 30% 70%, 55% 95%, 72% 60%, 88% 82%;
+  background-repeat:no-repeat;
+  animation:sb-home-embers 16s linear infinite;
+}
+
+@keyframes sb-home-heartbeat{
+  0%, 45%, 100%{ opacity:1; }
+  8%  { opacity:.82; }
+  16% { opacity:1; }
+  24% { opacity:.88; }
+  32% { opacity:1; }
+}
+
+@keyframes sb-home-embers{
+  0%   { background-position:12% 90%, 30% 70%, 55% 95%, 72% 60%, 88% 82%; }
+  100% { background-position:12% 10%, 30% -10%, 55% 15%, 72% -20%, 88% 5%; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .home-dashboard::before,
+  .home-dashboard::after{
+    animation:none;
+  }
+}
+
+.home-quick-grid .dashboard-card{
+  text-align:center;
+  padding:22px 20px;
+}
+
+.home-quick-grid a.dashboard-card{
+  text-decoration:none;
+  display:block;
+}
+
+.home-quick-grid .dashboard-card h3{
+  font-size:1.3rem;
+  margin-bottom:0;
+}
+
+.home-update-card,
+.home-hotd-card{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  background:linear-gradient(135deg,rgba(255,156,0,.1),rgba(255,156,0,.03));
+  border:1.5px solid rgba(255,156,0,.3);
+  border-radius:12px;
+  padding:18px 20px;
+}
+
+.home-card-icon{ font-size:2rem; flex-shrink:0; }
+
+/* Emoji are fixed-colour glyphs, not currentColor icons — hue-rotate is
+   the only reliable way to recolour one without swapping it for a custom
+   SVG icon. Shifts the flame's red/orange toward green. */
+.home-update-card .home-card-icon{ filter:hue-rotate(120deg) saturate(1.4); }
+
+/* The plus-sign emoji renders as plain black/grey on several platforms —
+   grayscale+sepia first gives hue-rotate an actual colour channel to work
+   with, so this reliably lands on green everywhere rather than only on
+   emoji fonts that already happen to colour it green. */
+.home-role-icon-support{ filter:grayscale(1) brightness(.9) sepia(1) hue-rotate(70deg) saturate(6); }
+.home-card-body{ flex:1; min-width:0; }
+
+.home-card-label{
+  font-size:.78rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.1rem;
+  color:var(--grey);
+  margin:0 0 4px;
+}
+
+.home-card-title{
+  font-family:"Black Ops One",sans-serif;
+  font-size:1.1rem;
+  color:var(--white);
+  margin:0 0 6px;
+}
+
+.home-card-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  color:var(--grey);
+  font-size:.9rem;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.home-card-btn{
+  background:var(--orange);
+  border:none;
+  border-radius:8px;
+  color:#06070a;
+  font-family:"Rajdhani",sans-serif;
+  font-size:.9rem;
+  font-weight:800;
+  padding:10px 18px;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:.2s;
+}
+
+.home-card-btn:hover{ background:var(--orange2); }
+
+@media(max-width:600px){
+  .home-update-card,
+  .home-hotd-card{ flex-wrap:wrap; }
+  .home-card-btn{ flex:1 1 100%; text-align:center; margin-top:4px; }
+}
+.hero-profile{
   margin-top:30px;
   background:linear-gradient(160deg,#181d27,#101319);
   border:2px solid var(--orange);
@@ -10739,7 +10905,8 @@ button.ha-course-card.ha-done .ha-course-action{
 .nav-button,
 .mobile-nav-item,
 .user-menu-item:not(.user-menu-item--danger),
-.aca-tab{
+.aca-tab,
+.home-quick-grid .dashboard-card{
   position:relative;
   overflow:hidden;
   transition:transform .25s cubic-bezier(.22,.9,.34,1), box-shadow .25s ease, filter .25s ease;
@@ -10748,7 +10915,8 @@ button.ha-course-card.ha-done .ha-course-action{
 .nav-button::after,
 .mobile-nav-item::after,
 .user-menu-item:not(.user-menu-item--danger)::after,
-.aca-tab::after{
+.aca-tab::after,
+.home-quick-grid .dashboard-card::after{
   content:'';
   position:absolute;
   inset:0;
@@ -10762,7 +10930,8 @@ button.ha-course-card.ha-done .ha-course-action{
 .nav-button::before,
 .mobile-nav-item::before,
 .user-menu-item:not(.user-menu-item--danger)::before,
-.aca-tab::before{
+.aca-tab::before,
+.home-quick-grid .dashboard-card::before{
   content:'';
   position:absolute;
   inset:0;
@@ -10787,7 +10956,8 @@ button.ha-course-card.ha-done .ha-course-action{
 .nav-button:hover,
 .mobile-nav-item:hover,
 .user-menu-item:not(.user-menu-item--danger):hover,
-.aca-tab:hover{
+.aca-tab:hover,
+.home-quick-grid .dashboard-card:hover{
   transform:translateY(-3px) scale(1.02);
   box-shadow:0 0 18px rgba(255,156,0,.45), 0 8px 16px rgba(0,0,0,.3);
   filter:brightness(1.12);
@@ -10796,7 +10966,8 @@ button.ha-course-card.ha-done .ha-course-action{
 .nav-button:hover::after,
 .mobile-nav-item:hover::after,
 .user-menu-item:not(.user-menu-item--danger):hover::after,
-.aca-tab:hover::after{
+.aca-tab:hover::after,
+.home-quick-grid .dashboard-card:hover::after{
   opacity:1;
   animation:sb-tab-shimmer 1.5s ease forwards;
 }
@@ -10804,7 +10975,8 @@ button.ha-course-card.ha-done .ha-course-action{
 .nav-button:hover::before,
 .mobile-nav-item:hover::before,
 .user-menu-item:not(.user-menu-item--danger):hover::before,
-.aca-tab:hover::before{
+.aca-tab:hover::before,
+.home-quick-grid .dashboard-card:hover::before{
   animation:sb-tab-sparkle 1.5s ease forwards;
 }
 
@@ -10825,23 +10997,27 @@ button.ha-course-card.ha-done .ha-course-action{
   .nav-button,
   .mobile-nav-item,
   .user-menu-item:not(.user-menu-item--danger),
-  .aca-tab{
+  .aca-tab,
+  .home-quick-grid .dashboard-card{
     transition:box-shadow .2s ease, filter .2s ease;
   }
   .nav-button:hover,
   .mobile-nav-item:hover,
   .user-menu-item:not(.user-menu-item--danger):hover,
-  .aca-tab:hover{
+  .aca-tab:hover,
+  .home-quick-grid .dashboard-card:hover{
     transform:none;
   }
   .nav-button::after,
   .mobile-nav-item::after,
   .user-menu-item:not(.user-menu-item--danger)::after,
   .aca-tab::after,
+  .home-quick-grid .dashboard-card::after,
   .nav-button::before,
   .mobile-nav-item::before,
   .user-menu-item:not(.user-menu-item--danger)::before,
-  .aca-tab::before{
+  .aca-tab::before,
+  .home-quick-grid .dashboard-card::before{
     display:none;
   }
 }

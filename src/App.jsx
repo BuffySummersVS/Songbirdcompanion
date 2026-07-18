@@ -22,6 +22,8 @@ import Modal, { ModalHeader } from "./components/Modal";
 import { useEscapeKey } from "./hooks/useEscapeKey";
 import { toast } from "./utils/toast";
 import { FRIENDS_ENABLED, DM_ENABLED } from "./data/featureFlags";
+import { LATEST_UPDATE } from "./data/latestUpdate";
+import { getHeroOfTheDay } from "./data/heroOfTheDay";
 import logo from "./assets/logo.png";
 import "./index.css";
 import "./styles/easter-eggs.css";
@@ -63,6 +65,9 @@ function UpdatesBannerSlot() {
 }
 
 const PATCH_NOTES_URL = "https://overwatch.blizzard.com/en-us/news/patch-notes/";
+const BLOG_URL = "https://www.blogger.com/u/4/blog/posts/5101317936659360073?hl=en-GB&tab=jj";
+
+const ROLE_ICON = { Tank: "🛡️", Damage: "🏹", Support: "➕" };
 
 const OFFICIAL_LINKS = [
   { title:"Overwatch Website",description:"Official news, hero pages, seasonal events, and game information direct from Blizzard.",url:"https://overwatch.blizzard.com/",label:"Visit Site",theme:"link-blizzard" },
@@ -80,7 +85,7 @@ const STATUS_LINKS = [
 
 const BASE_NAV = [
   "Home","Events","Competitive Guide","UI Guide","Heroes","Randomiser","CounterWatch","Team Comps",
-  "Maps","Custom Games","Terms & Phrases","Win Tracker","Patch Notes",
+  "Maps","Custom Games","Terms & Phrases","Win Tracker","Resources","Patch Notes",
 ];
 
 const AUTH_PROTECTED = ["Win Tracker", "Hero Stats", "My Profile", "Academy"];
@@ -275,6 +280,8 @@ function AppInner() {
       return matchesSearch && matchesFilter;
     }), [search, filter]);
 
+  const heroOfTheDay = useMemo(() => getHeroOfTheDay(heroes), []);
+
   // If user logs out while on a protected page, go home
   const [prevCurrentUser, setPrevCurrentUser] = useState(currentUser);
   if (currentUser !== prevCurrentUser) {
@@ -312,6 +319,12 @@ function AppInner() {
   }
 
   function selectHero(hero) {
+    setSelectedHero(hero);
+    window.history.pushState({ page: "Heroes", heroId: hero.id }, "", heroPath(hero.id));
+  }
+
+  function viewHeroFromHome(hero) {
+    setActivePage("Heroes");
     setSelectedHero(hero);
     window.history.pushState({ page: "Heroes", heroId: hero.id }, "", heroPath(hero.id));
   }
@@ -437,8 +450,50 @@ function AppInner() {
       <Suspense fallback={<div className="aca-loading">Loading…</div>}>
 
         {activePage === "Home" && (
-          <section className="dashboard">
+          <section className="home-dashboard">
             <UpdatesBannerSlot />
+
+            {currentUser && (
+              <p className="home-welcome">Welcome back, <strong>{currentUser.username}</strong> — here's what's new.</p>
+            )}
+
+            <div className="dashboard-grid home-quick-grid">
+              <button type="button" className="dashboard-card" onClick={() => navigate("CounterWatch")}><h3>CounterWatch</h3></button>
+              <button type="button" className="dashboard-card" onClick={() => navigate("Heroes")}><h3>Heroes</h3></button>
+              <button type="button" className="dashboard-card" onClick={() => navigate("Maps")}><h3>Maps</h3></button>
+              <button type="button" className="dashboard-card" onClick={() => navigate("Team Comps")}><h3>Team Comps</h3></button>
+              <button type="button" className="dashboard-card" onClick={() => navigate("Patch Notes")}><h3>Patch Notes</h3></button>
+              <button type="button" className="dashboard-card" onClick={() => navigate("Randomiser")}><h3>Random Hero</h3></button>
+              <button type="button" className="dashboard-card" onClick={() => navigate("Win Tracker")}><h3>StatWatch</h3></button>
+              <a className="dashboard-card" href={BLOG_URL} target="_blank" rel="noopener noreferrer"><h3>SongBird's Blogs</h3></a>
+            </div>
+
+            <div className="home-update-card">
+              <span className="home-card-icon" aria-hidden="true">🔥</span>
+              <div className="home-card-body">
+                <p className="home-card-label">Latest Update</p>
+                <h3 className="home-card-title">{LATEST_UPDATE.heading}</h3>
+                <ul className="home-card-list">
+                  {LATEST_UPDATE.items.map(item => <li key={item}>✓ {item}</li>)}
+                </ul>
+              </div>
+            </div>
+
+            <div className="home-hotd-card">
+              <span className={`home-card-icon home-role-icon-${heroOfTheDay.role.toLowerCase()}`} aria-hidden="true">
+                {ROLE_ICON[heroOfTheDay.role] ?? "🎯"}
+              </span>
+              <div className="home-card-body">
+                <p className="home-card-label">Hero of the Day</p>
+                <h3 className="home-card-title">{heroOfTheDay.name}</h3>
+              </div>
+              <button type="button" className="home-card-btn" onClick={() => viewHeroFromHome(heroOfTheDay)}>View Profile →</button>
+            </div>
+          </section>
+        )}
+
+        {activePage === "Resources" && (
+          <section className="dashboard">
             <div className="links-section">
               <h2 className="links-section-title">
                 <span className="links-eyebrow">Blizzard</span>
