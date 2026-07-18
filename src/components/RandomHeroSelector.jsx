@@ -17,13 +17,28 @@ export default function RandomHeroSelector() {
   const [role, setRole] = useState("Tank");
   const [results, setResults] = useState([]);
 
+  function shuffle(arr) {
+    return [...arr].sort(() => Math.random() - 0.5);
+  }
+
   function rollHeroes() {
+    // Open Queue with 3+ players: guarantee one of each role so the rolled
+    // group is always a playable comp, instead of risking e.g. 4 damage picks.
+    if (queueType === "Open Queue" && partySize >= 3) {
+      const guaranteed = ROLES.map((r) => shuffle(heroes.filter((h) => h.role === r))[0]).filter(Boolean);
+      const guaranteedIds = new Set(guaranteed.map((h) => h.id));
+      const rest = shuffle(heroes.filter((h) => !guaranteedIds.has(h.id)));
+      const fillCount = Math.max(0, partySize - guaranteed.length);
+      setResults(shuffle([...guaranteed, ...rest.slice(0, fillCount)]));
+      return;
+    }
+
     const pool =
       queueType === "Role Queue"
         ? heroes.filter((h) => h.role === role)
         : heroes;
 
-    const shuffled = [...pool].sort(() => Math.random() - 0.5);
+    const shuffled = shuffle(pool);
     setResults(shuffled.slice(0, Math.min(partySize, pool.length)));
   }
 
