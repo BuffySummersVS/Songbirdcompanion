@@ -3815,6 +3815,16 @@ button.dashboard-card:hover{
   font-weight:600;
 }
 
+.auth-privacy-hint{
+  color:var(--grey);
+  text-align:center;
+  margin:10px 0 0;
+}
+
+.auth-privacy-hint a{
+  color:var(--orange2);
+}
+
 .auth-error{
   color:var(--damage);
   font-size:.9rem;
@@ -6195,6 +6205,30 @@ button.dashboard-card:hover{
 
 .up-remove-confirm-btn:hover{
   background:#ff2a2a;
+}
+
+.up-danger-zone{
+  border-color:rgba(255,42,42,.35);
+  background:rgba(255,42,42,.06);
+}
+
+.up-danger-zone h3{
+  color:var(--damage);
+}
+
+.up-danger-zone-desc{
+  margin-bottom:16px;
+  max-width:38rem;
+}
+
+.up-danger-zone-desc a{
+  color:var(--orange2);
+}
+
+.up-delete-confirm-username{
+  text-transform:none;
+  color:var(--white);
+  letter-spacing:normal;
 }
 
 /* ── Header left-side button group (notif + DM) ── */

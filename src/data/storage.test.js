@@ -151,6 +151,20 @@ class FakeRpcBuilder {
         fakeSessions = fakeSessions.filter(s => !(s.token === p_session_token && s.user_id === p_user_id));
         return { data: null, error: null };
       }
+      if (this.fn === 'delete_account') {
+        const { p_user_id, p_session_token } = this.args;
+        fakeCheckSession(p_user_id, p_session_token);
+        fakeDMMessages = fakeDMMessages.filter(m => m.from_id !== p_user_id && m.to_id !== p_user_id);
+        fakeFriends = fakeFriends.filter(f => f.user_id !== p_user_id && f.friend_id !== p_user_id);
+        fakeFriendRequests = fakeFriendRequests.filter(r => r.from_id !== p_user_id && r.to_id !== p_user_id);
+        fakeCustomEvents = fakeCustomEvents.filter(e => e.user_id !== p_user_id);
+        fakeMatches = fakeMatches.filter(m => m.user_id !== p_user_id);
+        delete fakeUserPrefs[p_user_id];
+        delete fakeAcademyData[p_user_id];
+        fakeSessions = fakeSessions.filter(s => s.user_id !== p_user_id);
+        fakeUsers = fakeUsers.filter(u => u.id !== p_user_id);
+        return { data: null, error: null };
+      }
       if (this.fn === 'get_academy_data') {
         const { p_user_id, p_session_token } = this.args;
         fakeCheckSession(p_user_id, p_session_token);
@@ -451,7 +465,7 @@ vi.mock('../lib/supabaseClient.js', () => ({
 }));
 
 import {
-  createUser, getUserById, updateUser, verifyLogin, searchUsers, signOut,
+  createUser, getUserById, updateUser, verifyLogin, searchUsers, signOut, deleteAccount,
   getSession, saveSession, clearSession,
   getMatches, addMatch, updateMatch, deleteMatch, clearMatches,
   getAcademyProgress, saveAcademyProgress, saveAcademyStreak,
@@ -568,6 +582,33 @@ describe('users / auth', () => {
     const session = getSession();
     await signOut(session.userId, session.sessionToken);
     await expect(updateUser(user.id, { avatar: 'new.png' })).rejects.toThrow('Invalid session.');
+  });
+
+  it('deleteAccount removes the user, wipes their data, and invalidates the session', async () => {
+    const user = await registerAndSignIn('Zenyatta');
+    await addMatch(user.id, { heroId: 'zenyatta', result: 'win' });
+    const session = getSession();
+
+    await deleteAccount(session.userId, session.sessionToken);
+
+    expect(await getUserById(user.id)).toBeNull();
+    await expect(getMatches(user.id)).rejects.toThrow('Invalid session.');
+    await expect(createUser({ username: 'Zenyatta', password: 'other', avatar: 'z.png' })).resolves.toMatchObject({ username: 'Zenyatta' });
+  });
+
+  it('deleteAccount removes the deleted user from a friend\'s friends list', async () => {
+    const alice = await registerAndSignIn('Alice');
+    const bob = await registerAndSignIn('Bob');
+
+    saveSession(alice.id, alice.session_token);
+    await sendFriendRequest(alice.id, bob.id);
+
+    saveSession(bob.id, bob.session_token);
+    await acceptFriendRequest(bob.id, alice.id);
+
+    await deleteAccount(alice.id, alice.session_token);
+
+    expect(await getFriends(bob.id)).not.toContain(alice.id);
   });
 
   it('searchUsers matches by substring and never leaks the password hash', async () => {

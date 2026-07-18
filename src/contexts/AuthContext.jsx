@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import {
   getSession, saveSession, clearSession,
   getUserById, createUser, verifyLogin, updateUser, signOut as signOutRemote,
+  deleteAccount as deleteAccountRemote,
 } from '../data/storage';
 
 const AuthContext = createContext(null);
@@ -47,6 +48,15 @@ export function AuthProvider({ children }) {
     setCurrentUser(null);
   }
 
+  async function deleteAccount() {
+    const session = getSession();
+    if (session?.userId && session?.sessionToken) {
+      await deleteAccountRemote(session.userId, session.sessionToken);
+    }
+    clearSession();
+    setCurrentUser(null);
+  }
+
   async function refreshUser() {
     if (!currentUser) return;
     const fresh = await getUserById(currentUser.id);
@@ -60,7 +70,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ currentUser, ready, login, register, logout, updateProfile, refreshUser }}>
+    <AuthContext.Provider value={{ currentUser, ready, login, register, logout, deleteAccount, updateProfile, refreshUser }}>
       {children}
     </AuthContext.Provider>
   );

@@ -101,6 +101,11 @@ export async function signOut(userId, sessionToken) {
   }
 }
 
+export async function deleteAccount(userId, sessionToken) {
+  const { error } = await supabase.rpc('delete_account', { p_user_id: userId, p_session_token: sessionToken });
+  if (error) throw new Error(error.message);
+}
+
 export function getSession() {
   return safeParse(localStorage.getItem(K.SESSION) || 'null', null, v => v === null || isPlainObject(v));
 }

@@ -35,7 +35,7 @@ import EasterEggSection from '../easter-eggs/EasterEggSection';
 const LearningInsights = lazy(() => import('../academy/LearningInsights.jsx'));
 
 export default function UserProfile({ viewingFriendId, setViewingFriendId, onNavigateToStats, onOpenAcademy }) {
-  const { currentUser, logout, updateProfile } = useAuth();
+  const { currentUser, logout, deleteAccount, updateProfile } = useAuth();
   const [matches, setMatches] = useState([]);
   const checkHazardTrigger = useHazardSearchTrigger();
 
@@ -62,10 +62,16 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
   const [confirmRemoveId, setConfirmRemoveId] = useState(null);
   const [confirmLogout, setConfirmLogout]     = useState(false);
 
+  const [deleteModalOpen, setDeleteModalOpen]     = useState(false);
+  const [deleteConfirmText, setDeleteConfirmText] = useState('');
+  const [deleteError, setDeleteError]             = useState('');
+  const [deleteBusy, setDeleteBusy]               = useState(false);
+
   useEscapeKey(() => closeFriendModal(), friendAddOpen);
   useEscapeKey(() => setAvatarPickerOpen(false), avatarPickerOpen);
   useEscapeKey(() => setConfirmLogout(false), confirmLogout);
   useEscapeKey(() => setConfirmRemoveId(null), !!confirmRemoveId);
+  useEscapeKey(() => closeDeleteModal(), deleteModalOpen);
 
   const friendSearchInputRef = useRef(null);
   useAutoFocus(friendSearchInputRef, friendAddOpen);
@@ -157,6 +163,24 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
     setEditConfirm('');
     setEditError('');
     setEditAvatar(currentUser.avatar);
+  }
+
+  function closeDeleteModal() {
+    if (deleteBusy) return;
+    setDeleteModalOpen(false);
+    setDeleteConfirmText('');
+    setDeleteError('');
+  }
+
+  async function handleDeleteAccount() {
+    setDeleteError('');
+    setDeleteBusy(true);
+    try {
+      await deleteAccount();
+    } catch (err) {
+      setDeleteError(err.message);
+      setDeleteBusy(false);
+    }
   }
 
   const avatarSrc = getAvatarSrc(editMode ? editAvatar : currentUser.avatar);
@@ -294,6 +318,21 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
         )}
       </div>
 
+      {/* ── Danger Zone ── */}
+      {!viewingFriendId && (
+        <div className="profile-section up-danger-zone">
+          <h3>Danger Zone</h3>
+          <p className="up-danger-zone-desc">
+            Permanently delete your account, match history, Academy progress, friends, and messages.
+            This cannot be undone. See our{' '}
+            <a href="/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a> for what we store.
+          </p>
+          <button type="button" className="up-remove-confirm-btn" onClick={() => setDeleteModalOpen(true)}>
+            Delete Account
+          </button>
+        </div>
+      )}
+
       {/* ── Avatar picker overlay ── */}
       {avatarPickerOpen && (
         <div className="picker-overlay" onClick={() => setAvatarPickerOpen(false)}>
@@ -389,6 +428,45 @@ export default function UserProfile({ viewingFriendId, setViewingFriendId, onNav
           </div>
         );
       })()}
+
+      {/* ── Confirm delete account ── */}
+      {deleteModalOpen && (
+        <div className="confirm-overlay" onClick={closeDeleteModal}>
+          <div className="confirm-panel" onClick={e => e.stopPropagation()}>
+            <h3 className="confirm-title">Delete Account</h3>
+            <p className="confirm-sub">
+              This permanently deletes your account, match history, Academy progress, friends,
+              and messages. This cannot be undone.
+            </p>
+            <div className="auth-field">
+              <label className="auth-label">
+                Type <strong className="up-delete-confirm-username">{currentUser.username}</strong> to confirm
+              </label>
+              <input
+                className="auth-input"
+                value={deleteConfirmText}
+                onChange={e => setDeleteConfirmText(e.target.value)}
+                autoComplete="off"
+                disabled={deleteBusy}
+              />
+            </div>
+            {deleteError && <p className="auth-error">{deleteError}</p>}
+            <div className="confirm-actions">
+              <button type="button" className="confirm-back-btn" onClick={closeDeleteModal} disabled={deleteBusy}>
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="up-remove-confirm-btn"
+                onClick={handleDeleteAccount}
+                disabled={deleteBusy || deleteConfirmText !== currentUser.username}
+              >
+                {deleteBusy ? 'Deleting…' : 'Delete Account'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

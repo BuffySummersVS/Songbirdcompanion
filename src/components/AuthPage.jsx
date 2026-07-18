@@ -240,6 +240,10 @@ function RegisterForm({ register, onSuccess }) {
         <button type="submit" className="auth-submit-btn">
           Review Details
         </button>
+        <p className="auth-hint auth-privacy-hint">
+          By creating an account you agree to our{' '}
+          <a href="/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>.
+        </p>
       </form>
 
       {showConfirm && (
