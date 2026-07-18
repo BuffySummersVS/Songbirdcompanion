@@ -21,16 +21,37 @@ import { App } from "@capacitor/app";
 const stack = [];
 let nativeListenerPromise = null;
 
+// Home is the app's root screen — there's nothing "back" to navigate to
+// from there, and window.history.back() with no history left behind it
+// just does nothing (leaving the user stuck). App.jsx keeps this flag in
+// sync with activePage via setIsHomeForBackButton so the listener below
+// knows to exit the app instead, matching how the hardware back button
+// behaves on a native app's home screen.
+let isHome = false;
+
+export function setIsHomeForBackButton(value) {
+  isHome = value;
+}
+
 function ensureNativeListener() {
   if (nativeListenerPromise || !Capacitor.isNativePlatform()) return;
   nativeListenerPromise = App.addListener("backButton", () => {
     if (stack.length > 0) {
       stack[stack.length - 1]();
+    } else if (isHome) {
+      App.exitApp();
     } else {
       window.history.back();
     }
   });
 }
+
+// Registered once, immediately, at module load — not lazily from inside
+// useEscapeKey's effect. The old lazy approach only registered this the
+// first time some useEscapeKey(fn, true) call became active (i.e. some
+// modal opened), so pressing back on a fresh Home load with nothing open
+// yet silently did nothing at all, since the listener didn't exist yet.
+ensureNativeListener();
 
 export function useEscapeKey(onEscape, active = true) {
   const callbackRef = useRef(onEscape);

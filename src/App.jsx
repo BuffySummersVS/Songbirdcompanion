@@ -19,7 +19,7 @@ import UserMenu from "./components/UserMenu";
 import NotificationsPanel from "./components/NotificationsPanel";
 import FriendsListPanel from "./components/FriendsListPanel";
 import Modal, { ModalHeader } from "./components/Modal";
-import { useEscapeKey } from "./hooks/useEscapeKey";
+import { useEscapeKey, setIsHomeForBackButton } from "./hooks/useEscapeKey";
 import { toast } from "./utils/toast";
 import { FRIENDS_ENABLED, DM_ENABLED } from "./data/featureFlags";
 import { LATEST_UPDATE } from "./data/latestUpdate";
@@ -125,6 +125,10 @@ export default function App() {
 function AppInner() {
   const { currentUser, ready, logout } = useAuth();
   const [activePage, setActivePage]     = useState(() => stateFromPath(window.location.pathname).page);
+
+  useEffect(() => {
+    setIsHomeForBackButton(activePage === "Home");
+  }, [activePage]);
   const [search, setSearch]             = useState("");
   const [filter, setFilter]             = useState("All");
   const [selectedHero, setSelectedHero] = useState(() => {
