@@ -2,7 +2,20 @@
   "appId": "songbird.app",
   "appName": "SongBird-Unofficial Overwatch Companion",
   "webDir": "dist",
+  "backgroundColor": "#06070a",
   "android": {
-    "zoomEnabled": false
+    "zoomEnabled": false,
+    "backgroundColor": "#06070a"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false,
+      "backgroundColor": "#06070a",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false,
+      "splashFullScreen": true,
+      "splashImmersive": true
+    }
   }
 }
