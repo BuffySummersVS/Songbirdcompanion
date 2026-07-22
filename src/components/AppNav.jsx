@@ -1,10 +1,30 @@
+import { useEffect, useRef, useState } from "react";
 import { useEscapeKey } from "../hooks/useEscapeKey";
 
 export default function AppNav({ navItems, activePage, navOpen, setNavOpen, onNavigate }) {
   useEscapeKey(() => setNavOpen(false), navOpen);
 
+  // `position:sticky` doesn't engage in this app's WebView, so the mobile
+  // hamburger bar is pinned in JS instead: a zero-height sentinel sits where
+  // the nav naturally starts, and once scrolling carries it above the
+  // viewport we switch the nav to `position:fixed` (see .app-nav-pinned).
+  const sentinelRef = useRef(null);
+  const [pinned, setPinned] = useState(false);
+
+  useEffect(() => {
+    function onScroll() {
+      if (!sentinelRef.current) return;
+      setPinned(sentinelRef.current.getBoundingClientRect().top <= 0);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <nav className="app-nav">
+    <>
+    <div ref={sentinelRef} style={{ height: 0 }} aria-hidden="true" />
+    <nav className={`app-nav${pinned ? " app-nav-pinned" : ""}`}>
       {navItems.map(item => (
         <button
           key={item}
@@ -54,5 +74,6 @@ export default function AppNav({ navItems, activePage, navOpen, setNavOpen, onNa
         </>
       )}
     </nav>
+    </>
   );
 }

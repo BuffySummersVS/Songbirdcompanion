@@ -3799,6 +3799,16 @@ button.dashboard-card:hover{
   .app-nav .nav-button{ display:none; }
   .nav-hamburger{ display:flex; }
   .app-nav{ justify-content:flex-end; position:relative; padding:8px 16px; }
+
+  /* JS-driven pin (position:sticky isn't honoured in the app's WebView) —
+     see AppNav.jsx's scroll-sentinel effect. */
+  .app-nav.app-nav-pinned{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:140;
+  }
 }
 
 @media (max-width:768px){

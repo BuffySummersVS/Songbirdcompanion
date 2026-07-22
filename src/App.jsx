@@ -84,8 +84,8 @@ const STATUS_LINKS = [
 ];
 
 const BASE_NAV = [
-  "Home","Events","Competitive Guide","UI Guide","Heroes","Randomiser","CounterWatch","Team Comps",
-  "Maps","Custom Games","Terms & Phrases","Win Tracker","Resources","Patch Notes",
+  "Home","Academy","Competitive Guide","CounterWatch","Custom Games","Events","Heroes","Maps",
+  "Randomiser","Team Comps","Terms & Phrases","UI Guide","Win Tracker","Resources","Patch Notes",
 ];
 
 const AUTH_PROTECTED = ["Win Tracker", "Hero Stats", "My Profile", "Academy"];
@@ -399,10 +399,11 @@ function AppInner() {
               aria-label="Direct Messages"
               title="Direct Messages"
             >
-              {/* Counterclockwise arc with arrowhead — Recall-inspired (time-rewind) */}
+              {/* Pulse Bomb-inspired: ring + 3 radiating prongs around a centred dot */}
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true">
-                <path d="M19 12A7 7 0 1 0 15.5 18" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round"/>
-                <polyline points="19,16.5 15.5,18 16.5,21.5" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="2"/>
+                <path d="M12 12 L12 3.5 M12 12 L19.36 16.25 M12 12 L4.64 16.25" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                <circle cx="12" cy="12" r="2.4" fill="currentColor"/>
               </svg>
               {DM_ENABLED && dmUnread > 0 && (
                 <span className="notif-badge">{dmUnread}</span>
