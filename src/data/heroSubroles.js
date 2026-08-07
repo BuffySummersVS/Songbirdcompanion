@@ -3,6 +3,7 @@ import { SUBROLES } from "./subroles";
 const MAP = {
   // ── Tanks ──────────────────────────────────────────
   dva:          "Dive Tank",
+  dmon:         "Main Tank",
   doomfist:     "Dive Tank",
   domina:       "Main Tank",
   hazard:       "Off Tank",

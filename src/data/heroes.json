@@ -113,6 +113,122 @@
     "lore": "Hana Song is a decorated South Korean professional gamer recruited by MEKA to pilot mechs against the relentless Gwishin omnic attacks on the coast. When conventional military tactics failed, the government turned to elite gamers whose reflexes matched those required to pilot the mechs. She streams every mission live to her millions of devoted fans."
   },
   {
+    "id": "dmon",
+    "name": "D.Mon",
+    "role": "Tank",
+    "imageId": "dmon",
+    "releaseDate": "2026-08-11",
+    "health": 250,
+    "armour": 250,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Fusion Repeater",
+      "type": "Mech-mounted machine gun",
+      "ammo": "Heat based",
+      "damage": "Rapid-fire, sustained DPS",
+      "cooldown": "None",
+      "description": "Activates a rapid-fire machine gun built into D.Mon's mech for sustained ranged pressure."
+    },
+    "passive": {
+      "name": "Eject!",
+      "description": "When her mech is destroyed, D.Mon ejects and keeps fighting on foot with her Plasma Saber and Portable Fusion Repeater until she calls down a new mech."
+    },
+    "abilities": [
+      {
+        "name": "Power Barrier",
+        "type": "Frontal barrier",
+        "damage": "TBC",
+        "cooldown": "Resource meter",
+        "description": "Holds a frontal energy barrier that blocks incoming damage, letting D.Mon anchor a position and shield her team."
+      },
+      {
+        "name": "Propulsors",
+        "type": "Mobility",
+        "damage": "TBC",
+        "cooldown": "Fuel based",
+        "description": "Consumes fuel to surge in any horizontal direction, letting D.Mon reposition, chase, or disengage."
+      },
+      {
+        "name": "Surging Strike",
+        "type": "Melee bash",
+        "damage": "Impact damage, knockback",
+        "cooldown": "Requires Power Barrier deployed",
+        "description": "While Power Barrier is deployed, strikes forward to damage enemies and push them back."
+      }
+    ],
+    "ultimate": {
+      "name": "Limit Break",
+      "type": "Ultimate",
+      "damage": "Amplifies damage enemies take",
+      "description": "Unleashes a sweeping slash that grants D.Mon overhealth and amplifies damage taken by nearby enemies."
+    },
+    "secondaryUltimate": {
+      "name": "Call Mech",
+      "type": "Ultimate",
+      "damage": "TBC",
+      "description": "Pilot D.Mon calls down a new mech, reassembling it to return to the fight."
+    },
+    "counters": [
+      "Genji",
+      "Tracer",
+      "Sombra",
+      "Widowmaker"
+    ],
+    "counteredBy": [
+      "Sigma",
+      "Ana",
+      "Reaper",
+      "Junker Queen"
+    ],
+    "synergies": [
+      "Kiriko",
+      "Lucio",
+      "Zarya",
+      "Ana"
+    ],
+    "strongMaps": [
+      "King's Row",
+      "Hollywood",
+      "Eichenwalde"
+    ],
+    "weakMaps": [
+      "Circuit Royal",
+      "Route 66",
+      "Watchpoint: Gibraltar"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Beast Within",
+          "description": "Plasma Saber hits heal Power Barrier by 40 health."
+        },
+        {
+          "name": "MEKA Mobility",
+          "description": "While holding Power Barrier, Propulsors fuel cost is reduced by 30%."
+        }
+      ],
+      "major": [
+        {
+          "name": "Overstrike",
+          "description": "Surging Strike gains 150% lifesteal."
+        },
+        {
+          "name": "Focused Fusion",
+          "description": "Fusion Repeater fires stronger shots with no spread at a slower rate."
+        }
+      ]
+    },
+    "patchHistory": [
+      {
+        "date": "2026-08-07",
+        "change": "D.Mon added to the Tank roster."
+      }
+    ],
+    "lore": "Yuna Lee, known by her callsign D.Mon, is a member of South Korea's MEKA Squad. She is a tough and protective member of her team, standing out with a disciplined demeanor built from her military experience, expertise, and leadership. As one of the most responsible voices on the team, she prioritizes the mission above all else."
+  },
+  {
     "id": "doomfist",
     "name": "Doomfist",
     "role": "Tank",
