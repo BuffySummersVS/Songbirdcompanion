@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'A Danish bounty hunter of minimal words and exceptional precision, Freja tracks the most dangerous quarry across Europe with her signature crossbow and her loyal wolf companion. She operates outside any organisation\'s jurisdiction, accepting contract',
+      body: 'A Danish bounty hunter of minimal words and exceptional precision, Freja tracks the most dangerous quarry across Europe with her signature crossbow and her loyal wolf companion. She operates outside any organisation\'s jurisdiction, accepting contracts only when they align with a personal moral code few outsiders fully understand. Her targets rarely hear her coming and never see her leave.',
     },
     {
       type: 'callout',

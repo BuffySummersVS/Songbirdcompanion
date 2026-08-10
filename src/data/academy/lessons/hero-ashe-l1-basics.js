@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Elizabeth Caledonia Ashe grew up in extraordinary wealth but craved the freedom of the outlaw life, eventually founding the Deadlock Gang and building it into the most feared criminal organisation in the American Southwest. Her history with Overwatch',
+      body: 'Elizabeth Caledonia Ashe grew up in extraordinary wealth but craved the freedom of the outlaw life, eventually founding the Deadlock Gang and building it into the most feared criminal organisation in the American Southwest. Her history with Overwatch\'s Cassidy is long and complicated — they were close once, before rival loyalties drove them apart. She runs her operation with a lever-action rifle, her imposing omnic enforcer B.O.B., and zero tolerance for disloyalty.',
     },
     {
       type: 'callout',

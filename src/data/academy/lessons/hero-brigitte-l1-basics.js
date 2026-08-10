@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Brigitte Lindholm is the daughter of the legendary engineer Torbjörn and the goddaughter of the crusader Reinhardt, who grew up surrounded by heroes but preferred to be the person keeping their armour from falling apart. When Reinhardt came out of re',
+      body: 'Brigitte Lindholm is the daughter of the legendary engineer Torbjörn and the goddaughter of the crusader Reinhardt, who grew up surrounded by heroes but preferred to be the person keeping their armour from falling apart. When Reinhardt came out of retirement and charged back into danger, she followed as his squire — and then realised she was more than a squire. She fights with a flail and a repair pack and a loyalty to the people she loves that is completely without condition.',
     },
     {
       type: 'callout',

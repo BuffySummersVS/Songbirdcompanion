@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Unit SST Laboratories Siege Automaton E54 is a Bastion omnic unit from the Omnic Crisis that spent decades dormant in a German forest, all battle protocols intact but weapons silent. Reawakened to a world at uneasy peace, Bastion formed an unlikely f',
+      body: 'Unit SST Laboratories Siege Automaton E54 is a Bastion omnic unit from the Omnic Crisis that spent decades dormant in a German forest, all battle protocols intact but weapons silent. Reawakened to a world at uneasy peace, Bastion formed an unlikely friendship with a small bird and began to discover wonder in the natural world. It struggles daily to reconcile its programming for war with everything it is learning about life.',
     },
     {
       type: 'callout',

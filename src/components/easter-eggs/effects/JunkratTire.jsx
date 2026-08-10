@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import tireImg from "../../../assets/easter-eggs/junrat-Riptire.png";
+import tireImg from "../../../assets/easter-eggs/junkrat-Riptire.png";
 
 const TRAVEL_MS = 3300;
 

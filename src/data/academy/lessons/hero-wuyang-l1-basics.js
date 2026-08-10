@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Wuyang Ye always dreamed of following his family\'s legacy into Wuxing University\'s prestigious Fire College, only to be accepted into the Water College instead — a blow to his pride that became an unexpected gift as he discovered a natural talent for',
+      body: 'Wuyang Ye always dreamed of following his family\'s legacy into Wuxing University\'s prestigious Fire College, only to be accepted into the Water College instead — a blow to his pride that became an unexpected gift as he discovered a natural talent for qi gong and traditional Chinese healing. When Null Sector attacked Chengdu, he rushed to save his sister Anran using his water-based combat techniques, and the siblings fought their way free together. Winston recruited them both after witnessing the footage; Wuyang accepted with renewed confidence and his sister\'s encouragement.',
     },
     {
       type: 'callout',

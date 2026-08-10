@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Tekhartha Zenyatta is a Shambali omnic monk who broke from the monastery\'s doctrine to wander the world and form genuine personal connections with humans, believing that understanding grows from relationship rather than instruction. He became Genji\'s',
+      body: 'Tekhartha Zenyatta is a Shambali omnic monk who broke from the monastery\'s doctrine to wander the world and form genuine personal connections with humans, believing that understanding grows from relationship rather than instruction. He became Genji\'s mentor at a critical moment and helped him make peace with the fractured existence of being neither fully human nor fully machine. He throws orbs of harmony and destruction with equal tranquility, fully at peace with the contradiction.',
     },
     {
       type: 'callout',

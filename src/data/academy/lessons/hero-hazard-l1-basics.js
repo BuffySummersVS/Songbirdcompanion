@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Oliver Bryne is a former criminal turned extreme-sports daredevil who was exposed to experimental kinetic technology during a botched heist that left his crew dead. The accident gifted him the ability to generate and redirect gravitational force, tur',
+      body: 'Oliver Bryne is a former criminal turned extreme-sports daredevil who was exposed to experimental kinetic technology during a botched heist that left his crew dead. The accident gifted him the ability to generate and redirect gravitational force, turning every surface into a weapon. He treats combat as the ultimate extreme sport — one he has no intention of losing.',
     },
     {
       type: 'callout',

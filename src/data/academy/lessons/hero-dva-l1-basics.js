@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Hana Song is a decorated South Korean professional gamer recruited by MEKA to pilot mechs against the relentless Gwishin omnic attacks on the coast. When conventional military tactics failed, the government turned to elite gamers whose reflexes match',
+      body: 'Hana Song is a decorated South Korean professional gamer recruited by MEKA to pilot mechs against the relentless Gwishin omnic attacks on the coast. When conventional military tactics failed, the government turned to elite gamers whose reflexes matched those required to pilot the mechs. She streams every mission live to her millions of devoted fans.',
     },
     {
       type: 'callout',

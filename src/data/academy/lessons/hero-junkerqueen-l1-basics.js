@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Odessa "Dez" Stone clawed her way to the throne of Junkertown by defeating every challenger in the settlement\'s brutal gladiatorial arena. She rules the Outback\'s largest community with her giant axe "Gracie" and a presence that fills every room she ',
+      body: 'Odessa "Dez" Stone clawed her way to the throne of Junkertown by defeating every challenger in the settlement\'s brutal gladiatorial arena. She rules the Outback\'s largest community with her giant axe "Gracie" and a presence that fills every room she enters. Those who question her authority rarely get a second opportunity.',
     },
     {
       type: 'callout',

@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Dr. Moira O\'Deorain is an Irish geneticist of extraordinary and unchecked ambition who pushes biological science past every ethical limit the field has established, pursuing discoveries too dangerous for legitimate institutions and too interesting to',
+      body: 'Dr. Moira O\'Deorain is an Irish geneticist of extraordinary and unchecked ambition who pushes biological science past every ethical limit the field has established, pursuing discoveries too dangerous for legitimate institutions and too interesting to stop. She has augmented her own body with biotic technology that channels both restorative and corrosive energy simultaneously, blurring the line between healer and weapon. She regards conventional morality as a bureaucratic obstacle to human potential.',
     },
     {
       type: 'callout',

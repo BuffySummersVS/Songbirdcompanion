@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'A genetically engineered gorilla raised on the Horizon Lunar Colony by the brilliant scientist Dr. Harold Winston, who gave him both his name and his love of knowledge. After an omnic uprising killed most of the colony\'s scientists, Winston escaped t',
+      body: 'A genetically engineered gorilla raised on the Horizon Lunar Colony by the brilliant scientist Dr. Harold Winston, who gave him both his name and his love of knowledge. After an omnic uprising killed most of the colony\'s scientists, Winston escaped to Earth in a makeshift capsule and joined Overwatch, dedicating himself to heroism in his adoptive father\'s memory. He misses peanut butter more than almost anything else.',
     },
     {
       type: 'callout',

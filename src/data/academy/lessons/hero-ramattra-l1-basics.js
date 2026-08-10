@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Once a gentle Shambali monk who sought peace between humans and omnics through harmony and patience, Ramattra\'s faith was slowly destroyed by decades of persecution, broken promises, and violence against his kind. He founded Null Sector after conclud',
+      body: 'Once a gentle Shambali monk who sought peace between humans and omnics through harmony and patience, Ramattra\'s faith was slowly destroyed by decades of persecution, broken promises, and violence against his kind. He founded Null Sector after concluding that omnic freedom would never be granted — it had to be seized. He is not a villain born of hatred, but of hope that ran out.',
     },
     {
       type: 'callout',

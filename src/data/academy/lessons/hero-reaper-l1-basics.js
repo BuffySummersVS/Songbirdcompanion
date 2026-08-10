@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Gabriel Reyes co-founded Overwatch alongside Jack Morrison and commanded its covert division Blackwatch, until betrayal and a catastrophic confrontation left him in a state between life and death — capable of phasing through the physical world and ab',
+      body: 'Gabriel Reyes co-founded Overwatch alongside Jack Morrison and commanded its covert division Blackwatch, until betrayal and a catastrophic confrontation left him in a state between life and death — capable of phasing through the physical world and absorbing vitality from those he defeats. He now serves Talon as an instrument of pure destruction, driven by a cold fury that long ago consumed whatever idealism once lived there. He and Soldier: 76 share a past that neither has forgiven.',
     },
     {
       type: 'callout',

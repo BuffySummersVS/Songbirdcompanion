@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'An omnic who Awakened into Tokyo\'s Omnic Crisis amid screams and gunfire, Shion spent weeks surviving alone on the streets before being captured by the humans who would go on to found the Hashimoto Clan, who kept her alive to sharpen their fighting t',
+      body: 'An omnic who Awakened into Tokyo\'s Omnic Crisis amid screams and gunfire, Shion spent weeks surviving alone on the streets before being captured by the humans who would go on to found the Hashimoto Clan, who kept her alive to sharpen their fighting techniques against her. Secretly she held back, studying their weaknesses and biding her time — until she killed all four Hashimoto elders and carved out a fifth seat on the council for herself. She has since modified her chassis to appear uncannily human, rebuilt the Hashimoto into a force that serves her vision alone, and lives with characteristic excess: fashion, lovers, and custom motorcycles.',
     },
     {
       type: 'callout',

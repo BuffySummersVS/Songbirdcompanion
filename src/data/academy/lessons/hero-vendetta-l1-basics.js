@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Marzia Bartalotti grew up the daughter of Talon boss Antonio Bartalotti, raised with promises of power and pride in her heritage — until Blackwatch killed her father and she lost claim to everything he had built. Driven by spite, she reinvented herse',
+      body: 'Marzia Bartalotti grew up the daughter of Talon boss Antonio Bartalotti, raised with promises of power and pride in her heritage — until Blackwatch killed her father and she lost claim to everything he had built. Driven by spite, she reinvented herself as Vendetta: a ruthless gladiatorial champion in Rome\'s Colosseo who fought her way to the title of Colosseo Champion and earned the name La Lupa Della Ritorsione — The Wolf of Retribution. She has built wealth and a network of powerful allies across Italy, and is now closing in on Talon to reclaim the empire she was promised.',
     },
     {
       type: 'callout',

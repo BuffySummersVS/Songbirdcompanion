@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Lúcio Correia dos Santos is a Brazilian DJ and activist who grew up in a favela forcibly restructured by the Vishkar Corporation, and responded by reverse-engineering their sonic technology and using it to drive them out. He took his music and his mo',
+      body: 'Lúcio Correia dos Santos is a Brazilian DJ and activist who grew up in a favela forcibly restructured by the Vishkar Corporation, and responded by reverse-engineering their sonic technology and using it to drive them out. He took his music and his movement global, using his beat-driven abilities to heal allies and accelerate pushes in equal measure. His beats are a form of liberation that scales to any size crowd.',
     },
     {
       type: 'callout',

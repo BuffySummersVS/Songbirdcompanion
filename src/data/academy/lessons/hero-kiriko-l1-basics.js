@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Kiriko Kamori is a young shrine maiden from Kanezaka in Tokyo, trained in both the traditional kitsune fox spirit arts of her grandmother and the more grounded ninja techniques passed down through her mother\'s side of the family. She grew up alongsid',
+      body: 'Kiriko Kamori is a young shrine maiden from Kanezaka in Tokyo, trained in both the traditional kitsune fox spirit arts of her grandmother and the more grounded ninja techniques passed down through her mother\'s side of the family. She grew up alongside Genji and Hanzo Shimada and now uses her swiftness and healing ofuda to protect her community from the forces that took over after the yakuza left. Her kitsune spirit runs beside her.',
     },
     {
       type: 'callout',

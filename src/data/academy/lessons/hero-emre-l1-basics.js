@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Emre Sarioglu was a tactical prodigy from Istanbul whose natural leadership and sharp mind made him the first post-Omnic Crisis recruit to the Overwatch Strike Team. After years of watching corruption hollow out the organisation he believed in, he wa',
+      body: 'Emre Sarioglu was a tactical prodigy from Istanbul whose natural leadership and sharp mind made him the first post-Omnic Crisis recruit to the Overwatch Strike Team. After years of watching corruption hollow out the organisation he believed in, he walked away to help the world on his own terms — then disappeared without explanation. He has since resurfaced as a cyborg, struggling against an unknown force that compels him to kill against his will; only his closest ally Freja knows the truth of what he has become.',
     },
     {
       type: 'callout',

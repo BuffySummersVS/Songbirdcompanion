@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Amélie Lacroix was once a warm, brilliant woman and wife of Overwatch agent Gérard Lacroix — until Talon kidnapped her, spent weeks reprogramming her, and returned her to Gérard as a sleeper agent who killed him in his sleep. They completed the trans',
+      body: 'Amélie Lacroix was once a warm, brilliant woman and wife of Overwatch agent Gérard Lacroix — until Talon kidnapped her, spent weeks reprogramming her, and returned her to Gérard as a sleeper agent who killed him in his sleep. They completed the transformation, slowing her heart rate to near-stillness and eliminating the capacity for the emotions that might compromise her aim. She carries no memory of who she was before, and no grief for the loss.',
     },
     {
       type: 'callout',

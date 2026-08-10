@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Sierra Turner Woods grew up always on the move with her mother Kendra, never told why — until the day Kendra disappeared just before Sierra\'s thirteenth birthday, leaving only an emergency bus ticket and no explanation. That trail led her to the fath',
+      body: 'Sierra Turner Woods grew up always on the move with her mother Kendra, never told why — until the day Kendra disappeared just before Sierra\'s thirteenth birthday, leaving only an emergency bus ticket and no explanation. That trail led her to the father she had never met, and eventually to Helix Security, where as head of security at Watchpoint: Grand Mesa she uncovered the truth: her mother had been Soldier: 00, one of the first subjects in the US Soldier Enhancement Program. When Talon attacked Grand Mesa, Sierra led her squad alongside Overwatch and joined their ranks — determined to find the answers her mother never gave her.',
     },
     {
       type: 'callout',

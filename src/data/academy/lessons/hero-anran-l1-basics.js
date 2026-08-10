@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Anran Ye is a prodigy raised from the age of three to surpass her parents — celebrated Omnic Crisis veterans who trained her personally in kung fu, wushu-taolu, and classical Chinese dance, enrolling her in competitions she consistently won. She grad',
+      body: 'Anran Ye is a prodigy raised from the age of three to surpass her parents — celebrated Omnic Crisis veterans who trained her personally in kung fu, wushu-taolu, and classical Chinese dance, enrolling her in competitions she consistently won. She graduated top of her class at Wuxing University\'s Fire College and became the gold standard her family measured everything against. When Null Sector attacked Chengdu, she held the line alone so her fellow students could escape — and Winston, watching the footage, recruited her and her younger brother Wuyang to join the newly reunited Overwatch.',
     },
     {
       type: 'callout',

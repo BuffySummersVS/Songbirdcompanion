@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Aleksandra Zaryanova was on course to become the world\'s strongest woman and Russia\'s greatest athletic hero when the second Omnic Crisis forced her to trade the podium for the front line to defend her homeland. Her particle cannon converts incoming ',
+      body: 'Aleksandra Zaryanova was on course to become the world\'s strongest woman and Russia\'s greatest athletic hero when the second Omnic Crisis forced her to trade the podium for the front line to defend her homeland. Her particle cannon converts incoming fire into devastating counterattacks — the harder enemies press, the stronger she becomes. She fights with absolute ferocity for the people she loves.',
     },
     {
       type: 'callout',

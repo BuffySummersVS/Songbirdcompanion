@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'An orphan from Mexico City\'s post-Crisis slums who survived by learning to exploit the secrets of the powerful, Sombra grew into the world\'s most dangerous information broker — invisible, irreplaceable, and loyal to absolutely no one permanently. She',
+      body: 'An orphan from Mexico City\'s post-Crisis slums who survived by learning to exploit the secrets of the powerful, Sombra grew into the world\'s most dangerous information broker — invisible, irreplaceable, and loyal to absolutely no one permanently. She discovered the edges of a global conspiracy so vast it swallowed Talon whole without even noticing, and she has been quietly pulling threads ever since. Her true agenda is the only thing she has never hacked her way out of.',
     },
     {
       type: 'callout',

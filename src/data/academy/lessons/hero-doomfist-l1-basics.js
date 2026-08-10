@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Akande Ogundimu is a Nigerian warrior-philosopher who lost his right arm in a conflict and replaced it with a devastating cybernetic gauntlet. He believes human conflict is a crucible that forges a stronger species, and rose to lead Talon\'s extremist',
+      body: 'Akande Ogundimu is a Nigerian warrior-philosopher who lost his right arm in a conflict and replaced it with a devastating cybernetic gauntlet. He believes human conflict is a crucible that forges a stronger species, and rose to lead Talon\'s extremist faction after defeating the previous Doomfist. He is as much an ideologue as he is a weapon.',
     },
     {
       type: 'callout',

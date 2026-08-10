@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Cole Cassidy grew up as a member of the outlaw Deadlock Gang before being caught and offered a stark choice: prison or Overwatch\'s classified Blackwatch division. He served as one of Blackwatch\'s most effective operatives until the fall of Overwatch ',
+      body: 'Cole Cassidy grew up as a member of the outlaw Deadlock Gang before being caught and offered a stark choice: prison or Overwatch\'s classified Blackwatch division. He served as one of Blackwatch\'s most effective operatives until the fall of Overwatch left him with nothing but a magnetic grenade and a moral compass he\'s still trying to calibrate. A cowboy through and through, he roams the world doing the right thing one job at a time.',
     },
     {
       type: 'callout',

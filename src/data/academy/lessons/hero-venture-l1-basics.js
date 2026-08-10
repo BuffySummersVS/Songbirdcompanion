@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Dr. Sloane is a non-binary archaeologist and geologist of extraordinary enthusiasm who became obsessed with the omnic structures buried deep beneath the Earth\'s surface after discovering one on a routine dig. Equipped with a powerful excavation drill',
+      body: 'Dr. Sloane is a non-binary archaeologist and geologist of extraordinary enthusiasm who became obsessed with the omnic structures buried deep beneath the Earth\'s surface after discovering one on a routine dig. Equipped with a powerful excavation drill that doubles as a close-range weapon, they bore through enemies and terrain alike without pausing to distinguish between the two. Every battlefield is a potential dig site.',
     },
     {
       type: 'callout',

@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Jamison Fawkes is a manic, cackling explosives enthusiast born in the irradiated ruins of the Australian Outback, where years of scavenging and exposure to the omnium\'s fallout left him lean, wild-eyed, and terrifyingly creative with anything that de',
+      body: 'Jamison Fawkes is a manic, cackling explosives enthusiast born in the irradiated ruins of the Australian Outback, where years of scavenging and exposure to the omnium\'s fallout left him lean, wild-eyed, and terrifyingly creative with anything that detonates. He found something buried in the ruins of the omnium — a secret so valuable that mercenaries and criminal organisations pursue him relentlessly for it. He\'s not going to tell anyone what it is, and he leaves Roadhog to do most of the worrying.',
     },
     {
       type: 'callout',

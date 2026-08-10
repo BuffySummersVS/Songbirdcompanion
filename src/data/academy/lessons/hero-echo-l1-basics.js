@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Echo is a next-generation adaptive AI created by the brilliant Dr. Mina Liao, capable of studying and replicating the abilities of anyone she encounters in battle. She served under Cassidy\'s watch before the fall of Overwatch, and in the years since ',
+      body: 'Echo is a next-generation adaptive AI created by the brilliant Dr. Mina Liao, capable of studying and replicating the abilities of anyone she encounters in battle. She served under Cassidy\'s watch before the fall of Overwatch, and in the years since her sense of identity has evolved far beyond her original programming. She may be the most genuinely human artificial mind ever created.',
     },
     {
       type: 'callout',

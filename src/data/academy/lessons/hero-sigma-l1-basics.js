@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Dr. Siebren de Kuiper was a Dutch astrophysicist on the verge of harnessing the power of a black hole when the experiment catastrophically failed, shattering his mind and granting him control over gravity itself. Talon recovered him from a secret mil',
+      body: 'Dr. Siebren de Kuiper was a Dutch astrophysicist on the verge of harnessing the power of a black hole when the experiment catastrophically failed, shattering his mind and granting him control over gravity itself. Talon recovered him from a secret military facility and weaponized his fractured brilliance. He exists in a state between terrifying clarity and complete dissociation — quoting poetry one moment, levitating rubble the next.',
     },
     {
       type: 'callout',

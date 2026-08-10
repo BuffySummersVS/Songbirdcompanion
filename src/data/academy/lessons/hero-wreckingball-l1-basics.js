@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Hammond is a highly intelligent hamster who was part of the same genetic enhancement program as Winston aboard the Horizon Lunar Colony. He escaped in a homemade mech-ball, crash-landed in Junkertown, and became the undefeated champion of the local g',
+      body: 'Hammond is a highly intelligent hamster who was part of the same genetic enhancement program as Winston aboard the Horizon Lunar Colony. He escaped in a homemade mech-ball, crash-landed in Junkertown, and became the undefeated champion of the local gladiatorial fighting circuit. His genius is matched only by his complete disinterest in explaining himself to anyone.',
     },
     {
       type: 'callout',

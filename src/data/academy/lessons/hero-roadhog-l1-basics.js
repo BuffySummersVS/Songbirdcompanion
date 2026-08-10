@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Mako Rutledge was a Queensland farmer whose land was obliterated in the catastrophic explosion of the Australian omnium — an event he helped trigger as part of the Australian Liberation Front. Hardened by years surviving in the irradiated Outback, he',
+      body: 'Mako Rutledge was a Queensland farmer whose land was obliterated in the catastrophic explosion of the Australian omnium — an event he helped trigger as part of the Australian Liberation Front. Hardened by years surviving in the irradiated Outback, he transformed himself into a terrifying road warrior with a gas mask, a custom chain hook, and a simple philosophy. He works as Junkrat\'s bodyguard for a 50% share of whatever they steal.',
     },
     {
       type: 'callout',

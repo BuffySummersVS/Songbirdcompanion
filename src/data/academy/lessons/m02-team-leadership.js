@@ -223,7 +223,7 @@ export default {
         question: 'Leadership in Overwatch requires the leader to play perfectly themselves — any mistake they make undermines their authority.',
         options: ['True', 'False'],
         correct: 1,
-        explanation: 'False. Leadership through influence does not require flawless mechanical play. Leaders who acknowledge their own mistakes ("that was my dive — I miread the Suzu") actually build more trust than leaders who never acknowledge errors. Modeling accountability makes it safe for teammates to do the same.',
+        explanation: 'False. Leadership through influence does not require flawless mechanical play. Leaders who acknowledge their own mistakes ("that was my dive — I misread the Suzu") actually build more trust than leaders who never acknowledge errors. Modeling accountability makes it safe for teammates to do the same.',
       },
     ],
   },

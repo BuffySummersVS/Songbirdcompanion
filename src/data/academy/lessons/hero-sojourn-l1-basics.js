@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Vivian Chase is a veteran Overwatch soldier and former Canadian military officer whose body was heavily damaged in combat and rebuilt with cutting-edge cybernetics, including a powerful railgun arm. She came out of retirement when Overwatch was recal',
+      body: 'Vivian Chase is a veteran Overwatch soldier and former Canadian military officer whose body was heavily damaged in combat and rebuilt with cutting-edge cybernetics, including a powerful railgun arm. She came out of retirement when Overwatch was recalled, bringing decades of hard-won tactical experience and the same fierce conviction she had when she first enlisted. She fights to build the version of Overwatch that should have existed all along.',
     },
     {
       type: 'callout',

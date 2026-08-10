@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'A colossal Samoan warrior and former Overwatch heavy infantry soldier, Mauga grew bored of the organization\'s restrictions and joined Talon for the freedom to fight without limits. He is Baptiste\'s old comrade — the two served together until their pa',
+      body: 'A colossal Samoan warrior and former Overwatch heavy infantry soldier, Mauga grew bored of the organization\'s restrictions and joined Talon for the freedom to fight without limits. He is Baptiste\'s old comrade — the two served together until their paths violently diverged over a question of conscience. Mauga fights not for ideology but for the sheer, uncomplicated joy of battle.',
     },
     {
       type: 'callout',

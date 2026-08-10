@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Juno grew up in the low-gravity environment of the Martian colonies and arrived on Earth like someone who had studied the planet extensively and was absolutely not prepared for how loud it actually is. Her support kit revolves around speed and mobili',
+      body: 'Juno grew up in the low-gravity environment of the Martian colonies and arrived on Earth like someone who had studied the planet extensively and was absolutely not prepared for how loud it actually is. Her support kit revolves around speed and mobility — glide-boosts and orbital rays that keep her teammates supplied and in motion. She experiences Earth\'s conflicts with the barely contained excitement of someone who has wanted to be here her entire life.',
     },
     {
       type: 'callout',

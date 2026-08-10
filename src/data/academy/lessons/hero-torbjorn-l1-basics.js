@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Torbjörn Lindholm is a legendary Swedish engineer whose designs power both Overwatch\'s hardware and an uncomfortable number of its enemies\' weapons. He deploys turrets, fabricates armour from battlefield salvage, and maintains a running commentary on',
+      body: 'Torbjörn Lindholm is a legendary Swedish engineer whose designs power both Overwatch\'s hardware and an uncomfortable number of its enemies\' weapons. He deploys turrets, fabricates armour from battlefield salvage, and maintains a running commentary on everything going wrong around him. His prosthetic arm is just one of many souvenirs from wars he didn\'t start and refused to lose.',
     },
     {
       type: 'callout',

@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Hanzo Shimada carries the guilt of believing he killed his brother Genji on the orders of the Shimada clan elders, a wound that never healed even as he abandoned the family and became a wandering archer. He travels the world testing himself against w',
+      body: 'Hanzo Shimada carries the guilt of believing he killed his brother Genji on the orders of the Shimada clan elders, a wound that never healed even as he abandoned the family and became a wandering archer. He travels the world testing himself against worthy opponents, seeking to become worthy of the dragon spirits bound to his blood. When he learned Genji had survived, it shattered and rebuilt him in equal measure.',
     },
     {
       type: 'callout',

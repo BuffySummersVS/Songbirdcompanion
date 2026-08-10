@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Jack Morrison was the face of Overwatch — the idealistic, golden-boy commander who embodied everything the organisation stood for — until internal betrayal, a catastrophic confrontation with Gabriel Reyes, and the fall of Overwatch left him presumed ',
+      body: 'Jack Morrison was the face of Overwatch — the idealistic, golden-boy commander who embodied everything the organisation stood for — until internal betrayal, a catastrophic confrontation with Gabriel Reyes, and the fall of Overwatch left him presumed dead. He returned as the anonymous vigilante Soldier: 76, waging a one-man war to expose the conspiracy that destroyed what he built. He wears no insignia, trusts almost no one, and has not stopped fighting for a single day.',
     },
     {
       type: 'callout',

@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Illari Quispe is the sole survivor of the Inti Warriors, a Peruvian group gifted with solar-powered abilities who were destroyed on a mission that Illari helped plan, carrying guilt she has never put down. She channels the sun\'s energy through her ri',
+      body: 'Illari Quispe is the sole survivor of the Inti Warriors, a Peruvian group gifted with solar-powered abilities who were destroyed on a mission that Illari helped plan, carrying guilt she has never put down. She channels the sun\'s energy through her rifle and healing pylon, fighting to ensure her comrades\' sacrifice built something that lasts. Every beam of light she fires carries the weight of people who aren\'t here to fire their own.',
     },
     {
       type: 'callout',

@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Genji Shimada was the rebellious younger son of a powerful ninja clan who rejected his family\'s criminal empire — until his brother Hanzo nearly killed him in a duel. Rebuilt as a cyborg by Dr. Angela Ziegler, Genji spent years at war with his own bo',
+      body: 'Genji Shimada was the rebellious younger son of a powerful ninja clan who rejected his family\'s criminal empire — until his brother Hanzo nearly killed him in a duel. Rebuilt as a cyborg by Dr. Angela Ziegler, Genji spent years at war with his own body before the teachings of the Shambali monk Zenyatta guided him toward peace. He is now one of the world\'s most dangerous warriors, and also one of its most enlightened.',
     },
     {
       type: 'callout',

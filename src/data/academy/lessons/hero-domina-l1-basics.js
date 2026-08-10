@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Vaira Singhania is the granddaughter of Vishkar Corporation\'s founder, raised from birth to be its next leader — a cutthroat perfectionist and razor-sharp negotiator who climbed from private equity to a seat on the Vishkar board. She oversaw Vishkar\'',
+      body: 'Vaira Singhania is the granddaughter of Vishkar Corporation\'s founder, raised from birth to be its next leader — a cutthroat perfectionist and razor-sharp negotiator who climbed from private equity to a seat on the Vishkar board. She oversaw Vishkar\'s winning bid for reconstruction in Rio de Janeiro and rose to Vice President of Operations and Development. When Talon struck Overwatch, she saw not a catastrophe but a business opportunity: global panic would create a power vacuum, and she intends to fill it with Vishkar.',
     },
     {
       type: 'callout',

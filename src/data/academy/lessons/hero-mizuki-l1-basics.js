@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Mizuki Kawano was born in Fukuoka under a shadow of misfortune — his father, convinced their bloodline was cursed, dragged them to Tokyo, fell into debt with the Hashimoto Clan, and was eventually found dead, leaving nine-year-old Mizuki to inherit t',
+      body: 'Mizuki Kawano was born in Fukuoka under a shadow of misfortune — his father, convinced their bloodline was cursed, dragged them to Tokyo, fell into debt with the Hashimoto Clan, and was eventually found dead, leaving nine-year-old Mizuki to inherit that debt. The Clan took him in and raised him in their service, but it was a captured weaponsmith named Toshiro Yamagami who gave him genuine kindness and, finally, his own anima kusarigama — a symbol of faith in his ability to forge his own fate. Now in Kanezaka, Mizuki has joined the Yokai, torn between his obligations to the Hashimoto and his desire to protect the friends he has come to care about.',
     },
     {
       type: 'callout',

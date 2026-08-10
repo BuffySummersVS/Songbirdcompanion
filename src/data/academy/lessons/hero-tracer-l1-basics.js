@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Lena Oxton was a rising British Overwatch pilot whose experimental slipstream fighter malfunctioned and desynchronised her from time, leaving her unable to hold a physical form until Dr. Winston built her a chronal accelerator to anchor her to the pr',
+      body: 'Lena Oxton was a rising British Overwatch pilot whose experimental slipstream fighter malfunctioned and desynchronised her from time, leaving her unable to hold a physical form until Dr. Winston built her a chronal accelerator to anchor her to the present. She repaid him by becoming Overwatch\'s most beloved and unstoppable operative, fast in every sense of the word. She lives in the moment more literally than anyone else alive.',
     },
     {
       type: 'callout',

@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Jean-Baptiste Augustin grew up in poverty in post-Crisis Haiti and joined Talon\'s paramilitary as the only viable path out — a choice he rationalised until he watched his unit massacre civilians on a routine contract. He went AWOL, became a combat me',
+      body: 'Jean-Baptiste Augustin grew up in poverty in post-Crisis Haiti and joined Talon\'s paramilitary as the only viable path out — a choice he rationalised until he watched his unit massacre civilians on a routine contract. He went AWOL, became a combat medic, and has spent years trying to counterbalance what he enabled. He heals not out of idealism but out of a very specific, very personal kind of accounting.',
     },
     {
       type: 'callout',

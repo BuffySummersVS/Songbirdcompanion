@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Built by eleven-year-old prodigy Efi Oladele from salvaged OR15 defense robots, Orisa serves as the guardian of Numbani — programmed with Efi\'s own ideals of protection and justice. Being new to the world, she approaches every challenge with earnest ',
+      body: 'Built by eleven-year-old prodigy Efi Oladele from salvaged OR15 defense robots, Orisa serves as the guardian of Numbani — programmed with Efi\'s own ideals of protection and justice. Being new to the world, she approaches every challenge with earnest determination and a desire to understand what it means to be a hero. She is living proof that great protectors can come in any form.',
     },
     {
       type: 'callout',

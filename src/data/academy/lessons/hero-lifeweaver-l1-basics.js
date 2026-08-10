@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Niran Pruksamanee is a Thai bio-engineer who developed Biolight — a revolutionary fusion of organic botanical science and energy-based medical technology — and has spent his career proving that the future of medicine is grown, not manufactured. Estra',
+      body: 'Niran Pruksamanee is a Thai bio-engineer who developed Biolight — a revolutionary fusion of organic botanical science and energy-based medical technology — and has spent his career proving that the future of medicine is grown, not manufactured. Estranged from his family over choices they struggled to accept, he offers healing through petals and life-grip to anyone who needs it, no questions asked. He is gentle about almost everything except his vision.',
     },
     {
       type: 'callout',

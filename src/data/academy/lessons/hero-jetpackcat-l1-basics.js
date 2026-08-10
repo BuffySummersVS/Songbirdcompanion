@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Fika is a stray cat who wandered into Watchpoint: Gibraltar\'s landing bay and was adopted by Brigitte Lindholm, who named her after her Kanelbullar-like colouring and insatiable appetite for treats. Building a jetpack for a cat had been Brigitte\'s ch',
+      body: 'Fika is a stray cat who wandered into Watchpoint: Gibraltar\'s landing bay and was adopted by Brigitte Lindholm, who named her after her Kanelbullar-like colouring and insatiable appetite for treats. Building a jetpack for a cat had been Brigitte\'s childhood dream — she\'d even drafted plans years earlier for a previous cat named Mitzi — and finding Fika nestled among discarded rocket parts finally gave the idea its pilot. When Talon attacked Gibraltar, Brigitte shelved the project, then reconsidered: if Overwatch was going to stand a chance against this new threat, they would need all the help they could get.',
     },
     {
       type: 'callout',

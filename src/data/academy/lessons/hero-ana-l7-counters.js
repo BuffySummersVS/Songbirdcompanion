@@ -47,7 +47,7 @@
       type: 'callout',
       variant: 'tip',
       title: 'Anti-Heal Timing',
-      body: 'The highest-value Biotic Grenade targets are enemies activating self-heal ultimates — Roadhog\'s Take A Breather, Reaper\'s passive during Reaperform, or Zarya using Graviton Surge while shielded. React to cooldown activations, not just health bars.',
+      body: 'The highest-value Biotic Grenade targets are enemies activating self-heal ultimates — Roadhog\'s Take A Breather, Reaper\'s passive during Wraith Form, or Zarya using Graviton Surge while shielded. React to cooldown activations, not just health bars.',
     },
   ],
   quiz: {

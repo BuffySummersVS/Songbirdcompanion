@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Fareeha Amari dreamed her whole life of following her mother Ana into Overwatch, but her application was denied — and then the organisation collapsed before she could try again. She channelled that drive into becoming chief of security for Helix Inte',
+      body: 'Fareeha Amari dreamed her whole life of following her mother Ana into Overwatch, but her application was denied — and then the organisation collapsed before she could try again. She channelled that drive into becoming chief of security for Helix International, protecting classified sites across Egypt and beyond in a powerful exo-suit. She leads with the same unwavering conviction that defined her mother, and has spent years learning how much of it was actually her own.',
     },
     {
       type: 'callout',

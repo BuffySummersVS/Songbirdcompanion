@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Dr. Mei-Ling Zhou is a climatologist who volunteered to staff a remote Overwatch Ecopoint in Antarctica, only to be trapped there when a catastrophic storm damaged the facility and her entire team went into cryosleep as a last resort. She woke up alo',
+      body: 'Dr. Mei-Ling Zhou is a climatologist who volunteered to staff a remote Overwatch Ecopoint in Antarctica, only to be trapped there when a catastrophic storm damaged the facility and her entire team went into cryosleep as a last resort. She woke up alone years later to find Overwatch disbanded and the global climate in even worse shape than when she left. Armed with her endothermic blaster and an enduring optimism, she fights to protect the planet while there is still time.',
     },
     {
       type: 'callout',

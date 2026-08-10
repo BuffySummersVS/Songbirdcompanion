@@ -25,7 +25,7 @@ export default {
     },
     {
       type: 'text',
-      body: 'Satya Vaswami is a gifted architect of hard-light constructs who grew up in poverty before the Vishkar Corporation selected her for their elite training programme, and she repays that opportunity through absolute dedication to their vision of enginee',
+      body: 'Satya Vaswami is a gifted architect of hard-light constructs who grew up in poverty before the Vishkar Corporation selected her for their elite training programme, and she repays that opportunity through absolute dedication to their vision of engineered social order. She carries out morally ambiguous missions with the belief that Vishkar\'s order — however imposed — produces better lives than the chaos it replaces. Reality is something she builds, controls, and believes in completely.',
     },
     {
       type: 'callout',

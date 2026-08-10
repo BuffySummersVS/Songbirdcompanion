@@ -20,7 +20,7 @@ export default {
       type: 'callout',
       variant: 'info',
       title: 'Why Cooldown Windows Matter',
-      body: 'A Reinhardt who just used Charge cannot use it again for several seconds. A Kiriko who just used Suzu cannot cleanse or invulnerary again immediately. A Lucio who just wall-rode is briefly vulnerable. Each of these represents a window where a previously dangerous ability is unavailable — the precise moment to press an advantage.',
+      body: 'A Reinhardt who just used Charge cannot use it again for several seconds. A Kiriko who just used Suzu cannot cleanse or grant invulnerability again immediately. A Lucio who just wall-rode is briefly vulnerable. Each of these represents a window where a previously dangerous ability is unavailable — the precise moment to press an advantage.',
     },
     {
       type: 'text',
