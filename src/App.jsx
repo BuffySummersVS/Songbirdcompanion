@@ -286,6 +286,28 @@ function AppInner() {
 
   const heroOfTheDay = useMemo(() => getHeroOfTheDay(heroes), []);
 
+  // Surfaces the newest released hero on the Home "Latest Update" card the
+  // moment her releaseDate gate opens (heroes is already filtered to
+  // released-only by heroes.js), without needing a hand-written commit
+  // marker on release day. Cedes back to the git-marker-driven LATEST_UPDATE
+  // automatically once a real update lands with a newer date than her
+  // release -- so this only ever fills the gap between a hero shipping and
+  // the next marked commit.
+  const displayedUpdate = useMemo(() => {
+    const newestHero = heroes.reduce((latest, hero) => {
+      if (!hero.releaseDate) return latest;
+      if (!latest || hero.releaseDate > latest.releaseDate) return hero;
+      return latest;
+    }, null);
+    if (newestHero && (!LATEST_UPDATE.date || newestHero.releaseDate > LATEST_UPDATE.date)) {
+      return {
+        heading: `${newestHero.name} has arrived!`,
+        items: [`New ${newestHero.role} hero: ${newestHero.name}`, "Full kit, perks, and counters now live in Heroes"],
+      };
+    }
+    return LATEST_UPDATE;
+  }, []);
+
   // If user logs out while on a protected page, go home
   const [prevCurrentUser, setPrevCurrentUser] = useState(currentUser);
   if (currentUser !== prevCurrentUser) {
@@ -477,9 +499,9 @@ function AppInner() {
               <span className="home-card-icon" aria-hidden="true">🔥</span>
               <div className="home-card-body">
                 <p className="home-card-label">Latest Update</p>
-                <h3 className="home-card-title">{LATEST_UPDATE.heading}</h3>
+                <h3 className="home-card-title">{displayedUpdate.heading}</h3>
                 <ul className="home-card-list">
-                  {LATEST_UPDATE.items.map(item => <li key={item}>✓ {item}</li>)}
+                  {displayedUpdate.items.map(item => <li key={item}>✓ {item}</li>)}
                 </ul>
               </div>
             </div>

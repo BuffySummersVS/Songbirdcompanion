@@ -14,25 +14,27 @@ const outFile = path.join(rootDir, "src/data/latestUpdate.js");
 // rather than clobbering it with nothing.
 const LOOKBACK = 50;
 const DELIMITER = "===COMMIT-END===";
+const DATE_SEP = "===COMMIT-DATE===";
 
 function findMarkedCommit() {
   let log;
   try {
     // execFileSync passes args directly to the git process with no shell
     // involved, avoiding shell quoting/escaping entirely.
-    log = execFileSync("git", ["log", "--format=%B" + DELIMITER, "-n", String(LOOKBACK)], { cwd: rootDir, encoding: "utf8" });
+    log = execFileSync("git", ["log", "--date=short", "--format=%ad" + DATE_SEP + "%B" + DELIMITER, "-n", String(LOOKBACK)], { cwd: rootDir, encoding: "utf8" });
   } catch {
     return null;
   }
 
   const commits = log.split(DELIMITER).map(s => s.trim()).filter(Boolean);
 
-  for (const body of commits) {
+  for (const entry of commits) {
+    const [date, body] = entry.split(DATE_SEP);
     const headingMatch = body.match(/^User-Update:\s*(.+)$/m);
     if (!headingMatch) continue;
 
     const items = [...body.matchAll(/^User-Update-Item:\s*(.+)$/gm)].map(m => m[1].trim());
-    return { heading: headingMatch[1].trim(), items };
+    return { heading: headingMatch[1].trim(), items, date };
   }
 
   return null;
