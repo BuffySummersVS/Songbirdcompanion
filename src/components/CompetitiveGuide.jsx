@@ -4,6 +4,7 @@ import { useFocusTrap } from "../hooks/useFocusTrap";
 import overviewImg  from "../assets/competitive/competitive-overview.png";
 import heroSrImg    from "../assets/competitive/competitive-hero-skill-rating.png";
 import modifiersImg from "../assets/competitive/competitive-modifiers.png";
+import heroBansImg  from "../assets/competitive/competitive-hero-bans.png";
 import drivesImg    from "../assets/competitive/competitive-drives.png";
 
 // Sources: Blizzard official articles (Season 9, 12, 18 competitive updates),
@@ -62,6 +63,23 @@ const SECTIONS = [
       "New / Reworked Map — You lost on a recently added or reworked map. Rank loss is reduced to account for unfamiliarity.",
     ],
     image: modifiersImg,
+  },
+  {
+    id: "hero-bans",
+    title: "Hero Bans",
+    intro:
+      "Before a match, both teams vote on which heroes to ban using a Ranked Choice Voting system. Each player can vote for up to 3 heroes, and the results decide which heroes are locked out for that match.",
+    details: [
+      "Each player votes for 3 heroes. A 1st choice vote is worth +7, a 2nd choice vote is worth +5, and a 3rd choice vote is worth +3. Votes are totaled separately for each team.",
+      "All players on both teams vote at the same time. An instant snake draft then sets the ban order: the team with the most votes for a single hero bans first, then the other team gets both of their bans, then the first team gets their second ban.",
+      "Ties for which hero to ban on your own team are broken by whichever hero the most players on that team voted for, then randomly if it's still tied.",
+      "If the top hero on each team ends up with the same number of votes, which team bans first is decided randomly.",
+      "A maximum of 2 heroes per role can be banned in a single match, unless a Lobby Ban is triggered.",
+      "Preferred heroes contribute 3 negative votes, making it harder to ban a hero your own team has marked as preferred. Negative votes for the same preferred hero don't stack.",
+      "A Lobby Ban can break the 2-per-role limit. It combines the vote totals from both teams, and a hero needs at least 10 combined votes with at least 1 vote from each team to qualify.",
+      "Ties for a Lobby Ban are broken in favor of the team with the smallest largest-group size, then randomly if it's still tied.",
+    ],
+    image: heroBansImg,
   },
   {
     id: "drives",
