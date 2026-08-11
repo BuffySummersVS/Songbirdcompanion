@@ -6,9 +6,10 @@
 //   User-Update-Item: <bullet>
 //   User-Update-Item: <bullet>
 export const LATEST_UPDATE = {
-  "heading": "Callout maps added",
+  "heading": "D.Mon has arrived!",
   "items": [
-    "Zoomable callout maps for 15 maps",
-    "Pinch, scroll, or drag to explore"
-  ]
+    "New Tank hero: D.Mon",
+    "Full kit, perks, and counters live in Heroes"
+  ],
+  "date": "2026-08-11"
 };
