@@ -104,6 +104,12 @@ export default function CounterWatch({ initialHero }) {
               </button>
             </div>
 
+            {selected.matchupsEstimated && (
+              <p className="cw-estimate-note">
+                {selected.name}'s matchups are our early read based on her publicly revealed kit, not live match data yet. We'll refine this page as she settles into the meta.
+              </p>
+            )}
+
             <MatchupPanels hero={selected} key={selected.id} onReasonModalChange={setReasonOpen} />
           </div>
         </div>

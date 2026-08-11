@@ -118,6 +118,7 @@
     "role": "Tank",
     "imageId": "dmon",
     "releaseDate": "2026-08-11",
+    "matchupsEstimated": true,
     "health": 250,
     "armour": 250,
     "shields": 0,
