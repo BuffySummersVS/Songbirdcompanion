@@ -17,7 +17,7 @@ const SECTIONS = [
     intro:
       "Competitive Play is Overwatch's ranked mode where every match contributes to a visible skill rank. There are two queue types: Role Queue (separate Tank, Damage, and Support ranks) and Open Queue (a single universal rank). Seasons run for approximately eight to nine weeks, and your rank resets at the start of each new season.",
     details: [
-      "Eight skill tiers in ascending order: Bronze, Silver, Gold, Platinum, Diamond, Master, Grandmaster, and Champion.",
+      "Nine skill tiers in ascending order: Bronze, Silver, Gold, Platinum, Emerald, Diamond, Master, Grandmaster, and Champion.",
       "Each tier (except Champion) contains five numbered divisions — Division 5 is the lowest entry point; reaching Division 1 promotes you to the next tier.",
       "Champion sits above Grandmaster 1 and has no numbered divisions.",
       "Matchmaking uses a hidden MMR (Matchmaking Rating). The visible progress bar and division are a display layer on top of this underlying value.",
@@ -38,7 +38,7 @@ const SECTIONS = [
       "Five placement matches per hero are required to unlock its official Hero SR. A Predicted SR preview is shown during the placement phase.",
       "Hero SR is tracked separately between Role Queue and Open Queue — each mode maintains independent values per hero.",
       "Hero SR resets at every mid-year rank reset.",
-      "Tier thresholds — Bronze: 0–1,499 · Silver: 1,500–1,999 · Gold: 2,000–2,499 · Platinum: 2,500–2,999 · Diamond: 3,000–3,499 · Master: 3,500–3,999 · Grandmaster: 4,000–4,499 · Champion: 4,500–5,000.",
+      "Tier thresholds — Bronze: 0–999 · Silver: 1,000–1,499 · Gold: 1,500–1,999 · Platinum: 2,000–2,499 · Emerald: 2,500–2,999 · Diamond: 3,000–3,499 · Master: 3,500–3,999 · Grandmaster: 4,000–4,499 · Champion: 4,500–5,000.",
     ],
     image: heroSrImg,
   },
