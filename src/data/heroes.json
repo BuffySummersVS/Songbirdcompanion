@@ -4427,8 +4427,8 @@
       "description": "Primary fire is a three-round burst for dealing damage. Secondary fire lobs healing grenades that heal allies near the impact."
     },
     "passive": {
-      "name": "Exo Boots / Shoulder Turret",
-      "description": "Crouching charges Exo Boots for a high jump. Using any ability triggers a Shoulder Turret that fires up to 3 shots at nearby allies, each restoring 40 health."
+      "name": "Exo Boots",
+      "description": "Hold crouch to jump higher."
     },
     "abilities": [
       {
@@ -4481,18 +4481,18 @@
     "perks": {
       "minor": [
         {
-          "name": "Field Medicine",
-          "description": "Immortality Field restores 80 health to nearby allies and 40 to Baptiste when destroyed."
+          "name": "Expanded Field",
+          "description": "Immortality Field's radius is 30% bigger."
         },
         {
-          "name": "Automated Healing",
-          "description": "After placing Amplification Matrix, Shoulder Turret fires up to 12 shots periodically, each restoring 25 health to allies."
+          "name": "Assault Burst",
+          "description": "Regenerative Burst now provides Baptiste with 20% increased attack speed for 3 seconds."
         }
       ],
       "major": [
         {
-          "name": "Assault Burst",
-          "description": "Regenerative Burst grants 20% attack speed for four seconds; no longer instantly heals."
+          "name": "Automated Healing",
+          "description": "Using any ability triggers Baptiste's Shoulder Turret, periodically firing up to 3 shots at allies, each restoring 40 health."
         },
         {
           "name": "Rocket Boots",
@@ -4500,7 +4500,12 @@
         }
       ]
     },
-    "patchHistory": [],
+    "patchHistory": [
+      {
+        "date": "2026-08-12",
+        "change": "Perk block corrected via in-game screenshot: Field Medicine (obsolete) replaced with Expanded Field; Assault Burst and Automated Healing were on the wrong tiers with wrong effect text — Assault Burst is a minor perk (20% attack speed for 3s, not 4s, and it does not remove the instant heal), Automated Healing is the major perk (3 turret shots at 40 health each, not 12 shots at 25). Passive corrected: the Shoulder Turret behavior was incorrectly baked into the baseline passive — it's actually the Automated Healing perk's effect, not baseline. Passive is just Exo Boots."
+      }
+    ],
     "lore": "Jean-Baptiste Augustin grew up in poverty in post-Crisis Haiti and joined Talon's paramilitary as the only viable path out — a choice he rationalised until he watched his unit massacre civilians on a routine contract. He went AWOL, became a combat medic, and has spent years trying to counterbalance what he enabled. He heals not out of idealism but out of a very specific, very personal kind of accounting."
   },
   {
@@ -4549,10 +4554,10 @@
       },
       {
         "name": "Shield Bash",
-        "type": "Charge / stun",
+        "type": "Charge / knockback",
         "damage": "50 damage",
         "cooldown": "0.75 sec cooldown refund on hit",
-        "description": "Dash forward with the barrier, stunning the first enemy hit."
+        "description": "Available when Barrier Shield is deployed. Dash forward to knock back the first enemy hit."
       }
     ],
     "ultimate": {
@@ -4612,7 +4617,12 @@
         }
       ]
     },
-    "patchHistory": [],
+    "patchHistory": [
+      {
+        "date": "2026-08-12",
+        "change": "Shield Bash corrected from a stun to a knockback effect, per in-game screenshot."
+      }
+    ],
     "lore": "Brigitte Lindholm is the daughter of the legendary engineer Torbjörn and the goddaughter of the crusader Reinhardt, who grew up surrounded by heroes but preferred to be the person keeping their armour from falling apart. When Reinhardt came out of retirement and charged back into danger, she followed as his squire — and then realised she was more than a squire. She fights with a flail and a repair pack and a loyalty to the people she loves that is completely without condition."
   },
   {
@@ -4690,25 +4700,30 @@
       "minor": [
         {
           "name": "Rapid Construction",
-          "description": "Healing Pylon builds 300% faster; cooldown reduces by 1.5 seconds."
+          "description": "Healing Pylon builds 300% faster; cooldown reduces by 2 seconds."
         },
         {
           "name": "Summer Solstice",
-          "description": "Illari's flight time during Captive Sun increases three seconds; flight speed increases 20%."
+          "description": "Captive Sun grants Illari 20% increased flight and attack speed, and extends her flight duration by 3 seconds."
         }
       ],
       "major": [
         {
-          "name": "Solar Power",
-          "description": "Fully charged Solar Rifle hits grant 12.5% maximum solar energy; can overfill up to 50%."
+          "name": "Solar Flare",
+          "description": "Press secondary fire while using Solar Rifle's healing beam to heal all allies in front of Illari for 100 healing."
         },
         {
           "name": "Sunburn",
-          "description": "Outburst ignites enemies, dealing 70 damage over three seconds."
+          "description": "Outburst ignites enemies, dealing an additional 50 damage over three seconds."
         }
       ]
     },
-    "patchHistory": [],
+    "patchHistory": [
+      {
+        "date": "2026-08-12",
+        "change": "Perk block corrected via in-game screenshot: Rapid Construction's cooldown reduction corrected 1.5s→2s; Summer Solstice was missing its attack-speed clause; Solar Power (obsolete) replaced with Solar Flare; Sunburn's bonus damage corrected 70→50."
+      }
+    ],
     "lore": "Illari Quispe is the sole survivor of the Inti Warriors, a Peruvian group gifted with solar-powered abilities who were destroyed on a mission that Illari helped plan, carrying guilt she has never put down. She channels the sun's energy through her rifle and healing pylon, fighting to ensure her comrades' sacrifice built something that lasts. Every beam of light she fires carries the weight of people who aren't here to fire their own."
   },
   {
@@ -4836,7 +4851,7 @@
       "description": "A burst-fire weapon that heals allies and damages enemies in the same shots. Effectiveness reduces at medium to long range."
     },
     "passive": {
-      "name": "Glide Boost",
+      "name": "Martian Overboots",
       "description": "While airborne, Juno can double jump and hold jump to hover, giving her strong aerial mobility and positioning."
     },
     "abilities": [
@@ -4846,6 +4861,13 @@
         "damage": "Damages enemies / heals allies over time",
         "cooldown": "8 sec",
         "description": "Lock on to targets, then fire homing torpedoes that heal allies or damage enemies over time."
+      },
+      {
+        "name": "Glide Boost",
+        "type": "Mobility",
+        "damage": "None",
+        "cooldown": "None",
+        "description": "Glide horizontally with increased movement speed."
       },
       {
         "name": "Hyper Ring",
@@ -4894,22 +4916,27 @@
           "description": "Pulsar Torpedoes lock onto allies 35% faster."
         },
         {
-          "name": "Re-Boots",
-          "description": "Activating Glide Boost resets Double Jump."
+          "name": "Locked On",
+          "description": "Reduce the cooldown of Pulsar Torpedoes by 1 second for each enemy hit."
         }
       ],
       "major": [
         {
-          "name": "Master Blaster",
-          "description": "Mediblaster can critically hit enemies."
+          "name": "Lift Off",
+          "description": "Martian Overboots can now triple jump."
         },
         {
-          "name": "Locked On",
-          "description": "Pulsar Torpedoes cooldown reduces by 1.5 seconds for every enemy hit."
+          "name": "Faster Blaster",
+          "description": "While Glide Boost is active, Mediblaster fires continuously."
         }
       ]
     },
-    "patchHistory": [],
+    "patchHistory": [
+      {
+        "date": "2026-08-12",
+        "change": "Corrected via in-game screenshot: passive was misnamed \"Glide Boost\" (that's actually a separate ability, which was missing from the data entirely and has now been added). Perk block rebuilt: Re-Boots (obsolete) replaced with Locked On (moved from major, corrected 1.5s→1s per hit); Master Blaster and the old Locked On slot (obsolete) replaced with Lift Off and Faster Blaster."
+      }
+    ],
     "lore": "Juno grew up in the low-gravity environment of the Martian colonies and arrived on Earth like someone who had studied the planet extensively and was absolutely not prepared for how loud it actually is. Her support kit revolves around speed and mobility — glide-boosts and orbital rays that keep her teammates supplied and in motion. She experiences Earth's conflicts with the barely contained excitement of someone who has wanted to be here her entire life."
   },
   {
@@ -5003,16 +5030,21 @@
       ],
       "major": [
         {
-          "name": "Shuffling",
-          "description": "Swift Step can be used again within four seconds of the initial cast."
+          "name": "Ready Step",
+          "description": "Swift Step grants Kiriko 40% increased attack and reload speed for 3 seconds."
         },
         {
           "name": "Foxtrot",
-          "description": "Protection Suzu grants allies 40% movement speed for two seconds."
+          "description": "Protection Suzu grants allies 30% increased movement speed for 4 seconds."
         }
       ]
     },
-    "patchHistory": [],
+    "patchHistory": [
+      {
+        "date": "2026-08-12",
+        "change": "Major perk block corrected via in-game screenshot: Shuffling (obsolete) replaced with Ready Step; Foxtrot's numbers corrected 40%/2s→30%/4s."
+      }
+    ],
     "lore": "Kiriko Kamori is a young shrine maiden from Kanezaka in Tokyo, trained in both the traditional kitsune fox spirit arts of her grandmother and the more grounded ninja techniques passed down through her mother's side of the family. She grew up alongside Genji and Hanzo Shimada and now uses her swiftness and healing ofuda to protect her community from the forces that took over after the yakuza left. Her kitsune spirit runs beside her."
   },
   {
@@ -5103,26 +5135,31 @@
     "perks": {
       "minor": [
         {
-          "name": "Cleansing Grasp",
-          "description": "Life Grip cleanses negative effects from the pulled ally."
+          "name": "Petal Protection",
+          "description": "Allies heal 20 health per second while standing on Petal Platform."
         },
         {
-          "name": "Life Cycle",
-          "description": "While alive, regenerate 10 health/second; upon death, drop a healing seed restoring 250 health to the first ally who collects it."
+          "name": "Dashing Escape",
+          "description": "Rejuvenating Dash's distance is increased by 30%."
         }
       ],
       "major": [
         {
-          "name": "Lifeweaving",
-          "description": "Rejuvenating Dash adds 20 bonus healing to the next Healing Blossom within three seconds."
+          "name": "Sow the Seed",
+          "description": "Quick Melee with Healing Blossom to throw a seed. Another ally can pick it up for overhealth and movement speed."
         },
         {
           "name": "Superbloom",
-          "description": "Thorns detonate for 30 extra damage when enough stick within 1.5 seconds."
+          "description": "Thorns detonate for 40 extra damage when enough stick within 2.5 seconds."
         }
       ]
     },
-    "patchHistory": [],
+    "patchHistory": [
+      {
+        "date": "2026-08-12",
+        "change": "Full perk block rebuilt via in-game screenshot — the stored Cleansing Grasp, Life Cycle, and Lifeweaving perks did not match any real current perk and have been replaced with Petal Protection, Dashing Escape, and Sow the Seed. Superbloom's numbers corrected 30 dmg/1.5s→40 dmg/2.5s."
+      }
+    ],
     "lore": "Niran Pruksamanee is a Thai bio-engineer who developed Biolight — a revolutionary fusion of organic botanical science and energy-based medical technology — and has spent his career proving that the future of medicine is grown, not manufactured. Estranged from his family over choices they struggled to accept, he offers healing through petals and life-grip to anyone who needs it, no questions asked. He is gentle about almost everything except his vision."
   },
   {
@@ -5167,7 +5204,7 @@
         "type": "Knockback",
         "damage": "25 damage",
         "cooldown": "5 sec",
-        "description": "Blast nearby enemies away. Wall riding empowers the next Soundwave with 25% extra knockback and 50% extra damage."
+        "description": "Blast nearby enemies away."
       }
     ],
     "ultimate": {
@@ -5204,8 +5241,8 @@
     "perks": {
       "minor": [
         {
-          "name": "Bass Blowout",
-          "description": "Soundwave's knockback increases 15%."
+          "name": "Soundwave Rider",
+          "description": "Wall Riding empowers your next Soundwave, increasing its knockback by 25% and damage by 50%."
         },
         {
           "name": "Beat Drop",
@@ -5219,11 +5256,16 @@
         },
         {
           "name": "Accelerando",
-          "description": "Lúcio's attack speed increases 50% while Amp It Up is active."
+          "description": "Gain 15% attack speed while Lúcio's Speed Song is active, tripled during Amp It Up."
         }
       ]
     },
-    "patchHistory": [],
+    "patchHistory": [
+      {
+        "date": "2026-08-12",
+        "change": "Corrected via in-game screenshot: Soundwave's wall-ride bonus was wrongly baked into the baseline ability — moved into the (previously obsolete) Bass Blowout perk, renamed to its real name Soundwave Rider. Accelerando's effect corrected — it grants a baseline 15% attack speed during Speed Song, tripled during Amp It Up, not a flat 50%."
+      }
+    ],
     "lore": "Lúcio Correia dos Santos is a Brazilian DJ and activist who grew up in a favela forcibly restructured by the Vishkar Corporation, and responded by reverse-engineering their sonic technology and using it to drive them out. He took his music and his movement global, using his beat-driven abilities to heal allies and accelerate pushes in equal measure. His beats are a form of liberation that scales to any size crowd."
   },
   {
@@ -5325,15 +5367,20 @@
       "major": [
         {
           "name": "Chain Boost",
-          "description": "Caduceus Staff's secondary fire links to a second nearby ally."
+          "description": "Caduceus Staff's damage boost is increased by 5% and links to a second nearby ally."
         },
         {
-          "name": "Flash Heal",
-          "description": "Resurrect becomes usable on Caduceus Staff's active target to restore 150 health; 15 second cooldown."
+          "name": "Double Dose",
+          "description": "Flash Heal gains an additional charge, but its base healing is reduced by 10."
         }
       ]
     },
-    "patchHistory": [],
+    "patchHistory": [
+      {
+        "date": "2026-08-12",
+        "change": "Perk block corrected via in-game screenshot: Chain Boost was missing its +5% damage boost clause. The second major perk was incorrectly named/described as \"Flash Heal\" (duplicating the baseline ability's name) — corrected to its real name and effect, Double Dose (+1 Flash Heal charge, -10 base healing)."
+      }
+    ],
     "lore": "Dr. Angela Ziegler is a Swiss physician and scientist who developed the Caduceus staff — capable of healing critical wounds and amplifying combat performance — and joined Overwatch with the firm belief that her work should serve life, not just soldiers. She has seen more death than any doctor should and refused to accept it as final, pursuing resurrection technology that blurs the line between miracle and hubris. The cost of that pursuit is something she carries quietly."
   },
   {
@@ -5512,26 +5559,31 @@
     "perks": {
       "minor": [
         {
-          "name": "Vanish",
-          "description": "Fade's duration increases 0.5 seconds."
+          "name": "Destruction's Divide",
+          "description": "Coalescence can be toggled between pure healing or pure damage, with 30% greater effect."
         },
         {
-          "name": "Uprush",
-          "description": "Fade's jump height increases 50%."
+          "name": "Ethical Nourishment",
+          "description": "Biotic Orb's first 30 healing to each ally encountered is instant."
         }
       ],
       "major": [
         {
-          "name": "Ethical Nourishment",
-          "description": "Biotic Orb's first 50 healing to each ally encountered is instant."
+          "name": "Reversal",
+          "description": "Reactivating Biotic Orb reverses its direction."
         },
         {
-          "name": "Contamination",
-          "description": "Enemies damaged by Biotic Orb receive 25% reduced healing."
+          "name": "Phantom Step",
+          "description": "Fade lasts 0.5 seconds longer and boosts jump height by 50%."
         }
       ]
     },
-    "patchHistory": [],
+    "patchHistory": [
+      {
+        "date": "2026-08-12",
+        "change": "Full perk block rebuilt via in-game screenshot. Vanish and Uprush (obsolete, previously split across two minor perks) are actually a single major perk, Phantom Step, combining both effects. Ethical Nourishment moved from Major to Minor tier and corrected 50→30 healing. Contamination (obsolete) removed; Destruction's Divide and Reversal added as the real current perks."
+      }
+    ],
     "lore": "Dr. Moira O'Deorain is an Irish geneticist of extraordinary and unchecked ambition who pushes biological science past every ethical limit the field has established, pursuing discoveries too dangerous for legitimate institutions and too interesting to stop. She has augmented her own body with biotic technology that channels both restorative and corrosive energy simultaneously, blurring the line between healer and weapon. She regards conventional morality as a bureaucratic obstacle to human potential."
   },
   {
@@ -5729,8 +5781,8 @@
           "description": "Secondary fire charges 20% faster; stores one extra Orb of Destruction."
         },
         {
-          "name": "Duality",
-          "description": "Zenyatta heals Orb of Harmony targets for 20% of damage dealt to Orb of Discord targets."
+          "name": "Dual Harmony",
+          "description": "Gain a 2nd Harmony Orb but they both heal for 70% effectiveness."
         }
       ]
     },
@@ -5738,6 +5790,10 @@
       {
         "date": "2026-08-11",
         "change": "Discordant Repair minor perk lifesteal increased from 10% to 15%. (Also corrects stale data: this perk previously listed as \"Zenith Kick\".)"
+      },
+      {
+        "date": "2026-08-12",
+        "change": "Duality major perk (obsolete) replaced with Dual Harmony, corrected via in-game screenshot."
       }
     ],
     "lore": "Tekhartha Zenyatta is a Shambali omnic monk who broke from the monastery's doctrine to wander the world and form genuine personal connections with humans, believing that understanding grows from relationship rather than instruction. He became Genji's mentor at a critical moment and helped him make peace with the fractured existence of being neither fully human nor fully machine. He throws orbs of harmony and destruction with equal tranquility, fully at peace with the contradiction."
