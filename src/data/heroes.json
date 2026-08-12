@@ -3225,7 +3225,7 @@
         "damage": "None",
         "cooldown": "12 sec",
         "duration": "Drone persists until destroyed or dismissed",
-        "description": "Deploys a drone that Sierra can grapple toward, giving her flexible repositioning. Now has extended flight and grapple range built in as baseline (formerly the \"Full Flight\" perk)."
+        "description": "Deploys a drone that Sierra can grapple toward, giving her flexible repositioning."
       },
       {
         "name": "Tremor Charge",
@@ -3271,12 +3271,12 @@
     "perks": {
       "minor": [
         {
-          "name": "Tight Grip",
-          "description": "Helix Rifle spread tightens 70% faster and widens 30% slower."
+          "name": "Full Flight",
+          "description": "Increase Anchor Drone flight and grapple ranges by 25%."
         },
         {
-          "name": "Locked In",
-          "description": "Tracking Shot hit grants 20% attack speed for 2 seconds."
+          "name": "Tight Grip",
+          "description": "Helix Rifle spread tightens 70% faster and widens 30% slower."
         }
       ],
       "major": [
@@ -3285,8 +3285,8 @@
           "description": "Anchor Drones carry a medkit."
         },
         {
-          "name": "Dart Redeployment",
-          "description": "When a target dies while marked by Tracking Shot, its cooldown is refunded."
+          "name": "Locked In",
+          "description": "Tracking Shot hit grants 20% attack speed for 2 seconds."
         }
       ]
     },
@@ -3294,6 +3294,10 @@
       {
         "date": "2026-08-12",
         "change": "Full Flight perk moved to baseline (folded into Anchor Drone's description) in a June 2026 patch. Locked In moved from Major to Minor tier, filling Full Flight's old slot. Dart Redeployment added as the new Major perk in Locked In's old slot."
+      },
+      {
+        "date": "2026-08-12",
+        "change": "Reverted the previous entry — it was based on a text correction that conflicted with the actual live in-game screenshot, and the screenshot was confirmed as authoritative. Restored to: Minor = Full Flight + Tight Grip, Major = Medi-Drone + Locked In. Full Flight is still a selectable perk, not baseline; Dart Redeployment does not exist."
       }
     ],
     "lore": "Sierra Turner Woods grew up always on the move with her mother Kendra, never told why — until the day Kendra disappeared just before Sierra's thirteenth birthday, leaving only an emergency bus ticket and no explanation. That trail led her to the father she had never met, and eventually to Helix Security, where as head of security at Watchpoint: Grand Mesa she uncovered the truth: her mother had been Soldier: 00, one of the first subjects in the US Soldier Enhancement Program. When Talon attacked Grand Mesa, Sierra led her squad alongside Overwatch and joined their ranks — determined to find the answers her mother never gave her."
@@ -3500,8 +3504,8 @@
           "description": "During Tactical Visor, Helix Rockets' cooldown is reduced by 80% and Helix Rockets no longer interrupts Heavy Pulse Rifle firing."
         },
         {
-          "name": "Field Emergency",
-          "description": "Biotic Field's healing increases 100% on critically wounded allies."
+          "name": "Helix Propulsion",
+          "description": "Helix Rockets' projectile speed is increased by 50%."
         }
       ],
       "major": [
@@ -3519,6 +3523,10 @@
       {
         "date": "2026-08-12",
         "change": "Recycled Pulse Munitions removed (February 2026) and Agility Training removed (April 2026); replaced with Tactical Salvo and Full Stride. Stim Pack's description corrected to its current effect: 30 health/second heal + 20% attack speed for 5 seconds (was stale text describing +30% attack/reload speed with no self-heal for 4 seconds)."
+      },
+      {
+        "date": "2026-08-12",
+        "change": "Field Emergency minor perk (obsolete — missed in the previous correction pass) replaced with Helix Propulsion, corrected via in-game screenshot."
       }
     ],
     "lore": "Jack Morrison was the face of Overwatch — the idealistic, golden-boy commander who embodied everything the organisation stood for — until internal betrayal, a catastrophic confrontation with Gabriel Reyes, and the fall of Overwatch left him presumed dead. He returned as the anonymous vigilante Soldier: 76, waging a one-man war to expose the conspiracy that destroyed what he built. He wears no insignia, trusts almost no one, and has not stopped fighting for a single day."
