@@ -1,114 +1,87 @@
 export const SUBROLES = {
-  "Main Tank": {
+  // ── Tank ───────────────────────────────────────────
+  "Initiator": {
     description:
-      "The team's anchor and primary shield. Main Tanks stand at the front, create space for teammates, and absorb enemy pressure through high health pools or strong barrier abilities.",
+      "Mobile tanks built to dive in first, disrupt the enemy backline, and get back out. Using a movement ability triggers a heal over time, rewarding aggressive engages and quick disengages over sitting still.",
     interaction:
-      "Pairs best with a dedicated Main Support providing steady healing. Often the primary call-maker for team engages and advances.",
+      "Coordinates with Flanker DPS and Mobile Supports to isolate and pick off exposed targets before retreating.",
     rolePassive:
-      "All tanks receive reduced knockback and reduce the ultimate charge enemies gain from damaging them.",
+      "Gain a heal over time after using a specified movement ability.",
   },
-  "Dive Tank": {
+  "Stalwart": {
     description:
-      "Highly mobile tanks that rapidly close gaps to disrupt the enemy backline. Dive Tanks coordinate with flanker DPS and mobile supports to pick off exposed targets before retreating.",
+      "Frontline anchors that plant themselves at the point of contact and hold it. Bonus knockback and slow resistance keep them from being displaced, letting them absorb pressure and control space for the team.",
     interaction:
-      "Requires coordinated timing with Dive DPS and Mobile Supports. Works best when the enemy backline is isolated or caught out of position.",
+      "Sets the pace of an engage and creates the space other heroes fight from. Pairs well with a healer who can sustain it through prolonged holds.",
     rolePassive:
-      "All tanks receive reduced knockback and reduce the ultimate charge enemies gain from damaging them.",
+      "Gain knockback and slow resistance.",
   },
-  "Off Tank": {
+  "Bruiser": {
     description:
-      "Flexible tanks that complement the team by creating independent pressure, peeling for supports, or generating off-angle threats. Off Tanks often deal significant damage themselves.",
+      "Durable, self-sufficient tanks that thrive in close-range brawls. Resistance to critical hits and a burst of speed at low health let them stay in the fight and punish anyone who tries to finish them off.",
     interaction:
-      "Works alongside a Main Tank to create crossfire threats. Can hold off-angles or solo-peel without relying on barrier support.",
+      "Strong at holding off-angles or trading independently of the rest of the tank line. Punishes overextension from squishier heroes.",
     rolePassive:
-      "All tanks receive reduced knockback and reduce the ultimate charge enemies gain from damaging them.",
+      "Gain resistance to critical hits. Move faster while below half health.",
   },
-  "Hitscan": {
+
+  // ── Damage ─────────────────────────────────────────
+  "Recon": {
     description:
-      "Heroes whose weapons fire instantly — bullets travel at the speed of light with no projectile travel time. Best for targets that are moving quickly or high in the air. Rewards precise tracking aim.",
+      "Heroes who trade raw damage for information. Hitting a low-health enemy reveals their position through walls, letting the team track and finish targets that try to disengage or hide.",
     interaction:
-      "Naturally strong against aerial targets like Pharah and Echo. Countered by heroes that can close the gap quickly or deny sightlines.",
+      "Turns skirmishes into snowballs by denying the enemy team the ability to retreat and heal up unseen. Valuable for calling out flanks and picks.",
     rolePassive:
-      "Damage heroes gain bonus ultimate charge from eliminations.",
+      "Damaging enemies below half health reveals them.",
+  },
+  "Specialist": {
+    description:
+      "Heroes who reward securing eliminations with a brief reload speed boost, letting them chain kills and keep pressure up during a fight rather than stopping to reload.",
+    interaction:
+      "Strong in prolonged fights and chokepoint holds where eliminations come in bursts. Benefits from setup and control over the engagement.",
+    rolePassive:
+      "Eliminating an enemy briefly increases reload speed.",
+  },
+  "Sharpshooter": {
+    description:
+      "Precision-focused heroes who land critical hits to shorten their own movement ability cooldowns, letting good aim double as extra mobility and repositioning.",
+    interaction:
+      "Rewards players who can consistently land precise shots. Strong when the team can hold sightlines and create space to aim.",
+    rolePassive:
+      "Critical hits reduce your movement ability cooldowns.",
   },
   "Flanker": {
     description:
-      "Mobile damage heroes who attack from unexpected angles, targeting vulnerable supports and isolated enemies before retreating to safety. Success depends on positioning, timing, and knowing when to disengage.",
+      "Mobile damage heroes who strike from unexpected angles and lean on health packs — which restore more health for them — to sustain themselves far from their own healers.",
     interaction:
-      "Works best when tanks and primary DPS draw enemy attention. Flankers thrive when the enemy team is pressured from multiple directions simultaneously.",
+      "Works best when tanks and primary DPS hold the enemy's attention, opening lanes to isolated supports and backline targets.",
     rolePassive:
-      "Damage heroes gain bonus ultimate charge from eliminations.",
+      "Health packs restore more health.",
   },
-  "Sniper": {
+
+  // ── Support ────────────────────────────────────────
+  "Tactician": {
     description:
-      "Long-range precision specialists who deal high burst damage from safe distances. They control sightlines, punish enemies who expose themselves, and strongly prefer to avoid close-range fights entirely.",
+      "Utility-focused supports who can store ultimate charge past 100%, letting them bank a fully charged ultimate and pick the perfect moment to use it rather than being forced to spend it immediately.",
     interaction:
-      "Extremely powerful when the team can hold or contest long sightlines. Countered by dive compositions and mobile heroes that can close distance rapidly.",
+      "Enables coordinated, high-impact ultimate usage. Pairs well with teammates who can set up or capitalise on a well-timed ultimate.",
     rolePassive:
-      "Damage heroes gain bonus ultimate charge from eliminations.",
+      "Store excess ultimate charge.",
   },
-  "Aerial Assault": {
+  "Survivor": {
     description:
-      "Heroes built around sustained flight who dominate open vertical spaces with aerial bombardment. They excel on outdoor maps but are vulnerable to hitscan weapons and any hero that can reach or target them in the air.",
+      "Self-sufficient supports whose movement abilities kick off passive health regeneration, letting them reposition constantly while healing themselves without needing to stop and rely on a teammate.",
     interaction:
-      "Strongest when paired with a healer that can sustain them from a distance (Ana, Mercy). Heavily punished by hitscan DPS. Provide pressure from angles most heroes cannot contest.",
+      "Thrives when playing at range or on the move rather than planted in one spot. Well suited to dive and poke compositions alike.",
     rolePassive:
-      "Damage heroes gain bonus ultimate charge from eliminations.",
+      "Movement abilities start passive health regeneration.",
   },
-  "Builder": {
+  "Medic": {
     description:
-      "Heroes who deploy structures — turrets, barriers, teleporters — that provide passive value over time. Builders reward creative placement and are most effective on maps with chokepoints and strong defensive positions.",
+      "Close-support healers whose own healing output heals them back, letting them sustain themselves in the middle of a fight simply by keeping their weapon on injured allies.",
     interaction:
-      "Strongest in slower, setup-heavy compositions or on defense. Strong frontlines (Reinhardt, Orisa) protect their structures and let them compound value.",
+      "Excels at close-range, high-throughput healing. Needs peel from tanks and teammates since its self-sustain depends on staying near the fight.",
     rolePassive:
-      "Damage heroes gain bonus ultimate charge from eliminations.",
-  },
-  "Projectile": {
-    description:
-      "Heroes who fire arcing or slower-moving ammunition that requires leading moving targets. They often have area-of-effect potential and strong burst damage, and can flush enemies out of cover.",
-    interaction:
-      "Strong in chokepoint situations where area denial matters. Weaker against very mobile targets. Benefits from frontline pressure that forces enemies into tight clusters.",
-    rolePassive:
-      "Damage heroes gain bonus ultimate charge from eliminations.",
-  },
-  "Hybrid DPS": {
-    description:
-      "Versatile damage heroes who blend multiple combat styles — combining mobility, range, and burst damage to adapt across a variety of team compositions and situations.",
-    interaction:
-      "Flexible enough to fill gaps in any team. Can contribute across different styles depending on the situation and map.",
-    rolePassive:
-      "Damage heroes gain bonus ultimate charge from eliminations.",
-  },
-  "Main Support": {
-    description:
-      "The team's primary source of healing output. Main Supports prioritise keeping teammates alive above all else, providing consistent healing throughput across every phase of a fight.",
-    interaction:
-      "Must be protected by tanks and teammates. Partners best with a Flex Support who handles offensive pressure. Staying alive matters above all else — a dead healer loses fights.",
-    rolePassive:
-      "Support heroes passively regenerate health after a short period out of combat.",
-  },
-  "Flex Support": {
-    description:
-      "Versatile supports who contribute significant healing while also providing damage, utility, or powerful debuffs. Flex Supports can enable aggressive plays and punish enemies directly while still sustaining the team.",
-    interaction:
-      "Enables offensive strategies while covering healing. Pairs best with a dedicated Main Support to share the healing load. Rewards players who manage both healing and damage simultaneously.",
-    rolePassive:
-      "Support heroes passively regenerate health after a short period out of combat.",
-  },
-  "Battle Support": {
-    description:
-      "Close-range supports built to hold their own in direct combat. They heal through fighting or disrupt enemies at short range, making them strong in brawl compositions and difficult to assassinate.",
-    interaction:
-      "Thrives when the team fights in close quarters. Pairs well with aggressive Main Tanks and brawl-style DPS. Less effective in long-range poke or dive compositions.",
-    rolePassive:
-      "Support heroes passively regenerate health after a short period out of combat.",
-  },
-  "Mobile Support": {
-    description:
-      "Highly mobile supports who sustain teammates on the move, often amplifying team speed or healing while repositioning. Essential for keeping dive compositions alive and enabling fast-paced plays.",
-    interaction:
-      "A critical component of dive and aggressive compositions. Enables Dive Tanks and Flankers to engage and disengage safely. Less focused on raw healing throughput, more on keeping fast-moving heroes alive.",
-    rolePassive:
-      "Support heroes passively regenerate health after a short period out of combat.",
+      "Healing allies with your weapon also heals you.",
   },
 };
