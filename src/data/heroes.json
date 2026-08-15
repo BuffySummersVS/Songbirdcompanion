@@ -133,7 +133,7 @@
       "name": "Plasma Saber",
       "type": "Melee weapon (arc/cone strike, not a projectile)",
       "ammo": "N/A",
-      "damage": "60 per swing",
+      "damage": "65 per swing",
       "cooldown": "TBC",
       "description": "D.Mon's primary melee weapon, striking enemies in a melee arc in front of her mech. Effective range is approximately 5 meters (measured, not an official exact figure)."
     },
@@ -141,8 +141,8 @@
       "name": "Fusion Repeater",
       "type": "Mech-mounted machine gun",
       "ammo": "Heat based",
-      "damage": "15 per shot",
-      "cooldown": "None",
+      "damage": "16 per shot",
+      "cooldown": "4 seconds",
       "description": "A rapid-fire machine gun built into D.Mon's mech, giving her ranged pressure alongside her melee-focused Plasma Saber."
     },
     "passive": {
@@ -162,7 +162,7 @@
         "type": "Mobility",
         "damage": "None",
         "cooldown": "Fuel based",
-        "description": "Fuel-based horizontal/ground-hovering mobility — unlike D.Va's Boosters, this is not free-direction flight. Exact travel distance, speed, and fuel duration not yet confirmed."
+        "description": "Fuel-based horizontal/ground-hovering mobility — unlike D.Va's Boosters, this is not free-direction flight. Fuel drain rate 25 (reduced from 40), fuel regen rate 22.5 (increased from 15). Exact travel distance and speed not yet confirmed."
       },
       {
         "name": "Surging Strike",
@@ -242,6 +242,10 @@
       {
         "date": "2026-08-12",
         "change": "Kit updated from live-game/testing footage recorded 2026-08-12: added Plasma Saber as primary weapon (60 dmg/swing, ≈5m range — range is a measured estimate, not an official exact value) and moved Fusion Repeater to secondary weapon (15 dmg/shot); Power Barrier HP set to 650; Surging Strike damage set to 70. Mech total HP confirmed at 750 but the Health/Armour/Shield split remains unverified, so the existing 250/250/0 fields were left unchanged pending confirmation — see note to user."
+      },
+      {
+        "date": "2026-08-15",
+        "change": "Hotfix applied (per in-game screenshot): Plasma Saber damage 60→65; Fusion Repeater damage 15→16 and cooldown set to 4 seconds (reduced from 6); Propulsors fuel drain rate 40→25 and fuel regen rate 15→22.5."
       }
     ],
     "lore": "Yuna Lee, known by her callsign D.Mon, is a member of South Korea's MEKA Squad. She is a tough and protective member of her team, standing out with a disciplined demeanor built from her military experience, expertise, and leadership. As one of the most responsible voices on the team, she prioritizes the mission above all else."
