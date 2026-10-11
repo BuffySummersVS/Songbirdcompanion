@@ -11557,15 +11557,15 @@ button.ha-course-card.ha-done .ha-course-action{
 
 .updates-banner-qr img{
   display:block;
-  width:72px;
-  height:72px;
-  border-radius:6px;
+  width:120px;
+  height:120px;
+  border-radius:8px;
   background:#fff;
 }
 
 .updates-banner-qr span{
   font-family:"Rajdhani",sans-serif;
-  font-size:.75rem;
+  font-size:.85rem;
   font-weight:700;
   color:#14161a;
   text-shadow:0 0 6px rgba(255,255,255,.85);

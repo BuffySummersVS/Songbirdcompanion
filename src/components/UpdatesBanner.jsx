@@ -32,7 +32,7 @@ export default function UpdatesBanner() {
         rel="noopener noreferrer"
         aria-label="Get SongBird on Google Play"
       >
-        <img src={playStoreQr} alt="QR code linking to SongBird on the Google Play Store" width="72" height="72" />
+        <img src={playStoreQr} alt="QR code linking to SongBird on the Google Play Store" width="120" height="120" />
         <span>Scan or tap to download</span>
       </a>
     </div>
