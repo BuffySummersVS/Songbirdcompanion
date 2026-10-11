@@ -30,7 +30,7 @@ export default {
     {
       type: 'text',
       heading: 'Ultimate Denial',
-      body: 'Denying the enemy ultimate charge is as important as building your own. Killing enemies before they can use their ultimates (especially low-health enemies waiting to charge) removes their charge. Repositioning out of high-charge positions (so enemies cannot get chip damage on you) reduces their generation. Some heroes (Sombra) can literally pause enemy charge with hack. Denial is active, not passive.',
+      body: 'Denying the enemy ultimate charge is as important as building your own. Killing enemies before they can use their ultimates (especially low-health enemies waiting to charge) removes their charge. Repositioning out of high-charge positions (so enemies cannot get chip damage on you) reduces their generation. Some heroes (Sombra) can see exactly which enemies have their ultimate ready and EMP them before they use it. Denial is active, not passive.',
     },
     {
       type: 'text',
@@ -82,7 +82,7 @@ export default {
         question: 'Ultimate denial — preventing the enemy from charging their ultimates — is a passive benefit of good play but cannot be actively pursued.',
         options: ['True', 'False'],
         correct: 1,
-        explanation: 'False. Ultimate denial is an active strategy. Killing low-health enemies before they charge, repositioning out of positions where enemies can chip damage on you, and using heroes like Sombra (hack pauses charge) are all active denial tools. Denial requires intention, not just luck.',
+        explanation: 'False. Ultimate denial is an active strategy. Killing low-health enemies before they charge, repositioning out of positions where enemies can chip damage on you, and using heroes like Sombra (Conspirator reveals ready ultimates for EMP to deny) are all active denial tools. Denial requires intention, not just luck.',
       },
       {
         id: 'q4',

@@ -1,5 +1,95 @@
 ﻿[
   {
+    "id": "s5-a-grim-doctrine",
+    "title": "Season 5: A Grim Doctrine",
+    "category": "Season",
+    "startDate": "2026-10-06",
+    "endDate": "2026-12-08",
+    "description": "Fifth season of the Reign of Talon arc. Introduces vampire-inspired Support hero Doctrine and the Icelandic prison Escort map Grímsvötn. Sombra moves to Support and Roadhog is reworked. Adds Unvaulted Battle Passes, Custom Restricted Words, and Top 500 leaderboard changes. End date is an estimate — Blizzard has not confirmed it.",
+    "sourceUrl": "https://overwatch.blizzard.com/en-us/news/24303008/feed-your-hunger-in-reign-of-talon-season-5-a-grim-doctrine/"
+  },
+  {
+    "id": "graveyard-games",
+    "title": "Mystery Madness: Graveyard Games",
+    "category": "Holiday",
+    "startDate": "2026-10-06",
+    "endDate": "2026-11-02",
+    "description": "Halloween event mixing Mystery Heroes, Junkenstein's Lab and Stadium. 5v5 Best-of-3 Control with a guaranteed 1-2-2 composition; level up to pick Common, Epic and Legendary Powers on death. Earn Offerings to vote on which heroes enter the next limited-time mode. Halloween versions of Hollywood, Lijiang Tower and Château Guillard run through November 3.",
+    "sourceUrl": "https://overwatch.blizzard.com/en-us/news/24303008/feed-your-hunger-in-reign-of-talon-season-5-a-grim-doctrine/"
+  },
+  {
+    "id": "shadow-monarch-collab",
+    "title": "Overwatch x Shadow Monarch",
+    "category": "Crossover",
+    "startDate": "2026-10-06",
+    "endDate": "2026-10-19",
+    "description": "Shadow Monarch crossover cosmetics available in the shop.",
+    "sourceUrl": "https://overwatch.blizzard.com/en-us/news/24303008/feed-your-hunger-in-reign-of-talon-season-5-a-grim-doctrine/"
+  },
+  {
+    "id": "tech-witches-collection",
+    "title": "Tech Witches Collection",
+    "category": "Collection",
+    "startDate": "2026-10-09",
+    "endDate": "2026-10-26",
+    "description": "Limited-time Tech Witches themed cosmetics collection.",
+    "sourceUrl": "https://overwatch.blizzard.com/en-us/news/24303008/feed-your-hunger-in-reign-of-talon-season-5-a-grim-doctrine/"
+  },
+  {
+    "id": "team-drives-s5",
+    "title": "Team Drives",
+    "category": "Limited Event",
+    "startDate": "2026-10-29",
+    "endDate": "2026-11-01",
+    "description": "Competitive Team Drives return: winning teams are auto-grouped and completing The Trial earns rewards.",
+    "sourceUrl": "https://overwatch.blizzard.com/en-us/news/24303008/feed-your-hunger-in-reign-of-talon-season-5-a-grim-doctrine/"
+  },
+  {
+    "id": "s4-heroes-of-busan",
+    "title": "Season 4: Heroes of Busan",
+    "category": "Season",
+    "startDate": "2026-08-11",
+    "endDate": "2026-10-06",
+    "description": "Fourth season of the Reign of Talon arc. Introduces Tank hero D.Mon, reworks Busan, Eichenwalde and Paraíso, and adds the Emerald competitive rank between Platinum and Diamond along with a Rank Distribution Indicator.",
+    "sourceUrl": "https://overwatch.blizzard.com/en-us/news/patch-notes/live/2026/08/"
+  },
+  {
+    "id": "meka-mania",
+    "title": "Shooting Stars: My MEKA Mania",
+    "category": "Limited Event",
+    "startDate": "2026-08-11",
+    "endDate": "2026-08-31",
+    "description": "Complete MEKA pilots' reward passes to vote on the Global Leaderboard. The top pilot gets a Player Card, and completing all five passes unlocks a bonus sixth pass.",
+    "sourceUrl": "https://overwatch.blizzard.com/en-us/news/patch-notes/live/2026/08/"
+  },
+  {
+    "id": "world-cup-cheer-rally",
+    "title": "World Cup Cheer Rally",
+    "category": "Limited Event",
+    "startDate": "2026-09-01",
+    "endDate": "2026-09-14",
+    "description": "Earn Cheers for AMER, ASIA or EMEA by completing challenges. The winning Conference unlocks a weapon charm for participants.",
+    "sourceUrl": "https://overwatch.blizzard.com/en-us/news/patch-notes/live/2026/08/"
+  },
+  {
+    "id": "team-drives-s4",
+    "title": "Team Drives (Experimental)",
+    "category": "Limited Event",
+    "startDate": "2026-09-04",
+    "endDate": "2026-09-07",
+    "description": "Experimental competitive event: winning teams are auto-grouped, and completing The Trial awards Player Card Frames. The first 10,000 completers earn a temporary order-based title.",
+    "sourceUrl": "https://overwatch.blizzard.com/en-us/news/patch-notes/live/2026/08/"
+  },
+  {
+    "id": "junkrat-loot-hunt-legendary",
+    "title": "Junkrat's Loot Hunt: Legendary",
+    "category": "Limited Event",
+    "startDate": "2026-09-12",
+    "endDate": "2026-09-29",
+    "description": "Junkrat's Loot Hunt returns in a Legendary edition.",
+    "sourceUrl": "https://overwatch.blizzard.com/en-us/news/patch-notes/live/2026/09/"
+  },
+  {
     "id": "s3-into-the-tigers-den",
     "title": "Season 3: Into the Tiger's Den",
     "category": "Season",

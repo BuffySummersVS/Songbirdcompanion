@@ -6,10 +6,13 @@
 //   User-Update-Item: <bullet>
 //   User-Update-Item: <bullet>
 export const LATEST_UPDATE = {
-  "heading": "D.Mon has arrived!",
+  "heading": "Season 5: A Grim Doctrine is live!",
   "items": [
-    "New Tank hero: D.Mon",
-    "Full kit, perks, and counters live in Heroes"
+    "New Support hero: Doctrine — full kit, perks, counters and lore in Heroes",
+    "Sombra reworked and moved to Support; Roadhog reworked",
+    "New Escort map Grímsvötn, plus Season 4 & 5 events on the calendar",
+    "Hero stats and perks synced to official patch notes up to October 6",
+    "SongBird is now available on the Google Play Store"
   ],
-  "date": "2026-08-11"
+  "date": "2026-10-11"
 };

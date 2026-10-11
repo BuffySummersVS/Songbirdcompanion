@@ -13,7 +13,7 @@ export const CW_TIPS = [
   "Lúcio gains a 30% speed boost while wall riding — use it to reach teammates faster and recover from near-falls off the map.",
   "Zarya's barriers absorb incoming damage to charge her cannon — time them on enemy burst abilities to spike your energy fast.",
   "Orisa's Javelin Spin only blocks bullets and projectiles — beam weapons from Zarya, Mei, Symmetra, Moira, and Winston bypass it entirely.",
-  "Sombra can hack health packs to deny them to retreating enemies — hacked packs take longer to respawn for opponents.",
+  "Sombra's Hotfix can hack health packs for 30 seconds — hacked packs heal her team faster and deny them to retreating enemies.",
   "Roadhog's Chain Hook can interrupt channeled ults — hooking Cassidy during Deadeye, Reaper during Death Blossom, or Pharah during Barrage stops them cold.",
   "Cassidy's Combat Roll reloads his entire revolver — use it mid-fight to stay in the action without stepping back.",
   "Tracer's Recall isn't just a panic button — use it to bait enemy cooldowns, reload on the fly, or reset your position after spending all your Blinks.",

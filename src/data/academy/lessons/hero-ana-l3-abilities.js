@@ -37,8 +37,8 @@
     {
       type: 'callout',
       variant: 'tip',
-      title: 'Groggy Perk',
-      body: 'The minor perk "Groggy" causes enemies waking from Sleep Dart to be slowed 50% and take 50 damage over two seconds. This extends the window your team has to react and makes the sleep far more forgiving to follow up on.',
+      title: 'Local Anesthetic Perk',
+      body: 'The minor perk "Local Anesthetic" makes Sleep Dart explode on impact, slowing nearby enemies and dealing 45 damage over 3 seconds. Even a dart that misses its main target can still slow and chip a grouped enemy team.',
     },
     {
       type: 'divider',

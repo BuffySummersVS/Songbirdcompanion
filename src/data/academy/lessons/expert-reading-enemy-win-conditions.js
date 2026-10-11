@@ -30,7 +30,7 @@ export default {
     {
       type: 'text',
       heading: 'Behavioural Win Conditions',
-      body: 'Win conditions are not just compositions — they are behaviours. An enemy team that always sends a Sombra to hack your tank is telling you their win condition involves disrupting your tank\'s survivability. An enemy that always holds for a specific ultimate before engaging is telling you their win condition is ultimates. Watch their patterns across multiple fights.',
+      body: 'Win conditions are not just compositions — they are behaviours. An enemy team that always drops Sombra\'s Cyberspace on your tank is telling you their win condition involves disrupting your tank\'s survivability. An enemy that always holds for a specific ultimate before engaging is telling you their win condition is ultimates. Watch their patterns across multiple fights.',
     },
     {
       type: 'text',

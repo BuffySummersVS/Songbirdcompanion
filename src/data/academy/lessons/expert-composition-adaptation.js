@@ -25,7 +25,7 @@ export default {
       type: 'callout',
       variant: 'example',
       title: 'Targeted vs Reactive Swapping',
-      body: 'Reactive: Ana dies twice, gets frustrated, switches to Zenyatta. Nothing fundamentally changes. Targeted: The team diagnoses that the enemy\'s brawl sustain is too high for their dive composition. The Tracer swaps to Sombra (hack removes key sustain cooldowns), the Winston stays but targets Moira instead. This structural change addresses the actual problem.',
+      body: 'Reactive: Ana dies twice, gets frustrated, switches to Zenyatta. Nothing fundamentally changes. Targeted: The team diagnoses that the enemy\'s brawl sustain is too high for their dive composition. The Ana swaps to Sombra (Cyberspace\'s Weaken halves the enemy\'s healing output), the Winston stays but targets Moira instead. This structural change addresses the actual problem.',
     },
     {
       type: 'text',
@@ -91,12 +91,12 @@ export default {
         question: 'Your dive composition cannot reach enemy supports because Brigitte and Roadhog are deterring every dive. What is a targeted swap to address this?',
         options: [
           'Swap your support to Zenyatta for more damage',
-          'Swap your Genji to Sombra (hack disrupts Brigitte\'s shield and Roadhog\'s heal, opening the dive window)',
+          'Swap a support to Sombra (Cyberspace\'s Weaken halves Brigitte\'s and Roadhog\'s healing, opening the dive window)',
           'Swap your Winston to Reinhardt for more barrier play',
           'Swap your support to Ana so you can sleep one of them at the start of each fight',
         ],
         correct: 1,
-        explanation: 'Sombra\'s hack removes Brigitte\'s ability to protect against dive and Roadhog\'s ability to heal through damage — specifically solving the problem of dive-resistant heroes. This is targeted: the swap directly addresses the structural reason dive is failing.',
+        explanation: 'Sombra\'s Cyberspace Weakens Brigitte and Roadhog, halving the healing that lets them out-sustain dive — specifically solving the problem of dive-resistant heroes. This is targeted: the swap directly addresses the structural reason dive is failing.',
       },
       {
         id: 'q5',

@@ -49,6 +49,13 @@
     "description": "A Push map through the sun-drenched streets of a Portuguese coastal city. Open plazas and long central streets give snipers dominant sightlines, while covered side alleys offer safer routes for mobile heroes."
   },
   {
+    "id": "grimsvotn",
+    "name": "Grímsvötn",
+    "gameMode": "Escort",
+    "location": "Iceland",
+    "description": "Watchpoint: Grímsvötn, a high-security Overwatch prison built into an Icelandic volcanic fissure that once held the world's most dangerous criminals — Doctrine and Doomfist among them. The first new Escort map since Overwatch 2's launch, added in Season 5."
+  },
+  {
     "id": "havana",
     "name": "Havana",
     "gameMode": "Escort",

@@ -9,13 +9,13 @@ export default {
   content: [
     {
       type: 'text',
-      body: 'Effective positioning is the difference between a Sombra who survives the whole fight and one who is eliminated early. Damage heroes must balance aggression with self-preservation.',
+      body: 'Effective positioning is the difference between a Sombra who survives the whole fight and one who is eliminated early. Support heroes must stay alive and in range of the allies they heal.',
     },
     {
       type: 'callout',
       variant: 'info',
       title: 'Movement Speed',
-      body: 'Sombra moves at 5.5 m/s. As a Damage hero, find angles that let you attack safely without overextending.',
+      body: 'Sombra moves at 5.5 m/s. As a Support, keep your Hotfix targets within 17 m and use Translocator to reposition, not to dive alone.',
     },
     {
       type: 'callout',
@@ -33,7 +33,7 @@ export default {
       type: 'callout',
       variant: 'tip',
       title: 'Map Awareness',
-      body: 'Always track enemy positions using the minimap and sound cues. Sombra\'s effectiveness varies by environment — recognise when the map favours your kit.',
+      body: 'Always track enemy positions using the minimap and sound cues. Stealth lets you take off-angles for Cyberspace, but with 225 health you can\'t afford to be caught alone.',
     },
   ],
   quiz: {
@@ -53,15 +53,15 @@ export default {
       },
       {
         id: 'q2',
-        text: 'Why is positioning critical for Sombra as a Damage?',
+        text: 'Why is positioning critical for Sombra as a Support?',
         options: [
-          { id: 'a', text: 'Engaging without cover and overextending' },
+          { id: 'a', text: 'She must stay within range of the allies she heals without being caught alone' },
           { id: 'b', text: 'It isn\'t — Sombra can survive anywhere.' },
           { id: 'c', text: 'Only to use the ultimate more easily.' },
           { id: 'd', text: 'To respawn faster.' },
         ],
         correctId: 'a',
-        explanation: 'Damage heroes must position to fulfil their role. Sombra\'s kit is designed around their intended engagement range.',
+        explanation: 'As a Support with 225 health, Sombra must stay close enough to heal while using Stealth and Translocator to avoid being picked.',
       },
     ],
   },

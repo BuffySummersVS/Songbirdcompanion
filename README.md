@@ -4,11 +4,11 @@ An unofficial companion web app for Overwatch 2 — hero reference, counter-pick
 
 ## Features
 
-- **Heroes** — searchable, role-filterable grid of all 52 heroes, each with a full profile modal (stats, weapon, abilities, ultimate, perks, lore).
+- **Heroes** — searchable, role-filterable grid of all 54 heroes, each with a full profile modal (stats, weapon, abilities, ultimate, perks, lore).
 - **CounterWatch** — pick a hero to see who they counter, who counters them, and their best teammates, plus a rotating banner of sourced gameplay tips.
 - **Team Comps** — build a 5-role-locked team and get live synergy detection based on each hero's real synergy data.
 - **Randomiser** — roll a random hero for yourself or a full party (Open Queue or Role Queue).
-- **Maps** — all 29 maps with hero coverage (strong/weak picks) derived from the hero dataset.
+- **Maps** — all 30 maps with hero coverage (strong/weak picks) derived from the hero dataset.
 - **Events** — a full calendar and list view of official Overwatch seasonal events, with custom personal events, browser reminders, and light seasonal theming (Halloween, Winter Wonderland, Pride Month, and more) on the calendar.
 - **Custom Games** — curated workshop game modes with one-click code copying.
 - **Competitive Guide / UI Guide / Terms & Phrases** — reference pages for the ranked system, HUD/scoreboard, and Overwatch glossary.

@@ -33,7 +33,7 @@
       type: 'callout',
       variant: 'info',
       title: 'Perks Worth Knowing',
-      body: 'Minor: Bass Blowout — Soundwave\'s knockback increases 15%. / Beat Drop — Amp It Up remains active during Sound Barrier. · Major: Noise Violation — Crossfade\'s range increases 150% while Amp It Up is active. / Accelerando — Lúcio\'s attack speed increases 50% while Amp It Up is active.',
+      body: 'Minor: Bass Blowout — Soundwave\'s knockback increases 15%. / Beat Drop — Amp It Up remains active for 4 seconds after casting Sound Barrier. · Major: Noise Violation — Crossfade\'s range increases 150% while Amp It Up is active. / Accelerando — Lúcio\'s attack speed increases 50% while Amp It Up is active.',
     },
   ],
   quiz: {

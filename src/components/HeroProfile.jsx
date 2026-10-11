@@ -170,6 +170,18 @@ export default function HeroProfile({ hero, onClose, onOpenCounterWatch, onOpenH
           )}
         </div>
 
+        {hero.secondaryWeapon && (
+          <div className="profile-section">
+            <h3>Secondary Fire</h3>
+            <div className="ability-detail">
+              <h4>{hero.secondaryWeapon.name}</h4>
+              <p>{hero.secondaryWeapon.description}</p>
+              <p><strong>Damage:</strong> {hero.secondaryWeapon.damage}</p>
+              <p><strong>Cooldown:</strong> {hero.secondaryWeapon.cooldown}</p>
+            </div>
+          </div>
+        )}
+
         <div className="profile-section">
           <h3>Abilities</h3>
           {hero.abilities?.length ? (

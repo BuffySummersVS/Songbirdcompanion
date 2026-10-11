@@ -15,7 +15,7 @@ export default {
       type: 'callout',
       variant: 'info',
       title: 'Hero Stats',
-      body: '375 Health, 225 Armour — 600 total HP, Movement speed: 5.5 m/s, Difficulty: 2/5.',
+      body: '350 Health, 325 Armour — 675 total HP, Movement speed: 5.5 m/s, Difficulty: 2/5.',
     },
     {
       type: 'callout',
@@ -53,13 +53,13 @@ export default {
         id: 'q2',
         text: 'What is D.Va\'s total HP?',
         options: [
-          { id: 'a', text: '550' },
-          { id: 'b', text: '600' },
-          { id: 'c', text: '650' },
-          { id: 'd', text: '700' },
+          { id: 'a', text: '625' },
+          { id: 'b', text: '675' },
+          { id: 'c', text: '725' },
+          { id: 'd', text: '775' },
         ],
         correctId: 'b',
-        explanation: 'D.Va\'s total HP is 600 (375 Health, 225 Armour — 600 total HP).',
+        explanation: 'D.Va\'s total HP is 675 (350 Health, 325 Armour — 675 total HP).',
       },
       {
         id: 'q3',

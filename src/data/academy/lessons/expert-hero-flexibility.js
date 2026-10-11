@@ -25,7 +25,7 @@ export default {
       type: 'callout',
       variant: 'example',
       title: 'When Flexibility Wins',
-      body: 'Your team is running a dive composition and losing because the enemy has Roadhog + Brigitte as anti-dive. A one-hero Genji main keeps playing Genji and keeps losing. A flexible player assesses: "My dive is not working — Sombra can hack Brigitte\'s rally and Roadhog\'s heal, opening the dive window." The swap may cost ultimate charge; it wins the map.',
+      body: 'Your team is running a dive composition and losing because the enemy has Roadhog + Brigitte as anti-dive. A one-hero Genji main keeps playing Genji and keeps losing. A flexible player assesses: "My dive is not working — Sombra\'s Cyberspace can Weaken Brigitte and Roadhog, halving their healing and opening the dive window." The swap may cost ultimate charge; it wins the map.',
     },
     {
       type: 'text',
@@ -74,7 +74,7 @@ export default {
           'Unstable swaps are caused by the enemy countering you; flexible swaps are proactive',
         ],
         correct: 1,
-        explanation: 'The test of flexibility vs instability is the reasoning behind the swap. "Sombra can hack Brigitte\'s rally to open the dive window" is a diagnosed, purposeful swap. "I keep dying so I\'ll try someone else" is instability — no hypothesis, no purpose, no plan.',
+        explanation: 'The test of flexibility vs instability is the reasoning behind the swap. "Sombra\'s Weaken can break Brigitte and Roadhog\'s sustain to open the dive window" is a diagnosed, purposeful swap. "I keep dying so I\'ll try someone else" is instability — no hypothesis, no purpose, no plan.',
       },
       {
         id: 'q3',

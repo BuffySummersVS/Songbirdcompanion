@@ -687,9 +687,9 @@
     term: "Hack",
     category: "Mechanics",
     definition:
-      "Sombra's ability to disable an enemy hero's active abilities for a short duration. A hacked hero cannot use abilities, passives, or activate their ultimate.",
+      "Sombra's hacking. Since Season 5 she no longer has a standalone Hack ability: Hotfix hacks allies to heal them and can hack health packs and enemy deployables, and her EMP ultimate hacks every nearby enemy, disabling their abilities.",
     example:
-      "Hack the Pharah before she flies — grounded Pharah is a free elimination.",
+      "Hotfix that health pack so our team gets it back faster — and hack their turret on the way past.",
   },
   {
     term: "Sleep (Sleep Dart)",

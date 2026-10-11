@@ -541,7 +541,7 @@ export const PATHS = [
     id: 'hero-sombra',
     heroId: 'sombra',
     label: 'Sombra',
-    subtitle: 'Damage · Hero Academy',
+    subtitle: 'Support · Hero Academy',
     category: 'hero-academy',
     order: 218,
     prerequisitePaths: [],

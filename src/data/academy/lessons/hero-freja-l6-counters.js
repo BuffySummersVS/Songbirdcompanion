@@ -33,7 +33,7 @@
       type: 'callout',
       variant: 'info',
       title: 'Perks Worth Knowing',
-      body: 'Minor: Relentless Barrage — Take Aim direct hits refund 8 ammo. / Momentum Boost — Quick Dash distance increases 20%. · Major: Aerial Recovery — After Updraft, heal 30 health/second until landing. / Rising Winds — Updraft gains an additional charge.',
+      body: 'Minor: Relentless Barrage — Take Aim direct hits refund 5 ammo. / Momentum Boost — Quick Dash distance increases 20%. · Major: Aerial Recovery — After Updraft, heal 30 health/second until landing. / Rising Winds — Updraft gains an additional charge.',
     },
   ],
   quiz: {

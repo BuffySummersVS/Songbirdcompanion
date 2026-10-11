@@ -33,7 +33,7 @@
       type: 'callout',
       variant: 'info',
       title: 'Perks Worth Knowing',
-      body: 'Minor: Aluminium Frame — Steel Trap\'s throw range increases 50%. / Nitro Boost — During RIP-Tire, press Shift for a speed boost; reduces RIP-Tire damage 50%. · Major: Frag Cannon — Frag Launcher\'s projectile speed increases 40%; maximum ammo reduces by one. / Tick Tock — Concussive Mine arms 0.5 seconds after landing, increasing damage and explosion radius 50% and health 200%.',
+      body: 'Minor: Aluminium Frame — Steel Trap\'s throw range increases 50%. / Nitro Boost — During RIP-Tire, press Shift for a 100% speed boost; reduces RIP-Tire damage 50%. · Major: Frag Cannon — Frag Launcher\'s projectile speed increases 40%; maximum ammo reduces by one. / Tick Tock — Concussive Mine arms 0.5 seconds after landing, increasing damage and explosion radius 50% and health 200%.',
     },
   ],
   quiz: {

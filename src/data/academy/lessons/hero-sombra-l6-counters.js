@@ -15,7 +15,7 @@
       type: 'callout',
       variant: 'info',
       title: 'Heroes Sombra Counters',
-      body: 'Doomfist, Wrecking Ball, Widowmaker, Zenyatta — Sombra\'s kit is especially effective against these heroes.',
+      body: 'Widowmaker, Zenyatta, Symmetra, Illari — Sombra\'s kit is especially effective against these heroes.',
     },
     {
       type: 'callout',
@@ -33,7 +33,7 @@
       type: 'callout',
       variant: 'info',
       title: 'Perks Worth Knowing',
-      body: 'Minor: Encrypted Upload — Hack is usable while invisible; successful hacks increase stealth duration by two seconds. / CTRL ALT ESC — Teleporting with Translocator at critical health initiates passive health regeneration. · Major: White Hat — Hack is usable on allies to restore 100 health over two seconds. / Viral Replication — Hitting a hacked enemy with Virus spreads it to enemies within 8 metres.',
+      body: 'Minor: Life Hack — EMP applies Hotfix to nearby allies. / CTRL ALT ESC — Teleporting with Translocator at critical health initiates passive health regeneration. · Major: Data Packet — Hacking health packs with Hotfix reduces its main cooldown by 4 seconds. / Cybersecurity — Cyberspace healing is doubled on allies below 50% health.',
     },
   ],
   quiz: {
@@ -43,19 +43,19 @@
         id: 'q1',
         text: 'Which hero does Sombra counter?',
         options: [
-          { id: 'a', text: 'Doomfist' },
+          { id: 'a', text: 'Widowmaker' },
           { id: 'b', text: 'Cassidy' },
           { id: 'c', text: 'Winston' },
           { id: 'd', text: 'No hero specifically' },
         ],
         correctId: 'a',
-        explanation: 'Sombra\'s kit is particularly effective against Doomfist.',
+        explanation: 'Sombra\'s Stealth lets her reach Widowmaker\'s perch, and Cyberspace\'s Weaken halves her damage.',
       },
       {
         id: 'q2',
         text: 'Which hero counters Sombra?',
         options: [
-          { id: 'a', text: 'Doomfist' },
+          { id: 'a', text: 'Widowmaker' },
           { id: 'b', text: 'Cassidy' },
           { id: 'c', text: 'Winston' },
           { id: 'd', text: 'No hero specifically' },
@@ -68,7 +68,7 @@
         text: 'Which hero synergises well with Sombra?',
         options: [
           { id: 'a', text: 'Cassidy' },
-          { id: 'b', text: 'Doomfist' },
+          { id: 'b', text: 'Widowmaker' },
           { id: 'c', text: 'Winston' },
           { id: 'd', text: 'Heroes with the same role' },
         ],

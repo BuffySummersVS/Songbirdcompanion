@@ -33,7 +33,7 @@
       type: 'callout',
       variant: 'info',
       title: 'Perks Worth Knowing',
-      body: 'Minor: Scrap Hook — Chain Hook hits reload two ammo. · Major: Invigorate — Take a Breather rapidly increases movement speed by 30%. / Hogdrogen Exposure — Take a Breather heals nearby allies for 50% of its healing.',
+      body: 'Minor: Scrap Hook — Chain Hook hits reload four ammo. / Here, Piggy Piggy — During Whole Hog, Chain Hook\'s cooldown is reduced by 80%. · Major: Toxic Exhaust — Enemies in front of Roadhog while Trash Compactor is active are slowed by 30% and take 20 damage per second. / Hogdrogen Exposure — Take a Breather heals nearby allies for 50% of its healing.',
     },
   ],
   quiz: {

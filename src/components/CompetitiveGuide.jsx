@@ -9,7 +9,8 @@ import drivesImg    from "../assets/competitive/competitive-drives.png";
 
 // Sources: Blizzard official articles (Season 9, 12, 18 competitive updates),
 // Blizzard Weekly Recall (Challenger Tier), Liquipedia Feb 2026 patch notes,
-// PCGamesN rank guide, GameRant drives guide, Dexerto Hero SR feature (June 2026).
+// PCGamesN rank guide, GameRant drives guide, Dexerto Hero SR feature (June 2026),
+// Blizzard retail patch notes (Season 4 and Season 5, Aug–Oct 2026).
 
 const SECTIONS = [
   {
@@ -25,6 +26,8 @@ const SECTIONS = [
       "After every match, a Rank Information screen shows a percentage progress bar indicating how much rank was gained or lost.",
       "The system aims to match players within one to two skill tiers of each other.",
       "Draws do not affect rank progress.",
+      "A Rank Distribution Indicator (added Season 4, 2026) shows how your rank compares to other players in each queue.",
+      "Top 500: since Season 5 (October 2026) the Challenger Leaderboard is sorted by Rank by default, and end-of-season title rewards are based on Rank. Challenger Score is still required to appear on the leaderboard (top 500 by Challenger Score), and the Heat Bonus has been removed.",
     ],
     image: overviewImg,
   },
@@ -95,6 +98,7 @@ const SECTIONS = [
       "Signature tiers: Signature (Checkpoint 2) → Advanced Signature (Checkpoint 4) → Elite Signature (Checkpoint 6).",
       "Signatures are stylised backings for your BattleTag that appear in Name Cards and hero portraits.",
       "A Roman numeral on your Signature tracks how many Drives you have completed. Every 7th Drive completion awards a special Insignia and resets the numeral counter.",
+      "Team Drives (introduced Season 4) group winning teams together automatically; completing The Trial awards Player Card Frames. Season 5's Team Drives run October 29 – November 1, 2026.",
     ],
     image: drivesImg,
   },

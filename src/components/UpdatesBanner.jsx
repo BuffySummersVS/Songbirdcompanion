@@ -1,6 +1,8 @@
 import { motion, useReducedMotion } from "framer-motion";
+import playStoreQr from "../assets/playstore-qr.svg";
 
-const UPDATE_MESSAGE = "🎉 Coming soon: App goes live for Android on Google Play Store! 🎉";
+const UPDATE_MESSAGE = "🎉 Now Available on the Google Play Store! 🎉";
+const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=songbird.app&hl=en_GB";
 
 export default function UpdatesBanner() {
   const prefersReducedMotion = useReducedMotion();
@@ -23,6 +25,16 @@ export default function UpdatesBanner() {
         )}
         <span className="sr-only">{UPDATE_MESSAGE}</span>
       </div>
+      <a
+        className="updates-banner-qr"
+        href={PLAY_STORE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Get SongBird on Google Play"
+      >
+        <img src={playStoreQr} alt="QR code linking to SongBird on the Google Play Store" width="72" height="72" />
+        <span>Scan or tap to download</span>
+      </a>
     </div>
   );
 }

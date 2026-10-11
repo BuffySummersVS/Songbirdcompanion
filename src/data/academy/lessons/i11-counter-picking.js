@@ -19,13 +19,13 @@
     {
       type: 'text',
       heading: 'Hard Counters vs Soft Counters',
-      body: 'A hard counter severely disadvantages the target — Sombra\'s hack disabling most of Symmetra\'s kit, Ana\'s Anti-Heal directly stopping Roadhog\'s Self-Heal, or Cassidy\'s Magnetic Grenade being nearly impossible to avoid. A soft counter has a meaningful advantage but the matchup remains playable with good play from either side.',
+      body: 'A hard counter severely disadvantages the target — Sombra\'s Hotfix hacking Symmetra\'s turrets and Teleporter, Ana\'s Anti-Heal directly stopping Roadhog\'s Self-Heal, or Cassidy\'s Magnetic Grenade being nearly impossible to avoid. A soft counter has a meaningful advantage but the matchup remains playable with good play from either side.',
     },
     {
       type: 'callout',
       variant: 'example',
       title: 'Classic Counter Examples',
-      body: 'Pharah → Countered by hitscan heroes (Soldier: 76, McCree/Cassidy, Widowmaker). Widowmaker → Countered by dive heroes (Genji, Tracer, Winston). Symmetra → Countered by Sombra (hack disables turrets and most of her kit). Reinhardt → Countered by Pharah and Echo (attack from above and outside his swing range).',
+      body: 'Pharah → Countered by hitscan heroes (Soldier: 76, McCree/Cassidy, Widowmaker). Widowmaker → Countered by dive heroes (Genji, Tracer, Winston). Symmetra → Countered by Sombra (Hotfix hacks her turrets and Teleporter). Reinhardt → Countered by Pharah and Echo (attack from above and outside his swing range).',
     },
     {
       type: 'text',
@@ -72,7 +72,7 @@
           'A strategy of switching heroes after every death',
         ],
         correct: 1,
-        explanation: 'A hard counter severely disadvantages a specific hero due to how their abilities interact — Sombra\'s hack on Symmetra removes most of her kit, for example. The target hero is not just weaker; they are fundamentally disrupted.',
+        explanation: 'A hard counter severely disadvantages a specific hero due to how their abilities interact — Sombra\'s Hotfix hacking Symmetra\'s turrets and Teleporter removes most of her kit, for example. The target hero is not just weaker; they are fundamentally disrupted.',
       },
       {
         id: 'q2',
@@ -114,12 +114,12 @@
         question: 'You just swapped to a Sombra counter-pick to deal with the enemy Symmetra. But your team continues losing the fights. What might be happening?',
         options: [
           'Sombra is not a counter to Symmetra after all',
-          'Your team may not be following up after your hack, or there is another issue beyond Symmetra',
+          'Your team may not be following up after you hack her deployables, or there is another issue beyond Symmetra',
           'You did not communicate the swap so your team does not know the plan',
           'Both B and C are possible explanations',
         ],
         correct: 3,
-        explanation: 'Both are valid explanations. A counter-pick only works if the team coordinates around it. If you hack Symmetra but your team is not in position to follow up, the hack window is wasted. And the team loss may have other causes beyond Symmetra.',
+        explanation: 'Both are valid explanations. A counter-pick only works if the team coordinates around it. If you hack Symmetra\'s deployables but your team is not in position to follow up, the window is wasted. And the team loss may have other causes beyond Symmetra.',
       },
     ],
   },

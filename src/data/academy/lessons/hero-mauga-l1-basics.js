@@ -15,7 +15,7 @@ export default {
       type: 'callout',
       variant: 'info',
       title: 'Hero Stats',
-      body: '425 Health, 250 Armour — 675 total HP, Movement speed: 5.5 m/s, Difficulty: 3/5.',
+      body: '575 Health, 125 Armour — 700 total HP, Movement speed: 5.5 m/s, Difficulty: 3/5.',
     },
     {
       type: 'callout',
@@ -53,13 +53,13 @@ export default {
         id: 'q2',
         text: 'What is Mauga\'s total HP?',
         options: [
-          { id: 'a', text: '625' },
-          { id: 'b', text: '675' },
-          { id: 'c', text: '725' },
-          { id: 'd', text: '775' },
+          { id: 'a', text: '650' },
+          { id: 'b', text: '700' },
+          { id: 'c', text: '750' },
+          { id: 'd', text: '800' },
         ],
         correctId: 'b',
-        explanation: 'Mauga\'s total HP is 675 (425 Health, 250 Armour — 675 total HP).',
+        explanation: 'Mauga\'s total HP is 700 (575 Health, 125 Armour — 700 total HP).',
       },
       {
         id: 'q3',

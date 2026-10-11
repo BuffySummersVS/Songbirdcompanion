@@ -48,7 +48,7 @@ export default {
       type: 'callout',
       variant: 'warning',
       title: 'Mercy\'s Counters',
-      body: 'Mercy is countered by heroes who can close distance quickly and follow her through Guardian Angel: Sombra (hack disables GA), Tracer (high mobility), Genji (wall climb and dash), and Winston (jump pack). When facing these heroes, stay near allies who can protect you — do not isolate yourself.',
+      body: 'Mercy is countered by heroes who can close distance quickly and follow her through Guardian Angel: Sombra (EMP disables GA), Tracer (high mobility), Genji (wall climb and dash), and Winston (jump pack). When facing these heroes, stay near allies who can protect you — do not isolate yourself.',
     },
     {
       type: 'callout',
@@ -99,7 +99,7 @@ export default {
         question: 'Which hero counters Mercy specifically by disabling Guardian Angel?',
         options: ['Tracer', 'Genji', 'Sombra', 'Winston'],
         correct: 2,
-        explanation: 'Sombra\'s Hack ability disables Guardian Angel, removing Mercy\'s primary escape tool and leaving her extremely vulnerable.',
+        explanation: 'Sombra\'s EMP ultimate disables Guardian Angel, removing Mercy\'s primary escape tool and leaving her extremely vulnerable.',
       },
       {
         id: 'q5',

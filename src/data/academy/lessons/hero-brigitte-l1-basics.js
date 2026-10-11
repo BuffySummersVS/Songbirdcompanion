@@ -15,7 +15,7 @@ export default {
       type: 'callout',
       variant: 'info',
       title: 'Hero Stats',
-      body: '300 Health — 300 total HP, Movement speed: 5.5 m/s, Difficulty: 2/5.',
+      body: '175 Health, 75 Armour — 250 total HP, Movement speed: 5.5 m/s, Difficulty: 2/5.',
     },
     {
       type: 'callout',
@@ -53,13 +53,13 @@ export default {
         id: 'q2',
         text: 'What is Brigitte\'s total HP?',
         options: [
-          { id: 'a', text: '250' },
-          { id: 'b', text: '300' },
-          { id: 'c', text: '350' },
-          { id: 'd', text: '400' },
+          { id: 'a', text: '200' },
+          { id: 'b', text: '250' },
+          { id: 'c', text: '300' },
+          { id: 'd', text: '350' },
         ],
         correctId: 'b',
-        explanation: 'Brigitte\'s total HP is 300 (300 Health — 300 total HP).',
+        explanation: 'Brigitte\'s total HP is 250 (175 Health, 75 Armour — 250 total HP).',
       },
       {
         id: 'q3',

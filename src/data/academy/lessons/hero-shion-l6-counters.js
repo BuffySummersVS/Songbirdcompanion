@@ -33,7 +33,7 @@
       type: 'callout',
       variant: 'info',
       title: 'Perks Worth Knowing',
-      body: 'Minor: Rapid Reload — Evade reloads 9 ammo. / X Machina — Execution deals 20% more damage to enemies below half health. · Major: Refuel — Joyride restores 50 health and regenerates 20 health/second during use. / Faces of Death — Gain all damage subrole passives.',
+      body: 'Minor: Survival Instinct — Evade\'s overhealth lasts 1 second longer. / X Machina — Execution deals 20% more damage to enemies below half health. · Major: Refuel — Joyride restores 50 health and regenerates 20 health/second during use. / Faces of Death — Gain all damage subrole passives.',
     },
   ],
   quiz: {

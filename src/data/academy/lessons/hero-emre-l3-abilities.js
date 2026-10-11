@@ -43,7 +43,7 @@ export default {
           { id: 'd', text: 'Secondary fire' },
         ],
         correctId: 'a',
-        explanation: 'Cyber Frag is a Bouncing explosive ability with a cooldown of 10 seconds (2 charges).',
+        explanation: 'Cyber Frag is a Bouncing explosive ability with a cooldown of 9 seconds (2 charges).',
       },
       {
         id: 'q2',
@@ -55,7 +55,7 @@ export default {
           { id: 'd', text: 'Unlimited uses' },
         ],
         correctId: 'a',
-        explanation: 'Cyber Frag has a cooldown of 10 seconds (2 charges).',
+        explanation: 'Cyber Frag has a cooldown of 9 seconds (2 charges).',
       },
       {
         id: 'q3',

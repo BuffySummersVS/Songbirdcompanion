@@ -4,7 +4,7 @@
     "name": "D.Va",
     "role": "Tank",
     "imageId": "dva",
-    "health": 325,
+    "health": 350,
     "armour": 325,
     "shields": 0,
     "movementSpeed": "5.5 m/s",
@@ -41,7 +41,7 @@
         "type": "Burst damage",
         "damage": "Rocket volley",
         "cooldown": "7 seconds",
-        "description": "Fires a volley of explosive missiles that can be used while firing Fusion Cannons or Boosters."
+        "description": "Fires a volley of explosive missiles (14 per second) that can be used while firing Fusion Cannons or Boosters."
       }
     ],
     "ultimate": {
@@ -65,8 +65,7 @@
     "counteredBy": [
       "Zarya",
       "Symmetra",
-      "Mei",
-      "Sombra"
+      "Mei"
     ],
     "synergies": [
       "Winston",
@@ -113,6 +112,14 @@
       {
         "date": "2026-08-12",
         "change": "Mech stats corrected to current 5v5 Role Queue pool: Health 375→325, Armour 225→325 (previous values were stale/mixed with other queue modes). Perk block corrected via in-game screenshot: Extended Boosters missing its 40% damage clause, Shield System's conversion 150→100, Heavy Rockets (obsolete) replaced with Precision Fusion."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Mech base health 175→200 (5v5)."
+      },
+      {
+        "date": "2026-10-06",
+        "change": "Micro Missiles fire rate 11→14 shots per second."
       }
     ],
     "lore": "Hana Song is a decorated South Korean professional gamer recruited by MEKA to pilot mechs against the relentless Gwishin omnic attacks on the coast. When conventional military tactics failed, the government turned to elite gamers whose reflexes matched those required to pilot the mechs. She streams every mission live to her millions of devoted fans."
@@ -124,8 +131,8 @@
     "imageId": "dmon",
     "releaseDate": "2026-08-11",
     "matchupsEstimated": true,
-    "health": 250,
-    "armour": 250,
+    "health": 275,
+    "armour": 275,
     "shields": 0,
     "movementSpeed": "5.5 m/s",
     "difficulty": 3,
@@ -133,7 +140,7 @@
       "name": "Plasma Saber",
       "type": "Melee weapon (arc/cone strike, not a projectile)",
       "ammo": "N/A",
-      "damage": "65 per swing",
+      "damage": "60 per swing",
       "cooldown": "TBC",
       "description": "D.Mon's primary melee weapon, striking enemies in a melee arc in front of her mech. Effective range is approximately 5 meters (measured, not an official exact figure)."
     },
@@ -141,13 +148,13 @@
       "name": "Fusion Repeater",
       "type": "Mech-mounted machine gun",
       "ammo": "Heat based",
-      "damage": "16 per shot",
-      "cooldown": "4 seconds",
-      "description": "A rapid-fire machine gun built into D.Mon's mech, giving her ranged pressure alongside her melee-focused Plasma Saber."
+      "damage": "15 per shot",
+      "cooldown": "5 seconds",
+      "description": "A rapid-fire machine gun built into D.Mon's mech, giving her ranged pressure alongside her melee-focused Plasma Saber. 1.75° spread, damage falloff begins at 20 metres."
     },
     "passive": {
       "name": "Eject!",
-      "description": "When her mech, Beast, is destroyed, D.Mon ejects and keeps fighting on foot with her Fusion Repeater until she calls down a new mech."
+      "description": "When her mech, Beast, is destroyed, D.Mon ejects (briefly invulnerable) and keeps fighting on foot with 175 health and her Fusion Repeater until she calls down a new mech."
     },
     "abilities": [
       {
@@ -155,14 +162,14 @@
         "type": "Frontal barrier",
         "damage": "650 barrier health",
         "cooldown": "Resource meter",
-        "description": "Holds a frontal energy barrier (650 health) that blocks incoming damage, letting D.Mon anchor a position and shield her team. Regeneration rate and recharge delay not yet confirmed."
+        "description": "Holds a frontal energy barrier (650 health) that blocks incoming damage, letting D.Mon anchor a position and shield her team. Near-instant 0.016-second cast time. Regeneration rate and recharge delay not yet confirmed."
       },
       {
         "name": "Propulsors",
         "type": "Mobility",
         "damage": "None",
         "cooldown": "Fuel based",
-        "description": "Fuel-based horizontal/ground-hovering mobility — unlike D.Va's Boosters, this is not free-direction flight. Fuel drain rate 25 (reduced from 40), fuel regen rate 22.5 (increased from 15). Exact travel distance and speed not yet confirmed."
+        "description": "Fuel-based horizontal/ground-hovering mobility — unlike D.Va's Boosters, this is not free-direction flight. Fuel drain rate 30, fuel regen rate 22.5. Exact travel distance and speed not yet confirmed."
       },
       {
         "name": "Surging Strike",
@@ -182,7 +189,7 @@
       "name": "Call Mech",
       "type": "Ultimate",
       "damage": "Impact damage, knockback (exact damage not confirmed)",
-      "description": "Pilot D.Mon calls down a new mech, Beast — the landing deals damage to and knocks back nearby enemies — reassembling it to return to the fight."
+      "description": "Pilot D.Mon calls down a new mech, Beast — the landing deals damage to and knocks back nearby enemies — reassembling it to return to the fight. The transformation takes 0.95 seconds, plus a 1-second first-person bootup animation."
     },
     "counters": [
       "Genji",
@@ -230,7 +237,7 @@
         },
         {
           "name": "Focused Fusion",
-          "description": "Fusion Repeater fires stronger shots with no spread at a slower rate."
+          "description": "Fusion Repeater fires stronger shots (36 damage per bullet) with no spread at a slower rate."
         }
       ]
     },
@@ -246,6 +253,18 @@
       {
         "date": "2026-08-15",
         "change": "Hotfix applied (per in-game screenshot): Plasma Saber damage 60→65; Fusion Repeater damage 15→16 and cooldown set to 4 seconds (reduced from 6); Propulsors fuel drain rate 40→25 and fuel regen rate 15→22.5."
+      },
+      {
+        "date": "2026-08-14",
+        "change": "Hotfix: Surging Strike cast time 0.15→0.05s and recovery 0.25→0.15s; Fusion Repeater cast time 0.3→0.2s and recovery 0.5→0.2s. Fixed Fusion Repeater hits failing to register and Limit Break not granting overhealth."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Armour 325→300 (6v6). Plasma Saber damage 65→60. Power Barrier cast time 0.065→0.016s. Call Mech transformation 1.95→0.95s (plus a 1s bootup animation). Fusion Repeater spread 2°→1.75°, minimum falloff range 30→20m."
+      },
+      {
+        "date": "2026-09-17",
+        "change": "Hotfix: Armour 325→275 (5v5) / 300→250 (6v6). Focused Fusion damage per bullet 45→36. Propulsors fuel drain rate 25→30. Fusion Repeater damage 16→15, cooldown 4→5 seconds. Mech health corrected to 275 per the Overwatch Wiki (mech: 275 health + 275 armour = 550; pilot form: 175 health)."
       }
     ],
     "lore": "Yuna Lee, known by her callsign D.Mon, is a member of South Korea's MEKA Squad. She is a tough and protective member of her team, standing out with a disciplined demeanor built from her military experience, expertise, and leadership. As one of the most responsible voices on the team, she prioritizes the mission above all else."
@@ -309,7 +328,6 @@
     ],
     "counteredBy": [
       "Orisa",
-      "Sombra",
       "Ana",
       "Roadhog"
     ],
@@ -378,7 +396,7 @@
     },
     "passive": {
       "name": "Reconstruction",
-      "description": "Dealing ability damage restores Domina's shield health, rewarding accurate use of Crystal Charge and Sonic Repulsors."
+      "description": "Dealing ability damage restores Domina's shield health (100% ability lifesteal into shields), rewarding accurate use of Crystal Charge and Sonic Repulsors."
     },
     "abilities": [
       {
@@ -401,7 +419,7 @@
         "name": "Crystal Charge",
         "type": "Explosive projectile",
         "damage": "Damage over time while travelling, then explosive detonation",
-        "cooldown": "8 sec",
+        "cooldown": "7 sec",
         "duration": "Manual detonation",
         "description": "Projects an explosive hard-light crystal that can be reactivated to detonate. Useful for poking through barriers and pressuring grouped enemies."
       }
@@ -418,7 +436,6 @@
       "Winston"
     ],
     "counteredBy": [
-      "Sombra",
       "Ramattra",
       "Reaper",
       "Ana"
@@ -477,6 +494,14 @@
       {
         "date": "2026-08-12",
         "change": "Health corrected to current 5v5 Role Queue value: 100→250 (previous value was stale/mixed with other queue modes)."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Panopticon ultimate cost reduced by 6%."
+      },
+      {
+        "date": "2026-10-06",
+        "change": "Crystal Charge cooldown 8→7 seconds. Reconstruction ability lifesteal 75%→100%."
       }
     ],
     "lore": "Vaira Singhania is the granddaughter of Vishkar Corporation's founder, raised from birth to be its next leader — a cutthroat perfectionist and razor-sharp negotiator who climbed from private equity to a seat on the Vishkar board. She oversaw Vishkar's winning bid for reconstruction in Rio de Janeiro and rose to Vice President of Operations and Development. When Talon struck Overwatch, she saw not a catastrophe but a business opportunity: global panic would create a power vacuum, and she intends to fill it with Vishkar."
@@ -710,7 +735,7 @@
     "role": "Tank",
     "imageId": "mauga",
     "health": 575,
-    "armour": 150,
+    "armour": 125,
     "shields": 0,
     "movementSpeed": "5.5 m/s",
     "difficulty": 3,
@@ -720,7 +745,7 @@
       "ammo": "Large magazine",
       "damage": "Sustained hitscan damage",
       "cooldown": "Reload",
-      "description": "One chaingun ignites enemies while the other deals critical damage to burning targets."
+      "description": "One chaingun ignites enemies while the other deals critical damage to burning targets. Single-fire max spread 1°; dual-fire max spread 5° with damage falloff starting at 10 metres."
     },
     "passive": {
       "name": "Berserker",
@@ -805,6 +830,10 @@
       {
         "date": "2026-08-12",
         "change": "Stats corrected to current 5v5 Role Queue pool: Health 425→575, Armour 250→150 (previous values were stale/mixed with other queue modes). Perk block corrected via in-game screenshot: Two Hearts (obsolete) replaced with Pyromaniac; Combat Fuel corrected to 4 overhealth per crit (up to 150), was showing a stale \"two...100\" value."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Base armour 150→125. Chainguns single-fire max spread 1.5°→1°; dual-fire max spread 4°→5°; dual-fire minimum falloff range 15→10m."
       }
     ],
     "lore": "A colossal Samoan warrior and former Overwatch heavy infantry soldier, Mauga grew bored of the organization's restrictions and joined Talon for the freedom to fight without limits. He is Baptiste's old comrade — the two served together until their paths violently diverged over a question of conscience. Mauga fights not for ideology but for the sheer, uncomplicated joy of battle."
@@ -1164,11 +1193,11 @@
     "difficulty": 2,
     "primaryWeapon": {
       "name": "Scrap Gun",
-      "type": "Shotgun",
-      "ammo": "Magazine based",
-      "damage": "Close-range spread damage",
+      "type": "Projectile shotgun (2 bursts per volley)",
+      "ammo": "12 rounds (2 per shot)",
+      "damage": "204 per volley: 16 pellets × 4.25 plus a 34-damage center projectile; 1.5× critical",
       "cooldown": "Reload",
-      "description": "A shotgun-style weapon that deals heavy damage at close range."
+      "description": "Fires two bursts per volley in a 6° spread with a 100 m/s projectile speed. Damage falls off between 20 and 35 metres."
     },
     "passive": {
       "name": "Tank",
@@ -1179,15 +1208,15 @@
         "name": "Chain Hook",
         "type": "Pick tool",
         "damage": "Hook impact damage",
-        "cooldown": "7 seconds",
-        "description": "Throw a hook to pull an enemy toward Roadhog for a follow-up shot."
+        "cooldown": "6 seconds (7 in 6v6)",
+        "description": "Throw a hook to pull an enemy 4.5 metres in front of Roadhog, stunning them for 0.3 seconds for a follow-up shot."
       },
       {
         "name": "Take a Breather",
         "type": "Self-sustain",
         "damage": "None",
-        "cooldown": "Resource-based",
-        "description": "Heal yourself and reduce incoming damage while inhaling."
+        "cooldown": "Resource-based (2-second cooldown)",
+        "description": "Heal yourself for 200 health per second and take 35% less damage while inhaling, for up to 2 seconds."
       }
     ],
     "ultimate": {
@@ -1233,17 +1262,17 @@
       "minor": [
         {
           "name": "Scrap Hook",
-          "description": "Chain Hook hits reload two ammo."
+          "description": "Chain Hook hits reload four ammo."
         },
         {
-          "name": "Shrapnel Launcher",
-          "description": "Extend the range of Scrap Gun's secondary fire by 50% and tighten its burst spread by 25%."
+          "name": "Here, Piggy Piggy",
+          "description": "During Whole Hog, Chain Hook's cooldown is reduced by 80%."
         }
       ],
       "major": [
         {
-          "name": "Pulled Pork",
-          "description": "Gain overhealth based on how far you pull enemies with Chain Hook, up to 300."
+          "name": "Toxic Exhaust",
+          "description": "Enemies in front of Roadhog while Trash Compactor is active are slowed by 30% and take 20 damage per second."
         },
         {
           "name": "Hogdrogen Exposure",
@@ -1255,9 +1284,21 @@
       {
         "date": "2026-08-12",
         "change": "Perk block corrected via in-game screenshot: added missing minor perk Shrapnel Launcher (Scrap Gun secondary fire range/spread). Invigorate (obsolete) replaced with Pulled Pork."
+      },
+      {
+        "date": "2026-10-06",
+        "change": "Hero rework. Scrap Gun now fires 2 bursts per volley: ammo 6→12, volley damage 175→204, crit multiplier 2×→1.5×, pellets 25→16 (7→4.25 damage) plus a 34-damage center projectile, spread 8°→6°, falloff 30–50m→20–35m. Scrap Gun secondary fire removed; new Trash Compactor secondary fire. Chain Hook stun 0.4→0.3s, pull distance 3→4.5m, cooldown 7→6s (5v5). Take a Breather max duration 3→2s, healing 150→200/s, damage reduction 40%→35%, cooldown 1.25→2s. Scrap Hook reloads 2→4 ammo. Shrapnel Launcher and Pulled Pork removed; added Here, Piggy Piggy (minor) and Toxic Exhaust (major)."
       }
     ],
-    "lore": "Mako Rutledge was a Queensland farmer whose land was obliterated in the catastrophic explosion of the Australian omnium — an event he helped trigger as part of the Australian Liberation Front. Hardened by years surviving in the irradiated Outback, he transformed himself into a terrifying road warrior with a gas mask, a custom chain hook, and a simple philosophy. He works as Junkrat's bodyguard for a 50% share of whatever they steal."
+    "lore": "Mako Rutledge was a Queensland farmer whose land was obliterated in the catastrophic explosion of the Australian omnium — an event he helped trigger as part of the Australian Liberation Front. Hardened by years surviving in the irradiated Outback, he transformed himself into a terrifying road warrior with a gas mask, a custom chain hook, and a simple philosophy. He works as Junkrat's bodyguard for a 50% share of whatever they steal.",
+    "secondaryWeapon": {
+      "name": "Trash Compactor",
+      "type": "Projectile absorb / explosive counter-shot",
+      "ammo": "N/A",
+      "damage": "75–200 explosion damage (scales with damage absorbed, 30% conversion) + 10 impact",
+      "cooldown": "10 seconds (11 in 6v6)",
+      "description": "Absorbs incoming projectiles in front of Roadhog for 2 seconds while moving 15% slower, then fires an explosive shot (2m inner / 6m outer radius) whose damage scales with what was absorbed."
+    }
   },
   {
     "id": "sigma",
@@ -1319,7 +1360,6 @@
     "counteredBy": [
       "Winston",
       "Doomfist",
-      "Sombra",
       "Reinhardt"
     ],
     "synergies": [
@@ -1407,8 +1447,8 @@
         "name": "Barrier Projector",
         "type": "Barrier",
         "damage": "None",
-        "cooldown": "13 seconds",
-        "description": "Deploy a bubble barrier that blocks enemy fire and creates temporary safe space."
+        "cooldown": "10 seconds",
+        "description": "Deploy a bubble barrier that blocks enemy fire and creates temporary safe space for 7 seconds."
       }
     ],
     "ultimate": {
@@ -1477,6 +1517,10 @@
       {
         "date": "2026-08-12",
         "change": "Short Circuit minor perk (obsolete) replaced with Electric Charge, corrected via in-game screenshot."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Barrier Projector cooldown 12→10 seconds (5v5); duration 8→7 seconds."
       }
     ],
     "lore": "A genetically engineered gorilla raised on the Horizon Lunar Colony by the brilliant scientist Dr. Harold Winston, who gave him both his name and his love of knowledge. After an omnic uprising killed most of the colony's scientists, Winston escaped to Earth in a makeshift capsule and joined Overwatch, dedicating himself to heroism in his adoptive father's memory. He misses peanut butter more than almost anything else."
@@ -1546,7 +1590,6 @@
       "Ashe"
     ],
     "counteredBy": [
-      "Sombra",
       "Mei",
       "Roadhog",
       "Cassidy"
@@ -1586,7 +1629,7 @@
         },
         {
           "name": "Adaptive Barrier",
-          "description": "Adaptive Shield generates a 1.5 second barrier on activation."
+          "description": "Adaptive Shield generates a 1 second barrier on activation."
         }
       ]
     },
@@ -1594,6 +1637,10 @@
       {
         "date": "2026-08-12",
         "change": "Stats corrected to current 5v5 Role Queue pool: Armour 275→125, Shields 0→150 (previous values were stale/mixed with other queue modes). Perk block corrected via in-game screenshot: Pack Rat (obsolete) replaced with Multi-Ball; Transfer Efficiency (obsolete) replaced with Adaptive Barrier."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Adaptive Barrier (Major Perk) duration 1.5→1 second."
       }
     ],
     "lore": "Hammond is a highly intelligent hamster who was part of the same genetic enhancement program as Winston aboard the Horizon Lunar Colony. He escaped in a homemade mech-ball, crash-landed in Junkertown, and became the undefeated champion of the local gladiatorial fighting circuit. His genius is matched only by his complete disinterest in explaining himself to anyone."
@@ -1625,7 +1672,7 @@
         "name": "Particle Barrier",
         "type": "Self barrier",
         "damage": "None",
-        "cooldown": "Charge based",
+        "cooldown": "12 seconds",
         "description": "Place a barrier on yourself. Damage absorbed increases Zarya's energy."
       },
       {
@@ -1694,6 +1741,10 @@
       {
         "date": "2026-08-12",
         "change": "Stats corrected to current 5v5 Role Queue pool: Health 250→325, Shields 325→225 (previous values were stale/mixed with other queue modes). Perk block corrected via in-game screenshot: Spotter moved from Major to Minor tier and corrected 15%→20% speed, replacing the obsolete Graviton Crush; Extra Oomph added as the new Major perk, and Energy Lance's wording simplified (no longer gated behind 50 energy)."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Particle Barrier cooldown 11→12 seconds (5v5)."
       }
     ],
     "lore": "Aleksandra Zaryanova was on course to become the world's strongest woman and Russia's greatest athletic hero when the second Omnic Crisis forced her to trade the podium for the front line to defend her homeland. Her particle cannon converts incoming fire into devastating counterattacks — the harder enemies press, the stronger she becomes. She fights with absolute ferocity for the people she loves."
@@ -1750,7 +1801,7 @@
       "name": "Vermillion Ascent / Vermillion Revival",
       "type": "Ultimate",
       "damage": "Fiery charge/explosion damage",
-      "description": "While alive, Anran charges forward and explodes on impact. If killed with ultimate ready, Vermillion Revival revives her in a fiery explosion."
+      "description": "While alive, Anran charges forward and explodes on impact. If killed with ultimate ready, Vermillion Revival revives her in a fiery explosion (2.5-second cast)."
     },
     "counters": [
       "Widowmaker",
@@ -1801,7 +1852,12 @@
         }
       ]
     },
-    "patchHistory": [],
+    "patchHistory": [
+      {
+        "date": "2026-09-08",
+        "change": "Reduced Dancing Blaze visual effects seen by enemies. Vermillion Revival cast time 3→2.5 seconds."
+      }
+    ],
     "lore": "Anran Ye is a prodigy raised from the age of three to surpass her parents — celebrated Omnic Crisis veterans who trained her personally in kung fu, wushu-taolu, and classical Chinese dance, enrolling her in competitions she consistently won. She graduated top of her class at Wuxing University's Fire College and became the gold standard her family measured everything against. When Null Sector attacked Chengdu, she held the line alone so her fellow students could escape — and Winston, watching the footage, recruited her and her younger brother Wuyang to join the newly reunited Overwatch."
   },
   {
@@ -1938,7 +1994,7 @@
         "type": "Transformation / burst damage",
         "damage": "Very high sustained minigun damage",
         "cooldown": "12 seconds",
-        "duration": "Limited duration",
+        "duration": "5 seconds",
         "description": "Transforms Bastion into a slow assault mode with extremely high damage output."
       },
       {
@@ -2012,6 +2068,10 @@
       {
         "date": "2026-08-12",
         "change": "Armored Artillery minor perk removed (Blizzard removed it in June 2026); replaced with Configuration Reload."
+      },
+      {
+        "date": "2026-10-06",
+        "change": "Reconfigure (Configuration: Assault) duration 6→5 seconds."
       }
     ],
     "lore": "Unit SST Laboratories Siege Automaton E54 is a Bastion omnic unit from the Omnic Crisis that spent decades dormant in a German forest, all battle protocols intact but weapons silent. Reawakened to a world at uneasy peace, Bastion formed an unlikely friendship with a small bird and began to discover wonder in the natural world. It struggles daily to reconcile its programming for war with everything it is learning about life."
@@ -2119,6 +2179,10 @@
       {
         "date": "2026-08-12",
         "change": "Full perk block corrected via in-game screenshot: Quick Draw (obsolete) replaced with Bang Bang (moved from major, now 40% reduced damage not 30%); Gun Slingin' (obsolete) replaced with Rollin' Round-Up; the old Bang Bang major slot replaced with Silver Bullet."
+      },
+      {
+        "date": "2026-10-06",
+        "change": "Deadeye now prevents attaching to Jetpack Cat's Lifeline."
       }
     ],
     "lore": "Cole Cassidy grew up as a member of the outlaw Deadlock Gang before being caught and offered a stark choice: prison or Overwatch's classified Blackwatch division. He served as one of Blackwatch's most effective operatives until the fall of Overwatch left him with nothing but a magnetic grenade and a moral compass he's still trying to calibrate. A cowboy through and through, he roams the world doing the right thing one job at a time."
@@ -2261,7 +2325,7 @@
         "name": "Cyber Frag",
         "type": "Bouncing explosive",
         "damage": "Grenade explosion damage",
-        "cooldown": "10 seconds (2 charges)",
+        "cooldown": "9 seconds (2 charges)",
         "duration": "Delayed explosive",
         "description": "Throws a bouncing grenade to pressure corners and finish damaged enemies."
       },
@@ -2332,6 +2396,10 @@
       {
         "date": "2026-08-11",
         "change": "Suppressive Security minor perk slow duration increased from 1 to 1.5 seconds."
+      },
+      {
+        "date": "2026-10-06",
+        "change": "Cyber Frag cooldown 10→9 seconds."
       }
     ],
     "lore": "Emre Sarioglu was a tactical prodigy from Istanbul whose natural leadership and sharp mind made him the first post-Omnic Crisis recruit to the Overwatch Strike Team. After years of watching corruption hollow out the organisation he believed in, he walked away to help the world on his own terms — then disappeared without explanation. He has since resurfaced as a cyborg, struggling against an unknown force that compels him to kill against his will; only his closest ally Freja knows the truth of what he has become."
@@ -2350,7 +2418,7 @@
       "name": "Revdraw Crossbow",
       "type": "Precision projectile weapon",
       "ammo": "Magazine based",
-      "damage": "Precision projectile damage",
+      "damage": "28 per bolt",
       "cooldown": "Reload",
       "description": "A precision crossbow that rewards timing, positioning, and accurate shots."
     },
@@ -2362,7 +2430,7 @@
       {
         "name": "Take Aim",
         "type": "Charged precision shot",
-        "damage": "High precision burst",
+        "damage": "High precision burst; explosive bolt deals 75 explosion damage",
         "cooldown": "Cooldown/weapon action",
         "duration": "Aimed shot",
         "description": "Freja focuses a powerful shot for pick pressure."
@@ -2428,7 +2496,7 @@
       "minor": [
         {
           "name": "Relentless Barrage",
-          "description": "Take Aim direct hits refund 8 ammo."
+          "description": "Take Aim direct hits refund 5 ammo."
         },
         {
           "name": "Momentum Boost",
@@ -2446,7 +2514,12 @@
         }
       ]
     },
-    "patchHistory": [],
+    "patchHistory": [
+      {
+        "date": "2026-09-08",
+        "change": "Revdraw Crossbow damage 30→28. Take Aim explosive bolt explosion damage 80→75. Relentless Barrage (Minor Perk) refunded bolts 8→5."
+      }
+    ],
     "lore": "A Danish bounty hunter of minimal words and exceptional precision, Freja tracks the most dangerous quarry across Europe with her signature crossbow and her loyal wolf companion. She operates outside any organisation's jurisdiction, accepting contracts only when they align with a personal moral code few outsiders fully understand. Her targets rarely hear her coming and never see her leave."
   },
   {
@@ -2482,7 +2555,7 @@
       {
         "name": "Swift Strike",
         "type": "Mobility / execute",
-        "damage": "Dash damage",
+        "damage": "60 dash damage",
         "cooldown": "Resets on elimination assist/final blow",
         "description": "Dashes through enemies, dealing damage and resetting when Genji helps secure an elimination."
       }
@@ -2490,7 +2563,7 @@
     "ultimate": {
       "name": "Dragonblade",
       "type": "Ultimate melee weapon",
-      "damage": "High melee slash damage",
+      "damage": "100 per slash (15% faster swings)",
       "description": "Unsheathes a blade for repeated close-range slashes."
     },
     "counters": [
@@ -2546,6 +2619,10 @@
       {
         "date": "2026-08-12",
         "change": "Acrobatics minor perk replaced with Swift Cuts. Blade Twisting's trigger condition corrected to \"enemy below half health\" (was stale text about post-elimination timing). Meditation healing corrected from 25 to 50 health/second."
+      },
+      {
+        "date": "2026-10-06",
+        "change": "Swift Strike damage 50→60. Dragonblade damage 110→100, swing speed increased by 15%."
       }
     ],
     "lore": "Genji Shimada was the rebellious younger son of a powerful ninja clan who rejected his family's criminal empire — until his brother Hanzo nearly killed him in a duel. Rebuilt as a cyborg by Dr. Angela Ziegler, Genji spent years at war with his own body before the teachings of the Shambali monk Zenyatta guided him toward peace. He is now one of the world's most dangerous warriors, and also one of its most enlightened."
@@ -2686,7 +2763,7 @@
         "name": "Concussion Mine",
         "type": "Mobility / burst explosive",
         "damage": "Explosion damage",
-        "cooldown": "Charge based",
+        "cooldown": "7 seconds (charge based)",
         "duration": "Remote detonation",
         "description": "Throws a mine that Junkrat can detonate for damage or mobility."
       },
@@ -2735,7 +2812,7 @@
       "minor": [
         {
           "name": "Nitro Boost",
-          "description": "During RIP-Tire, press Shift for a speed boost; reduces RIP-Tire damage 50%."
+          "description": "During RIP-Tire, press Shift for a 100% speed boost; reduces RIP-Tire damage 50%."
         },
         {
           "name": "Bomb Voyage",
@@ -2757,6 +2834,10 @@
       {
         "date": "2026-08-12",
         "change": "Perk block corrected to current: Aluminium Frame and Tick Tock removed (obsolete); replaced with Bomb Voyage and Mine Recycling. Frag Cannon's projectile speed bonus corrected from 40% to 25% (ammo-reduction clause also dropped, no longer part of the current effect)."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Concussion Mine cooldown 8→7 seconds. Nitro Boost (Minor Perk) bonus speed 125%→100%."
       }
     ],
     "lore": "Jamison Fawkes is a manic, cackling explosives enthusiast born in the irradiated ruins of the Australian Outback, where years of scavenging and exposure to the omnium's fallout left him lean, wild-eyed, and terrifyingly creative with anything that detonates. He found something buried in the ruins of the omnium — a secret so valuable that mercenaries and criminal organisations pursue him relentlessly for it. He's not going to tell anyone what it is, and he leaves Roadhog to do most of the worrying."
@@ -3170,8 +3251,8 @@
     "perks": {
       "minor": [
         {
-          "name": "Rapid Reload",
-          "description": "Evade reloads 9 ammo."
+          "name": "Survival Instinct",
+          "description": "Evade's overhealth lasts 1 second longer."
         },
         {
           "name": "X Machina",
@@ -3189,7 +3270,12 @@
         }
       ]
     },
-    "patchHistory": [],
+    "patchHistory": [
+      {
+        "date": "2026-10-06",
+        "change": "Rapid Reload (Minor Perk) removed; replaced with Survival Instinct (Evade overhealth duration +1 second)."
+      }
+    ],
     "lore": "An omnic who Awakened into Tokyo's Omnic Crisis amid screams and gunfire, Shion spent weeks surviving alone on the streets before being captured by the humans who would go on to found the Hashimoto Clan, who kept her alive to sharpen their fighting techniques against her. Secretly she held back, studying their weaknesses and biding her time — until she killed all four Hashimoto elders and carved out a fifth seat on the council for herself. She has since modified her chassis to appear uncannily human, rebuilt the Hashimoto into a force that serves her vision alone, and lives with characteristic excess: fashion, lovers, and custom motorcycles."
   },
   {
@@ -3206,9 +3292,9 @@
       "name": "Helix Rifle",
       "type": "Automatic rifle",
       "ammo": "Magazine based",
-      "damage": "Sustained rifle damage; accuracy improves with sustained fire",
+      "damage": "8.5 per bullet; accuracy improves with sustained fire",
       "cooldown": "Reload",
-      "description": "An automatic rifle that becomes more accurate the longer it is fired."
+      "description": "An automatic rifle (120 m/s projectile speed) that becomes more accurate the longer it is fired."
     },
     "passive": {
       "name": "Recon / Damage",
@@ -3218,7 +3304,7 @@
       {
         "name": "Tracking Shot",
         "type": "Target marking",
-        "damage": "Tag shot damage",
+        "damage": "8.5 tag shot damage",
         "cooldown": "10 sec",
         "duration": "Tracking window",
         "description": "Tags enemies so Sierra can maintain pressure and improve follow-up accuracy."
@@ -3235,7 +3321,7 @@
         "name": "Tremor Charge",
         "type": "Explosive grenade",
         "damage": "High center damage with lower edge damage",
-        "cooldown": "8.5 seconds",
+        "cooldown": "7 seconds",
         "duration": "Explosion/shockwave",
         "description": "Throws a charge that creates a damaging shockwave and knockback."
       }
@@ -3302,6 +3388,10 @@
       {
         "date": "2026-08-12",
         "change": "Reverted the previous entry — it was based on a text correction that conflicted with the actual live in-game screenshot, and the screenshot was confirmed as authoritative. Restored to: Minor = Full Flight + Tight Grip, Major = Medi-Drone + Locked In. Full Flight is still a selectable perk, not baseline; Dart Redeployment does not exist."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Helix Rifle projectile speed 90→120, damage 9→8.5. Tracking Shot damage 9→8.5. Tremor Charge cooldown 8.5→7 seconds."
       }
     ],
     "lore": "Sierra Turner Woods grew up always on the move with her mother Kendra, never told why — until the day Kendra disappeared just before Sierra's thirteenth birthday, leaving only an emergency bus ticket and no explanation. That trail led her to the father she had never met, and eventually to Helix Security, where as head of security at Watchpoint: Grand Mesa she uncovered the truth: her mother had been Soldier: 00, one of the first subjects in the US Soldier Enhancement Program. When Talon attacked Grand Mesa, Sierra led her squad alongside Overwatch and joined their ranks — determined to find the answers her mother never gave her."
@@ -3536,126 +3626,6 @@
     "lore": "Jack Morrison was the face of Overwatch — the idealistic, golden-boy commander who embodied everything the organisation stood for — until internal betrayal, a catastrophic confrontation with Gabriel Reyes, and the fall of Overwatch left him presumed dead. He returned as the anonymous vigilante Soldier: 76, waging a one-man war to expose the conspiracy that destroyed what he built. He wears no insignia, trusts almost no one, and has not stopped fighting for a single day."
   },
   {
-    "id": "sombra",
-    "name": "Sombra",
-    "role": "Damage",
-    "imageId": "sombra",
-    "health": 250,
-    "armour": 0,
-    "shields": 0,
-    "movementSpeed": "5.5 m/s",
-    "difficulty": 4,
-    "primaryWeapon": {
-      "name": "Machine Pistol",
-      "type": "Automatic hitscan SMG",
-      "ammo": "Magazine based",
-      "damage": "Close-range sustained damage",
-      "cooldown": "Reload",
-      "description": "A rapid-fire machine pistol best used at close range from off angles."
-    },
-    "passive": {
-      "name": "Opportunist / Damage",
-      "description": "Sombra can detect vulnerable enemies and applies Damage role healing reduction through damage."
-    },
-    "abilities": [
-      {
-        "name": "Hack",
-        "type": "Disruption",
-        "damage": "None",
-        "cooldown": "6 seconds",
-        "duration": "Brief ability lockout/reveal",
-        "description": "Hacks enemies or health packs, interrupting certain abilities and revealing targets."
-      },
-      {
-        "name": "Virus",
-        "type": "Damage over time projectile",
-        "damage": "Impact and damage over time",
-        "cooldown": "8 seconds",
-        "duration": "DoT duration",
-        "description": "Fires a projectile that damages enemies over time, especially effective after Hack."
-      },
-      {
-        "name": "Translocator",
-        "type": "Mobility / escape",
-        "damage": "None",
-        "cooldown": "6 seconds",
-        "duration": "Teleport",
-        "description": "Throws a beacon and teleports to it, enabling engages and escapes."
-      },
-      {
-        "name": "Stealth",
-        "type": "Invisibility",
-        "damage": "None",
-        "cooldown": "Passive/automatic depending on current patch",
-        "duration": "Until revealed/attacking",
-        "description": "Sombra becomes invisible, allowing scouting and backline access."
-      }
-    ],
-    "ultimate": {
-      "name": "EMP",
-      "type": "Ultimate disruption",
-      "damage": "Percent health damage and ability disruption",
-      "description": "Hacks enemies in a large area, damages them, and destroys barriers/shields depending on current patch."
-    },
-    "counters": [
-      "Doomfist",
-      "Wrecking Ball",
-      "Widowmaker",
-      "Zenyatta"
-    ],
-    "counteredBy": [
-      "Cassidy",
-      "Brigitte",
-      "Kiriko",
-      "Mei"
-    ],
-    "synergies": [
-      "Winston",
-      "D.Va",
-      "Tracer",
-      "Ana"
-    ],
-    "strongMaps": [
-      "Dorado",
-      "Watchpoint: Gibraltar",
-      "Numbani"
-    ],
-    "weakMaps": [
-      "King's Row",
-      "Lijiang Control Center",
-      "Route 66"
-    ],
-    "perks": {
-      "minor": [
-        {
-          "name": "Encrypted Upload",
-          "description": "Hack is usable while invisible; successful hacks increase stealth duration by three seconds."
-        },
-        {
-          "name": "CTRL ALT ESC",
-          "description": "Teleporting with Translocator at critical health initiates passive health regeneration."
-        }
-      ],
-      "major": [
-        {
-          "name": "High-Speed Bandwidth",
-          "description": "Hacked Health Packs grant allies 25% increased movement speed and 50 overhealth for 4 seconds."
-        },
-        {
-          "name": "Viral Replication",
-          "description": "Hitting a hacked enemy with Virus spreads it to enemies within 8 metres."
-        }
-      ]
-    },
-    "patchHistory": [
-      {
-        "date": "2026-08-12",
-        "change": "Encrypted Upload's stealth-extension bonus corrected from 2 to 3 seconds. White Hat major perk removed (obsolete); replaced with High-Speed Bandwidth."
-      }
-    ],
-    "lore": "An orphan from Mexico City's post-Crisis slums who survived by learning to exploit the secrets of the powerful, Sombra grew into the world's most dangerous information broker — invisible, irreplaceable, and loyal to absolutely no one permanently. She discovered the edges of a global conspiracy so vast it swallowed Talon whole without even noticing, and she has been quietly pulling threads ever since. Her true agenda is the only thing she has never hacked her way out of."
-  },
-  {
     "id": "symmetra",
     "name": "Symmetra",
     "role": "Damage",
@@ -3692,7 +3662,7 @@
         "damage": "None",
         "cooldown": "15 seconds",
         "duration": "Temporary deployable",
-        "description": "Creates a two-way teleporter for allies and some deployables."
+        "description": "Creates a two-way teleporter (up to 25 metres away) for allies and some deployables. 1.25-second reuse cooldown."
       }
     ],
     "ultimate": {
@@ -3761,6 +3731,10 @@
       {
         "date": "2026-08-12",
         "change": "Perk block corrected to current: Advanced Teleportation removed; Perfect Alignment moved from Major to Minor tier and simplified to a flat +20% primary-fire range (was +15% per charge level). Hovering Barrier added as the new Major perk. Shield Battery confirmed unchanged. Ultimate name Photon Barrier independently confirmed correct."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Teleporter placement range 30→25 metres; reuse cooldown 1→1.25 seconds."
       }
     ],
     "lore": "Satya Vaswami is a gifted architect of hard-light constructs who grew up in poverty before the Vishkar Corporation selected her for their elite training programme, and she repays that opportunity through absolute dedication to their vision of engineered social order. She carries out morally ambiguous missions with the belief that Vishkar's order — however imposed — produces better lives than the chaos it replaces. Reality is something she builds, controls, and believes in completely."
@@ -3860,7 +3834,7 @@
       "major": [
         {
           "name": "Anchor Bolts",
-          "description": "Deploy Turret throw range increases 50%; can attach to walls and ceilings."
+          "description": "Deploy Turret throw range increases 25%; can attach to walls and ceilings."
         },
         {
           "name": "Overloaded Turret",
@@ -3872,6 +3846,10 @@
       {
         "date": "2026-08-12",
         "change": "Craftsman and Loaded minor perks removed (both obsolete); replaced with Hammer Time and Pre-Heated. Anchor Bolts and Overloaded Turret major perks confirmed unchanged."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Anchor Bolts (Major Perk) turret throw range bonus 50%→25%. Rivet Gun secondary fire spread 4.5°→4°."
       }
     ],
     "lore": "Torbjörn Lindholm is a legendary Swedish engineer whose designs power both Overwatch's hardware and an uncomfortable number of its enemies' weapons. He deploys turrets, fabricates armour from battlefield salvage, and maintains a running commentary on everything going wrong around him. His prosthetic arm is just one of many souvenirs from wars he didn't start and refused to lose."
@@ -4094,6 +4072,10 @@
       {
         "date": "2026-08-11",
         "change": "Soaring Slice's cooldown on spawn (a separate, one-time value from the normal 7-second cooldown) reduced from 7 to 3 seconds."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Palatine Fang initial swing delay 0.3→0.15s, horizontal swing duration 0.25→0.2s, combo link window 0.75→0.9s. Whirlwind Dash recovery 0.5→0.75s. Sundering Blade recovery 0.2→0.5s; camera pitch no longer fully locked during the slash."
       }
     ],
     "lore": "Marzia Bartalotti grew up the daughter of Talon boss Antonio Bartalotti, raised with promises of power and pride in her heritage — until Blackwatch killed her father and she lost claim to everything he had built. Driven by spite, she reinvented herself as Vendetta: a ruthless gladiatorial champion in Rome's Colosseo who fought her way to the title of Colosseo Champion and earned the name La Lupa Della Ritorsione — The Wolf of Retribution. She has built wealth and a network of powerful allies across Italy, and is now closing in on Talon to reclaim the empire she was promised."
@@ -4398,8 +4380,8 @@
     "perks": {
       "minor": [
         {
-          "name": "Groggy",
-          "description": "Enemies waking from Sleep Dart are slowed 50% and take 50 damage over two seconds."
+          "name": "Local Anesthetic",
+          "description": "Sleep Dart explodes on impact, slowing nearby enemies and dealing 45 damage over 3 seconds."
         },
         {
           "name": "Speed Serum",
@@ -4417,7 +4399,12 @@
         }
       ]
     },
-    "patchHistory": [],
+    "patchHistory": [
+      {
+        "date": "2026-10-06",
+        "change": "Groggy (Minor Perk) removed; replaced with Local Anesthetic."
+      }
+    ],
     "lore": "Ana Amari is a founding member of Overwatch and one of the finest snipers the world has ever seen, whose legendary career was cut short when Widowmaker shot out her eye during a mission and left her for dead. Rather than return to Overwatch and her daughter Pharah, she chose to stay hidden — until the state of the world made continued hiding feel like a different kind of failure. She came back armed with a biotic rifle, a lifetime of experience, and the patience only grandmothers and snipers share."
   },
   {
@@ -4454,8 +4441,8 @@
         "name": "Immortality Field",
         "type": "Team protection",
         "damage": "None",
-        "cooldown": "25 sec",
-        "description": "Deploy a device that prevents all nearby allies from dying. The device can be destroyed by enemies."
+        "cooldown": "20 sec",
+        "description": "Deploy a device (150 health) that prevents nearby allies from dropping below 25% health. The device can be destroyed by enemies."
       }
     ],
     "ultimate": {
@@ -4516,6 +4503,10 @@
       {
         "date": "2026-08-12",
         "change": "Perk block corrected via in-game screenshot: Field Medicine (obsolete) replaced with Expanded Field; Assault Burst and Automated Healing were on the wrong tiers with wrong effect text — Assault Burst is a minor perk (20% attack speed for 3s, not 4s, and it does not remove the instant heal), Automated Healing is the major perk (3 turret shots at 40 health each, not 12 shots at 25). Passive corrected: the Shoulder Turret behavior was incorrectly baked into the baseline passive — it's actually the Automated Healing perk's effect, not baseline. Passive is just Exo Boots."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Immortality Field unkillable threshold 20%→25% health, cooldown 22→20 seconds, device health 125→150."
       }
     ],
     "lore": "Jean-Baptiste Augustin grew up in poverty in post-Crisis Haiti and joined Talon's paramilitary as the only viable path out — a choice he rationalised until he watched his unit massacre civilians on a routine contract. He went AWOL, became a combat medic, and has spent years trying to counterbalance what he enabled. He heals not out of idealism but out of a very specific, very personal kind of accounting."
@@ -4525,8 +4516,8 @@
     "name": "Brigitte",
     "role": "Support",
     "imageId": "brigitte",
-    "health": 300,
-    "armour": 0,
+    "health": 175,
+    "armour": 75,
     "shields": 0,
     "movementSpeed": "5.5 m/s",
     "difficulty": 2,
@@ -4633,9 +4624,121 @@
       {
         "date": "2026-08-12",
         "change": "Shield Bash corrected from a stun to a knockback effect, per in-game screenshot."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Health 200→175; armour 50→75."
       }
     ],
     "lore": "Brigitte Lindholm is the daughter of the legendary engineer Torbjörn and the goddaughter of the crusader Reinhardt, who grew up surrounded by heroes but preferred to be the person keeping their armour from falling apart. When Reinhardt came out of retirement and charged back into danger, she followed as his squire — and then realised she was more than a squire. She fights with a flail and a repair pack and a loyalty to the people she loves that is completely without condition."
+  },
+  {
+    "id": "doctrine",
+    "name": "Doctrine",
+    "role": "Support",
+    "imageId": "doctrine",
+    "releaseDate": "2026-10-06",
+    "matchupsEstimated": true,
+    "health": 250,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 3,
+    "primaryWeapon": {
+      "name": "Eternal Scepter",
+      "type": "Hitscan heal/damage weapon",
+      "ammo": "18 rounds",
+      "damage": "60 damage or healing, falling off to 18 (30–50 m); 1.5× critical on damage. Infused: 90 damage (no crit) / 120 healing, falloff 40–60 m",
+      "cooldown": "Reload",
+      "description": "Mid-range weapon that heals allies and damages enemies, firing 1.8 shots per second (≈108 damage or healing per second). When infused, fires a larger piercing blast that uses no ammo."
+    },
+    "passive": {
+      "name": "Survivor",
+      "description": "Using a movement ability immediately starts passive health regeneration."
+    },
+    "abilities": [
+      {
+        "name": "Shrouded Momentum",
+        "type": "Mobility / damage reduction",
+        "damage": "None",
+        "cooldown": "8 sec",
+        "duration": "1.8 sec",
+        "description": "Rush horizontally (12 m/s initial speed) taking 40% less damage. Infused: gain free flight instead (15 m/s initial speed, +100% movement speed)."
+      },
+      {
+        "name": "Invigorating Drones",
+        "type": "Ally heal / attack speed buff",
+        "damage": "None — heals 120 over 6 seconds",
+        "cooldown": "14 sec",
+        "duration": "6 sec",
+        "description": "Deploy drones to an ally within 30 metres, healing them and granting 30% attack speed. Infused: also deploy drones to yourself."
+      }
+    ],
+    "ultimate": {
+      "name": "Deliverance",
+      "type": "Ultimate lifeforce swarm",
+      "damage": "5 per drone hit; each hit cuts enemy max health by 5% (up to 50%)",
+      "description": "Launch a swarm of drones (12 m radius, lasts 6 seconds, 5 drone shots per second) that reduces enemy maximum health and grants allies 15 overhealth per hit, up to 150. The debuff and overhealth last 6 seconds, then decay. Costs 3,025 ultimate points."
+    },
+    "counters": [
+      "Tracer",
+      "Pharah",
+      "Echo"
+    ],
+    "counteredBy": [
+      "Ana",
+      "Widowmaker",
+      "Winston",
+      "Sombra"
+    ],
+    "synergies": [
+      "Reinhardt",
+      "Soldier: 76",
+      "Kiriko"
+    ],
+    "strongMaps": [],
+    "weakMaps": [],
+    "perks": {
+      "minor": [
+        {
+          "name": "Saving Grace",
+          "description": "Invigorating Drones heal for 40 health when applied (also applies to Doctrine when infused)."
+        },
+        {
+          "name": "Sanguine Siphon",
+          "description": "Heal for 50% of damage dealt with Infused Eternal Scepter (45 health per infused shot)."
+        }
+      ],
+      "major": [
+        {
+          "name": "Transfusion",
+          "description": "Reduce Infuse's cooldown from damage and healing dealt."
+        },
+        {
+          "name": "Cost of Life",
+          "description": "Sacrifice 25 maximum health. Eternal Scepter healing is increased by 20% (72 per base shot, 144 infused)."
+        }
+      ]
+    },
+    "patchHistory": [
+      {
+        "date": "2026-09-12",
+        "change": "Doctrine revealed at BlizzCon 2026 and playable in a trial weekend (disabled in ranked)."
+      },
+      {
+        "date": "2026-10-06",
+        "change": "Doctrine released as the 54th hero (Support, Survivor subrole) with Season 5: A Grim Doctrine. Launch balance after the trial: ultimate cost +8%; Transfusion conversion rate -50%; Invigorating Drones attack speed 35%→30%; Shrouded Momentum cooldown 7→8s, damage reduction 50%→40%, critical-hit immunity removed; Deliverance drone fire rate 4→5, overhealth/debuff duration 8→6s, decay 5→4s."
+      }
+    ],
+    "lore": "\"Death is not my destiny.\" Tamuka Yeukai, a Zimbabwean cyberneticist, lost his parents in the Omnic Crisis and devoted himself to curing his younger brother Tatenda's incurable disease. Studying cybernetics and bioengineering, he created technology that turns back the clock on the body by draining the life force of others — and tested it on an isolated settlement to restore Tatenda's health. Bonded with Akande Ogundimu through Ogundimu Synergies and a shared conviction that their work was right whatever the cost, he dropped all moral pretense, earning comparisons to the Adze of West African myth. Horrified, Tatenda signalled Overwatch, and Ana Amari and Freja Skov arrested him. Sentenced to life in Watchpoint: Grímsvötn, he aged into an old man in a cell above a lava pool — until Doomfist broke him out. Restored to youth by his bat-like drones, the 77-year-old now forges Doomfist's new gauntlet and vows to rise again, whatever it takes.",
+    "secondaryWeapon": {
+      "name": "Infuse",
+      "type": "Ability empowerment",
+      "ammo": "2 charges",
+      "damage": "None",
+      "cooldown": "8 seconds per charge",
+      "description": "Add a powerful effect to your next Eternal Scepter shot or ability: a piercing scepter blast, drones on yourself as well as your ally, or free flight from Shrouded Momentum."
+    }
   },
   {
     "id": "illari",
@@ -4746,13 +4849,13 @@
     "health": 225,
     "armour": 0,
     "shields": 0,
-    "movementSpeed": "6 m/s",
+    "movementSpeed": "5.5 m/s",
     "difficulty": 2,
     "primaryWeapon": {
       "name": "Biotic Pawjectiles",
       "type": "Mid-range projectile spread",
       "ammo": "Magazine based",
-      "damage": "Heals allies or damages enemies per pellet; up to 45 damage if all 5 pellets headshot",
+      "damage": "4 damage or healing per projectile",
       "cooldown": "Reload",
       "description": "Fire a spread of 5 projectiles that heal allies or damage enemies on contact."
     },
@@ -4773,14 +4876,14 @@
         "type": "Ally transport",
         "damage": "None",
         "cooldown": "Toggle",
-        "description": "Toggle into transport mode to tow an ally alongside you. Increases movement speed and heals the ally while they are being carried."
+        "description": "Toggle into transport mode to tow an ally alongside you. Increases movement speed and heals the ally while they are being carried. Stuns and mobility locks on the carried ally break the Lifeline; allies auto-accept Lifeline when over a death plane."
       },
       {
         "name": "Purr",
         "type": "Area heal / damage",
         "damage": "30% of healing output as damage to nearby enemies",
         "cooldown": "8 sec",
-        "description": "Emit a pulsing area heal that increases in frequency over time. Enemies within the pulse take damage equal to 30% of its healing output."
+        "description": "Emit a pulsing area heal that increases in frequency over time. Enemies within the pulse take damage equal to 30% of its healing output. Self-healing from Purr is reduced by 40%."
       }
     ],
     "ultimate": {
@@ -4840,6 +4943,14 @@
       {
         "date": "2026-08-11",
         "change": "Base movement speed increased from 5.5 to 6 m/s. Headbutt major perk removed; Purrfect Form major perk added (each pulse of Purr contains 3 waves)."
+      },
+      {
+        "date": "2026-08-14",
+        "change": "Hotfix: base movement speed 6→5.5 m/s. Purr self-healing penalty 25%→40%."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Biotic Pawjectiles damage and healing per projectile 4.5→4. Lifeline now disconnects when the carried target is stunned or mobility-locked; allies auto-accept Lifeline over a death plane."
       }
     ],
     "lore": "Fika is a stray cat who wandered into Watchpoint: Gibraltar's landing bay and was adopted by Brigitte Lindholm, who named her after her Kanelbullar-like colouring and insatiable appetite for treats. Building a jetpack for a cat had been Brigitte's childhood dream — she'd even drafted plans years earlier for a previous cat named Mitzi — and finding Fika nestled among discarded rocket parts finally gave the idea its pilot. When Talon attacked Gibraltar, Brigitte shelved the project, then reconsidered: if Overwatch was going to stand a chance against this new threat, they would need all the help they could get."
@@ -4967,7 +5078,7 @@
       "ammo": "6 charges per burst",
       "damage": "None — up to 120 total healing per burst to a targeted ally",
       "cooldown": "Reload",
-      "description": "Channel a burst of paper talismans that automatically seek and heal a targeted ally."
+      "description": "Channel a burst of paper talismans (18 m/s) that automatically seek and heal a targeted ally within 30 metres."
     },
     "secondaryWeapon": {
       "name": "Kunai",
@@ -4994,7 +5105,7 @@
         "type": "Team cleanse and invulnerability",
         "damage": "None",
         "cooldown": "14 sec",
-        "description": "Throw a charm that briefly makes nearby allies invulnerable and cleanses most negative effects."
+        "description": "Throw a charm (4-metre radius) that makes nearby allies invulnerable for 0.5 seconds and cleanses most negative effects."
       }
     ],
     "ultimate": {
@@ -5055,6 +5166,10 @@
       {
         "date": "2026-08-12",
         "change": "Major perk block corrected via in-game screenshot: Shuffling (obsolete) replaced with Ready Step; Foxtrot's numbers corrected 40%/2s→30%/4s."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Healing Ofuda projectile speed 24→18 m/s, maximum seeking range 35→30m. Protection Suzu invulnerability 0.65→0.5s, explosion radius 5→4m."
       }
     ],
     "lore": "Kiriko Kamori is a young shrine maiden from Kanezaka in Tokyo, trained in both the traditional kitsune fox spirit arts of her grandmother and the more grounded ninja techniques passed down through her mother's side of the family. She grew up alongside Genji and Hanzo Shimada and now uses her swiftness and healing ofuda to protect her community from the forces that took over after the yakuza left. Her kitsune spirit runs beside her."
@@ -5223,7 +5338,7 @@
       "name": "Sound Barrier",
       "type": "Ultimate team overhealth",
       "damage": "None",
-      "description": "Leap into the air and provide a large burst of temporary overhealth to all nearby allies."
+      "description": "Leap into the air and provide a large burst of temporary overhealth to all nearby allies, lasting 6 seconds."
     },
     "counters": [
       "Reinhardt",
@@ -5258,7 +5373,7 @@
         },
         {
           "name": "Beat Drop",
-          "description": "Amp It Up remains active during Sound Barrier."
+          "description": "Amp It Up remains active for 4 seconds after casting Sound Barrier."
         }
       ],
       "major": [
@@ -5276,6 +5391,10 @@
       {
         "date": "2026-08-12",
         "change": "Corrected via in-game screenshot: Soundwave's wall-ride bonus was wrongly baked into the baseline ability — moved into the (previously obsolete) Bass Blowout perk, renamed to its real name Soundwave Rider. Accelerando's effect corrected — it grants a baseline 15% attack speed during Speed Song, tripled during Amp It Up, not a flat 50%."
+      },
+      {
+        "date": "2026-10-06",
+        "change": "Sound Barrier duration 5→6 seconds. Beat Drop (Minor Perk) now keeps Amp It Up active for 4 seconds after casting Sound Barrier."
       }
     ],
     "lore": "Lúcio Correia dos Santos is a Brazilian DJ and activist who grew up in a favela forcibly restructured by the Vishkar Corporation, and responded by reverse-engineering their sonic technology and using it to drive them out. He took his music and his movement global, using his beat-driven abilities to heal allies and accelerate pushes in equal measure. His beats are a form of liberation that scales to any size crowd."
@@ -5599,6 +5718,122 @@
     "lore": "Dr. Moira O'Deorain is an Irish geneticist of extraordinary and unchecked ambition who pushes biological science past every ethical limit the field has established, pursuing discoveries too dangerous for legitimate institutions and too interesting to stop. She has augmented her own body with biotic technology that channels both restorative and corrosive energy simultaneously, blurring the line between healer and weapon. She regards conventional morality as a bureaucratic obstacle to human potential."
   },
   {
+    "id": "sombra",
+    "name": "Sombra",
+    "role": "Support",
+    "imageId": "sombra",
+    "health": 225,
+    "armour": 0,
+    "shields": 0,
+    "movementSpeed": "5.5 m/s",
+    "difficulty": 4,
+    "primaryWeapon": {
+      "name": "Machine Pistol",
+      "type": "Automatic hitscan SMG",
+      "ammo": "60 rounds",
+      "damage": "7 per bullet (falloff 20–35 m)",
+      "cooldown": "Reload",
+      "description": "A rapid-fire machine pistol best used at close range from off angles. Reaches maximum 2° spread after 10 shots."
+    },
+    "passive": {
+      "name": "Conspirator",
+      "description": "Fully charged enemy ultimates are revealed to Sombra. As a Tactician, excess ultimate charge carries over to her next ultimate."
+    },
+    "abilities": [
+      {
+        "name": "Cyberspace",
+        "type": "Area heal / Weaken zone",
+        "damage": "40 explosion + 25 per second; heals allies 40 + 30 per second",
+        "cooldown": "12 seconds",
+        "duration": "3 seconds",
+        "description": "Launches a projectile that bursts into a 5-metre zone, damaging and Weakening enemies (their damage and healing output is halved) while healing allies inside."
+      },
+      {
+        "name": "Translocator",
+        "type": "Mobility / stealth",
+        "damage": "None",
+        "cooldown": "7.5 seconds",
+        "duration": "6.5 seconds of stealth",
+        "description": "Throws a beacon (12.25 m range) and teleports to it, gaining an immediate movement speed bonus. Teleporting grants 6.5 seconds of stealth after a 0.75-second fade."
+      }
+    ],
+    "ultimate": {
+      "name": "EMP",
+      "type": "Ultimate disruption",
+      "damage": "20% of current health",
+      "description": "Releases an electromagnetic pulse that hacks enemies in a large area, damaging them and disabling their abilities, and destroying barriers and shields."
+    },
+    "counters": [
+      "Widowmaker",
+      "Zenyatta",
+      "Symmetra",
+      "Illari"
+    ],
+    "counteredBy": [
+      "Cassidy",
+      "Brigitte",
+      "Kiriko",
+      "Mei"
+    ],
+    "synergies": [
+      "Winston",
+      "D.Va",
+      "Tracer",
+      "Ana"
+    ],
+    "strongMaps": [
+      "Dorado",
+      "Watchpoint: Gibraltar",
+      "Numbani"
+    ],
+    "weakMaps": [
+      "King's Row",
+      "Lijiang Control Center",
+      "Route 66"
+    ],
+    "perks": {
+      "minor": [
+        {
+          "name": "Life Hack",
+          "description": "EMP applies Hotfix to nearby allies."
+        },
+        {
+          "name": "CTRL ALT ESC",
+          "description": "Teleporting with Translocator at critical health initiates passive health regeneration."
+        }
+      ],
+      "major": [
+        {
+          "name": "Data Packet",
+          "description": "Hacking health packs with Hotfix reduces its main cooldown by 4 seconds."
+        },
+        {
+          "name": "Cybersecurity",
+          "description": "Cyberspace healing is doubled on allies below 50% health."
+        }
+      ]
+    },
+    "patchHistory": [
+      {
+        "date": "2026-08-12",
+        "change": "Encrypted Upload's stealth-extension bonus corrected from 2 to 3 seconds. White Hat major perk removed (obsolete); replaced with High-Speed Bandwidth."
+      },
+      {
+        "date": "2026-10-06",
+        "change": "Hero rework: moved from Damage (Recon) to Support (Tactician). Hack, Virus and Opportunist removed. New: Hotfix (secondary fire heal/hack), Cyberspace (Ability 1, applies Weaken) and Conspirator (passive). Translocator stealth 5→6.5s, stealth entry 0.3→0.75s, range 18→12.25m, cooldown 6→7.5s. EMP ultimate cost +67.5%, damage 25%→20% of current health. Machine Pistol damage 8→7, minimum falloff 15→20m, max spread 2.3°→2°, shots to max spread 6→10. Encrypted Upload, High-Speed Bandwidth and Viral Replication removed; added Life Hack, Data Packet and Cybersecurity."
+      }
+    ],
+    "lore": "An orphan from Mexico City's post-Crisis slums who survived by learning to exploit the secrets of the powerful, Sombra grew into the world's most dangerous information broker — invisible, irreplaceable, and loyal to absolutely no one permanently. She discovered the edges of a global conspiracy so vast it swallowed Talon whole without even noticing, and she has been quietly pulling threads ever since. Her true agenda is the only thing she has never hacked her way out of.",
+    "secondaryWeapon": {
+      "name": "Hotfix",
+      "type": "Ally heal / hack",
+      "ammo": "2 charges",
+      "damage": "None — heals 65 instantly plus 25 per second (up to 175 total, 12 s)",
+      "cooldown": "8 seconds per charge",
+      "description": "Hack an ally within 17 metres to heal them. Can also hack health packs (30 s) and most enemy deployables on a separate 6-second cooldown. Usable while stealthed, briefly revealing Sombra; taking damage interrupts the hack."
+    }
+  },
+  {
     "id": "wuyang",
     "name": "Wuyang",
     "role": "Support",
@@ -5626,7 +5861,7 @@
         "type": "Sustained healing",
         "damage": "None",
         "cooldown": "Resource based",
-        "description": "Place a passive healing stream on an ally at 25 HPS. Hold the button to manually channel at 75 HPS total, consuming healing resource that regenerates over time."
+        "description": "Place a passive healing stream on an ally at 25 HPS. Hold the button to manually channel at 75 HPS total, consuming healing resource that regenerates at 15% per second. The stream drops after 3 seconds without line of sight."
       },
       {
         "name": "Rushing Torrent",
@@ -5695,7 +5930,12 @@
         }
       ]
     },
-    "patchHistory": [],
+    "patchHistory": [
+      {
+        "date": "2026-09-08",
+        "change": "Restorative Stream resource regeneration 12.5%→15% per second; line-of-sight timeout 5→3 seconds."
+      }
+    ],
     "lore": "Wuyang Ye always dreamed of following his family's legacy into Wuxing University's prestigious Fire College, only to be accepted into the Water College instead — a blow to his pride that became an unexpected gift as he discovered a natural talent for qi gong and traditional Chinese healing. When Null Sector attacked Chengdu, he rushed to save his sister Anran using his water-based combat techniques, and the siblings fought their way free together. Winston recruited them both after witnessing the footage; Wuyang accepted with renewed confidence and his sister's encouragement."
   },
   {
@@ -5726,7 +5966,7 @@
         "type": "Single-target healing",
         "damage": "None",
         "cooldown": "None",
-        "description": "Attach a healing orb to an ally, restoring their health over time. The orb persists as long as Zenyatta maintains line of sight."
+        "description": "Attach a healing orb to an ally, restoring their health over time. The orb is removed after 3 seconds without line of sight."
       },
       {
         "name": "Orb of Discord",
@@ -5806,6 +6046,10 @@
       {
         "date": "2026-08-12",
         "change": "Duality major perk (obsolete) replaced with Dual Harmony, corrected via in-game screenshot."
+      },
+      {
+        "date": "2026-09-08",
+        "change": "Orb of Harmony line-of-sight timeout 5→3 seconds."
       }
     ],
     "lore": "Tekhartha Zenyatta is a Shambali omnic monk who broke from the monastery's doctrine to wander the world and form genuine personal connections with humans, believing that understanding grows from relationship rather than instruction. He became Genji's mentor at a critical moment and helped him make peace with the fractured existence of being neither fully human nor fully machine. He throws orbs of harmony and destruction with equal tranquility, fully at peace with the contradiction."

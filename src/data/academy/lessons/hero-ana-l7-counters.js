@@ -25,7 +25,7 @@
       type: 'callout',
       variant: 'warning',
       title: 'Heroes That Counter Ana',
-      body: 'Tracer, Genji, Sombra, and Winston. These heroes close the gap quickly and remove Ana\'s range advantage. Sombra\'s hack disables Sleep Dart and Biotic Grenade. Coordinate with teammates to peel these threats.',
+      body: 'Tracer, Genji, Sombra, and Winston. These heroes close the gap quickly and remove Ana\'s range advantage. Sombra\'s Cyberspace Weakens Ana, halving her healing and damage, and EMP disables Sleep Dart and Biotic Grenade. Coordinate with teammates to peel these threats.',
     },
     {
       type: 'callout',
@@ -70,12 +70,12 @@
         text: 'Why is Sombra specifically dangerous for Ana?',
         options: [
           { id: 'a', text: 'She moves faster than Ana can aim.' },
-          { id: 'b', text: 'Her hack disables Ana\'s Sleep Dart and Biotic Grenade.' },
+          { id: 'b', text: 'Her EMP disables Ana\'s Sleep Dart and Biotic Grenade, and Cyberspace halves her healing.' },
           { id: 'c', text: 'She blocks Biotic Rifle shots.' },
           { id: 'd', text: 'She shields flanking teammates.' },
         ],
         correctId: 'b',
-        explanation: 'Hack disables abilities, stripping Ana of her two defensive tools when a Sombra flanks her.',
+        explanation: 'EMP disables abilities, stripping Ana of her two defensive tools, and Cyberspace\'s Weaken halves her healing output.',
       },
       {
         id: 'q3',

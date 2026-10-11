@@ -15,13 +15,13 @@ export default {
       type: 'callout',
       variant: 'warning',
       title: 'Mistake 1: Ignoring Role Responsibilities',
-      body: 'DPS heroes who engage without cover overextend and give opponents free eliminations.',
+      body: 'Supports who flank alone stop healing their team. Sombra\'s job is now to sustain allies with Hotfix and Cyberspace, not to hunt solo picks.',
     },
     {
       type: 'callout',
       variant: 'warning',
       title: 'Mistake 2: Poor Ability Timing',
-      body: 'Using Hack reactively instead of proactively reduces its impact. Plan ahead — cooldowns used at the wrong moment leave you defenceless.',
+      body: 'Using Cyberspace reactively instead of proactively reduces its impact. Plan ahead — cooldowns used at the wrong moment leave you defenceless.',
     },
     {
       type: 'callout',
@@ -39,7 +39,7 @@ export default {
       type: 'callout',
       variant: 'tip',
       title: 'The Fix: Communication',
-      body: 'Most Sombra mistakes are amplified when playing silently. Calling out ability status, ultimate charge, and threats lets teammates fill gaps you leave.',
+      body: 'Most Sombra mistakes are amplified when playing silently. Calling out ability status, ultimate charge, and the enemy ultimates Conspirator reveals lets teammates fill gaps you leave.',
     },
   ],
   quiz: {
@@ -47,15 +47,15 @@ export default {
     questions: [
       {
         id: 'q1',
-        text: 'What is a common Damage positioning mistake?',
+        text: 'What is a common Support positioning mistake for Sombra?',
         options: [
-          { id: 'a', text: 'Engaging without cover and overextending' },
+          { id: 'a', text: 'Flanking alone and leaving the team without healing' },
           { id: 'b', text: 'Using abilities too frequently.' },
           { id: 'c', text: 'Communicating too much with teammates.' },
           { id: 'd', text: 'Staying too close to the objective.' },
         ],
         correctId: 'a',
-        explanation: 'Damage heroes must prioritise role responsibilities over individual plays that disrupt team structure.',
+        explanation: 'Support heroes must prioritise role responsibilities over individual plays that disrupt team structure.',
       },
       {
         id: 'q2',

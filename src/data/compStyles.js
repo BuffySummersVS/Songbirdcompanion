@@ -7,7 +7,7 @@ export const COMP_STYLES = [
     description:
       "A high-mobility composition that attacks from multiple angles simultaneously, targeting isolated or exposed enemies — particularly the enemy backline. Dive comps rely on coordinated engage timing, burst damage, and strong escape potential.",
     howItPlays:
-      "The dive tank (D.Va, Winston, Wrecking Ball) lunges onto the enemy supports while flanker DPS (Tracer, Genji, Sombra) attack from a second angle. Mobile supports (Kiriko, Lúcio, Juno) keep diving heroes alive and enable rapid repositioning. The goal is to pick off a target before the enemy can react, then disengage safely.",
+      "The dive tank (D.Va, Winston, Wrecking Ball) lunges onto the enemy supports while flanker DPS (Tracer, Genji) attack from a second angle. Mobile supports (Kiriko, Lúcio, Juno, Sombra) keep diving heroes alive and enable rapid repositioning. The goal is to pick off a target before the enemy can react, then disengage safely.",
     bestMaps:
       "Open maps with vertical space and multiple flanking routes — Numbani, Ilios, Nepal, Lijiang Tower, Samoa, Colosseo.",
     exampleHeroes: ["Winston", "D.Va", "Tracer", "Genji", "Kiriko"],

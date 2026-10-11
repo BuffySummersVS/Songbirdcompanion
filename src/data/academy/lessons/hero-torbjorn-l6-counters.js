@@ -33,7 +33,7 @@
       type: 'callout',
       variant: 'info',
       title: 'Perks Worth Knowing',
-      body: 'Minor: Craftsman — Forge Hammer restores armour health to allies; turret repair healing increases 25%. / Loaded — Activating Overload fully refills Rivet Gun\'s ammo. · Major: Anchor Bolts — Deploy Turret throw range increases 50%; can attach to walls and ceilings. / Overloaded Turret — Overload temporarily upgrades the Turret for five seconds, increasing its health and damage.',
+      body: 'Minor: Craftsman — Forge Hammer restores armour health to allies; turret repair healing increases 25%. / Loaded — Activating Overload fully refills Rivet Gun\'s ammo. · Major: Anchor Bolts — Deploy Turret throw range increases 25%; can attach to walls and ceilings. / Overloaded Turret — Overload temporarily upgrades the Turret for five seconds, increasing its health and damage.',
     },
   ],
   quiz: {

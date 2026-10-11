@@ -3,6 +3,8 @@ import { SUBROLES } from "./subroles";
 // Sourced from in-game hero-info screenshots (OWCA/hero info, 2026-08-12),
 // with D.Mon, Ramattra, Wrecking Ball, and Brigitte confirmed separately
 // after their subrole line was cut off in every captured screenshot.
+// Season 5 (2026-10-06): Doctrine added and Sombra moved to Support/Tactician,
+// per the official hero gallery.
 const MAP = {
   // ── Tanks ──────────────────────────────────────────
   dmon:         "Stalwart",
@@ -39,7 +41,6 @@ const MAP = {
   sierra:       "Recon",
   sojourn:      "Sharpshooter",
   soldier76:    "Specialist",
-  sombra:       "Recon",
   symmetra:     "Specialist",
   torbjorn:     "Specialist",
   tracer:       "Flanker",
@@ -51,6 +52,7 @@ const MAP = {
   ana:          "Tactician",
   baptiste:     "Tactician",
   brigitte:     "Survivor",
+  doctrine:     "Survivor",
   illari:       "Survivor",
   jetpackcat:   "Tactician",
   juno:         "Survivor",
@@ -60,6 +62,7 @@ const MAP = {
   mercy:        "Medic",
   mizuki:       "Survivor",
   moira:        "Medic",
+  sombra:       "Tactician",
   wuyang:       "Survivor",
   zenyatta:     "Tactician",
 };
